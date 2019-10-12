@@ -1,4 +1,5 @@
 # skdvin-webapp
+[![Build Status](https://travis-ci.com/skyYaga/skdvin-webapp.svg?branch=develop)](https://travis-ci.com/skyYaga/skdvin-webapp)
 
 ## Project setup
 ```
