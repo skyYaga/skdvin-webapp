@@ -1,5 +1,9 @@
 import { shallowMount } from "@vue/test-utils";
+import Vuetify from "vuetify";
+import Vue from "vue";
 import Profile from "@/views/Profile.vue";
+
+Vue.use(Vuetify);
 
 describe("Profile.vue", () => {
   it("should render user details", () => {
