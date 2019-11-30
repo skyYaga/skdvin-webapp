@@ -1,25 +1,14 @@
-import { shallowMount } from "@vue/test-utils";
+import { mount } from "@vue/test-utils";
+import Vuetify from "vuetify";
+import Vue from "vue";
 import Home from "@/views/Home.vue";
+import HelloWorld from "@/components/HelloWorld.vue";
+
+Vue.use(Vuetify);
 
 describe("Home.vue", () => {
-  it("shows login button when not authenticated", () => {
-    const $auth = { isAuthenticated: false };
-    const msg = "Log in";
-    const wrapper = shallowMount(Home, {
-      mocks: {
-        $auth
-      }
-    });
-    expect(wrapper.find("button").text()).toMatch(msg);
-  });
-  it("shows logout button when authenticated", () => {
-    const $auth = { isAuthenticated: true };
-    const msg = "Log out";
-    const wrapper = shallowMount(Home, {
-      mocks: {
-        $auth
-      }
-    });
-    expect(wrapper.find("button").text()).toMatch(msg);
+  it("shows Welcome to Vuetify heading", () => {
+    const wrapper = mount(Home);
+    expect(wrapper.find(HelloWorld)).toBeDefined();
   });
 });
