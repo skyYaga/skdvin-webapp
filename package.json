@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.4.2",
-    "core-js": "^2.6.10",
+    "axios": "^0.19.1",
+    "core-js": "^3.6.4",
+    "moment": "^2.24.0",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
     "vuetify": "^2.1.0",
