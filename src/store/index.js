@@ -23,8 +23,11 @@ const actions = {
     const jumpdays = await jumpdayService.getJumpdays(token);
     commit(GET_JUMPDAYS, jumpdays);
   },
-  async addJumpdayAction({ commit }, jumpday, token) {
-    const addedJumpday = await jumpdayService.addJumpday(jumpday, token);
+  async addJumpdayAction({ commit }, payload) {
+    const addedJumpday = await jumpdayService.addJumpday(
+      payload.jumpday,
+      payload.token
+    );
     commit(ADD_JUMPDAY, addedJumpday);
   }
 };

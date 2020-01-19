@@ -160,8 +160,9 @@ export default {
         currentTime.add(duration);
       }
 
+      let auth = this.$auth;
       let token = await this.$auth.getTokenSilently();
-      await this.addJumpdayAction(newJumpday, token);
+      await this.addJumpdayAction({ jumpday: newJumpday, token });
       this.onJumpdayChanged(newJumpday.date);
     },
     onJumpdayChanged(date) {

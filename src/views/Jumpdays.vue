@@ -26,6 +26,7 @@ import Calendar from "../components/Calendar";
 import JumpdayTable from "../components/JumpdayTable";
 import EditJumpdayPanel from "../components/EditJumpdayPanel";
 import { mapActions, mapState, mapGetters } from "vuex";
+import moment from "moment";
 
 export default {
   name: "Jumpdays",
@@ -61,6 +62,7 @@ export default {
     },
     loadJumpday(date) {
       this.date = date;
+      console.log(`JumpdayFunction: ${{ ...this.getJumpdayByDate }}`);
       let loadedJumpday = { ...this.getJumpdayByDate(this.date) };
 
       if (
@@ -76,10 +78,7 @@ export default {
       }
     },
     nowFormatted() {
-      let now = new Date();
-      return (
-        now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate()
-      );
+      return moment().format("YYYY-MM-DD");
     }
   }
 };

@@ -1,4 +1,5 @@
 import * as axios from "axios";
+import Vue from "vue";
 
 const getJumpdays = async function(token) {
   try {
@@ -39,7 +40,7 @@ const parseList = response => {
     throw Error(response.data.message);
   }
 
-  let list = response.data.data;
+  let list = response.data.payload;
   if (typeof list !== "object") {
     list = [];
   }
@@ -51,7 +52,7 @@ export const parseItem = (response, code) => {
   if (!response.data.success) {
     throw Error(response.data.message);
   }
-  let item = response.data.data;
+  let item = response.data.payload;
   if (typeof item !== "object") {
     item = undefined;
   }
