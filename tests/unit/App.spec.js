@@ -6,46 +6,18 @@ import App from "@/App.vue";
 Vue.use(Vuetify);
 
 describe("App.vue", () => {
-  it("shows login button when not authenticated", () => {
-    const $auth = { isAuthenticated: false };
-    const msg = "Log in";
+  it("contains Navbar", () => {
+    const msg = "navbar";
     const wrapper = shallowMount(App, {
-      stubs: ["router-link", "router-view"],
-      mocks: {
-        $auth
-      }
+      stubs: ["router-link", "router-view"]
     });
     expect(wrapper.html()).toContain(msg);
   });
-  it("shows logout button when authenticated", () => {
-    const $auth = { isAuthenticated: true };
-    const msg = "Log out";
+  it("contains Router View", () => {
+    const msg = "router-view";
     const wrapper = shallowMount(App, {
-      stubs: ["router-link", "router-view"],
-      mocks: {
-        $auth
-      }
+      stubs: ["router-link", "router-view"]
     });
     expect(wrapper.html()).toContain(msg);
-  });
-  it("displays public menu when not authenticated", () => {
-    const $auth = { isAuthenticated: false };
-    const wrapper = shallowMount(App, {
-      stubs: ["router-link", "router-view"],
-      mocks: {
-        $auth
-      }
-    });
-    expect(wrapper.html()).not.toContain("Profile");
-  });
-  it("displays profile menu when authenticated", () => {
-    const $auth = { isAuthenticated: true };
-    const wrapper = shallowMount(App, {
-      stubs: ["router-link", "router-view"],
-      mocks: {
-        $auth
-      }
-    });
-    expect(wrapper.html()).toContain("Profile");
   });
 });

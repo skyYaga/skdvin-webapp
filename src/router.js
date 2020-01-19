@@ -28,6 +28,12 @@ export default new Router({
       name: "profile",
       component: () => import("./views/Profile.vue"),
       beforeEnter: authGuard
+    },
+    {
+      path: "/jumpdays",
+      name: "jumpdays",
+      component: () => import("./views/Jumpdays.vue"),
+      beforeEnter: authGuard
     }
   ]
 });
