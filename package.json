@@ -10,7 +10,7 @@
     "test": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "@auth0/auth0-spa-js": "^1.6.2",
+    "@auth0/auth0-spa-js": "^1.6.3",
     "axios": "^0.19.1",
     "core-js": "^3.6.4",
     "moment": "^2.24.0",
