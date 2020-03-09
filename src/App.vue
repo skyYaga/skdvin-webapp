@@ -2,9 +2,7 @@
   <v-app>
     <NavBar />
     <v-content>
-      <v-container fluid>
-        <router-view />
-      </v-container>
+      <router-view />
     </v-content>
     <v-footer app>
       <span>&copy; 2019</span>

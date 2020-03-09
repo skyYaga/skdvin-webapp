@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import { GET_JUMPDAYS, ADD_JUMPDAY } from "./mutation-types";
 import { jumpdayService } from "../shared/jumpday-service";
+import { appointmentService } from "../shared/appointment-service";
 
 Vue.use(Vuex);
 
@@ -29,6 +30,21 @@ const actions = {
       payload.token
     );
     commit(ADD_JUMPDAY, addedJumpday);
+  },
+  async searchSlotsAction({ commit }, query) {
+    const slots = await appointmentService.searchSlots(query);
+    return slots;
+  },
+  async addAppointmentAction({ commit }, appointment) {
+    const result = await appointmentService.saveAppointment(appointment);
+    return result;
+  },
+  async verifyAppointmentAction({ commit }, payload) {
+    const result = await appointmentService.verifyAppointment(
+      payload.id,
+      payload.token
+    );
+    return result;
   }
 };
 
