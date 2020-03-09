@@ -104,7 +104,7 @@ export default {
     endHour: "18",
     endMinute: "00",
     sequence: "1:30",
-    tandem: "4",
+    tandem: "5",
     picOrVid: "0",
     picAndVid: "0",
     handcam: "0",

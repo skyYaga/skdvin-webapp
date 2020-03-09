@@ -12,7 +12,8 @@ export default new Router({
     {
       path: "/",
       name: "home",
-      component: Home
+      component: Home,
+      beforeEnter: authGuard
     },
     {
       path: "/about",
@@ -21,7 +22,8 @@ export default new Router({
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () =>
-        import(/* webpackChunkName: "about" */ "./views/About.vue")
+        import(/* webpackChunkName: "about" */ "./views/About.vue"),
+      beforeEnter: authGuard
     },
     {
       path: "/profile",
@@ -33,6 +35,18 @@ export default new Router({
       path: "/jumpdays",
       name: "jumpdays",
       component: () => import("./views/Jumpdays.vue"),
+      beforeEnter: authGuard
+    },
+    {
+      path: "/appointment/confirm",
+      name: "appointment-confirm",
+      component: () => import("./views/AppointmentConfirm.vue"),
+      beforeEnter: authGuard
+    },
+    {
+      path: "/appointment/verify",
+      name: "appointment-verify",
+      component: () => import("./views/AppointmentVerify.vue"),
       beforeEnter: authGuard
     }
   ]
