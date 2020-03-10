@@ -1,23 +1,35 @@
 <template>
   <v-container fluid>
-    <h1>Sprungtage</h1>
-    <v-row dense>
-      <v-col cols="5">
-        <Calendar d-flex flex-wrap @handleDateSelection="loadJumpday" />
-      </v-col>
-      <v-col cols="7">
-        <EditJumpdayPanel
-          :jumpday="jumpday"
-          @handleJumpdayChanged="loadJumpday"
-        />
-      </v-col>
-    </v-row>
-    <v-row>
-      <div class="notification is-info" v-show="message">{{ message }}</div>
-    </v-row>
-    <v-row>
-      <JumpdayTable :jumpday="jumpday" />
-    </v-row>
+    <div v-if="loading">
+      <v-row>
+        <v-alert type="info">
+          <v-progress-circular indeterminate></v-progress-circular>
+          {{ message }}
+        </v-alert>
+      </v-row>
+    </div>
+    <div v-if="!loading && authorized">
+      <h1>Sprungtage</h1>
+      <v-row dense>
+        <v-col cols="5">
+          <Calendar d-flex flex-wrap @handleDateSelection="loadJumpday" />
+        </v-col>
+        <v-col cols="7">
+          <EditJumpdayPanel
+            :jumpday="jumpday"
+            @handleJumpdayChanged="loadJumpday"
+          />
+        </v-col>
+      </v-row>
+      <v-row>
+        <JumpdayTable :jumpday="jumpday" />
+      </v-row>
+    </div>
+    <div v-if="!loading && !authorized">
+      <v-row>
+        <v-alert type="error">{{ message }}</v-alert>
+      </v-row>
+    </div>
   </v-container>
 </template>
 
@@ -32,6 +44,8 @@ export default {
   name: "Jumpdays",
   data() {
     return {
+      loading: true,
+      authorized: false,
       date: this.nowFormatted(),
       message: "",
       jumpday: {
@@ -57,23 +71,35 @@ export default {
     ...mapActions(["getJumpdaysAction"]),
     async loadJumpdays() {
       this.message = "loading jumpdays, please be patient...";
-      await this.getJumpdaysAction(await this.$auth.getTokenSilently());
-      this.message = "";
+      let unauthorizedMessage = await this.getJumpdaysAction(
+        await this.$auth.getTokenSilently()
+      );
+      console.log("UnauthorizedMessage: " + unauthorizedMessage);
+      if (unauthorizedMessage !== "") {
+        this.message = "Ups! Leider kein Zugriff :-(";
+        this.authorized = false;
+      } else {
+        this.message = "";
+        this.authorized = true;
+      }
+      this.loading = false;
     },
     loadJumpday(date) {
-      this.date = date;
-      let loadedJumpday = { ...this.getJumpdayByDate(this.date) };
+      if (this.authorized) {
+        this.date = date;
+        let loadedJumpday = { ...this.getJumpdayByDate(this.date) };
 
-      if (
-        Object.entries(loadedJumpday).length === 0 &&
-        loadedJumpday.constructor === Object
-      ) {
-        this.jumpday = {
-          jumping: false,
-          date: this.date
-        };
-      } else {
-        this.jumpday = loadedJumpday;
+        if (
+          Object.entries(loadedJumpday).length === 0 &&
+          loadedJumpday.constructor === Object
+        ) {
+          this.jumpday = {
+            jumping: false,
+            date: this.date
+          };
+        } else {
+          this.jumpday = loadedJumpday;
+        }
       }
     },
     nowFormatted() {

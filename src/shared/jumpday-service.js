@@ -9,8 +9,13 @@ const getJumpdays = async function(token) {
         Authorization: `Bearer ${token}` // send the access token through the 'Authorization' header
       }
     });
+    console.log("in normal handling");
     return parseList(response);
   } catch (error) {
+    if (error.response.status === 403) {
+      return error.response.status;
+    }
+    console.log("in error handling");
     return [];
   }
 };
