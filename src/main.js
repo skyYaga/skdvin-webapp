@@ -4,7 +4,9 @@ import router from "./router";
 import store from "./store";
 
 // Import the Auth0 configuration
-import { domain, clientId, audience } from "../auth_config.json";
+let domain = process.env.VUE_APP_AUTH0_DOMAIN;
+let clientId = process.env.VUE_APP_AUTH0_CLIENT_ID;
+let audience = process.env.VUE_APP_AUTH0_AUDIENCE;
 
 // Import the plugin here
 import { Auth0Plugin } from "./auth";
