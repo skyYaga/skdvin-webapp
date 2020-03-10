@@ -1,5 +1,4 @@
 import * as axios from "axios";
-import Vue from "vue";
 
 const getJumpdays = async function(token) {
   try {

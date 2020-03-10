@@ -1,5 +1,4 @@
 import * as axios from "axios";
-import Vue from "vue";
 import moment from "moment";
 
 const searchSlots = async function(query) {
