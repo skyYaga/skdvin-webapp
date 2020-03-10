@@ -13,50 +13,57 @@
           <ul>
             <li>
               Fallschirmspringen ist in hohem Maße vom Wetter abhängig. Deshalb
-              liegt aus Sicherheitsgründen die letzte <b>Entscheidung</b>, ob
-              gesprungen wird oder nicht, <b>beim Tandempiloten</b>.
+              liegt aus Sicherheitsgründen die letzte
+              <strong>Entscheidung</strong>, ob gesprungen wird oder nicht,
+              <strong>beim Tandempiloten</strong>.
             </li>
             <li>
               Nehmen Sie sich für Ihren Sprung
-              <b>mindestens 2 – 3 Stunden Zeit</b>, da die Sprungreihenfolge und
-              der Sprungbetrieb von vielen Faktoren abhängt (Wetter, …). In
-              Ausnahmefällen kann es auch länger dauern.<br />
-              Der ausgemachte Termin ist lediglich als <b>Richtwert</b> zu
-              verstehen. Es lohnt sich auch, den ganzen Tag zu bleiben.
+              <strong>mindestens 2 – 3 Stunden Zeit</strong>, da die
+              Sprungreihenfolge und der Sprungbetrieb von vielen Faktoren
+              abhängt (Wetter, …). In Ausnahmefällen kann es auch länger
+              dauern.<br />
+              Der ausgemachte Termin ist lediglich als
+              <strong>Richtwert</strong> zu verstehen. Es lohnt sich auch, den
+              ganzen Tag zu bleiben.
             </li>
             <li>
-              Unbedingt zu beachten sind <b>Mindest- und Höchstmaße</b> für
-              Passagiere. Bei Nichteinhaltung besteht kein Anspruch auf den
-              Sprung.
+              Unbedingt zu beachten sind
+              <strong>Mindest- und Höchstmaße</strong> für Passagiere. Bei
+              Nichteinhaltung besteht kein Anspruch auf den Sprung.
               <ul>
                 <li>Mindestgröße: 140 cm</li>
                 <li>Maximalgröße: 190 cm</li>
                 <li>Maximalgewicht (mit Kleidung!): 90 kg</li>
                 <li>
                   Mindestalter: 14 Jahre (bei Minderjährigen wird die
-                  Unterschrift <b>beider Erziehungsberechtigten</b> benötigt.
-                  Der Beförderungsvertrag kann dazu auch im Vorfeld ausgefüllt
+                  Unterschrift
+                  <strong>beider Erziehungsberechtigten</strong> benötigt. Der
+                  Beförderungsvertrag kann dazu auch im Vorfeld ausgefüllt
                   werden.)
                 </li>
               </ul>
             </li>
             <li>
-              Sie sollten <b>keine schweren Knochenverletzungen</b> innerhalb
-              der letzten 12 Monate vorweisen.
+              Sie sollten
+              <strong>keine schweren Knochenverletzungen</strong> innerhalb der
+              letzten 12 Monate vorweisen.
             </li>
             <li>
               Am Sprungtag ist jeglicher Einfluss von
-              <b>Drogen oder Alkohol tabu</b>.
+              <strong>Drogen oder Alkohol tabu</strong>.
             </li>
-            <li>Es darf <b>keine Schwangerschaft vorliegen</b>.</li>
+            <li>Es darf <strong>keine Schwangerschaft vorliegen</strong>.</li>
             <li>
-              Bitte bringen Sie <b>bequeme Kleidung und Turnschuhe</b> (ohne
-              Haken und Ösen) mit.
+              Bitte bringen Sie
+              <strong>bequeme Kleidung und Turnschuhe</strong> (ohne Haken und
+              Ösen) mit.
             </li>
             <li>
-              Das Aufnehmen des Sprungs mit Ihrer <b>Ausrüstung</b> (GoPro,
-              Smartphone, etc.) ist aus Sicherheitsgründen nicht möglich. Wenn
-              Sie Video/Fotos möchten, buchen Sie bitte diese Option mit.
+              Das Aufnehmen des Sprungs mit Ihrer
+              <strong>Ausrüstung</strong> (GoPro, Smartphone, etc.) ist aus
+              Sicherheitsgründen nicht möglich. Wenn Sie Video/Fotos möchten,
+              buchen Sie bitte diese Option mit.
             </li>
           </ul>
           <v-checkbox
@@ -122,5 +129,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped></style>
