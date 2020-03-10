@@ -9,7 +9,6 @@ const getJumpdays = async function(token) {
     });
     return parseList(response);
   } catch (error) {
-    console.error(error);
     return [];
   }
 };
@@ -23,7 +22,6 @@ const addJumpday = async function(jumpday, token) {
     });
     return parseItem(response, 201);
   } catch (error) {
-    console.error(error);
     return null;
   }
 };
