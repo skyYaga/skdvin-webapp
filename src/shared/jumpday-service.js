@@ -11,6 +11,9 @@ const getJumpdays = async function(token) {
     });
     return parseList(response);
   } catch (error) {
+    if (error.response.status === 403) {
+      return error.response.status;
+    }
     return [];
   }
 };
