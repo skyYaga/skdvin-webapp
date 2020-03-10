@@ -74,7 +74,6 @@ export default {
       let unauthorizedMessage = await this.getJumpdaysAction(
         await this.$auth.getTokenSilently()
       );
-      console.log("UnauthorizedMessage: " + unauthorizedMessage);
       if (unauthorizedMessage !== "") {
         this.message = "Ups! Leider kein Zugriff :-(";
         this.authorized = false;

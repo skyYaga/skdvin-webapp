@@ -21,9 +21,7 @@ const mutations = {
 
 const actions = {
   async getJumpdaysAction({ commit }, token) {
-    let message = "";
     const jumpdays = await jumpdayService.getJumpdays(token);
-    console.log("jumpdays: " + jumpdays);
     if (typeof jumpdays === "number") {
       return jumpdays;
     }

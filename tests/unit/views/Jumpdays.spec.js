@@ -11,10 +11,11 @@ describe("Jumpdays.vue", () => {
   let actions;
   let store;
   let getters;
+  const jumpersActionMock = jest.fn();
 
   beforeEach(() => {
     actions = {
-      getJumpdaysAction: jest.fn()
+      getJumpdaysAction: jumpersActionMock
     };
     getters = {
       getJumpdayByDate: state => date => state.jumpdays
@@ -24,8 +25,8 @@ describe("Jumpdays.vue", () => {
       getters
     });
   });
-
-  it("renders page", () => {
+  it("renders page when authorized", async () => {
+    jumpersActionMock.mockReturnValueOnce("");
     const $auth = { getTokenSilently: jest.fn() };
     $auth.getTokenSilently.mockReturnValue("unit-token");
     const wrapper = shallowMount(Jumpdays, {
@@ -35,6 +36,36 @@ describe("Jumpdays.vue", () => {
         $auth
       }
     });
+    wrapper.setData({ loading: false, authorized: true });
+    await localVue.nextTick();
+    await wrapper.vm.$nextTick();
     expect(wrapper.find("h1").text()).toBe("Sprungtage");
+  });
+  it("renders Unauthorized alert when not authorized", async () => {
+    jumpersActionMock.mockReturnValueOnce(403);
+    const $auth = { getTokenSilently: jest.fn() };
+    $auth.getTokenSilently.mockReturnValue("unit-token");
+    const wrapper = shallowMount(Jumpdays, {
+      store,
+      localVue,
+      mocks: {
+        $auth
+      }
+    });
+    await localVue.nextTick();
+    await wrapper.vm.$nextTick();
+    expect(wrapper.text()).toMatch("Ups! Leider kein Zugriff :-(");
+  });
+  it("renders loading when not loaded", async () => {
+    const $auth = { getTokenSilently: jest.fn() };
+    $auth.getTokenSilently.mockReturnValue("unit-token");
+    const wrapper = shallowMount(Jumpdays, {
+      store,
+      localVue,
+      mocks: {
+        $auth
+      }
+    });
+    expect(wrapper.text()).toMatch("loading jumpdays, please be patient...");
   });
 });
