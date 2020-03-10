@@ -62,7 +62,6 @@ export default {
     },
     loadJumpday(date) {
       this.date = date;
-      console.log(`JumpdayFunction: ${{ ...this.getJumpdayByDate }}`);
       let loadedJumpday = { ...this.getJumpdayByDate(this.date) };
 
       if (
