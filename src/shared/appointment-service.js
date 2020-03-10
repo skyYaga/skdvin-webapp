@@ -1,9 +1,11 @@
 import * as axios from "axios";
 import moment from "moment";
 
+const apiPath = process.env.VUE_APP_API;
+
 const searchSlots = async function(query) {
   try {
-    const response = await axios.get("/api/appointment/slots", {
+    const response = await axios.get(apiPath + "/appointment/slots", {
       params: query
     });
     return parseList(response);
@@ -15,7 +17,7 @@ const searchSlots = async function(query) {
 const verifyAppointment = async function(id, token) {
   try {
     const response = await axios.get(
-      "/api/appointment/" + id + "/confirm/" + token
+      apiPath + "/appointment/" + id + "/confirm/" + token
     );
     if (!response.data.success) {
       return response.data.message;
@@ -29,7 +31,7 @@ const verifyAppointment = async function(id, token) {
 const saveAppointment = async function(appointment) {
   try {
     convertDate(appointment);
-    const response = await axios.post("/api/appointment", appointment);
+    const response = await axios.post(apiPath + "/appointment", appointment);
     if (response.status !== 201) throw Error(response.data.message);
     if (!response.data.success) {
       throw Error(response.data.message);
