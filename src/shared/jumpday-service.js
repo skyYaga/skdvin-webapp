@@ -1,8 +1,10 @@
 import * as axios from "axios";
 
+const apiPath = process.env.VUE_APP_API;
+
 const getJumpdays = async function(token) {
   try {
-    const response = await axios.get("/api/jumpday", {
+    const response = await axios.get(apiPath + "/jumpday", {
       headers: {
         Authorization: `Bearer ${token}` // send the access token through the 'Authorization' header
       }
@@ -15,11 +17,15 @@ const getJumpdays = async function(token) {
 
 const addJumpday = async function(jumpday, token) {
   try {
-    const response = await axios.post("/api/jumpday", createJumpday(jumpday), {
-      headers: {
-        Authorization: `Bearer ${token}` // send the access token through the 'Authorization' header
+    const response = await axios.post(
+      apiPath + "/jumpday",
+      createJumpday(jumpday),
+      {
+        headers: {
+          Authorization: `Bearer ${token}` // send the access token through the 'Authorization' header
+        }
       }
-    });
+    );
     return parseItem(response, 201);
   } catch (error) {
     return null;
