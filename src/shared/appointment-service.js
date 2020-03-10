@@ -9,7 +9,6 @@ const searchSlots = async function(query) {
     });
     return parseList(response);
   } catch (error) {
-    console.error(error);
     return [];
   }
 };
@@ -24,8 +23,6 @@ const verifyAppointment = async function(id, token) {
     }
     return "";
   } catch (error) {
-    console.error(error);
-    console.error(error.response.data.message);
     return error.response.data.message;
   }
 };
@@ -40,7 +37,6 @@ const saveAppointment = async function(appointment) {
     }
     return "";
   } catch (error) {
-    console.error(error);
     return error;
   }
 };
