@@ -9,9 +9,9 @@
             <template v-slot:default>
               <thead>
                 <tr>
-                  <th class="text-left"></th>
-                  <th class="text-left">Slots</th>
-                  <th class="text-left">Frei</th>
+                  <th scope="col" class="text-left"></th>
+                  <th scope="col" class="text-left">Slots</th>
+                  <th scope="col" class="text-left">Frei</th>
                 </tr>
               </thead>
               <tbody>
@@ -51,5 +51,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped></style>
