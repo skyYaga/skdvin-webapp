@@ -1,13 +1,19 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import { GET_JUMPDAYS, ADD_JUMPDAY } from "./mutation-types";
+import {
+  GET_JUMPDAYS,
+  ADD_JUMPDAY,
+  GET_APPOINTMENTS,
+  UPDATE_APPOINTMENT_STATE
+} from "./mutation-types";
 import { jumpdayService } from "../shared/jumpday-service";
 import { appointmentService } from "../shared/appointment-service";
 
 Vue.use(Vuex);
 
 const state = () => ({
-  jumpdays: []
+  jumpdays: [],
+  appointments: []
 });
 
 const mutations = {
@@ -16,6 +22,16 @@ const mutations = {
   },
   [ADD_JUMPDAY](state, jumpday) {
     state.jumpdays.unshift(jumpday); // mutable addition
+  },
+  [GET_APPOINTMENTS](state, appointments) {
+    state.appointments = appointments;
+  },
+  [UPDATE_APPOINTMENT_STATE](appointmentId, appointmentState) {
+    const index = state.appointments.findIndex(
+      a => a.appointmentId === appointmentId
+    );
+    state.appointments[index].state = appointmentState;
+    state.appointments = [...state.appointments];
   }
 };
 
@@ -49,6 +65,30 @@ const actions = {
       payload.token
     );
     return result;
+  },
+  async getAppointmentsAction({ commit }, payload) {
+    const appointments = await appointmentService.getAppointments(
+      payload.date,
+      payload.token
+    );
+    appointments.sort(function(a, b) {
+      // Turn your strings into dates, and then subtract them
+      // to get a value that is either negative, positive, or zero.
+      return new Date(a.date) - new Date(b.date);
+    });
+    commit(GET_APPOINTMENTS, appointments);
+  },
+  async updateAppointmentStateAction({ commit }, payload) {
+    await appointmentService.updateAppointmentState(
+      payload.appointmentId,
+      payload.appointmentState,
+      payload.token
+    );
+    commit(
+      UPDATE_APPOINTMENT_STATE,
+      payload.appointmentId,
+      payload.appointmentState
+    );
   }
 };
 

@@ -42,6 +42,47 @@ const saveAppointment = async function(appointment) {
   }
 };
 
+const getAppointments = async function(date, token) {
+  try {
+    const response = await axios.get(apiPath + "/appointment/date/" + date, {
+      headers: {
+        Authorization: `Bearer ${token}` // send the access token through the 'Authorization' header
+      }
+    });
+    return parseList(response);
+  } catch (error) {
+    if (error.response.status === 403) {
+      return error.response.status;
+    }
+    return [];
+  }
+};
+
+const updateAppointmentState = async function(
+  appointmentId,
+  appointmentState,
+  token
+) {
+  try {
+    const response = await axios.patch(
+      apiPath + "/appointment/" + appointmentId,
+      appointmentState,
+      {
+        headers: {
+          Authorization: `Bearer ${token}` // send the access token through the 'Authorization' header
+        }
+      }
+    );
+    if (response.status !== 200) throw Error(response.data.message);
+    if (!response.data.success) {
+      throw Error(response.data.message);
+    }
+    return "";
+  } catch (error) {
+    return error;
+  }
+};
+
 const convertDate = appointment => {
   let parsedMoment = moment(
     appointment.selectedDate + appointment.selectedTime,
@@ -53,10 +94,6 @@ const convertDate = appointment => {
 };
 
 const parseList = response => {
-  if (response.status !== 200) {
-    throw Error(response.message);
-  }
-
   if (!response.data) return [];
 
   if (!response.data.success) {
@@ -85,5 +122,7 @@ export const parseItem = (response, code) => {
 export const appointmentService = {
   searchSlots,
   saveAppointment,
-  verifyAppointment
+  verifyAppointment,
+  getAppointments,
+  updateAppointmentState
 };

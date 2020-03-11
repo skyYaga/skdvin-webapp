@@ -36,6 +36,12 @@ export default new Router({
       beforeEnter: authGuard
     },
     {
+      path: "/appointments",
+      name: "appointment",
+      component: () => import("./views/Appointments.vue"),
+      beforeEnter: authGuard
+    },
+    {
       path: "/appointment/confirm",
       name: "appointment-confirm",
       component: () => import("./views/AppointmentConfirm.vue")

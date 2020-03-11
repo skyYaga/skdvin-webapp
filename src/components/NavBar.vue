@@ -45,6 +45,18 @@
         </v-list-item>
         <v-list-item
           link
+          v-if="!$auth.loading && $auth.isAuthenticated"
+          to="/appointments"
+        >
+          <v-list-item-action>
+            <v-icon>mdi-calendar-today</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Termine</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item
+          link
           v-if="!$auth.loading && !$auth.isAuthenticated"
           @click="login"
         >
