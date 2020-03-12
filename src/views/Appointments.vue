@@ -70,7 +70,6 @@ export default {
     Calendar
   },
   data: () => ({
-    date: new Date().toISOString().substr(0, 10),
     menu: false,
     loading: true,
     authorized: false
@@ -88,6 +87,20 @@ export default {
       );
       let uniqueTimes = [...new Set(times)];
       return uniqueTimes;
+    },
+    date: {
+      get: function() {
+        if (typeof this.$route.query.date === "undefined") {
+          return new Date().toISOString().substr(0, 10);
+        }
+        return this.$route.query.date;
+      },
+      set: function(date) {
+        this.$router.push({
+          name: "appointments",
+          query: { date }
+        });
+      }
     }
   },
   methods: {

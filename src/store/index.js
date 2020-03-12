@@ -35,11 +35,11 @@ const mutations = {
     state.appointments.splice(index, 1, appointment);
     state.appointments = [...state.appointments];
   },
-  [UPDATE_APPOINTMENT_STATE](appointmentId, appointmentState) {
+  [UPDATE_APPOINTMENT_STATE](state, result) {
     const index = state.appointments?.findIndex(
-      a => a.appointmentId === appointmentId
+      a => a.appointmentId === result.appointmentId
     );
-    state.appointments[index].state = appointmentState;
+    state.appointments[index].state = result.appointmentState;
     state.appointments = [...state.appointments];
   }
 };
@@ -102,11 +102,10 @@ const actions = {
       payload.appointmentState,
       payload.token
     );
-    commit(
-      UPDATE_APPOINTMENT_STATE,
-      payload.appointmentId,
-      payload.appointmentState
-    );
+    commit(UPDATE_APPOINTMENT_STATE, {
+      appointmentId: payload.appointmentId,
+      appointmentState: payload.appointmentState.state
+    });
   },
   async updateAppointmentAction({ commit }, payload) {
     let result = await appointmentService.updateAppointment(

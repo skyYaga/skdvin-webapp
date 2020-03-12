@@ -23,21 +23,31 @@
       <p v-if="appointment.handcam > 0">{{ appointment.handcam }}x Handcam</p>
     </v-card-text>
     <v-card-actions>
-      <v-btn small @click="changeAppointmentState('ACTIVE')">Aktiv</v-btn>
-      <v-btn small @click="changeAppointmentState('DONE')">Erledigt</v-btn>
-      <v-btn small @click="changeAppointmentState('CONFIRMED')">Reset</v-btn>
+      <v-btn small @click="changeAppointmentState('ACTIVE')" :disabled="loading"
+        >Aktiv</v-btn
+      >
+      <v-btn small @click="changeAppointmentState('DONE')" :disabled="loading"
+        >Erledigt</v-btn
+      >
+      <v-btn
+        small
+        @click="changeAppointmentState('CONFIRMED')"
+        :disabled="loading"
+        >Reset</v-btn
+      >
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 
 export default {
   name: "AppointmentOverview",
   props: {
-    appointment: null
+    appointment: Object
   },
+  data: () => ({ loading: false }),
   computed: {
     getColorForState() {
       let appointmentState = this.appointment.state;
@@ -56,8 +66,7 @@ export default {
   methods: {
     ...mapActions(["updateAppointmentStateAction"]),
     async changeAppointmentState(newState) {
-      this.appointment.state = newState;
-
+      this.loading = true;
       let token = await this.$auth.getTokenSilently();
       await this.updateAppointmentStateAction({
         appointmentId: this.appointment.appointmentId,
@@ -66,6 +75,7 @@ export default {
         },
         token
       });
+      this.loading = false;
     }
   }
 };

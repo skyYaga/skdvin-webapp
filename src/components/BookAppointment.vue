@@ -63,30 +63,7 @@
         <v-card>
           <v-card-title>Verfügbare Zeitslots</v-card-title>
           <v-card-text>
-            <v-alert type="info" v-if="slots.length === 0"
-              >Keine freien Slots gefunden.</v-alert
-            >
-            <v-expansion-panels>
-              <v-expansion-panel v-for="slot in slots" :key="slot.date">
-                <v-expansion-panel-header>{{
-                  slot.date
-                }}</v-expansion-panel-header>
-                <v-expansion-panel-content>
-                  <v-list>
-                    <v-list-item
-                      v-for="time in slot.times"
-                      :key="time"
-                      :link="true"
-                      @click="selectSlot(slot.date, time)"
-                    >
-                      <v-list-item-content>
-                        <v-list-item-title>{{ time }}</v-list-item-title>
-                      </v-list-item-content>
-                    </v-list-item>
-                  </v-list>
-                </v-expansion-panel-content>
-              </v-expansion-panel>
-            </v-expansion-panels>
+            <AvailableSlotsPanel :slots="slots" @onSlotSelected="selectSlot" />
           </v-card-text>
         </v-card>
       </v-col>
@@ -128,6 +105,7 @@
 import { mapActions } from "vuex";
 import CustomerDataForm from "./CustomerDataForm";
 import CustomerConfirmationForm from "./CustomerConfirmationForm";
+import AvailableSlotsPanel from "./AvailableSlotsPanel";
 
 export default {
   data: () => ({
@@ -148,7 +126,8 @@ export default {
   }),
   components: {
     CustomerDataForm,
-    CustomerConfirmationForm
+    CustomerConfirmationForm,
+    AvailableSlotsPanel
   },
   computed: {
     rules() {

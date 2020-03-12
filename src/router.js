@@ -39,7 +39,7 @@ export default new Router({
     },
     {
       path: "/appointments",
-      name: "appointment",
+      name: "appointments",
       component: () => import("./views/Appointments.vue"),
       beforeEnter: authGuard
     },
