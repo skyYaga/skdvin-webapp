@@ -42,8 +42,8 @@
         ></v-col>
         <v-col
           v-for="appointment in getAppointmentsByTime(time)"
-          :lg="2"
-          :md="3"
+          :lg="3"
+          :md="4"
           :sm="6"
           :key="appointment.appointmentId"
           ><AppointmentOverview :appointment="appointment"/></v-col
@@ -82,8 +82,9 @@ export default {
   computed: {
     ...mapState(["jumpdays", "appointments"]),
     getBookedTimes() {
-      let times = this.$store.state.appointments.map(appointment =>
-        moment(appointment.date).format("HH:mm")
+      let times = this.$store.state.appointments.map(
+        appointment =>
+          appointment !== null && moment(appointment?.date).format("HH:mm")
       );
       let uniqueTimes = [...new Set(times)];
       return uniqueTimes;
@@ -120,11 +121,9 @@ export default {
     },
     getAppointmentsByTime(time) {
       return this.$store.state.appointments.filter(
-        appointment => moment(appointment.date).format("HH:mm") === time
+        appointment => moment(appointment?.date).format("HH:mm") === time
       );
     }
   }
 };
 </script>
-
-<style lang="scss" scoped></style>

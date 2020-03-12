@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-row dense>
-      <v-col :cols="4">
+      <v-col :lg="3" :md="4" :sm="12">
         <v-card>
           <v-card-title>Tandemsprung buchen</v-card-title>
           <v-card-text>
@@ -188,6 +188,9 @@ export default {
         handcam: this.appointment.handcam
       };
       this.slots = await this.searchSlotsAction(query);
+      this.slots = this.slots.sort(function(a, b) {
+        return new Date(a.date) - new Date(b.date);
+      });
     },
     selectSlot(date, time) {
       this.appointment.selectedDate = date;

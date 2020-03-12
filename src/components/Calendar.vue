@@ -1,20 +1,18 @@
 <template>
-  <v-row justify="space-around">
-    <v-date-picker
-      v-model="picker"
-      :landscape="landscape"
-      :reactive="reactive"
-      :full-width="fullWidth"
-      :show-current="showCurrent"
-      :type="month ? 'month' : 'date'"
-      :multiple="multiple"
-      :readonly="readonly"
-      :disabled="disabled"
-      :events="enableEvents ? functionEvents : null"
-      :first-day-of-week="1"
-      @click:date="onDateSelection"
-    ></v-date-picker>
-  </v-row>
+  <v-date-picker
+    v-model="picker"
+    :landscape="landscape"
+    :reactive="reactive"
+    :full-width="fullWidth"
+    :show-current="showCurrent"
+    :type="month ? 'month' : 'date'"
+    :multiple="multiple"
+    :readonly="readonly"
+    :disabled="disabled"
+    :events="enableEvents ? functionEvents : null"
+    :first-day-of-week="1"
+    @click:date="onDateSelection"
+  ></v-date-picker>
 </template>
 
 <script>

@@ -58,6 +58,29 @@ const getAppointments = async function(date, token) {
   }
 };
 
+const getAppointment = async function(appointmentId, token) {
+  try {
+    const response = await axios.get(
+      apiPath + "/appointment/" + appointmentId,
+      {
+        headers: {
+          Authorization: `Bearer ${token}` // send the access token through the 'Authorization' header
+        }
+      }
+    );
+    if (response.status !== 200) throw Error(response.data.message);
+    if (!response.data.success) {
+      throw Error(response.data.message);
+    }
+    return response.data.payload;
+  } catch (error) {
+    if (error?.response?.status === 403) {
+      return error.response.status;
+    }
+    return error;
+  }
+};
+
 const updateAppointmentState = async function(
   appointmentId,
   appointmentState,
@@ -79,6 +102,30 @@ const updateAppointmentState = async function(
     }
     return "";
   } catch (error) {
+    return error;
+  }
+};
+
+const updateAppointment = async function(appointment, token) {
+  try {
+    const response = await axios.put(apiPath + "/appointment/", appointment, {
+      headers: {
+        Authorization: `Bearer ${token}` // send the access token through the 'Authorization' header
+      }
+    });
+    if (response.status !== 200) throw Error(response.data.message);
+    if (!response.data.success) {
+      throw Error(response.data.message);
+    }
+    return response.data;
+  } catch (error) {
+    error = {
+      success: false,
+      message: error
+    };
+    if (error.response?.data?.message) {
+      error.message = error.response.data.message;
+    }
     return error;
   }
 };
@@ -107,22 +154,12 @@ const parseList = response => {
   return list;
 };
 
-export const parseItem = (response, code) => {
-  if (response.status !== code) throw Error(response.message);
-  if (!response.data.success) {
-    throw Error(response.data.message);
-  }
-  let item = response.data.payload;
-  if (typeof item !== "object") {
-    item = undefined;
-  }
-  return item;
-};
-
 export const appointmentService = {
   searchSlots,
   saveAppointment,
   verifyAppointment,
+  getAppointment,
   getAppointments,
-  updateAppointmentState
+  updateAppointmentState,
+  updateAppointment
 };

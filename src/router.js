@@ -5,6 +5,8 @@ import { authGuard } from "./auth/authGuard";
 
 Vue.use(Router);
 
+const parseProps = r => ({ id: parseInt(r.params.id) });
+
 export default new Router({
   mode: "history",
   base: process.env.BASE_URL,
@@ -39,6 +41,13 @@ export default new Router({
       path: "/appointments",
       name: "appointment",
       component: () => import("./views/Appointments.vue"),
+      beforeEnter: authGuard
+    },
+    {
+      path: "/appointments/:id",
+      props: parseProps,
+      name: "appointment-details",
+      component: () => import("./views/AppointmentDetails.vue"),
       beforeEnter: authGuard
     },
     {
