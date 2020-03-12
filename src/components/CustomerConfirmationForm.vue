@@ -90,7 +90,7 @@
             color="primary"
             :loading="loading"
             :disabled="loading"
-            @click="saveJumpday"
+            @click="saveAppointment"
             >Reservieren</v-btn
           ></v-row
         >
@@ -116,7 +116,7 @@ export default {
   }),
   methods: {
     ...mapActions(["addAppointmentAction"]),
-    async saveJumpday() {
+    async saveAppointment() {
       this.loading = true;
       if (this.$refs.form.validate()) {
         let message = await this.addAppointmentAction(this.appointment);

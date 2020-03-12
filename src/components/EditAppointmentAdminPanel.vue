@@ -56,12 +56,6 @@
         label="Handcam"
         required
       ></v-select>
-      <v-btn class="mr-4" @click="searchForSlots" :disabled="updating"
-        >Neuen Slot suchen</v-btn
-      >
-      <v-btn class="mr-4" @click="updateAppointment" :disabled="updating"
-        >Aktualisieren</v-btn
-      >
     </v-form>
   </div>
 </template>
@@ -81,13 +75,12 @@ export default {
       })
     },
     slots: Object,
-    updating: { type: Boolean, default: () => false }
+    update: { type: Boolean, default: () => false }
   },
   data: () => ({
     valid: true,
     items: [1, 2, 3, 4, 5],
     itemsZero: [0, 1, 2, 3, 4, 5],
-    update: false,
     maxBookableSlots: {}
   }),
   computed: {
@@ -137,23 +130,11 @@ export default {
     }
   },
   methods: {
-    searchForSlots() {
-      this.update = false;
-    },
-    updateAppointment() {
-      this.update = true;
-      this.onUpdateAppointment();
-      if (this.$refs.form.validate()) {
-      }
-    },
     validate() {
       if (this.$refs.form.validate()) {
         return true;
       }
       return false;
-    },
-    onUpdateAppointment() {
-      this.$emit("onUpdateAppointment", this.appointment);
     },
     getDate() {
       return moment(this.appointment.date).format("DD.MM.YYYY");
