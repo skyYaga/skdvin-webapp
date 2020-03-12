@@ -57,10 +57,13 @@
         <JumperDetailsForm
           ref="jumperDetails"
           :jumperNum="i"
-          v-for="i in tandem"
+          v-for="i in tandemSize"
           :key="i"
+          :bookedJumper="getJumperIfAvailable(i)"
         />
-        <v-row><v-btn class="mr-4" @click="validate">Weiter</v-btn></v-row>
+        <v-row v-if="buttonVisible"
+          ><v-btn class="mr-4" @click="validate">{{ buttonText }}</v-btn></v-row
+        >
       </v-container>
     </v-form>
   </div>
@@ -71,22 +74,22 @@ import JumperDetailsForm from "./JumperDetailsForm";
 
 export default {
   props: {
-    tandem: null
+    tandem: Number,
+    appointment: Object,
+    buttonText: {
+      type: String,
+      default: () => "Weiter"
+    },
+    buttonVisible: {
+      type: Boolean,
+      default: () => true
+    }
   },
   components: {
     JumperDetailsForm
   },
   data: () => ({
     valid: false,
-    customer: {
-      firstName: "",
-      lastName: "",
-      tel: "",
-      email: "",
-      zip: "",
-      city: "",
-      jumpers: []
-    },
     nameRules: [
       v => !!v || "Feld muss befüllt werden",
       v => (v && v.length <= 40) || "Wert darf aus maximal 40 Zeichen bestehen"
@@ -111,13 +114,44 @@ export default {
     validate() {
       if (this.$refs.form.validate()) {
         this.onCustomerDataFilled();
+        return true;
       }
+      return false;
     },
     onCustomerDataFilled() {
+      this.customer.jumpers = [];
       this.$refs.jumperDetails.forEach(jd => {
         this.customer.jumpers.push(jd.getJumper());
       });
       this.$emit("handleCustomerDataFilled", this.customer);
+    },
+    getJumperIfAvailable(i) {
+      if (typeof this.appointment?.customer !== "undefined") {
+        return this.appointment.customer.jumpers[i - 1];
+      }
+      return null;
+    }
+  },
+  computed: {
+    tandemSize() {
+      if (typeof this.appointment?.tandem !== "undefined") {
+        return this.appointment.tandem;
+      }
+      return this.tandem;
+    },
+    customer() {
+      if (typeof this.appointment?.customer !== "undefined") {
+        return this.appointment.customer;
+      }
+      return {
+        firstName: "",
+        lastName: "",
+        tel: "",
+        email: "",
+        zip: "",
+        city: "",
+        jumpers: []
+      };
     }
   }
 };

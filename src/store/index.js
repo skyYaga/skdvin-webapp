@@ -3,6 +3,7 @@ import Vuex from "vuex";
 import {
   GET_JUMPDAYS,
   ADD_JUMPDAY,
+  UPDATE_APPOINTMENT,
   GET_APPOINTMENTS,
   UPDATE_APPOINTMENT_STATE
 } from "./mutation-types";
@@ -13,7 +14,8 @@ Vue.use(Vuex);
 
 const state = () => ({
   jumpdays: [],
-  appointments: []
+  appointments: [],
+  appointment: null
 });
 
 const mutations = {
@@ -26,8 +28,15 @@ const mutations = {
   [GET_APPOINTMENTS](state, appointments) {
     state.appointments = appointments;
   },
-  [UPDATE_APPOINTMENT_STATE](appointmentId, appointmentState) {
+  [UPDATE_APPOINTMENT](state, appointment) {
     const index = state.appointments.findIndex(
+      a => a.appointmentId === appointment.appointmentId
+    );
+    state.appointments.splice(index, 1, appointment);
+    state.appointments = [...state.appointments];
+  },
+  [UPDATE_APPOINTMENT_STATE](appointmentId, appointmentState) {
+    const index = state.appointments?.findIndex(
       a => a.appointmentId === appointmentId
     );
     state.appointments[index].state = appointmentState;
@@ -72,11 +81,20 @@ const actions = {
       payload.token
     );
     appointments.sort(function(a, b) {
+      if (a === null) return 1;
+      if (b === null) return -1;
       // Turn your strings into dates, and then subtract them
       // to get a value that is either negative, positive, or zero.
       return new Date(a.date) - new Date(b.date);
     });
     commit(GET_APPOINTMENTS, appointments);
+  },
+  async getAppointmentAction({ commit }, payload) {
+    const appointment = await appointmentService.getAppointment(
+      payload.appointmentId,
+      payload.token
+    );
+    return appointment;
   },
   async updateAppointmentStateAction({ commit }, payload) {
     await appointmentService.updateAppointmentState(
@@ -89,6 +107,16 @@ const actions = {
       payload.appointmentId,
       payload.appointmentState
     );
+  },
+  async updateAppointmentAction({ commit }, payload) {
+    let result = await appointmentService.updateAppointment(
+      payload.appointment,
+      payload.token
+    );
+    if (result.success) {
+      commit(UPDATE_APPOINTMENT, result.payload);
+    }
+    return result;
   }
 };
 

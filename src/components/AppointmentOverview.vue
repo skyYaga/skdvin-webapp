@@ -1,8 +1,16 @@
 <template>
   <v-card :color="getColorForState">
     <v-card-title
-      >{{ appointment.appointmentId }} {{ appointment.customer.firstName }}
-      {{ appointment.customer.lastName }}</v-card-title
+      ><router-link
+        tag="button"
+        class="button"
+        :to="{
+          name: 'appointment-details',
+          params: { id: appointment.appointmentId }
+        }"
+        >{{ appointment.appointmentId }} {{ appointment.customer.firstName }}
+        {{ appointment.customer.lastName }}</router-link
+      ></v-card-title
     >
     <v-card-text>
       <p>{{ appointment.tandem }}x Tandem</p>

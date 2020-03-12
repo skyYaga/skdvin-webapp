@@ -66,6 +66,8 @@
               buchen Sie bitte diese Option mit.
             </li>
           </ul>
+        </v-row>
+        <v-row>
           <v-checkbox
             :rules="[
               v => !!v || 'Sie müssen die Sprungbestimmungen akzeptieren'
@@ -73,6 +75,8 @@
             label="Die obenstehenden Sprungbestimmungen habe ich gelesen und
             akzeptiert."
           ></v-checkbox>
+        </v-row>
+        <v-row>
           <v-checkbox
             :rules="[
               v => !!v || 'Sie müssen die Datenschutzbestimmungen akzeptieren'

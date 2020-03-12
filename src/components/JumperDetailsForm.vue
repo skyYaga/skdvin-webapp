@@ -64,7 +64,13 @@ import moment from "moment";
 
 export default {
   props: {
-    jumperNum: null
+    jumperNum: null,
+    bookedJumper: null
+  },
+  created() {
+    if (this.bookedJumper != null) {
+      this.jumper = this.bookedJumper;
+    }
   },
   data: () => ({
     jumper: {

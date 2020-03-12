@@ -11,10 +11,10 @@
     <div v-if="!loading && authorized">
       <h1>Sprungtage</h1>
       <v-row dense>
-        <v-col cols="5">
+        <v-col :lg="4" :md="4" :sm="12">
           <Calendar d-flex flex-wrap @handleDateSelection="loadJumpday" />
         </v-col>
-        <v-col cols="7">
+        <v-col :lg="8" :md="8" :sm="12">
           <EditJumpdayPanel
             :jumpday="jumpday"
             @handleJumpdayChanged="loadJumpday"
