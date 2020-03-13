@@ -37,7 +37,9 @@ const mutations = {
     state.appointments = [...state.appointments];
   },
   [DELETE_APPOINTMENT](state, appointmentId) {
-    [...state.appointments.filter(a => a.appointmentId !== appointmentId)];
+    state.appointments = [
+      ...state.appointments.filter(a => a.appointmentId !== appointmentId)
+    ];
   },
   [UPDATE_APPOINTMENT_STATE](state, result) {
     const index = state.appointments?.findIndex(
