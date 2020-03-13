@@ -38,7 +38,7 @@
             ></v-text-field></v-col
         ></v-row>
         <v-row
-          ><v-col :cols="2"
+          ><v-col :lg="2" :sm="3"
             ><v-text-field
               v-model="customer.zip"
               label="PLZ"

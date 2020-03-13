@@ -2,14 +2,14 @@
   <div>
     <h3>Springer*in {{ jumperNum }}</h3>
     <v-row
-      ><v-col
+      ><v-col :lg="3" :sm="6"
         ><v-text-field
           v-model="jumper.firstName"
           label="Vorname"
           :rules="nameRules"
           required
         ></v-text-field></v-col
-      ><v-col
+      ><v-col :lg="3" :sm="6"
         ><v-text-field
           v-model="jumper.lastName"
           label="Nachname"
@@ -17,7 +17,7 @@
           required
         ></v-text-field
       ></v-col>
-      <v-col
+      <v-col :lg="3" :sm="6"
         ><v-text-field
           v-model="jumper.weight"
           label="Gewicht in kg"
@@ -26,7 +26,7 @@
           required
         ></v-text-field
       ></v-col>
-      <v-col>
+      <v-col :lg="3" :sm="6">
         <v-menu
           ref="menu"
           v-model="menu"

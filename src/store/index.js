@@ -5,7 +5,8 @@ import {
   ADD_JUMPDAY,
   UPDATE_APPOINTMENT,
   GET_APPOINTMENTS,
-  UPDATE_APPOINTMENT_STATE
+  UPDATE_APPOINTMENT_STATE,
+  DELETE_APPOINTMENT
 } from "./mutation-types";
 import { jumpdayService } from "../shared/jumpday-service";
 import { appointmentService } from "../shared/appointment-service";
@@ -34,6 +35,9 @@ const mutations = {
     );
     state.appointments.splice(index, 1, appointment);
     state.appointments = [...state.appointments];
+  },
+  [DELETE_APPOINTMENT](state, appointmentId) {
+    [...state.appointments.filter(a => a.appointmentId !== appointmentId)];
   },
   [UPDATE_APPOINTMENT_STATE](state, result) {
     const index = state.appointments?.findIndex(
@@ -114,6 +118,16 @@ const actions = {
     );
     if (result.success) {
       commit(UPDATE_APPOINTMENT, result.payload);
+    }
+    return result;
+  },
+  async deleteAppointmentAction({ commit }, payload) {
+    let result = await appointmentService.deleteAppointment(
+      payload.appointmentId,
+      payload.token
+    );
+    if (result.success) {
+      commit(DELETE_APPOINTMENT, payload.appointmentId);
     }
     return result;
   }

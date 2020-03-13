@@ -59,7 +59,11 @@
           </v-card-text>
         </v-card>
       </v-col>
-      <v-col v-if="slots !== null && appointment.selectedTime === null">
+      <v-col
+        :lg="6"
+        :sm="12"
+        v-if="slots !== null && appointment.selectedTime === null"
+      >
         <v-card>
           <v-card-title>Verfügbare Zeitslots</v-card-title>
           <v-card-text>

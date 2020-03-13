@@ -1,6 +1,6 @@
 <template>
   <v-row dense>
-    <v-col :cols="3" d-flex flex-wrap>
+    <v-col :lg="3" :sm="12">
       <v-card>
         <v-card-title>Termin</v-card-title>
         <v-card-text>
@@ -19,7 +19,7 @@
         </v-card-text>
       </v-card>
     </v-col>
-    <v-col :cols="6" d-flex flex-wrap>
+    <v-col :lg="4" :sm="12">
       <v-card>
         <v-card-title>Kontaktdaten</v-card-title>
         <v-card-text>
@@ -38,7 +38,7 @@
         </v-card-text>
       </v-card>
     </v-col>
-    <v-col :cols="4" d-flex flex-wrap>
+    <v-col :lg="4" :sm="12">
       <v-card>
         <v-card-title>Springerdaten</v-card-title>
         <v-card-text>
