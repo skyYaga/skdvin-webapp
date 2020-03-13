@@ -54,6 +54,12 @@
               :disabled="updating"
               >Neuen Slot suchen</v-btn
             ><v-btn
+              v-if="availableSlots.length === 0 && !slotSelected"
+              class="ml-4 mb-4"
+              @click.stop="showDeletionDialog = true"
+              :disabled="updating"
+              >Termin löschen</v-btn
+            ><v-btn
               v-if="availableSlots.length > 0 && !slotSelected"
               class="ma-4"
               @click="reset"
@@ -75,6 +81,27 @@
         OK
       </v-btn>
     </v-snackbar>
+    <div class="text-center">
+      <v-dialog v-model="showDeletionDialog" width="500">
+        <v-card>
+          <v-card-title class="headline" primary-title>
+            Soll der Termin gelöscht werden?
+          </v-card-title>
+
+          <v-divider></v-divider>
+
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="primary" text @click="deleteAppointment">
+              Löschen
+            </v-btn>
+            <v-btn color="primary" text @click="showDeletionDialog = false">
+              Abbrechen
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </div>
   </v-container>
 </template>
 
@@ -108,7 +135,8 @@ export default {
     hintText: "",
     updating: false,
     availableSlots: [],
-    slotSelected: false
+    slotSelected: false,
+    showDeletionDialog: false
   }),
   async created() {
     await this.loadPage();
@@ -127,7 +155,8 @@ export default {
       "getAppointmentAction",
       "getJumpdaysAction",
       "updateAppointmentAction",
-      "searchSlotsAction"
+      "searchSlotsAction",
+      "deleteAppointmentAction"
     ]),
     async loadAppointment() {
       let token = await this.$auth.getTokenSilently();
@@ -167,6 +196,22 @@ export default {
         }
         this.showHint = true;
         await this.reset();
+      }
+    },
+    async deleteAppointment() {
+      this.updating = true;
+      this.showDeletionDialog = false;
+      let result = await this.deleteAppointmentAction({
+        appointmentId: this.localAppointment.appointmentId,
+        token: await this.$auth.getTokenSilently()
+      });
+      if (result.success) {
+        this.backToOverview();
+      } else {
+        this.updating = false;
+        this.hintText = "Fehler beim Löschen des Termins";
+        this.hintColor = "red";
+        this.showHint = true;
       }
     },
     async searchForSlots() {

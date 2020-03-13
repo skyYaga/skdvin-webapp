@@ -130,6 +130,33 @@ const updateAppointment = async function(appointment, token) {
   }
 };
 
+const deleteAppointment = async function(appointmentId, token) {
+  try {
+    const response = await axios.delete(
+      apiPath + "/appointment/" + appointmentId,
+      {
+        headers: {
+          Authorization: `Bearer ${token}` // send the access token through the 'Authorization' header
+        }
+      }
+    );
+    if (response.status !== 200) throw Error(response.data.message);
+    if (!response.data.success) {
+      throw Error(response.data.message);
+    }
+    return response.data;
+  } catch (error) {
+    error = {
+      success: false,
+      message: error
+    };
+    if (error.response?.data?.message) {
+      error.message = error.response.data.message;
+    }
+    return error;
+  }
+};
+
 const convertDate = appointment => {
   let parsedMoment = moment(
     appointment.selectedDate + appointment.selectedTime,
@@ -161,5 +188,6 @@ export const appointmentService = {
   getAppointment,
   getAppointments,
   updateAppointmentState,
-  updateAppointment
+  updateAppointment,
+  deleteAppointment
 };
