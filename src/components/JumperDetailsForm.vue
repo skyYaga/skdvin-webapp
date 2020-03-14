@@ -5,14 +5,14 @@
       ><v-col :lg="3" :sm="6"
         ><v-text-field
           v-model="jumper.firstName"
-          label="Vorname"
+          :label="$t('firstName')"
           :rules="nameRules"
           required
         ></v-text-field></v-col
       ><v-col :lg="3" :sm="6"
         ><v-text-field
           v-model="jumper.lastName"
-          label="Nachname"
+          :label="$t('lastName')"
           :rules="nameRules"
           required
         ></v-text-field
@@ -20,7 +20,7 @@
       <v-col :lg="3" :sm="6"
         ><v-text-field
           v-model="jumper.weight"
-          label="Gewicht in kg"
+          :label="$t('weightInKg')"
           :rules="weightRules"
           type="number"
           required
@@ -39,7 +39,7 @@
             <v-text-field
               v-model="jumper.dateOfBirth"
               :rules="dateOfBirthRules"
-              label="Geburtsdatum"
+              :label="$t('dateOfBirth')"
               readonly
               required
               v-on="on"
@@ -80,14 +80,14 @@ export default {
       weight: ""
     },
     nameRules: [
-      v => !!v || "Feld muss befüllt werden",
-      v => (v && v.length <= 40) || "Wert darf aus maximal 40 Zeichen bestehen"
+      v => !!v || this.$t("fieldHasToBeFilled"),
+      v => (v && v.length <= 40) || this.$t("max40Chars")
     ],
     weightRules: [
-      v => !!v || "Gewicht muss angegeben werden",
-      v => v <= 90 || "Gewicht inkl. Kleidung darf maximal 90kg betragen"
+      v => !!v || this.$t("weightNeeded"),
+      v => v <= 90 || this.$t("weightMax90")
     ],
-    dateOfBirthRules: [v => !!v || "Geburtsdatum muss angegeben werden"],
+    dateOfBirthRules: [v => !!v || this.$t("dateOfBirthNeeded")],
     menu: false
   }),
   watch: {

@@ -43,7 +43,7 @@ export default {
   methods: {
     ...mapActions(["verifyAppointmentAction"]),
     async verifyAppointment() {
-      this.message = "verifying appointment, please be patient...";
+      this.message = this.$t("appointment.verify");
       this.error = await this.verifyAppointmentAction({
         id: this.getId,
         token: this.getToken
@@ -52,10 +52,10 @@ export default {
       this.loaded = true;
 
       if (this.error === "") {
-        this.message = "Termin erfolgreich bestätigt.";
+        this.message = this.$t("appointment.confirmation.success");
         this.alertType = "success";
       } else {
-        this.message = "Fehler beim Bestätigen des Termins.";
+        this.message = this.$t("appointment.confirmation.error");
         this.alertType = "error";
       }
     }

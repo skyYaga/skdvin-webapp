@@ -1,3 +1,97 @@
 {
-  "message": "hello i18n !!"
+  "accessdenied": "Oh! Access denied :-(",
+  "almostdone": "Almost done!",
+  "api": {
+    "lang": "en"
+  },
+  "appointment": {
+    "appointments": "Appointments",
+    "booking": {
+      "error": "Unfortunately an error occurred during the booking.<br />Please try again later."
+    },
+    "confirmation": {
+      "error": "There was an error confirming the appointment.",
+      "message": "We have sent you an e-mail with your appointment data!<br />Please confirm your appointment by clicking on the link in the e-mail!<br />Unconfirmed appointments are automatically cancelled after 24 hours.",
+      "success": "Appointment confirmed successfully."
+    },
+    "delete": {
+      "error": "Error deleting appointment",
+      "message": "Delete appointment",
+      "question": "Should the appointment be deleted?"
+    },
+    "details": "Appointment details",
+    "newselected": "New selected appointment: {date} at {time}",
+    "overview": {
+      "back": "Back to appointment overview"
+    },
+    "update": {
+      "error": "Error updating the appointment",
+      "successful": "Error updated successfully"
+    },
+    "verify": "Verifying appointment, please be patient..."
+  },
+  "atLeast1Tandem": "You have to select at least 1 tandem",
+  "bookable": "bookable",
+  "cancel": "Cancel",
+  "city": "City",
+  "continue": "Continue",
+  "dateOfBirth": "Date of birth",
+  "dateOfBirthNeeded": "You need to fill out date of birth",
+  "delete": "Delete",
+  "email": "Email",
+  "emailNeeded": "Email is needed",
+  "emailValid": "Email has to be vaild",
+  "error": {
+    "occurred": "An error has occurred"
+  },
+  "fieldHasToBeFilled": "Field may not be empty",
+  "firstName": "First name",
+  "from": "From",
+  "handcam": "Handcam",
+  "home": "Home",
+  "interval": "Interval",
+  "jumpday": {
+    "delete": "Delete jumpday",
+    "jumpdays": "Jumpdays",
+    "loading": "Loading jumpdays. Please be patient...",
+    "update": {
+      "error": "Error updating jumpday",
+      "successful": "Jumpday updated successfully"
+    }
+  },
+  "lastName": "Last name",
+  "logout": "Log out",
+  "max40Chars": "Maximum of 40 characters",
+  "moreVideoThanTandem": "More video bookings than tandem jumps",
+  "operating": "Operating",
+  "picAndVid": "Picture and Video",
+  "picOrVid": "Picture or Video",
+  "profile": "Profile",
+  "reset": "Reset",
+  "save": "Save",
+  "selectdate": "Select date",
+  "slot": {
+    "add": "Add slot",
+    "exists": "Slot already exists",
+    "searchnew": "Search new slot"
+  },
+  "slots": {
+    "available": "Available slots on {date} at {time}",
+    "notEnoughFree": "Not enough free slots"
+  },
+  "tandem": "Tandem",
+  "tandems": "Tandems",
+  "tel": "Phone",
+  "telNeeded": "A phone number is needed",
+  "telValid": "Phone number has to be valid",
+  "timeHasToBeSelected": "You have to select a time",
+  "to": "To",
+  "update": "Update",
+  "weightInKg": "Weight in kg",
+  "weightMax90": "Weight including clothing may not exceed 90kg",
+  "weightNeeded": "The weight must be indicated",
+  "zip": "Zip",
+  "zip5digit": "Zip Code must have 5 digits",
+  "zipNeeded": "Zip code is needed",
+  "zipNumbers": "Zip code may only consist of numbers"
 }

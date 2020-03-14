@@ -6,14 +6,14 @@
           ><v-col
             ><v-text-field
               v-model="customer.firstName"
-              label="Vorname"
+              :label="$t('firstName')"
               :rules="nameRules"
               required
             ></v-text-field></v-col
           ><v-col
             ><v-text-field
               v-model="customer.lastName"
-              label="Nachname"
+              :label="$t('lastName')"
               :rules="nameRules"
               required
             ></v-text-field></v-col
@@ -23,7 +23,7 @@
             ><v-text-field
               type="tel"
               v-model="customer.tel"
-              label="Telefon"
+              :label="$t('tel')"
               :rules="telRules"
             ></v-text-field></v-col
         ></v-row>
@@ -32,7 +32,7 @@
             ><v-text-field
               v-model="customer.email"
               type="email"
-              label="E-Mail"
+              :label="$t('email')"
               :rules="emailRules"
               required
             ></v-text-field></v-col
@@ -41,14 +41,14 @@
           ><v-col :lg="2" :sm="3"
             ><v-text-field
               v-model="customer.zip"
-              label="PLZ"
+              :label="$t('zip')"
               :rules="zipRules"
               required
             ></v-text-field></v-col
           ><v-col
             ><v-text-field
               v-model="customer.city"
-              label="Wohnort"
+              :label="$t('city')"
               :rules="nameRules"
               required
             ></v-text-field></v-col
@@ -78,7 +78,7 @@ export default {
     appointment: Object,
     buttonText: {
       type: String,
-      default: () => "Weiter"
+      default: () => this.$t("continue")
     },
     buttonVisible: {
       type: Boolean,
@@ -91,23 +91,21 @@ export default {
   data: () => ({
     valid: false,
     nameRules: [
-      v => !!v || "Feld muss befüllt werden",
-      v => (v && v.length <= 40) || "Wert darf aus maximal 40 Zeichen bestehen"
+      v => !!v || this.$t("fieldHasToBeFilled"),
+      v => (v && v.length <= 40) || this.$t("max40Chars")
     ],
     zipRules: [
-      v => !!v || "PLZ wird benötigt",
-      v => v.length === 5 || "PLZ muss 5-stellig sein",
-      v => !isNaN(v) || "PLZ darf nur aus Zahlen bestehen"
+      v => !!v || this.$t("zipNeeded"),
+      v => v.length === 5 || this.$t("zip5digit"),
+      v => !isNaN(v) || this.$t("zipNumbers")
     ],
     emailRules: [
-      v => !!v || "E-mail wird benötigt",
-      v => /.+@.+\..+/.test(v) || "E-mail muss gültig sein"
+      v => !!v || this.$t("emailNeeded"),
+      v => /.+@.+\..+/.test(v) || this.$t("emailValid")
     ],
     telRules: [
-      v => !!v || "Es wird eine Telefonnummer benötigt",
-      v =>
-        (v.length > 0 && /[0-9 +-]{6,}$/.test(v)) ||
-        "Telefonnummer muss gültig sein"
+      v => !!v || this.$t("telNeeded"),
+      v => (v.length > 0 && /[0-9 +-]{6,}$/.test(v)) || this.$t("telValid")
     ]
   }),
   methods: {

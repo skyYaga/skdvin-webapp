@@ -9,7 +9,7 @@
       </v-row>
     </div>
     <div v-if="!loading && authorized">
-      <h1>Sprungtage</h1>
+      <h1>{{ $t("jumpday.jumpdays") }}</h1>
       <v-row dense>
         <v-col :lg="4" :md="4" :sm="12">
           <Calendar d-flex flex-wrap @handleDateSelection="loadJumpday" />
@@ -72,12 +72,12 @@ export default {
   methods: {
     ...mapActions(["getJumpdaysAction"]),
     async loadJumpdays() {
-      this.message = "loading jumpdays, please be patient...";
+      this.message = this.$t("jumpday.loading");
       let unauthorizedMessage = await this.getJumpdaysAction(
         await this.$auth.getTokenSilently()
       );
       if (unauthorizedMessage !== "") {
-        this.message = "Ups! Leider kein Zugriff :-(";
+        this.message = this.$t("accessdenied");
         this.authorized = false;
       } else {
         this.message = "";

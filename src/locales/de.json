@@ -1,3 +1,97 @@
 {
-  "message": "hello i18n !!"
+  "accessdenied": "Ups! Zugriff verweigert :-(",
+  "almostdone": "Fast geschafft!",
+  "api": {
+    "lang": "de"
+  },
+  "appointment": {
+    "appointments": "Termine",
+    "booking": {
+      "error": "Leider ist bei der Buchung ein Fehler aufgetreten.<br />Bitte versuchen sie es später erneut."
+    },
+    "confirmation": {
+      "error": "Fehler beim Bestätigen des Termins.",
+      "message": "Wir haben Ihnen eine E-Mail mit ihren Termindaten geschickt!<br />Bitte bestätigen Sie ihren Termin durch einen Klick auf den Link in der E-Mail!<br />Unbestätigte Termine werden automatisch nach 24 Stunden storniert.",
+      "success": "Termin erfolgreich bestätigt."
+    },
+    "delete": {
+      "error": "Fehler beim Löschen des Termins",
+      "message": "Termin l�schen",
+      "question": "Soll der Termin gelöscht werden?"
+    },
+    "details": "Termindetails",
+    "newselected": "Neu gew�hlter Termin: {date} um {time} Uhr",
+    "overview": {
+      "back": "Zurück zur Terminübersicht"
+    },
+    "update": {
+      "error": "Fehler beim Aktualisieren des Termins",
+      "successful": "Termin erfolgreich aktualisiert"
+    },
+    "verify": "Termin wird verifiziert, bitte warten..."
+  },
+  "atLeast1Tandem": "Es muss mindestens 1 Tandemsprung ausgewählt werden",
+  "bookable": "buchbar",
+  "cancel": "Abbrechen",
+  "city": "Wohnort",
+  "continue": "Weiter",
+  "dateOfBirth": "Geburtsdatum",
+  "dateOfBirthNeeded": "Geburtsdatum muss angegeben werden",
+  "delete": "Löschen",
+  "email": "E-Mail",
+  "emailNeeded": "E-Mail wird benötigt",
+  "emailValid": "E-mail muss gültig sein",
+  "error": {
+    "occurred": "Ein Fehler ist aufgetreten"
+  },
+  "fieldHasToBeFilled": "Das Feld muss befüllt werden",
+  "firstName": "Vorname",
+  "from": "Von",
+  "handcam": "Handcam",
+  "home": "Home",
+  "interval": "Intervall",
+  "jumpday": {
+    "delete": "Sprungtag löschen",
+    "jumpdays": "Sprungtage",
+    "loading": "Sprungtage werden geladen. Bitte warten...",
+    "update": {
+      "error": "Fehler beim Aktualisieren des Sprungtags",
+      "successful": "Sprungtag erfolgreich aktualisiert"
+    }
+  },
+  "lastName": "Nachname",
+  "logout": "Log out",
+  "max40Chars": "Wert darf aus maximal 40 Zeichen bestehen",
+  "moreVideoThanTandem": "Mehr Videobuchungen als Tandemsprünge",
+  "operating": "Sprungbetrieb",
+  "picAndVid": "Foto und Video",
+  "picOrVid": "Foto oder Video",
+  "profile": "Profil",
+  "reset": "Zurücksetzen",
+  "save": "Speichern",
+  "selectdate": "Datum auswählen",
+  "slot": {
+    "add": "Slot hinzufügen",
+    "exists": "Zeitslot existiert bereits",
+    "searchnew": "Neuen Slot suchen"
+  },
+  "slots": {
+    "available": "Am {date} um {time} Uhr verfügbare Slots",
+    "notEnoughFree": "Nicht genügend freie Slots"
+  },
+  "tandem": "Tandem",
+  "tandems": "Tandems",
+  "tel": "Telefon",
+  "telNeeded": "Es wird eine Telefonnummer benötigt",
+  "telValid": "Telefonnummer muss gültig sein",
+  "timeHasToBeSelected": "Es muss eine Uhrzeit ausgewählt werden",
+  "to": "Bis",
+  "update": "Aktualisieren",
+  "weightInKg": "Gewicht in kg",
+  "weightMax90": "Gewicht inkl. Kleidung darf maximal 90kg betragen",
+  "weightNeeded": "Das Gewicht muss angegeben werden",
+  "zip": "PLZ",
+  "zip5digit": "PLZ muss 5-stellig sein",
+  "zipNeeded": "PLZ wird benötigt",
+  "zipNumbers": "PLZ darf nur aus Zahlen bestehen"
 }
