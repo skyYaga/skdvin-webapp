@@ -29,20 +29,9 @@ const addJumpday = async function(jumpday, token) {
         }
       }
     );
-    if (response.status !== 201) throw Error(response.data.message);
-    if (!response.data.success) {
-      throw Error(response.data.message);
-    }
-    return response.data;
+    return handleResponse(response, 201);
   } catch (error) {
-    error = {
-      success: false,
-      message: error
-    };
-    if (error.response?.data?.message) {
-      error.message = error.response.data.message;
-    }
-    return error;
+    return handleError(error);
   }
 };
 
@@ -57,20 +46,9 @@ const updateJumpday = async function(jumpday, token) {
         }
       }
     );
-    if (response.status !== 200) throw Error(response.data.message);
-    if (!response.data.success) {
-      throw Error(response.data.message);
-    }
-    return response.data;
+    return handleResponse(response, 200);
   } catch (error) {
-    error = {
-      success: false,
-      message: error
-    };
-    if (error.response?.data?.message) {
-      error.message = error.response.data.message;
-    }
-    return error;
+    return handleError(error);
   }
 };
 
@@ -92,16 +70,23 @@ const parseList = response => {
   return list;
 };
 
-export const parseItem = (response, code) => {
-  if (response.status !== code) throw Error(response.message);
+const handleError = error => {
+  let localError = {
+    success: false,
+    message: error
+  };
+  if (error.response?.data?.message) {
+    localError.message = error.response.data.message;
+  }
+  return localError;
+};
+
+const handleResponse = (response, code) => {
+  if (response.status !== code) throw Error(response.data.message);
   if (!response.data.success) {
     throw Error(response.data.message);
   }
-  let item = response.data.payload;
-  if (typeof item !== "object") {
-    item = undefined;
-  }
-  return item;
+  return response.data;
 };
 
 const createJumpday = jumpday => {
