@@ -11,11 +11,7 @@
     }"
   >
     <v-alert :type="alertType">
-      <v-progress-circular
-        v-if="!loaded"
-        indeterminate
-        color="primary"
-      ></v-progress-circular
+      <v-progress-circular v-if="!loaded" indeterminate></v-progress-circular
       >{{ message }}<br />
       {{ error }}
     </v-alert>

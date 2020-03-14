@@ -117,7 +117,7 @@
             <v-row>
               <v-btn
                 class="ma-1"
-                v-if="!jumpday.slots && jumpday.jumping"
+                v-if="jumpday.jumping && !jumpday.slots"
                 @click="saveJumpday"
                 :disabled="updating"
                 >Speichern</v-btn
@@ -135,6 +135,13 @@
                 @click="addSlot"
                 :disabled="updating"
                 >Slot hinzufügen</v-btn
+              ><v-btn
+                class="ma-1"
+                color="primary"
+                v-if="!jumpday.jumping && jumpday.slots"
+                @click="deleteJumpday"
+                :disabled="updating"
+                >Sprungtag löschen</v-btn
               >
             </v-row>
           </div>
@@ -205,7 +212,11 @@ export default {
     }
   },
   methods: {
-    ...mapActions(["addJumpdayAction", "updateJumpdayAction"]),
+    ...mapActions([
+      "addJumpdayAction",
+      "updateJumpdayAction",
+      "deleteJumpdayAction"
+    ]),
     async saveJumpday() {
       this.updating = true;
       let newJumpday = {
@@ -292,6 +303,16 @@ export default {
         };
         this.jumpday.slots.push(slot);
       }
+    },
+    async deleteJumpday() {
+      this.updating = true;
+      let result = await this.deleteJumpdayAction({
+        date: this.jumpday.date,
+        token: await this.$auth.getTokenSilently()
+      });
+      this.onJumpdayChanged(this.jumpday.date);
+      this.updating = false;
+      this.handleHint(result);
     }
   }
 };

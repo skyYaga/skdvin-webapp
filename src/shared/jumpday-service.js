@@ -52,6 +52,19 @@ const updateJumpday = async function(jumpday, token) {
   }
 };
 
+const deleteJumpday = async function(date, token) {
+  try {
+    const response = await axios.delete(apiPath + "/jumpday/" + date, {
+      headers: {
+        Authorization: `Bearer ${token}` // send the access token through the 'Authorization' header
+      }
+    });
+    return handleResponse(response, 200);
+  } catch (error) {
+    return handleError(error);
+  }
+};
+
 const parseList = response => {
   if (response.status !== 200) {
     throw Error(response.message);
@@ -122,5 +135,6 @@ const createJumpday = jumpday => {
 export const jumpdayService = {
   getJumpdays,
   addJumpday,
-  updateJumpday
+  updateJumpday,
+  deleteJumpday
 };
