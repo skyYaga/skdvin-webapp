@@ -22,7 +22,9 @@
         </v-col>
       </v-row>
       <v-row>
-        <JumpdayTable :jumpday="jumpday" />
+        <v-form>
+          <JumpdayTable :jumpday="jumpday" />
+        </v-form>
       </v-row>
     </div>
     <div v-if="!loading && !authorized">
@@ -97,7 +99,7 @@ export default {
             date: this.date
           };
         } else {
-          this.jumpday = loadedJumpday;
+          this.jumpday = JSON.parse(JSON.stringify(loadedJumpday));
         }
       }
     },

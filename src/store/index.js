@@ -6,7 +6,8 @@ import {
   UPDATE_APPOINTMENT,
   GET_APPOINTMENTS,
   UPDATE_APPOINTMENT_STATE,
-  DELETE_APPOINTMENT
+  DELETE_APPOINTMENT,
+  UPDATE_JUMPDAY
 } from "./mutation-types";
 import { jumpdayService } from "../shared/jumpday-service";
 import { appointmentService } from "../shared/appointment-service";
@@ -25,6 +26,11 @@ const mutations = {
   },
   [ADD_JUMPDAY](state, jumpday) {
     state.jumpdays.unshift(jumpday); // mutable addition
+  },
+  [UPDATE_JUMPDAY](state, jumpday) {
+    const index = state.jumpdays.findIndex(j => j.date === jumpday.date);
+    state.jumpdays.splice(index, 1, jumpday);
+    state.jumpdays = [...state.jumpdays];
   },
   [GET_APPOINTMENTS](state, appointments) {
     state.appointments = appointments;
@@ -60,11 +66,14 @@ const actions = {
     return "";
   },
   async addJumpdayAction({ commit }, payload) {
-    const addedJumpday = await jumpdayService.addJumpday(
+    const result = await jumpdayService.addJumpday(
       payload.jumpday,
       payload.token
     );
-    commit(ADD_JUMPDAY, addedJumpday);
+    if (result.success) {
+      commit(ADD_JUMPDAY, result.payload);
+    }
+    return result;
   },
   async searchSlotsAction({ commit }, query) {
     const slots = await appointmentService.searchSlots(query);
@@ -120,6 +129,16 @@ const actions = {
     );
     if (result.success) {
       commit(UPDATE_APPOINTMENT, result.payload);
+    }
+    return result;
+  },
+  async updateJumpdayAction({ commit }, payload) {
+    let result = await jumpdayService.updateJumpday(
+      payload.jumpday,
+      payload.token
+    );
+    if (result.success) {
+      commit(UPDATE_JUMPDAY, result.payload);
     }
     return result;
   },

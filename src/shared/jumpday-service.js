@@ -29,9 +29,48 @@ const addJumpday = async function(jumpday, token) {
         }
       }
     );
-    return parseItem(response, 201);
+    if (response.status !== 201) throw Error(response.data.message);
+    if (!response.data.success) {
+      throw Error(response.data.message);
+    }
+    return response.data;
   } catch (error) {
-    return null;
+    error = {
+      success: false,
+      message: error
+    };
+    if (error.response?.data?.message) {
+      error.message = error.response.data.message;
+    }
+    return error;
+  }
+};
+
+const updateJumpday = async function(jumpday, token) {
+  try {
+    const response = await axios.put(
+      apiPath + "/jumpday/" + jumpday.date,
+      jumpday,
+      {
+        headers: {
+          Authorization: `Bearer ${token}` // send the access token through the 'Authorization' header
+        }
+      }
+    );
+    if (response.status !== 200) throw Error(response.data.message);
+    if (!response.data.success) {
+      throw Error(response.data.message);
+    }
+    return response.data;
+  } catch (error) {
+    error = {
+      success: false,
+      message: error
+    };
+    if (error.response?.data?.message) {
+      error.message = error.response.data.message;
+    }
+    return error;
   }
 };
 
@@ -97,5 +136,6 @@ const createJumpday = jumpday => {
 
 export const jumpdayService = {
   getJumpdays,
-  addJumpday
+  addJumpday,
+  updateJumpday
 };

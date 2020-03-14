@@ -1,17 +1,25 @@
 <template>
   <v-card class="d-inline-block mx-auto">
     <v-container>
+      <v-snackbar :color="hintColor" v-model="showHint" :timeout="5000">
+        {{ hintText }}
+        <v-btn text @click="showHint = false">
+          OK
+        </v-btn>
+      </v-snackbar>
       <v-card-text>
-        <v-form>
+        <v-form ref="form" v-model="valid">
           <v-row>
             <v-switch
               inset
-              v-model="jumpday.jumping"
               label="Sprungbetrieb"
+              :input-value="jumpday.jumping"
+              :disabled="hasBookedAppointments"
+              @change="toggleJumping"
             ></v-switch>
           </v-row>
-          <div v-if="!jumpday.slots && jumpday.jumping">
-            <v-row>
+          <div>
+            <v-row v-if="!jumpday.slots && jumpday.jumping">
               Von
               <v-col cols="2">
                 <v-select
@@ -50,7 +58,33 @@
                 ></v-select>
               </v-col>
             </v-row>
-            <v-row>
+            <v-row v-if="jumpday.jumping && jumpday.slots">
+              <v-col cols="2">
+                <v-select
+                  v-model="addHour"
+                  :items="hours"
+                  :rules="[
+                    v =>
+                      (!!v && v > 0) ||
+                      'Es muss eine Uhrzeit ausgewählt werden',
+                    timeExistsRule
+                  ]"
+                  label="HH"
+                ></v-select>
+              </v-col>
+              <v-col cols="2">
+                <v-select
+                  v-model="addMinute"
+                  :items="minutes"
+                  :rules="[
+                    v => !!v || 'Es muss eine Uhrzeit ausgewählt werden',
+                    timeExistsRule
+                  ]"
+                  label="MM"
+                ></v-select>
+              </v-col>
+            </v-row>
+            <v-row v-if="jumpday.jumping">
               <v-col cols="3">
                 <v-select
                   v-model="tandem"
@@ -81,7 +115,27 @@
               </v-col>
             </v-row>
             <v-row>
-              <v-btn @click="saveJumpday">Speichern</v-btn>
+              <v-btn
+                class="ma-1"
+                v-if="!jumpday.slots && jumpday.jumping"
+                @click="saveJumpday"
+                :disabled="updating"
+                >Speichern</v-btn
+              >
+              <v-btn
+                class="ma-1"
+                v-if="jumpday.jumping && jumpday.slots"
+                color="primary"
+                @click="updateJumpday"
+                :disabled="updating"
+                >Aktualisieren</v-btn
+              ><v-btn
+                class="ma-1"
+                v-if="jumpday.jumping && jumpday.slots"
+                @click="addSlot"
+                :disabled="updating"
+                >Slot hinzufügen</v-btn
+              >
             </v-row>
           </div>
         </v-form>
@@ -103,11 +157,13 @@ export default {
     startMinute: "30",
     endHour: "18",
     endMinute: "00",
+    addHour: "8",
+    addMinute: "00",
     sequence: "1:30",
-    tandem: "5",
-    picOrVid: "0",
-    picAndVid: "0",
-    handcam: "0",
+    tandem: 5,
+    picOrVid: 0,
+    picAndVid: 0,
+    handcam: 0,
     hours: [
       "8",
       "9",
@@ -125,12 +181,33 @@ export default {
     ], // eslint-disable-line
     minutes: ["00", "15", "30", "45"],
     sequences: ["0:30", "1:00", "1:30", "2:00", "2:30"],
-    counts: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-    countsZero: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    updating: false,
+    showHint: false,
+    hintText: "",
+    hintColor: "",
+    valid: false
   }),
+  computed: {
+    hasBookedAppointments() {
+      let count = 0;
+      this.jumpday?.slots?.forEach(
+        s =>
+          typeof s.appointments !== "undefined" &&
+          (count = count + s.appointments.length)
+      );
+      return count > 0;
+    },
+    counts() {
+      return [...Array(11).keys()].filter(key => key > 0);
+    },
+    countsZero() {
+      return [...Array(11).keys()];
+    }
+  },
   methods: {
-    ...mapActions(["addJumpdayAction"]),
+    ...mapActions(["addJumpdayAction", "updateJumpdayAction"]),
     async saveJumpday() {
+      this.updating = true;
       let newJumpday = {
         date: this.jumpday.date,
         jumping: this.jumpday.jumping,
@@ -160,12 +237,61 @@ export default {
         currentTime.add(duration);
       }
 
-      let token = await this.$auth.getTokenSilently();
-      await this.addJumpdayAction({ jumpday: newJumpday, token });
-      this.onJumpdayChanged(newJumpday.date);
+      let result = await this.addJumpdayAction({
+        jumpday: newJumpday,
+        token: await this.$auth.getTokenSilently()
+      });
+      this.onJumpdayChanged(result.payload.date);
+      this.updating = false;
+      this.handleHint(result);
     },
     onJumpdayChanged(date) {
       this.$emit("handleJumpdayChanged", date);
+    },
+    async updateJumpday() {
+      this.updating = true;
+      let result = await this.updateJumpdayAction({
+        jumpday: this.jumpday,
+        token: await this.$auth.getTokenSilently()
+      });
+      this.onJumpdayChanged(this.jumpday.date);
+      this.updating = false;
+      this.handleHint(result);
+    },
+    toggleJumping() {
+      this.jumpday.jumping = !this.jumpday.jumping;
+    },
+    handleHint(result) {
+      if (result.success) {
+        this.hintText = "Sprungtag erfolgreich aktualisiert";
+        this.hintColor = "green";
+      } else {
+        this.hintText = "Fehler beim Aktualisieren des Sprungtags";
+        this.hintColor = "red";
+      }
+      this.showHint = true;
+    },
+    timeExistsRule() {
+      let duplicateSlot = this.jumpday.slots.filter(
+        s =>
+          s.time ===
+          moment(this.addHour + ":" + this.addMinute, "HH:mm").format("HH:mm")
+      );
+      return duplicateSlot.length === 0 || "Zeitslot existiert bereits";
+    },
+    async addSlot() {
+      if (this.$refs.form.validate()) {
+        let slot = {
+          time: moment(this.addHour + ":" + this.addMinute, "HH:mm").format(
+            "HH:mm"
+          ),
+          tandemTotal: this.tandem,
+          picOrVidTotal: this.picOrVid,
+          picAndVidTotal: this.picAndVid,
+          handcamTotal: this.handcam
+        };
+        this.jumpday.slots.push(slot);
+      }
     }
   }
 };
