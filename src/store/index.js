@@ -3,11 +3,12 @@ import Vuex from "vuex";
 import {
   GET_JUMPDAYS,
   ADD_JUMPDAY,
+  UPDATE_JUMPDAY,
+  DELETE_JUMPDAY,
   UPDATE_APPOINTMENT,
   GET_APPOINTMENTS,
   UPDATE_APPOINTMENT_STATE,
-  DELETE_APPOINTMENT,
-  UPDATE_JUMPDAY
+  DELETE_APPOINTMENT
 } from "./mutation-types";
 import { jumpdayService } from "../shared/jumpday-service";
 import { appointmentService } from "../shared/appointment-service";
@@ -31,6 +32,9 @@ const mutations = {
     const index = state.jumpdays.findIndex(j => j.date === jumpday.date);
     state.jumpdays.splice(index, 1, jumpday);
     state.jumpdays = [...state.jumpdays];
+  },
+  [DELETE_JUMPDAY](state, date) {
+    state.jumpdays = [...state.jumpdays.filter(j => j.date !== date)];
   },
   [GET_APPOINTMENTS](state, appointments) {
     state.appointments = appointments;
@@ -72,6 +76,16 @@ const actions = {
     );
     if (result.success) {
       commit(ADD_JUMPDAY, result.payload);
+    }
+    return result;
+  },
+  async deleteJumpdayAction({ commit }, payload) {
+    let result = await jumpdayService.deleteJumpday(
+      payload.date,
+      payload.token
+    );
+    if (result.success) {
+      commit(DELETE_JUMPDAY, payload.date);
     }
     return result;
   },
