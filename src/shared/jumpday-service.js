@@ -29,9 +29,26 @@ const addJumpday = async function(jumpday, token) {
         }
       }
     );
-    return parseItem(response, 201);
+    return handleResponse(response, 201);
   } catch (error) {
-    return null;
+    return handleError(error);
+  }
+};
+
+const updateJumpday = async function(jumpday, token) {
+  try {
+    const response = await axios.put(
+      apiPath + "/jumpday/" + jumpday.date,
+      jumpday,
+      {
+        headers: {
+          Authorization: `Bearer ${token}` // send the access token through the 'Authorization' header
+        }
+      }
+    );
+    return handleResponse(response, 200);
+  } catch (error) {
+    return handleError(error);
   }
 };
 
@@ -53,16 +70,23 @@ const parseList = response => {
   return list;
 };
 
-export const parseItem = (response, code) => {
-  if (response.status !== code) throw Error(response.message);
+const handleError = error => {
+  let localError = {
+    success: false,
+    message: error
+  };
+  if (error.response?.data?.message) {
+    localError.message = error.response.data.message;
+  }
+  return localError;
+};
+
+const handleResponse = (response, code) => {
+  if (response.status !== code) throw Error(response.data.message);
   if (!response.data.success) {
     throw Error(response.data.message);
   }
-  let item = response.data.payload;
-  if (typeof item !== "object") {
-    item = undefined;
-  }
-  return item;
+  return response.data;
 };
 
 const createJumpday = jumpday => {
@@ -97,5 +121,6 @@ const createJumpday = jumpday => {
 
 export const jumpdayService = {
   getJumpdays,
-  addJumpday
+  addJumpday,
+  updateJumpday
 };
