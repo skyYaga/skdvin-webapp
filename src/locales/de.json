@@ -51,7 +51,8 @@
   "from": "Von",
   "handcam": {
     "count": "Anzahl Handcam",
-    "handcam": "Handcam"
+    "handcam": "Handcam",
+    "info": "Für wie viele Ihrer gebuchten Tandemsprünge möchten sie ein Handcam Video (Inside Video)?<br />Hierbei werden die Aufnahmen vom Tandemmaster selbst über eine an der Hand befestigte Kamera durchgeführt."
   },
   "home": "Home",
   "interval": "Intervall",
@@ -77,10 +78,12 @@
   "operating": "Sprungbetrieb",
   "picAndVid": {
     "count": "Anzahl Foto und Video",
+    "info": "Für wie viele Ihrer gebuchten Tandemsprünge möchten sie Fotos UND Video?<br />Hierbei springt ein zweiter Fallschirmspringer mit dem Tandem aus dem Flugzeug und macht die entsprechenden Aufnahmen.",
     "picAndVid": "Foto und Video"
   },
   "picOrVid": {
     "count": "Anzahl Foto oder Video",
+    "info": "Für wie viele Ihrer gebuchten Tandemsprünge möchten sie Fotos ODER Video?<br />Hierbei springt ein zweiter Fallschirmspringer mit dem Tandem aus dem Flugzeug und macht die entsprechenden Aufnahmen.",
     "picOrVid": "Foto oder Video"
   },
   "profile": "Profil",

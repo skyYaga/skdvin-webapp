@@ -14,7 +14,8 @@
                 type="number"
                 :disabled="slots !== null && appointment.selectedTime !== null"
                 required
-              ></v-select>
+              >
+              </v-select>
               <v-select
                 v-model="appointment.picOrVid"
                 :items="itemsZero"
@@ -23,7 +24,11 @@
                 type="number"
                 :disabled="slots !== null && appointment.selectedTime !== null"
                 required
-              ></v-select>
+                ><InfoDialog
+                  slot="append-outer"
+                  :heading="$t('picOrVid.picOrVid')"
+                  :text="$t('picOrVid.info')"
+              /></v-select>
               <v-select
                 v-model="appointment.picAndVid"
                 :items="itemsZero"
@@ -31,7 +36,11 @@
                 :label="$t('picAndVid.count')"
                 :disabled="slots !== null && appointment.selectedTime !== null"
                 required
-              ></v-select>
+                ><InfoDialog
+                  slot="append-outer"
+                  :heading="$t('picAndVid.picAndVid')"
+                  :text="$t('picAndVid.info')"
+              /></v-select>
               <v-select
                 v-model="appointment.handcam"
                 :items="itemsZero"
@@ -39,7 +48,11 @@
                 :label="$t('handcam.count')"
                 :disabled="slots !== null && appointment.selectedTime !== null"
                 required
-              ></v-select>
+                ><InfoDialog
+                  slot="append-outer"
+                  :heading="$t('handcam.handcam')"
+                  :text="$t('handcam.info')"
+              /></v-select>
               <v-btn
                 class="mr-4"
                 @click="searchForSlots"
@@ -107,6 +120,7 @@ import { mapActions } from "vuex";
 import CustomerDataForm from "./CustomerDataForm";
 import CustomerConfirmationForm from "./CustomerConfirmationForm";
 import AvailableSlotsPanel from "./AvailableSlotsPanel";
+import InfoDialog from "./InfoDialog";
 
 export default {
   data: () => ({
@@ -128,7 +142,8 @@ export default {
   components: {
     CustomerDataForm,
     CustomerConfirmationForm,
-    AvailableSlotsPanel
+    AvailableSlotsPanel,
+    InfoDialog
   },
   computed: {
     rules() {
