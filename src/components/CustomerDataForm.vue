@@ -6,14 +6,14 @@
           ><v-col
             ><v-text-field
               v-model="customer.firstName"
-              label="Vorname"
+              :label="$t('firstName')"
               :rules="nameRules"
               required
             ></v-text-field></v-col
           ><v-col
             ><v-text-field
               v-model="customer.lastName"
-              label="Nachname"
+              :label="$t('lastName')"
               :rules="nameRules"
               required
             ></v-text-field></v-col
@@ -23,7 +23,7 @@
             ><v-text-field
               type="tel"
               v-model="customer.tel"
-              label="Telefon"
+              :label="$t('tel')"
               :rules="telRules"
             ></v-text-field></v-col
         ></v-row>
@@ -32,7 +32,7 @@
             ><v-text-field
               v-model="customer.email"
               type="email"
-              label="E-Mail"
+              :label="$t('email')"
               :rules="emailRules"
               required
             ></v-text-field></v-col
@@ -41,14 +41,14 @@
           ><v-col :lg="2" :sm="3"
             ><v-text-field
               v-model="customer.zip"
-              label="PLZ"
+              :label="$t('zip')"
               :rules="zipRules"
               required
             ></v-text-field></v-col
           ><v-col
             ><v-text-field
               v-model="customer.city"
-              label="Wohnort"
+              :label="$t('city')"
               :rules="nameRules"
               required
             ></v-text-field></v-col
@@ -62,7 +62,9 @@
           :bookedJumper="getJumperIfAvailable(i)"
         />
         <v-row v-if="buttonVisible"
-          ><v-btn class="mr-4" @click="validate">{{ buttonText }}</v-btn></v-row
+          ><v-btn class="mr-4" @click="validate">{{
+            $t("continue")
+          }}</v-btn></v-row
         >
       </v-container>
     </v-form>
@@ -76,10 +78,6 @@ export default {
   props: {
     tandem: Number,
     appointment: Object,
-    buttonText: {
-      type: String,
-      default: () => "Weiter"
-    },
     buttonVisible: {
       type: Boolean,
       default: () => true
@@ -88,28 +86,30 @@ export default {
   components: {
     JumperDetailsForm
   },
-  data: () => ({
-    valid: false,
-    nameRules: [
-      v => !!v || "Feld muss befüllt werden",
-      v => (v && v.length <= 40) || "Wert darf aus maximal 40 Zeichen bestehen"
-    ],
-    zipRules: [
-      v => !!v || "PLZ wird benötigt",
-      v => v.length === 5 || "PLZ muss 5-stellig sein",
-      v => !isNaN(v) || "PLZ darf nur aus Zahlen bestehen"
-    ],
-    emailRules: [
-      v => !!v || "E-mail wird benötigt",
-      v => /.+@.+\..+/.test(v) || "E-mail muss gültig sein"
-    ],
-    telRules: [
-      v => !!v || "Es wird eine Telefonnummer benötigt",
-      v =>
-        (v.length > 0 && /[0-9 +-]{6,}$/.test(v)) ||
-        "Telefonnummer muss gültig sein"
-    ]
-  }),
+  data: function() {
+    return {
+      valid: false,
+      nameRules: [
+        v => !!v || this.$i18n.t("rules.fieldHasToBeFilled"),
+        v => (v && v.length <= 40) || this.$i18n.t("rules.max40Chars")
+      ],
+      zipRules: [
+        v => !!v || this.$i18n.t("rules.zipNeeded"),
+        v => v.length === 5 || this.$i18n.t("rules.zip5digit"),
+        v => !isNaN(v) || this.$i18n.t("rules.zipNumbers")
+      ],
+      emailRules: [
+        v => !!v || this.$i18n.t("rules.emailNeeded"),
+        v => /.+@.+\..+/.test(v) || this.$i18n.t("rules.emailValid")
+      ],
+      telRules: [
+        v => !!v || this.$i18n.t("rules.telNeeded"),
+        v =>
+          (v.length > 0 && /[0-9 +-]{6,}$/.test(v)) ||
+          this.$i18n.t("rules.telValid")
+      ]
+    };
+  },
   methods: {
     validate() {
       if (this.$refs.form.validate()) {

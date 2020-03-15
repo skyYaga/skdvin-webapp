@@ -3,17 +3,14 @@
     <v-row dense>
       <v-col :lg="3" :md="4" :sm="12">
         <v-card>
-          <v-card-title>Tandemsprung buchen</v-card-title>
+          <v-card-title>{{ $t("tandem.book") }}</v-card-title>
           <v-card-text>
             <v-form ref="form" v-model="valid" :lazy-validation="lazy">
               <v-select
                 v-model="appointment.tandem"
                 :items="items"
-                :rules="[
-                  v =>
-                    !!v || 'Es muss mindestens 1 Tandemsprung ausgewählt werden'
-                ]"
-                label="Anzahl Tandemsprünge"
+                :rules="[v => !!v || $t('rules.atLeast1Tandem')]"
+                :label="$t('tandem.count')"
                 type="number"
                 :disabled="slots !== null && appointment.selectedTime !== null"
                 required
@@ -22,7 +19,7 @@
                 v-model="appointment.picOrVid"
                 :items="itemsZero"
                 :rules="rules"
-                label="Anzahl Foto oder Video"
+                :label="$t('picOrVid.count')"
                 type="number"
                 :disabled="slots !== null && appointment.selectedTime !== null"
                 required
@@ -31,7 +28,7 @@
                 v-model="appointment.picAndVid"
                 :items="itemsZero"
                 :rules="rules"
-                label="Anzahl Foto und Video"
+                :label="$t('picAndVid.count')"
                 :disabled="slots !== null && appointment.selectedTime !== null"
                 required
               ></v-select>
@@ -39,7 +36,7 @@
                 v-model="appointment.handcam"
                 :items="itemsZero"
                 :rules="rules"
-                label="Anzahl Handcam"
+                :label="$t('handcam.count')"
                 :disabled="slots !== null && appointment.selectedTime !== null"
                 required
               ></v-select>
@@ -47,13 +44,13 @@
                 class="mr-4"
                 @click="searchForSlots"
                 :disabled="slots !== null && appointment.selectedTime !== null"
-                >Suchen</v-btn
+                >{{ $t("search") }}</v-btn
               >
               <v-btn
                 class="mr-4"
                 @click="resetForm"
                 v-if="slots !== null && appointment.selectedTime !== null"
-                >Zurücksetzen</v-btn
+                >{{ $t("reset") }}</v-btn
               >
             </v-form>
           </v-card-text>
@@ -65,7 +62,7 @@
         v-if="slots !== null && appointment.selectedTime === null"
       >
         <v-card>
-          <v-card-title>Verfügbare Zeitslots</v-card-title>
+          <v-card-title>{{ $t("slot.available") }}</v-card-title>
           <v-card-text>
             <AvailableSlotsPanel :slots="slots" @onSlotSelected="selectSlot" />
           </v-card-text>
@@ -78,7 +75,7 @@
       >
         <v-card>
           <v-card-title
-            >Reservierungsdaten: {{ appointment.selectedDate }},
+            >{{ $t("reservationData") }}: {{ appointment.selectedDate }},
             {{ appointment.selectedTime }}</v-card-title
           >
           <v-card-text>
@@ -95,7 +92,7 @@
         "
       >
         <v-card>
-          <v-card-title>Datenüberprüfung</v-card-title>
+          <v-card-title>{{ $t("dataVerification") }}</v-card-title>
           <v-card-text>
             <CustomerConfirmationForm :appointment="appointment" />
           </v-card-text>
@@ -139,13 +136,13 @@ export default {
 
       const rule = v =>
         (!!v && v) <= this.appointment.tandem ||
-        "Mehr Videobuchungen als Tandemsprünge";
+        this.$t("rules.moreVideoThanTandem");
 
       const allVidsRule = v =>
         this.appointment.picOrVid +
           this.appointment.picAndVid +
           this.appointment.handcam <=
-          this.appointment.tandem || "Mehr Videobuchungen als Tandemsprünge";
+          this.appointment.tandem || this.$t("rules.moreVideoThanTandem");
 
       rules.push(rule);
       rules.push(allVidsRule);

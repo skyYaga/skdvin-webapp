@@ -23,7 +23,7 @@
             <template v-slot:activator="{ on }">
               <v-text-field
                 v-model="date"
-                label="Datum auswählen"
+                :label="$t('selectdate')"
                 prepend-icon="mdi-event"
                 readonly
                 v-on="on"
@@ -106,12 +106,12 @@ export default {
   methods: {
     ...mapActions(["getJumpdaysAction", "getAppointmentsAction"]),
     async loadJumpdays() {
-      this.message = "loading jumpdays, please be patient...";
+      this.message = this.$t("jumpday.loading");
       let unauthorizedMessage = await this.getJumpdaysAction(
         await this.$auth.getTokenSilently()
       );
       if (unauthorizedMessage !== "") {
-        this.message = "Ups! Leider kein Zugriff :-(";
+        this.message = this.$t("accessdenied");
         this.authorized = false;
       } else {
         this.message = "";

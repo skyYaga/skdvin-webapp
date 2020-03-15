@@ -6,7 +6,9 @@
       </v-row>
     </div>
     <div v-if="!loading">
-      <v-row dense><h1>Termindetails</h1></v-row>
+      <v-row dense
+        ><h1>{{ $t("appointment.details") }}</h1></v-row
+      >
       <v-row>
         <v-col :lg="6" :sm="12"
           ><v-card
@@ -31,12 +33,26 @@
               :slots="slots"
             />
             <div class="pa-5" v-if="slotSelected">
-              Neu gewählter Termin: {{ getDate() }} um {{ getTime() }} Uhr
+              {{
+                $t("appointment.newselected", {
+                  date: getDate(),
+                  time: getTime()
+                })
+              }}
               <ul>
-                <li>Tandem: {{ localAppointment.tandem }}</li>
-                <li>Foto oder Video: {{ localAppointment.picOrVid }}</li>
-                <li>Foto und Video: {{ localAppointment.picAndVid }}</li>
-                <li>Handcam: {{ localAppointment.handcam }}</li>
+                <li>
+                  {{ $t("tandem.tandems") }}: {{ localAppointment.tandem }}
+                </li>
+                <li>
+                  {{ $t("picOrVid.picOrVid") }}: {{ localAppointment.picOrVid }}
+                </li>
+                <li>
+                  {{ $t("picAndVid.picAndVid") }}:
+                  {{ localAppointment.picAndVid }}
+                </li>
+                <li>
+                  {{ $t("handcam.handcam") }}: {{ localAppointment.handcam }}
+                </li>
               </ul>
             </div>
             <v-btn
@@ -45,34 +61,34 @@
               @click="updateAppointment"
               :disabled="updating"
               color="primary"
-              >Aktualisieren</v-btn
+              >{{ $t("update") }}</v-btn
             >
             <v-btn
               v-if="availableSlots.length === 0 && !slotSelected"
               class="ml-4 mb-4"
               @click="searchForSlots"
               :disabled="updating"
-              >Neuen Slot suchen</v-btn
+              >{{ $t("slot.searchnew") }}</v-btn
             ><v-btn
               v-if="availableSlots.length === 0 && !slotSelected"
               class="ml-4 mb-4"
               @click.stop="showDeletionDialog = true"
               :disabled="updating"
-              >Termin löschen</v-btn
+              >{{ $t("appointment.delete.message") }}</v-btn
             ><v-btn
               v-if="availableSlots.length > 0 && !slotSelected"
               class="ma-4"
               @click="reset"
               :disabled="updating"
-              >Zurücksetzen</v-btn
+              >{{ $t("reset") }}</v-btn
             >
           </v-card>
         </v-col>
       </v-row>
       <v-row>
-        <v-btn class="ma-3" @click="backToOverview"
-          >Zurück zur Terminübersicht</v-btn
-        >
+        <v-btn class="ma-3" @click="backToOverview">{{
+          $t("appointment.overview.back")
+        }}</v-btn>
       </v-row>
     </div>
     <v-snackbar :color="hintColor" v-model="showHint" :timeout="5000">
@@ -85,7 +101,7 @@
       <v-dialog v-model="showDeletionDialog" width="500">
         <v-card>
           <v-card-title class="headline" primary-title>
-            Soll der Termin gelöscht werden?
+            {{ $t("appointment.delete.question") }}
           </v-card-title>
 
           <v-divider></v-divider>
@@ -93,10 +109,10 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="primary" text @click="deleteAppointment">
-              Löschen
+              {{ $t("delete") }}
             </v-btn>
             <v-btn color="primary" text @click="showDeletionDialog = false">
-              Abbrechen
+              {{ $t("cancel") }}
             </v-btn>
           </v-card-actions>
         </v-card>
@@ -188,10 +204,10 @@ export default {
         });
         this.updating = false;
         if (result.success) {
-          this.hintText = "Termin erfolgreich aktualisiert";
+          this.hintText = this.$t("appointment.update.successful");
           this.hintColor = "green";
         } else {
-          this.hintText = "Fehler beim Aktualisieren des Termins";
+          this.hintText = this.$t("appointment.update.error");
           this.hintColor = "red";
         }
         this.showHint = true;
@@ -209,7 +225,7 @@ export default {
         this.backToOverview();
       } else {
         this.updating = false;
-        this.hintText = "Fehler beim Löschen des Termins";
+        this.hintText = this.$t("appointment.delete.error");
         this.hintColor = "red";
         this.showHint = true;
       }

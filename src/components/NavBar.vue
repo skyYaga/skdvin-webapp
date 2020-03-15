@@ -7,7 +7,7 @@
             <v-icon>mdi-home</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Home</v-list-item-title>
+            <v-list-item-title>{{ $t("home") }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item link to="/about">
@@ -28,7 +28,7 @@
             <v-icon>mdi-account</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Profile</v-list-item-title>
+            <v-list-item-title>{{ $t("profile") }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item
@@ -40,7 +40,7 @@
             <v-icon>mdi-calendar-month</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Sprungtage</v-list-item-title>
+            <v-list-item-title>{{ $t("jumpday.jumpdays") }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item
@@ -52,7 +52,9 @@
             <v-icon>mdi-calendar-today</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Termine</v-list-item-title>
+            <v-list-item-title>{{
+              $t("appointment.appointments")
+            }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item
@@ -64,7 +66,7 @@
             <v-icon>mdi-login</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Log in</v-list-item-title>
+            <v-list-item-title>{{ $t("login") }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item
@@ -76,7 +78,7 @@
             <v-icon>mdi-logout</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Log out</v-list-item-title>
+            <v-list-item-title>{{ $t("logout") }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>

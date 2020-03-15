@@ -12,6 +12,7 @@ let audience = process.env.VUE_APP_AUTH0_AUDIENCE;
 import { Auth0Plugin } from "./auth";
 
 import vuetify from "./plugins/vuetify";
+import i18n from "./i18n";
 
 // Install the authentication plugin here
 Vue.use(Auth0Plugin, {
@@ -33,5 +34,6 @@ new Vue({
   router,
   store,
   vuetify,
+  i18n,
   render: h => h(App)
 }).$mount("#app");

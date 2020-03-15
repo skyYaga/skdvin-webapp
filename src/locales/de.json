@@ -1,0 +1,131 @@
+{
+  "acceptPrivacyPolicy": "Ich akzeptiere die Datenschutzbestimmungen",
+  "accessdenied": "Ups! Zugriff verweigert :-(",
+  "active": "Aktiv",
+  "almostdone": "Fast geschafft!",
+  "api": {
+    "lang": "de"
+  },
+  "appointment": {
+    "appointment": "Termin",
+    "appointments": "Termine",
+    "booking": {
+      "error": "Leider ist bei der Buchung ein Fehler aufgetreten.<br />Bitte versuchen sie es später erneut."
+    },
+    "confirmation": {
+      "error": "Fehler beim Bestätigen des Termins.",
+      "message": "Wir haben Ihnen eine E-Mail mit ihren Termindaten geschickt!<br />Bitte bestätigen Sie ihren Termin durch einen Klick auf den Link in der E-Mail!<br />Unbestätigte Termine werden automatisch nach 24 Stunden storniert.",
+      "success": "Termin erfolgreich bestätigt."
+    },
+    "delete": {
+      "error": "Fehler beim Löschen des Termins",
+      "message": "Termin löschen",
+      "question": "Soll der Termin gelöscht werden?"
+    },
+    "details": "Termindetails",
+    "newselected": "Neu gewählter Termin: {date} um {time} Uhr",
+    "overview": {
+      "back": "Zurück zur Terminübersicht"
+    },
+    "update": {
+      "error": "Fehler beim Aktualisieren des Termins",
+      "successful": "Termin erfolgreich aktualisiert"
+    },
+    "verify": "Termin wird verifiziert, bitte warten..."
+  },
+  "book": "Buchen",
+  "bookable": "buchbar",
+  "cancel": "Abbrechen",
+  "city": "Wohnort",
+  "contactData": "Kontaktdaten",
+  "continue": "Weiter",
+  "dataVerification": "Datenüberprüfung",
+  "dateOfBirth": "Geburtsdatum",
+  "delete": "Löschen",
+  "done": "Erledigt",
+  "email": "E-Mail",
+  "error": {
+    "occurred": "Ein Fehler ist aufgetreten"
+  },
+  "firstName": "Vorname",
+  "from": "Von",
+  "handcam": {
+    "count": "Anzahl Handcam",
+    "handcam": "Handcam"
+  },
+  "home": "Home",
+  "interval": "Intervall",
+  "jumpday": {
+    "delete": "Sprungtag löschen",
+    "jumpdays": "Sprungtage",
+    "loading": "Sprungtage werden geladen. Bitte warten...",
+    "update": {
+      "error": "Fehler beim Aktualisieren des Sprungtags",
+      "successful": "Sprungtag erfolgreich aktualisiert"
+    }
+  },
+  "jumperData": "Springerdaten",
+  "jumpregulations": {
+    "accept": "Die obenstehenden Sprungbestimmungen habe ich gelesen und akzeptiert.",
+    "heading": "Sprungbestimmungen",
+    "text": "<li>Fallschirmspringen ist in hohem Maße vom Wetter abhängig. Deshalb liegt aus Sicherheitsgründen die letzte <strong>Entscheidung</strong>, ob gesprungen wird oder nicht, <strong>beim Tandempiloten</strong>. </li><li>Nehmen Sie sich für Ihren Sprung <strong>mindestens 2 – 3 Stunden Zeit</strong>, da die Sprungreihenfolge und der Sprungbetrieb von vielen Faktoren abhängt (Wetter, …). In Ausnahmefällen kann es auch länger dauern.<br />Der ausgemachte Termin ist lediglich als <strong>Richtwert</strong> zu verstehen. Es lohnt sich auch, den ganzen Tag zu bleiben.</li><li>Unbedingt zu beachten sind <strong>Mindest- und Höchstmaße</strong> für Passagiere. Bei Nichteinhaltung besteht kein Anspruch auf den Sprung.<ul><li>Mindestgröße: 140 cm</li><li>Maximalgröße: 190 cm</li><li>Maximalgewicht (mit Kleidung!): 90 kg</li><li>Mindestalter: 14 Jahre (bei Minderjährigen wird die Unterschrift <strong>beider Erziehungsberechtigten</strong> benötigt. Der Beförderungsvertrag kann dazu auch im Vorfeld ausgefüllt werden.)</li></ul></li><li>Sie sollten <strong>keine schweren Knochenverletzungen</strong> innerhalb der letzten 12 Monate vorweisen.</li><li>Am Sprungtag ist jeglicher Einfluss von <strong>Drogen oder Alkohol tabu</strong>.</li><li>Es darf <strong>keine Schwangerschaft vorliegen</strong>.</li><li>Bitte bringen Sie <strong>bequeme Kleidung und Turnschuhe</strong> (ohne Haken und Ösen) mit.</li><li>Das Aufnehmen des Sprungs mit Ihrer <strong>Ausrüstung</strong> (GoPro, Smartphone, etc.) ist aus Sicherheitsgründen nicht möglich. Wenn Sie Video/Fotos möchten, buchen Sie bitte diese Option mit.</li>"
+  },
+  "lastName": "Nachname",
+  "login": "Log in",
+  "logout": "Log out",
+  "ok": "OK",
+  "operating": "Sprungbetrieb",
+  "picAndVid": {
+    "count": "Anzahl Foto und Video",
+    "picAndVid": "Foto und Video"
+  },
+  "picOrVid": {
+    "count": "Anzahl Foto oder Video",
+    "picOrVid": "Foto oder Video"
+  },
+  "profile": "Profil",
+  "reservationData": "Reservierungsdaten",
+  "reset": "Zurücksetzen",
+  "rules": {
+    "acceptRegulations": "Sie müssen die Sprungbestimmungen akzeptieren",
+    "atLeast1Tandem": "Es muss mindestens 1 Tandemsprung ausgewählt werden",
+    "dateOfBirthNeeded": "Geburtsdatum muss angegeben werden",
+    "emailNeeded": "E-Mail wird benötigt",
+    "emailValid": "E-mail muss gültig sein",
+    "fieldHasToBeFilled": "Das Feld muss befüllt werden",
+    "max40Chars": "Wert darf aus maximal 40 Zeichen bestehen",
+    "moreVideoThanTandem": "Mehr Videobuchungen als Tandemsprünge",
+    "notEnoughFreeSlots": "Nicht genügend freie Slots",
+    "privacyPolicy": "Sie müssen die Datenschutzbestimmungen akzeptieren",
+    "slotExists": "Zeitslot existiert bereits",
+    "telNeeded": "Es wird eine Telefonnummer benötigt",
+    "telValid": "Telefonnummer muss gültig sein",
+    "timeHasToBeSelected": "Es muss eine Uhrzeit ausgewählt werden",
+    "weightMax90": "Gewicht inkl. Kleidung darf maximal 90kg betragen",
+    "weightNeeded": "Das Gewicht muss angegeben werden",
+    "zip5digit": "PLZ muss 5-stellig sein",
+    "zipNeeded": "PLZ wird benötigt",
+    "zipNumbers": "PLZ darf nur aus Zahlen bestehen"
+  },
+  "save": "Speichern",
+  "search": "Suchen",
+  "selectdate": "Datum auswählen",
+  "slot": {
+    "add": "Slot hinzufügen",
+    "available": "Verfügbare Zeitslots",
+    "availableAt": "Am {date} um {time} Uhr verfügbare Slots",
+    "noFreeFound": "Keine freien Slots gefunden.",
+    "searchnew": "Neuen Slot suchen"
+  },
+  "tandem": {
+    "book": "",
+    "count": "Anzahl Tandemsprünge",
+    "tandem": "Tandem",
+    "tandems": "Tandems"
+  },
+  "tel": "Telefon",
+  "to": "Bis",
+  "update": "Aktualisieren",
+  "weightInKg": "Gewicht in kg",
+  "zip": "PLZ"
+}

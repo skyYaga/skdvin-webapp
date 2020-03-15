@@ -2,23 +2,27 @@
   <div>
     <v-form ref="form" v-model="valid" :lazy-validation="false">
       <div class="mb-5">
-        Am {{ getDate() }} um {{ getTime() }} Uhr verfügbare Slots:
+        {{ $t("slot.availableAt", { date: getDate(), time: getTime() }) }}:
         <ul>
           <li>
-            Tandem: {{ getTandemAvailable }} (=buchbar:
-            {{ maxBookableSlots.tandem }})
+            {{ $t("tandem.tandems") }}: {{ getTandemAvailable }} (={{
+              $t("bookable")
+            }}: {{ maxBookableSlots.tandem }})
           </li>
           <li>
-            Foto oder Video: {{ getPicOrVidAvailable }} (=buchbar:
-            {{ maxBookableSlots.picOrVid }})
+            {{ $t("picOrVid.picOrVid") }}: {{ getPicOrVidAvailable }} (={{
+              $t("bookable")
+            }}: {{ maxBookableSlots.picOrVid }})
           </li>
           <li>
-            Foto und Video: {{ getPicAndVidAvailable }} (=buchbar:
-            {{ maxBookableSlots.picAndVid }})
+            {{ $t("picAndVid.picAndVid") }}: {{ getPicAndVidAvailable }} (={{
+              $t("bookable")
+            }}: {{ maxBookableSlots.picAndVid }})
           </li>
           <li>
-            Handcam: {{ getHandcamAvailable }} (=buchbar:
-            {{ maxBookableSlots.handcam }})
+            {{ $t("handcam.handcam") }}: {{ getHandcamAvailable }} (={{
+              $t("bookable")
+            }}: {{ maxBookableSlots.handcam }})
           </li>
         </ul>
       </div>
@@ -26,11 +30,11 @@
         v-model="appointment.tandem"
         :items="items"
         :rules="[
-          v => !!v || 'Es muss mindestens 1 Tandemsprung ausgewählt werden',
+          v => !!v || $t('rules.atLeast1Tandem'),
           availableSlotsRule,
           moreTandemThanVideoRule
         ]"
-        label="Tandems"
+        :label="$t('tandem.tandems')"
         type="number"
         required
       ></v-select>
@@ -38,7 +42,7 @@
         v-model="appointment.picOrVid"
         :items="itemsZero"
         :rules="[availableSlotsRule, moreTandemThanVideoRule]"
-        label="Foto oder Video"
+        :label="$t('picOrVid.picOrVid')"
         type="number"
         required
       ></v-select>
@@ -46,14 +50,14 @@
         v-model="appointment.picAndVid"
         :items="itemsZero"
         :rules="[availableSlotsRule, moreTandemThanVideoRule]"
-        label="Foto und Video"
+        :label="$t('picAndVid.picAndVid')"
         required
       ></v-select>
       <v-select
         v-model="appointment.handcam"
         :items="itemsZero"
         :rules="[availableSlotsRule, moreTandemThanVideoRule]"
-        label="Handcam"
+        :label="$t('handcam.handcam')"
         required
       ></v-select>
     </v-form>
@@ -91,14 +95,14 @@ export default {
             this.appointment.picOrVid <= this.maxBookableSlots.picOrVid &&
             this.appointment.picAndVid <= this.maxBookableSlots.picOrVid &&
             this.appointment.handcam <= this.maxBookableSlots.picOrVid) ||
-          "Nicht genügend freie Slots"
+          this.$t("rules.notEnoughFreeSlots")
         );
       }
       return true;
     },
     moreTandemThanVideoRule(v) {
       if (v > this.appointment.tandem) {
-        return "Mehr Videobuchungen als Tandemsprünge";
+        return this.$t("rules.moreVideoThanTandem");
       }
       if (
         this.appointment.picOrVid +
@@ -106,7 +110,7 @@ export default {
           this.appointment.handcam >
         this.appointment.tandem
       ) {
-        return "Mehr Videobuchungen als Tandemsprünge";
+        return this.$t("rules.moreVideoThanTandem");
       }
       return true;
     },

@@ -1,5 +1,6 @@
 module.exports = {
   transpileDependencies: ["vuetify"],
+
   devServer: {
     proxy: {
       "/api": {
@@ -7,6 +8,15 @@ module.exports = {
         ws: true, // proxy websockets
         changeOrigin: true // needed for virtual hosted sites
       }
+    }
+  },
+
+  pluginOptions: {
+    i18n: {
+      locale: "de",
+      fallbackLocale: "en",
+      localeDir: "locales",
+      enableInSFC: false
     }
   }
 };

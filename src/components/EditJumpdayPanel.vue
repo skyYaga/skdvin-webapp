@@ -4,7 +4,7 @@
       <v-snackbar :color="hintColor" v-model="showHint" :timeout="5000">
         {{ hintText }}
         <v-btn text @click="showHint = false">
-          OK
+          {{ $t("ok") }}
         </v-btn>
       </v-snackbar>
       <v-card-text>
@@ -12,7 +12,7 @@
           <v-row>
             <v-switch
               inset
-              label="Sprungbetrieb"
+              :label="$t('operating')"
               :input-value="jumpday.jumping"
               :disabled="hasBookedAppointments"
               @change="toggleJumping"
@@ -20,7 +20,7 @@
           </v-row>
           <div>
             <v-row v-if="!jumpday.slots && jumpday.jumping">
-              Von
+              {{ $t("from") }}
               <v-col cols="2">
                 <v-select
                   v-model="startHour"
@@ -35,7 +35,7 @@
                   label="MM"
                 ></v-select>
               </v-col>
-              Bis
+              {{ $t("to") }}
               <v-col cols="2">
                 <v-select
                   v-model="endHour"
@@ -54,7 +54,7 @@
                 <v-select
                   v-model="sequence"
                   :items="sequences"
-                  label="Taktung"
+                  :label="$t('interval')"
                 ></v-select>
               </v-col>
             </v-row>
@@ -64,9 +64,7 @@
                   v-model="addHour"
                   :items="hours"
                   :rules="[
-                    v =>
-                      (!!v && v > 0) ||
-                      'Es muss eine Uhrzeit ausgewählt werden',
+                    v => (!!v && v > 0) || $t('rules.timeHasToBeSelected'),
                     timeExistsRule
                   ]"
                   label="HH"
@@ -77,7 +75,7 @@
                   v-model="addMinute"
                   :items="minutes"
                   :rules="[
-                    v => !!v || 'Es muss eine Uhrzeit ausgewählt werden',
+                    v => !!v || $t('rules.timeHasToBeSelected'),
                     timeExistsRule
                   ]"
                   label="MM"
@@ -89,28 +87,28 @@
                 <v-select
                   v-model="tandem"
                   :items="counts"
-                  label="Tandems"
+                  :label="$t('tandem.tandems')"
                 ></v-select>
               </v-col>
               <v-col cols="3">
                 <v-select
                   v-model="picOrVid"
                   :items="countsZero"
-                  label="Foto oder Video"
+                  :label="$t('picOrVid.picOrVid')"
                 ></v-select>
               </v-col>
               <v-col cols="3">
                 <v-select
                   v-model="picAndVid"
                   :items="countsZero"
-                  label="Foto und Video"
+                  :label="$t('picAndVid.picAndVid')"
                 ></v-select>
               </v-col>
               <v-col cols="3">
                 <v-select
                   v-model="handcam"
                   :items="countsZero"
-                  label="Handcam"
+                  :label="$t('handcam.handcam')"
                 ></v-select>
               </v-col>
             </v-row>
@@ -120,7 +118,7 @@
                 v-if="jumpday.jumping && !jumpday.slots"
                 @click="saveJumpday"
                 :disabled="updating"
-                >Speichern</v-btn
+                >{{ $t("save") }}</v-btn
               >
               <v-btn
                 class="ma-1"
@@ -128,20 +126,20 @@
                 color="primary"
                 @click="updateJumpday"
                 :disabled="updating"
-                >Aktualisieren</v-btn
+                >{{ $t("update") }}</v-btn
               ><v-btn
                 class="ma-1"
                 v-if="jumpday.jumping && jumpday.slots"
                 @click="addSlot"
                 :disabled="updating"
-                >Slot hinzufügen</v-btn
+                >{{ $t("slot.add") }}</v-btn
               ><v-btn
                 class="ma-1"
                 color="primary"
                 v-if="!jumpday.jumping && jumpday.slots"
                 @click="deleteJumpday"
                 :disabled="updating"
-                >Sprungtag löschen</v-btn
+                >{{ $t("jumpday.delete") }}</v-btn
               >
             </v-row>
           </div>
@@ -274,10 +272,10 @@ export default {
     },
     handleHint(result) {
       if (result.success) {
-        this.hintText = "Sprungtag erfolgreich aktualisiert";
+        this.hintText = this.$t("jumpday.update.successful");
         this.hintColor = "green";
       } else {
-        this.hintText = "Fehler beim Aktualisieren des Sprungtags";
+        this.hintText = this.$t("jumpday.update.error");
         this.hintColor = "red";
       }
       this.showHint = true;
@@ -288,7 +286,7 @@ export default {
           s.time ===
           moment(this.addHour + ":" + this.addMinute, "HH:mm").format("HH:mm")
       );
-      return duplicateSlot.length === 0 || "Zeitslot existiert bereits";
+      return duplicateSlot.length === 0 || this.$t("rules.slotExists");
     },
     async addSlot() {
       if (this.$refs.form.validate()) {

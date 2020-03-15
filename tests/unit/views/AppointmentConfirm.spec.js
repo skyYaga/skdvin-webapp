@@ -11,9 +11,9 @@ describe("AppointmentConfirm.vue", () => {
       query: {}
     };
     const wrapper = shallowMount(AppointmentConfirm, {
-      mocks: { $route }
+      mocks: { $route, $t: msg => msg }
     });
-    expect(wrapper.find("h3").text()).toMatch("Fast geschafft!");
+    expect(wrapper.find("h3").text()).toMatch("almostdone");
   });
   it("shows error alert when message ist passed", () => {
     const $route = {
@@ -22,8 +22,8 @@ describe("AppointmentConfirm.vue", () => {
       }
     };
     const wrapper = shallowMount(AppointmentConfirm, {
-      mocks: { $route }
+      mocks: { $route, $t: msg => msg }
     });
-    expect(wrapper.find("h3").text()).toMatch("Ein Fehler ist aufgetreten");
+    expect(wrapper.find("h3").text()).toMatch("error.occurred");
   });
 });
