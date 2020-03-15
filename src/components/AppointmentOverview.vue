@@ -13,27 +13,35 @@
       ></v-card-title
     >
     <v-card-text>
-      <p>{{ appointment.tandem }}x Tandem</p>
+      <p>{{ appointment.tandem }}x {{ $t("tandem.tandem") }}</p>
       <p v-if="appointment.picOrVid > 0">
-        {{ appointment.picOrVid }}x Foto oder Video
+        {{ appointment.picOrVid }}x {{ $t("picOrVid.picOrVid") }}
       </p>
       <p v-if="appointment.picAndVid > 0">
-        {{ appointment.picAndVid }}x Foto und Video
+        {{ appointment.picAndVid }}x {{ $t("picAndVid.picAndVid") }}
       </p>
-      <p v-if="appointment.handcam > 0">{{ appointment.handcam }}x Handcam</p>
+      <p v-if="appointment.handcam > 0">
+        {{ appointment.handcam }}x {{ $t("handcam.handcam") }}
+      </p>
     </v-card-text>
     <v-card-actions>
-      <v-btn small @click="changeAppointmentState('ACTIVE')" :disabled="loading"
-        >Aktiv</v-btn
+      <v-btn
+        small
+        @click="changeAppointmentState('ACTIVE')"
+        :disabled="loading"
+        >{{ $t("active") }}</v-btn
       >
-      <v-btn small @click="changeAppointmentState('DONE')" :disabled="loading"
-        >Erledigt</v-btn
+      <v-btn
+        small
+        @click="changeAppointmentState('DONE')"
+        :disabled="loading"
+        >{{ $t("done") }}</v-btn
       >
       <v-btn
         small
         @click="changeAppointmentState('CONFIRMED')"
         :disabled="loading"
-        >Reset</v-btn
+        >{{ $t("reset") }}</v-btn
       >
     </v-card-actions>
   </v-card>

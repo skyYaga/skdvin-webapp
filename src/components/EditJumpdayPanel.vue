@@ -4,7 +4,7 @@
       <v-snackbar :color="hintColor" v-model="showHint" :timeout="5000">
         {{ hintText }}
         <v-btn text @click="showHint = false">
-          OK
+          {{ $t("ok") }}
         </v-btn>
       </v-snackbar>
       <v-card-text>
@@ -64,7 +64,7 @@
                   v-model="addHour"
                   :items="hours"
                   :rules="[
-                    v => (!!v && v > 0) || $t('timeHasToBeSelected'),
+                    v => (!!v && v > 0) || $t('rules.timeHasToBeSelected'),
                     timeExistsRule
                   ]"
                   label="HH"
@@ -75,7 +75,7 @@
                   v-model="addMinute"
                   :items="minutes"
                   :rules="[
-                    v => !!v || $t('timeHasToBeSelected'),
+                    v => !!v || $t('rules.timeHasToBeSelected'),
                     timeExistsRule
                   ]"
                   label="MM"
@@ -87,28 +87,28 @@
                 <v-select
                   v-model="tandem"
                   :items="counts"
-                  :label="$t('tandems')"
+                  :label="$t('tandem.tandems')"
                 ></v-select>
               </v-col>
               <v-col cols="3">
                 <v-select
                   v-model="picOrVid"
                   :items="countsZero"
-                  :label="$t('picOrVid')"
+                  :label="$t('picOrVid.picOrVid')"
                 ></v-select>
               </v-col>
               <v-col cols="3">
                 <v-select
                   v-model="picAndVid"
                   :items="countsZero"
-                  :label="$t('picAndVid')"
+                  :label="$t('picAndVid.picAndVid')"
                 ></v-select>
               </v-col>
               <v-col cols="3">
                 <v-select
                   v-model="handcam"
                   :items="countsZero"
-                  :label="$t('handcam')"
+                  :label="$t('handcam.handcam')"
                 ></v-select>
               </v-col>
             </v-row>
@@ -286,7 +286,7 @@ export default {
           s.time ===
           moment(this.addHour + ":" + this.addMinute, "HH:mm").format("HH:mm")
       );
-      return duplicateSlot.length === 0 || this.$t("slot.exists");
+      return duplicateSlot.length === 0 || this.$t("rules.slotExists");
     },
     async addSlot() {
       if (this.$refs.form.validate()) {

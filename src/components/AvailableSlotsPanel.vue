@@ -1,8 +1,8 @@
 <template>
   <div>
-    <v-alert type="info" v-if="slots.length === 0"
-      >Keine freien Slots gefunden.</v-alert
-    >
+    <v-alert type="info" v-if="slots.length === 0">{{
+      $t("slot.noFreeFound")
+    }}</v-alert>
     <v-expansion-panels>
       <v-expansion-panel v-for="slot in slots" :key="slot.date">
         <v-expansion-panel-header>{{ slot.date }}</v-expansion-panel-header>

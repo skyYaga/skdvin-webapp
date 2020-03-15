@@ -15,7 +15,7 @@
       v-if="typeof getMessage === 'undefined' || getMessage === ''"
     >
       <h3>{{ $t("almostdone") }}</h3>
-      {{ $t("appointment.confirmation.message") }}
+      <p v-html="$t('appointment.confirmation.message')"></p>
     </v-alert>
     <v-alert
       type="error"

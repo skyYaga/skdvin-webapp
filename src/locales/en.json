@@ -1,10 +1,13 @@
 {
+  "acceptPrivacyPolicy": "I accept the privacy policy",
   "accessdenied": "Oh! Access denied :-(",
+  "active": "Active",
   "almostdone": "Almost done!",
   "api": {
     "lang": "en"
   },
   "appointment": {
+    "appointment": "Appointment",
     "appointments": "Appointments",
     "booking": {
       "error": "Unfortunately an error occurred during the booking.<br />Please try again later."
@@ -30,24 +33,26 @@
     },
     "verify": "Verifying appointment, please be patient..."
   },
-  "atLeast1Tandem": "You have to select at least 1 tandem",
+  "book": "Book",
   "bookable": "bookable",
   "cancel": "Cancel",
   "city": "City",
+  "contactData": "Contact data",
   "continue": "Continue",
+  "dataVerification": "Data verification",
   "dateOfBirth": "Date of birth",
-  "dateOfBirthNeeded": "You need to fill out date of birth",
   "delete": "Delete",
+  "done": "Done",
   "email": "Email",
-  "emailNeeded": "Email is needed",
-  "emailValid": "Email has to be vaild",
   "error": {
     "occurred": "An error has occurred"
   },
-  "fieldHasToBeFilled": "Field may not be empty",
   "firstName": "First name",
   "from": "From",
-  "handcam": "Handcam",
+  "handcam": {
+    "count": "Handcam count",
+    "handcam": "Handcam"
+  },
   "home": "Home",
   "interval": "Interval",
   "jumpday": {
@@ -59,39 +64,68 @@
       "successful": "Jumpday updated successfully"
     }
   },
+  "jumperData": "Jumper data",
+  "jumpregulations": {
+    "accept": "I have read and accepted the skydive regulations above.",
+    "heading": "Skydive regulations",
+    "text": "<li>skydiving is highly dependent on the weather. Therefore, for safety reasons, the final <strong>decision</strong> whether to jump or not lies with the <strong>tandem pilot</strong>.</li><li>Take at <strong>least 2 - 3 hours</strong> for your skydive, because the sequence and operation depend on many factors (weather, ...). In exceptional cases it may take longer. <br />The agreed appointment is only to be understood as a <strong>guideline</strong>. It is also worthwhile to stay the whole day.</li><li> It is essential to note <strong>minimum and maximum dimensions</strong> for passengers. In case of non-compliance there is no claim to the skydive.<ul><li>Minimum height: 140 cm</li><li>Maximum height: 190 cm</li><li>Maximum weight (with clothes!): 90 kg</li><li>Minimum age: 14 years (for minors the signature of <strong>both parents or guardians</strong> is required. The transport contract can also be filled out in advance).</li></ul></li><li>You should not show any <strong>serious bone injuries</strong> within the last 12 months.</li><li>On the day of the jump any influence of <strong>drugs or alcohol is forbidden</strong>.</li><li><strong>No pregnancy</strong> is allowed.</li><li>Please bring <strong>comfortable clothes and sneakers</strong> (without hooks and eyes) with you.</li><li>For safety reasons, it is not possible to jump with your <strong>own equipment</strong> (GoPro, Smartphone, etc.). If you want video/photos, please book this option.</li>"
+  },
   "lastName": "Last name",
+  "login": "Log in",
   "logout": "Log out",
-  "max40Chars": "Maximum of 40 characters",
-  "moreVideoThanTandem": "More video bookings than tandem jumps",
+  "ok": "OK",
   "operating": "Operating",
-  "picAndVid": "Picture and Video",
-  "picOrVid": "Picture or Video",
+  "picAndVid": {
+    "count": "Picture and video count",
+    "picAndVid": "Picture or video"
+  },
+  "picOrVid": {
+    "count": "Picture or video count",
+    "picOrVid": "Picture or video"
+  },
   "profile": "Profile",
+  "reservationData": "Reservation data",
   "reset": "Reset",
+  "rules": {
+    "acceptRegulations": "You have to accept the skydive regulations",
+    "atLeast1Tandem": "You have to select at least 1 tandem",
+    "dateOfBirthNeeded": "You need to fill out date of birth",
+    "emailNeeded": "Email is needed",
+    "emailValid": "Email has to be vaild",
+    "fieldHasToBeFilled": "Field may not be empty",
+    "max40Chars": "Maximum of 40 characters",
+    "moreVideoThanTandem": "More video bookings than tandem jumps",
+    "notEnoughFreeSlots": "Not enough free slots",
+    "privacyPolicy": "You have to accept our privacy policy",
+    "slotExists": "Slot already exists",
+    "telNeeded": "A phone number is needed",
+    "telValid": "Phone number has to be valid",
+    "timeHasToBeSelected": "You have to select a time",
+    "weightMax90": "Weight including clothing may not exceed 90kg",
+    "weightNeeded": "The weight must be indicated",
+    "zip5digit": "Zip Code must have 5 digits",
+    "zipNeeded": "Zip code is needed",
+    "zipNumbers": "Zip code may only consist of numbers"
+  },
   "save": "Save",
+  "search": "Search",
   "selectdate": "Select date",
   "slot": {
     "add": "Add slot",
-    "exists": "Slot already exists",
+    "available": "Available time slots",
+    "availableAt": "Available slots on {date} at {time}",
+    "noFreeFound": "No free slots found.",
     "searchnew": "Search new slot"
   },
-  "slots": {
-    "available": "Available slots on {date} at {time}",
-    "notEnoughFree": "Not enough free slots"
+  "tandem": {
+    "book": "Book tandem skydive",
+    "count": "Tandem count",
+    "tandem": "Tandem",
+    "tandems": "Tandems"
   },
-  "tandem": "Tandem",
-  "tandems": "Tandems",
   "tel": "Phone",
-  "telNeeded": "A phone number is needed",
-  "telValid": "Phone number has to be valid",
-  "timeHasToBeSelected": "You have to select a time",
   "to": "To",
   "update": "Update",
   "weightInKg": "Weight in kg",
-  "weightMax90": "Weight including clothing may not exceed 90kg",
-  "weightNeeded": "The weight must be indicated",
-  "zip": "Zip",
-  "zip5digit": "Zip Code must have 5 digits",
-  "zipNeeded": "Zip code is needed",
-  "zipNumbers": "Zip code may only consist of numbers"
+  "zip": "Zip"
 }

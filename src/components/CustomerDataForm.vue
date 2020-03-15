@@ -62,7 +62,9 @@
           :bookedJumper="getJumperIfAvailable(i)"
         />
         <v-row v-if="buttonVisible"
-          ><v-btn class="mr-4" @click="validate">{{ buttonText }}</v-btn></v-row
+          ><v-btn class="mr-4" @click="validate">{{
+            $t("continue")
+          }}</v-btn></v-row
         >
       </v-container>
     </v-form>
@@ -76,10 +78,6 @@ export default {
   props: {
     tandem: Number,
     appointment: Object,
-    buttonText: {
-      type: String,
-      default: () => this.$t("continue")
-    },
     buttonVisible: {
       type: Boolean,
       default: () => true
@@ -88,26 +86,30 @@ export default {
   components: {
     JumperDetailsForm
   },
-  data: () => ({
-    valid: false,
-    nameRules: [
-      v => !!v || this.$t("fieldHasToBeFilled"),
-      v => (v && v.length <= 40) || this.$t("max40Chars")
-    ],
-    zipRules: [
-      v => !!v || this.$t("zipNeeded"),
-      v => v.length === 5 || this.$t("zip5digit"),
-      v => !isNaN(v) || this.$t("zipNumbers")
-    ],
-    emailRules: [
-      v => !!v || this.$t("emailNeeded"),
-      v => /.+@.+\..+/.test(v) || this.$t("emailValid")
-    ],
-    telRules: [
-      v => !!v || this.$t("telNeeded"),
-      v => (v.length > 0 && /[0-9 +-]{6,}$/.test(v)) || this.$t("telValid")
-    ]
-  }),
+  data: function() {
+    return {
+      valid: false,
+      nameRules: [
+        v => !!v || this.$i18n.t("rules.fieldHasToBeFilled"),
+        v => (v && v.length <= 40) || this.$i18n.t("rules.max40Chars")
+      ],
+      zipRules: [
+        v => !!v || this.$i18n.t("rules.zipNeeded"),
+        v => v.length === 5 || this.$i18n.t("rules.zip5digit"),
+        v => !isNaN(v) || this.$i18n.t("rules.zipNumbers")
+      ],
+      emailRules: [
+        v => !!v || this.$i18n.t("rules.emailNeeded"),
+        v => /.+@.+\..+/.test(v) || this.$i18n.t("rules.emailValid")
+      ],
+      telRules: [
+        v => !!v || this.$i18n.t("rules.telNeeded"),
+        v =>
+          (v.length > 0 && /[0-9 +-]{6,}$/.test(v)) ||
+          this.$i18n.t("rules.telValid")
+      ]
+    };
+  },
   methods: {
     validate() {
       if (this.$refs.form.validate()) {

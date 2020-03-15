@@ -66,7 +66,7 @@
             <v-icon>mdi-login</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Log in</v-list-item-title>
+            <v-list-item-title>{{ $t("login") }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item

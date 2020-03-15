@@ -72,24 +72,26 @@ export default {
       this.jumper = this.bookedJumper;
     }
   },
-  data: () => ({
-    jumper: {
-      firstName: "",
-      lastName: "",
-      dateOfBirth: "",
-      weight: ""
-    },
-    nameRules: [
-      v => !!v || this.$t("fieldHasToBeFilled"),
-      v => (v && v.length <= 40) || this.$t("max40Chars")
-    ],
-    weightRules: [
-      v => !!v || this.$t("weightNeeded"),
-      v => v <= 90 || this.$t("weightMax90")
-    ],
-    dateOfBirthRules: [v => !!v || this.$t("dateOfBirthNeeded")],
-    menu: false
-  }),
+  data: function() {
+    return {
+      jumper: {
+        firstName: "",
+        lastName: "",
+        dateOfBirth: "",
+        weight: ""
+      },
+      nameRules: [
+        v => !!v || this.$i18n.t("rules.fieldHasToBeFilled"),
+        v => (v && v.length <= 40) || this.$i18n.t("rules.max40Chars")
+      ],
+      weightRules: [
+        v => !!v || this.$i18n.t("rules.weightNeeded"),
+        v => v <= 90 || this.$i18n.t("rules.weightMax90")
+      ],
+      dateOfBirthRules: [v => !!v || this.$i18n.t("rules.dateOfBirthNeeded")],
+      menu: false
+    };
+  },
   watch: {
     menu(val) {
       val && setTimeout(() => (this.$refs.picker.activePicker = "YEAR"));

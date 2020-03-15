@@ -40,10 +40,19 @@
                 })
               }}
               <ul>
-                <li>{{ $t("tandem") }}: {{ localAppointment.tandem }}</li>
-                <li>{{ $t("picOrVid") }}: {{ localAppointment.picOrVid }}</li>
-                <li>{{ $t("picAndVid") }}: {{ localAppointment.picAndVid }}</li>
-                <li>{{ $t("handcam") }}: {{ localAppointment.handcam }}</li>
+                <li>
+                  {{ $t("tandem.tandems") }}: {{ localAppointment.tandem }}
+                </li>
+                <li>
+                  {{ $t("picOrVid.picOrVid") }}: {{ localAppointment.picOrVid }}
+                </li>
+                <li>
+                  {{ $t("picAndVid.picAndVid") }}:
+                  {{ localAppointment.picAndVid }}
+                </li>
+                <li>
+                  {{ $t("handcam.handcam") }}: {{ localAppointment.handcam }}
+                </li>
               </ul>
             </div>
             <v-btn

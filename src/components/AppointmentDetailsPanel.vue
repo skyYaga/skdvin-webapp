@@ -2,26 +2,31 @@
   <v-row dense>
     <v-col :lg="3" :sm="12">
       <v-card>
-        <v-card-title>Termin</v-card-title>
+        <v-card-title>{{ $t("appointment.appointment") }}</v-card-title>
         <v-card-text>
           <div>
-            <span>Tandem: {{ appointment.tandem }}</span>
+            <span>{{ $t("tandem.tandem") }}: {{ appointment.tandem }}</span>
           </div>
           <div>
-            <span>Foto oder Video: {{ appointment.picOrVid }}</span>
+            <span
+              >{{ $t("picOrVid.picOrVid") }}: {{ appointment.picOrVid }}</span
+            >
           </div>
           <div>
-            <span>Foto und Video: {{ appointment.picAndVid }}</span>
+            <span
+              >{{ $t("picAndVid.picAndVid") }}:
+              {{ appointment.picAndVid }}</span
+            >
           </div>
           <div>
-            <span>Handcam: {{ appointment.handcam }}</span>
+            <span>{{ $t("handcam.handcam") }}: {{ appointment.handcam }}</span>
           </div>
         </v-card-text>
       </v-card>
     </v-col>
     <v-col :lg="4" :sm="12">
       <v-card>
-        <v-card-title>Kontaktdaten</v-card-title>
+        <v-card-title>{{ $t("contactData") }}</v-card-title>
         <v-card-text>
           <span
             >{{ appointment.customer.firstName }}
@@ -40,7 +45,7 @@
     </v-col>
     <v-col :lg="4" :sm="12">
       <v-card>
-        <v-card-title>Springerdaten</v-card-title>
+        <v-card-title>{{ $t("jumperData") }}</v-card-title>
         <v-card-text>
           <ul v-for="(jumper, i) in appointment.customer.jumpers" :key="i">
             <li>

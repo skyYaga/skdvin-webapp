@@ -8,22 +8,24 @@ Vue.use(Vuetify);
 describe("NavBar.vue", () => {
   it("shows login button when not authenticated", () => {
     const $auth = { isAuthenticated: false };
-    const msg = "Log in";
+    const msg = "login";
     const wrapper = shallowMount(NavBar, {
       stubs: ["router-link", "router-view"],
       mocks: {
-        $auth
+        $auth,
+        $t: msg => msg
       }
     });
     expect(wrapper.html()).toContain(msg);
   });
   it("shows logout button when authenticated", () => {
     const $auth = { isAuthenticated: true };
-    const msg = "Log out";
+    const msg = "logout";
     const wrapper = shallowMount(NavBar, {
       stubs: ["router-link", "router-view"],
       mocks: {
-        $auth
+        $auth,
+        $t: msg => msg
       }
     });
     expect(wrapper.html()).toContain(msg);
@@ -33,19 +35,25 @@ describe("NavBar.vue", () => {
     const wrapper = shallowMount(NavBar, {
       stubs: ["router-link", "router-view"],
       mocks: {
-        $auth
+        $auth,
+        $t: msg => msg
       }
     });
-    expect(wrapper.html()).not.toContain("Profile");
+    expect(wrapper.html()).not.toContain(
+      "<v-list-item-title-stub>profile</v-list-item-title-stub>"
+    );
   });
   it("displays profile menu when authenticated", () => {
     const $auth = { isAuthenticated: true };
     const wrapper = shallowMount(NavBar, {
       stubs: ["router-link", "router-view"],
       mocks: {
-        $auth
+        $auth,
+        $t: msg => msg
       }
     });
-    expect(wrapper.html()).toContain("Profile");
+    expect(wrapper.html()).toContain(
+      "<v-list-item-title-stub>profile</v-list-item-title-stub>"
+    );
   });
 });

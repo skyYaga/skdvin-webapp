@@ -17,7 +17,7 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>{{ $t("tandems") }}</td>
+                  <td>{{ $t("tandem.tandems") }}</td>
                   <td>
                     <v-select
                       v-model="slot.tandemTotal"
@@ -28,7 +28,7 @@
                   <td>{{ slot.tandemAvailable }}</td>
                 </tr>
                 <tr>
-                  <td>{{ $t("picOrVid") }}</td>
+                  <td>{{ $t("picOrVid.picOrVid") }}</td>
                   <td>
                     <v-select
                       v-model="slot.picOrVidTotal"
@@ -39,7 +39,7 @@
                   <td>{{ slot.picOrVidAvailable }}</td>
                 </tr>
                 <tr>
-                  <td>{{ $t("picAndVid") }}</td>
+                  <td>{{ $t("picAndVid.picAndVid") }}</td>
                   <td>
                     <v-select
                       v-model="slot.picAndVidTotal"
@@ -50,7 +50,7 @@
                   <td>{{ slot.picAndVidAvailable }}</td>
                 </tr>
                 <tr>
-                  <td>{{ $t("handcam") }}</td>
+                  <td>{{ $t("handcam.handcam") }}</td>
                   <td>
                     <v-select
                       v-model="slot.handcamTotal"
