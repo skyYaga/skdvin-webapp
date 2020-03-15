@@ -10,14 +10,6 @@
             <v-list-item-title>{{ $t("home") }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item link to="/about">
-          <v-list-item-action>
-            <v-icon>mdi-contact-mail</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>About</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
         <!-- Check that the SDK client is not currently loading before accessing is methods -->
         <v-list-item
           link

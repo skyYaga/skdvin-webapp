@@ -51,7 +51,8 @@
   "from": "From",
   "handcam": {
     "count": "Handcam count",
-    "handcam": "Handcam"
+    "handcam": "Handcam",
+    "info": "For how many of your booked tandem jumps would you like to have a handcam video (inside video)?<br />In this case, the images are taken by the tandem master himself via a camera attached to his hand."
   },
   "home": "Home",
   "interval": "Interval",
@@ -77,10 +78,12 @@
   "operating": "Operating",
   "picAndVid": {
     "count": "Picture and video count",
+    "info": "For how many of your booked tandem jumps would you like to have photos AND video?<br />Here a second skydiver jumps out of the airplane together with the tandem and takes the shots.",
     "picAndVid": "Picture or video"
   },
   "picOrVid": {
     "count": "Picture or video count",
+    "info": "For how many of your booked tandem jumps would you like to have photos OR video?<br />Here a second skydiver jumps out of the airplane together with the tandem and takes the shots.",
     "picOrVid": "Picture or video"
   },
   "profile": "Profile",
