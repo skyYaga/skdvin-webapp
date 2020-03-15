@@ -28,18 +28,21 @@
       <v-btn
         small
         @click="changeAppointmentState('ACTIVE')"
+        :loading="loading"
         :disabled="loading"
         >{{ $t("active") }}</v-btn
       >
       <v-btn
         small
         @click="changeAppointmentState('DONE')"
+        :loading="loading"
         :disabled="loading"
         >{{ $t("done") }}</v-btn
       >
       <v-btn
         small
         @click="changeAppointmentState('CONFIRMED')"
+        :loading="loading"
         :disabled="loading"
         >{{ $t("reset") }}</v-btn
       >

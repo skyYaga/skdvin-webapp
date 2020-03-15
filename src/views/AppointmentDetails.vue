@@ -59,6 +59,7 @@
               v-if="availableSlots.length === 0"
               class="ml-4 mb-4"
               @click="updateAppointment"
+              :loading="updating"
               :disabled="updating"
               color="primary"
               >{{ $t("update") }}</v-btn
@@ -67,18 +68,21 @@
               v-if="availableSlots.length === 0 && !slotSelected"
               class="ml-4 mb-4"
               @click="searchForSlots"
+              :loading="updating"
               :disabled="updating"
               >{{ $t("slot.searchnew") }}</v-btn
             ><v-btn
               v-if="availableSlots.length === 0 && !slotSelected"
               class="ml-4 mb-4"
               @click.stop="showDeletionDialog = true"
+              :loading="updating"
               :disabled="updating"
               >{{ $t("appointment.delete.message") }}</v-btn
             ><v-btn
               v-if="availableSlots.length > 0 && !slotSelected"
               class="ma-4"
               @click="reset"
+              :loading="updating"
               :disabled="updating"
               >{{ $t("reset") }}</v-btn
             >
