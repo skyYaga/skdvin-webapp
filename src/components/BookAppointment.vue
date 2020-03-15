@@ -56,7 +56,11 @@
               <v-btn
                 class="mr-4"
                 @click="searchForSlots"
-                :disabled="slots !== null && appointment.selectedTime !== null"
+                :loading="loading"
+                :disabled="
+                  loading === true ||
+                    (slots !== null && appointment.selectedTime !== null)
+                "
                 >{{ $t("search") }}</v-btn
               >
               <v-btn
@@ -137,7 +141,8 @@ export default {
     items: [1, 2, 3, 4, 5],
     itemsZero: [0, 1, 2, 3, 4, 5],
     lazy: false,
-    slots: null
+    slots: null,
+    loading: false
   }),
   components: {
     CustomerDataForm,
@@ -176,6 +181,7 @@ export default {
   methods: {
     ...mapActions(["searchSlotsAction"]),
     async searchForSlots() {
+      this.loading = true;
       let query = {
         tandem: this.appointment.tandem,
         picOrVid: this.appointment.picOrVid,
@@ -186,6 +192,7 @@ export default {
       this.slots = this.slots.sort(function(a, b) {
         return new Date(a.date) - new Date(b.date);
       });
+      this.loading = false;
     },
     selectSlot(date, time) {
       this.appointment.selectedDate = date;

@@ -117,6 +117,7 @@
                 class="ma-1"
                 v-if="jumpday.jumping && !jumpday.slots"
                 @click="saveJumpday"
+                :loading="updating"
                 :disabled="updating"
                 >{{ $t("save") }}</v-btn
               >
@@ -125,12 +126,14 @@
                 v-if="jumpday.jumping && jumpday.slots"
                 color="primary"
                 @click="updateJumpday"
+                :loading="updating"
                 :disabled="updating"
                 >{{ $t("update") }}</v-btn
               ><v-btn
                 class="ma-1"
                 v-if="jumpday.jumping && jumpday.slots"
                 @click="addSlot"
+                :loading="updating"
                 :disabled="updating"
                 >{{ $t("slot.add") }}</v-btn
               ><v-btn
@@ -138,6 +141,7 @@
                 color="primary"
                 v-if="!jumpday.jumping && jumpday.slots"
                 @click="deleteJumpday"
+                :loading="updating"
                 :disabled="updating"
                 >{{ $t("jumpday.delete") }}</v-btn
               >
