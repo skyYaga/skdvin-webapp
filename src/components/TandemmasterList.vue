@@ -151,7 +151,6 @@ export default {
       this.dialog = true;
     },
     async deleteItem(item) {
-      const index = this.tandemmaster.indexOf(item);
       if (
         confirm(
           this.$t("tandemmaster.delete.question", {
