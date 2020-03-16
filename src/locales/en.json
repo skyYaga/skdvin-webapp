@@ -1,6 +1,7 @@
 {
   "acceptPrivacyPolicy": "I accept the privacy policy",
   "accessdenied": "Oh! Access denied :-(",
+  "actions": "Actions",
   "active": "Active",
   "almostdone": "Almost done!",
   "api": {
@@ -125,6 +126,24 @@
     "count": "Tandem count",
     "tandem": "Tandem",
     "tandems": "Tandems"
+  },
+  "tandemmaster": {
+    "add": "Add Tandemmaster",
+    "delete": {
+      "error": "Error deleting tandemmaster",
+      "question": "Do you really want to delete tandemmaster {firstName} {lastName}?",
+      "successful": "Tandemmaster deleted successfully"
+    },
+    "edit": "Edit Tandemmaster",
+    "save": {
+      "error": "Error saving Tandemmaster",
+      "successful": "Tandemmaster saved successfully"
+    },
+    "tandemmaster": "Tandem master",
+    "update": {
+      "error": "Error updating tandemmaster",
+      "successful": "Tandemmaster update successful"
+    }
   },
   "tel": "Phone",
   "to": "To",

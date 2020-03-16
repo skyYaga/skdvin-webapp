@@ -25,6 +25,7 @@
               v-model="customer.tel"
               :label="$t('tel')"
               :rules="telRules"
+              required
             ></v-text-field></v-col
         ></v-row>
         <v-row
@@ -105,7 +106,7 @@ export default {
       telRules: [
         v => !!v || this.$i18n.t("rules.telNeeded"),
         v =>
-          (v.length > 0 && /[0-9 +-]{6,}$/.test(v)) ||
+          (v && v.length > 0 && /[0-9 +-]{6,}$/.test(v)) ||
           this.$i18n.t("rules.telValid")
       ]
     };

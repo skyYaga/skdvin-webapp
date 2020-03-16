@@ -1,6 +1,7 @@
 {
   "acceptPrivacyPolicy": "Ich akzeptiere die Datenschutzbestimmungen",
   "accessdenied": "Ups! Zugriff verweigert :-(",
+  "actions": "Aktionen",
   "active": "Aktiv",
   "almostdone": "Fast geschafft!",
   "api": {
@@ -125,6 +126,24 @@
     "count": "Anzahl Tandemsprünge",
     "tandem": "Tandem",
     "tandems": "Tandems"
+  },
+  "tandemmaster": {
+    "add": "Tandemmaster hinzufügen",
+    "delete": {
+      "error": "Fehler beim Löschen des Tandemmasters",
+      "question": "Möchten Sie den Tandemmaster {firstName} {lastName} wirklich löschen?",
+      "successful": "Tandemmaster erfolgreich gelöscht"
+    },
+    "edit": "Tandemmaster bearbeiten",
+    "save": {
+      "error": "Fehler beim Speichern des Tandemmasters",
+      "successful": "Tandemmaster erfolgreich gespeichert"
+    },
+    "tandemmaster": "Tandemmaster",
+    "update": {
+      "error": "Fehler beim Aktualisieren des Tandemmasters",
+      "successful": "Tandemmaster erfolgreich aktualisiert"
+    }
   },
   "tel": "Telefon",
   "to": "Bis",

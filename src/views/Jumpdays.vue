@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <div v-if="loading">
-      <v-row>
+      <v-row dense>
         <v-alert type="info">
           <v-progress-circular indeterminate></v-progress-circular>
           {{ message }}
@@ -28,7 +28,7 @@
       </v-row>
     </div>
     <div v-if="!loading && !authorized">
-      <v-row>
+      <v-row dense>
         <v-alert type="error">{{ message }}</v-alert>
       </v-row>
     </div>
