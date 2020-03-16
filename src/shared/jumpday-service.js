@@ -1,4 +1,5 @@
 import * as axios from "axios";
+import { responseHandler } from "./response-handler";
 
 const apiPath = process.env.VUE_APP_API;
 
@@ -29,9 +30,9 @@ const addJumpday = async function(jumpday, token) {
         }
       }
     );
-    return handleResponse(response, 201);
+    return responseHandler.handleResponse(response, 201);
   } catch (error) {
-    return handleError(error);
+    return responseHandler.handleError(error);
   }
 };
 
@@ -46,9 +47,9 @@ const updateJumpday = async function(jumpday, token) {
         }
       }
     );
-    return handleResponse(response, 200);
+    return responseHandler.handleResponse(response, 200);
   } catch (error) {
-    return handleError(error);
+    return responseHandler.handleError(error);
   }
 };
 
@@ -59,9 +60,9 @@ const deleteJumpday = async function(date, token) {
         Authorization: `Bearer ${token}` // send the access token through the 'Authorization' header
       }
     });
-    return handleResponse(response, 200);
+    return responseHandler.handleResponse(response, 200);
   } catch (error) {
-    return handleError(error);
+    return responseHandler.handleError(error);
   }
 };
 
@@ -81,25 +82,6 @@ const parseList = response => {
     list = [];
   }
   return list;
-};
-
-const handleError = error => {
-  let localError = {
-    success: false,
-    message: error
-  };
-  if (error.response?.data?.message) {
-    localError.message = error.response.data.message;
-  }
-  return localError;
-};
-
-const handleResponse = (response, code) => {
-  if (response.status !== code) throw Error(response.data.message);
-  if (!response.data.success) {
-    throw Error(response.data.message);
-  }
-  return response.data;
 };
 
 const createJumpday = jumpday => {
