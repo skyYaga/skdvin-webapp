@@ -92,8 +92,13 @@
       >
         <v-card>
           <v-card-title
-            >{{ $t("reservationData") }}: {{ appointment.selectedDate }},
-            {{ appointment.selectedTime }}</v-card-title
+            >{{ $t("reservationData") }}:
+            {{
+              $d(
+                getDate(appointment.selectedDate),
+                "dateYearMonthDayWeekdayLong"
+              )
+            }}, {{ appointment.selectedTime }}</v-card-title
           >
           <v-card-text>
             <CustomerDataForm
@@ -125,6 +130,7 @@ import CustomerDataForm from "./CustomerDataForm";
 import CustomerConfirmationForm from "./CustomerConfirmationForm";
 import AvailableSlotsPanel from "./AvailableSlotsPanel";
 import InfoDialog from "./InfoDialog";
+import moment from "moment";
 
 export default {
   data: () => ({
@@ -208,6 +214,9 @@ export default {
     },
     updateCustomer(customer) {
       this.appointment.customer = customer;
+    },
+    getDate(date) {
+      return moment(date).toDate();
     }
   }
 };

@@ -22,7 +22,7 @@
       v-if="typeof getMessage !== 'undefined' && getMessage !== ''"
     >
       <h3>{{ $t("error.occurred") }}</h3>
-      {{ $t("appointment.booking.error") }}
+      <p v-html="$t('appointment.booking.error')"></p>
     </v-alert>
   </v-container>
 </template>

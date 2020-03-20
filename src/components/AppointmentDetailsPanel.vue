@@ -51,7 +51,10 @@
             <li>
               <span>{{ jumper.firstName }} {{ jumper.lastName }}</span
               ><br />
-              <span>{{ jumper.dateOfBirth }}, {{ jumper.weight }}kg</span>
+              <span
+                >{{ $d(getDate(jumper.dateOfBirth), "dateYearMonthDayShort") }},
+                {{ jumper.weight }}kg</span
+              >
             </li>
           </ul>
         </v-card-text>
@@ -61,9 +64,16 @@
 </template>
 
 <script>
+import moment from "moment";
+
 export default {
   props: {
     appointment: null
+  },
+  methods: {
+    getDate(date) {
+      return moment(date).toDate();
+    }
   }
 };
 </script>
