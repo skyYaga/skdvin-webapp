@@ -22,7 +22,7 @@
           >
             <template v-slot:activator="{ on }">
               <v-text-field
-                v-model="date"
+                v-model="getDate"
                 :label="$t('selectdate')"
                 prepend-icon="mdi-calendar"
                 readonly
@@ -101,6 +101,12 @@ export default {
           query: { date }
         });
       }
+    },
+    getDate() {
+      if (this.date === "") {
+        return "";
+      }
+      return this.$d(moment(this.date).toDate(), "dateYearMonthDayShort");
     }
   },
   methods: {

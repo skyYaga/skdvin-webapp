@@ -5,7 +5,9 @@
     }}</v-alert>
     <v-expansion-panels>
       <v-expansion-panel v-for="slot in slots" :key="slot.date">
-        <v-expansion-panel-header>{{ slot.date }}</v-expansion-panel-header>
+        <v-expansion-panel-header>{{
+          $d(getDate(slot.date), "dateYearMonthDayWeekdayLong")
+        }}</v-expansion-panel-header>
         <v-expansion-panel-content>
           <v-list>
             <v-list-item
@@ -26,6 +28,8 @@
 </template>
 
 <script>
+import moment from "moment";
+
 export default {
   props: {
     slots: Array
@@ -33,6 +37,9 @@ export default {
   methods: {
     selectSlot(date, time) {
       this.$emit("onSlotSelected", date, time);
+    },
+    getDate(date) {
+      return moment(date).toDate();
     }
   }
 };

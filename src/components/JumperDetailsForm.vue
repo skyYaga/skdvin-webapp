@@ -37,12 +37,12 @@
         >
           <template v-slot:activator="{ on }">
             <v-text-field
-              v-model="jumper.dateOfBirth"
               :rules="dateOfBirthRules"
               :label="$t('dateOfBirth')"
               readonly
               required
               v-on="on"
+              v-model="getDate"
             >
             </v-text-field>
           </template>
@@ -51,6 +51,7 @@
             v-model="jumper.dateOfBirth"
             :max="maxDate14years"
             min="1920-01-01"
+            :locale="$i18n.locale"
             @change="save(jumper.dateOfBirth)"
           ></v-date-picker>
         </v-menu>
@@ -112,6 +113,15 @@ export default {
         .toDate()
         .toISOString()
         .substr(0, 10);
+    },
+    getDate() {
+      if (this.jumper.dateOfBirth === "") {
+        return "";
+      }
+      return this.$d(
+        moment(this.jumper.dateOfBirth).toDate(),
+        "dateYearMonthDayShort"
+      );
     }
   }
 };

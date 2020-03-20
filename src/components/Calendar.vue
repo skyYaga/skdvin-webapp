@@ -11,6 +11,7 @@
     :disabled="disabled"
     :events="enableEvents ? functionEvents : null"
     :first-day-of-week="1"
+    :locale="$i18n.locale"
     @click:date="onDateSelection"
   ></v-date-picker>
 </template>
