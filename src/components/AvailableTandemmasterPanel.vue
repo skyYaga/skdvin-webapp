@@ -5,10 +5,10 @@
       <v-simple-table>
         <thead>
           <tr>
-            <th>{{ $t("name") }}</th>
-            <th>{{ $t("handcam.handcam") }}</th>
-            <th>{{ $t("email") }}</th>
-            <th>{{ $t("tel") }}</th>
+            <th scope="col">{{ $t("name") }}</th>
+            <th scope="col">{{ $t("handcam.handcam") }}</th>
+            <th scope="col">{{ $t("email") }}</th>
+            <th scope="col">{{ $t("tel") }}</th>
           </tr>
         </thead>
         <tbody>
