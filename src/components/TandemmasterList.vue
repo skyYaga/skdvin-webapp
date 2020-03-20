@@ -11,6 +11,11 @@
       :items="tandemmaster"
       :search="search"
       :loading="loading"
+      ><template v-slot:item.handcam="{ item }">
+        <v-simple-checkbox
+          v-model="item.handcam"
+          disabled
+        ></v-simple-checkbox> </template
       ><template v-slot:top>
         <v-toolbar flat color="white">
           <v-toolbar-title>{{
@@ -59,8 +64,11 @@
         <v-icon small class="mr-2" @click="editTandemmaster(item)">
           mdi-pencil
         </v-icon>
-        <v-icon small @click="deleteItem(item)">
+        <v-icon small class="mr-2" @click="deleteItem(item)">
           mdi-delete
+        </v-icon>
+        <v-icon small @click="assignTandemmaster(item)">
+          mdi-calendar-month
         </v-icon>
       </template>
       <template v-slot:no-data>
@@ -213,6 +221,9 @@ export default {
         this.hintColor = "red";
       }
       this.showHint = true;
+    },
+    assignTandemmaster(item) {
+      this.$emit("handleAssignClick", item);
     }
   }
 };

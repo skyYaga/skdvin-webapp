@@ -214,6 +214,20 @@ const actions = {
     );
     commit(DELETE_TANDEMMASTER, payload.id);
     return result;
+  },
+  async getTandemmasterDetailsAction({ commit }, payload) {
+    const appointment = await tandemmasterService.getTandemmasterDetails(
+      payload.tandemmasterId,
+      payload.token
+    );
+    return appointment;
+  },
+  async updateTandemmasterAssigmentsAction({ commit }, payload) {
+    const result = await tandemmasterService.updateTandemmasterAssigments(
+      payload.tandemmasterDetails,
+      payload.token
+    );
+    return result;
   }
 };
 

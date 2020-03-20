@@ -29,6 +29,22 @@ const getTandemmaster = async function(token) {
   }
 };
 
+const getTandemmasterDetails = async function(tandemmasterId, token) {
+  try {
+    const response = await axios.get(
+      apiPath + "/tandemmaster/" + tandemmasterId,
+      {
+        headers: {
+          Authorization: `Bearer ${token}` // send the access token through the 'Authorization' header
+        }
+      }
+    );
+    return responseHandler.handleResponse(response, 200);
+  } catch (error) {
+    return responseHandler.handleError(error);
+  }
+};
+
 const updateTandemmaster = async function(tandemmaster, token) {
   try {
     const response = await axios.put(
@@ -59,9 +75,31 @@ const deleteTandemmaster = async function(id, token) {
   }
 };
 
+const updateTandemmasterAssigments = async function(
+  tandemmasterDetails,
+  token
+) {
+  try {
+    const response = await axios.patch(
+      apiPath + "/tandemmaster/" + tandemmasterDetails.id + "/assign",
+      tandemmasterDetails,
+      {
+        headers: {
+          Authorization: `Bearer ${token}` // send the access token through the 'Authorization' header
+        }
+      }
+    );
+    return responseHandler.handleResponse(response, 200);
+  } catch (error) {
+    return responseHandler.handleError(error);
+  }
+};
+
 export const tandemmasterService = {
   addTandemmaster,
   getTandemmaster,
   updateTandemmaster,
-  deleteTandemmaster
+  deleteTandemmaster,
+  getTandemmasterDetails,
+  updateTandemmasterAssigments
 };

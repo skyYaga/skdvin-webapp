@@ -16,7 +16,14 @@
         ><v-col
           ><TandemmasterList
             :loading="loading"
-            :tandemmaster="getTandemmasters"/></v-col
+            :tandemmaster="getTandemmasters"
+            @handleAssignClick="tandemmasterSelected"/></v-col
+      ></v-row>
+      <v-row
+        ><v-col
+          ><TandemmasterAssignPanel
+            v-if="showAssignmentPanel"
+            :tandemmaster="selectedTandemmaster"/></v-col
       ></v-row>
     </div>
     <div v-if="!loading && !authorized">
@@ -30,16 +37,20 @@
 <script>
 import { mapActions, mapState } from "vuex";
 import TandemmasterList from "../components/TandemmasterList";
+import TandemmasterAssignPanel from "../components/TandemmasterAssignPanel";
 
 export default {
   components: {
-    TandemmasterList
+    TandemmasterList,
+    TandemmasterAssignPanel
   },
   data: () => ({
     menu: false,
     loading: false,
     authorized: false,
-    message: ""
+    message: "",
+    selectedTandemmaster: {},
+    showAssignmentPanel: false
   }),
   async created() {
     this.loading = true;
@@ -51,6 +62,10 @@ export default {
     ...mapActions(["getTandemmasterAction"]),
     async loadTandemmaster() {
       await this.getTandemmasterAction(await this.$auth.getTokenSilently());
+    },
+    tandemmasterSelected(tm) {
+      this.selectedTandemmaster = tm;
+      this.showAssignmentPanel = true;
     }
   },
   computed: {

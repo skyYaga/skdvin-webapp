@@ -21,6 +21,11 @@
           />
         </v-col>
       </v-row>
+      <v-row v-if="jumpday.jumping"
+        ><v-col :lg="6"
+          ><AvailableTandemmasterPanel
+            :tandemmasters="jumpday.tandemmaster"/></v-col
+      ></v-row>
       <v-row>
         <v-form>
           <JumpdayTable :jumpday="jumpday" />
@@ -39,6 +44,7 @@
 import Calendar from "../components/Calendar";
 import JumpdayTable from "../components/JumpdayTable";
 import EditJumpdayPanel from "../components/EditJumpdayPanel";
+import AvailableTandemmasterPanel from "../components/AvailableTandemmasterPanel";
 import { mapActions, mapState, mapGetters } from "vuex";
 import moment from "moment";
 
@@ -59,7 +65,8 @@ export default {
   components: {
     Calendar,
     JumpdayTable,
-    EditJumpdayPanel
+    EditJumpdayPanel,
+    AvailableTandemmasterPanel
   },
   async created() {
     await this.loadJumpdays();
