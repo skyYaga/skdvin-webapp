@@ -1,6 +1,7 @@
 {
   "acceptPrivacyPolicy": "I accept the privacy policy",
   "accessdenied": "Oh! Access denied :-(",
+  "actions": "Actions",
   "active": "Active",
   "almostdone": "Almost done!",
   "api": {
@@ -41,6 +42,21 @@
   "continue": "Continue",
   "dataVerification": "Data verification",
   "dateOfBirth": "Date of birth",
+  "dateYearMonthDayShort": {
+    "day": "2-digit",
+    "month": "2-digit",
+    "year": "numeric"
+  },
+  "dateYearMonthDayWeekdayLong": {
+    "day": "2-digit",
+    "month": "2-digit",
+    "weekday": "long",
+    "year": "numeric"
+  },
+  "dateYearMonthLong": {
+    "month": "long",
+    "year": "numeric"
+  },
   "delete": "Delete",
   "done": "Done",
   "email": "Email",
@@ -74,6 +90,7 @@
   "lastName": "Last name",
   "login": "Log in",
   "logout": "Log out",
+  "name": "Name",
   "ok": "OK",
   "operating": "Operating",
   "picAndVid": {
@@ -125,6 +142,27 @@
     "count": "Tandem count",
     "tandem": "Tandem",
     "tandems": "Tandems"
+  },
+  "tandemmaster": {
+    "add": "Add Tandemmaster",
+    "assign": "Assign Tandemmaster: {firstName} {lastName}",
+    "available": "Available Tandemmaster",
+    "delete": {
+      "error": "Error deleting tandemmaster",
+      "question": "Do you really want to delete tandemmaster {firstName} {lastName}?",
+      "successful": "Tandemmaster deleted successfully"
+    },
+    "edit": "Edit Tandemmaster",
+    "loading": "Loading tandemmaster. Please be patient...",
+    "save": {
+      "error": "Error saving Tandemmaster",
+      "successful": "Tandemmaster saved successfully"
+    },
+    "tandemmaster": "Tandem master",
+    "update": {
+      "error": "Error updating tandemmaster",
+      "successful": "Tandemmaster update successful"
+    }
   },
   "tel": "Phone",
   "to": "To",

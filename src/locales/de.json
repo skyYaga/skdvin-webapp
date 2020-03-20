@@ -1,6 +1,7 @@
 {
   "acceptPrivacyPolicy": "Ich akzeptiere die Datenschutzbestimmungen",
   "accessdenied": "Ups! Zugriff verweigert :-(",
+  "actions": "Aktionen",
   "active": "Aktiv",
   "almostdone": "Fast geschafft!",
   "api": {
@@ -41,6 +42,21 @@
   "continue": "Weiter",
   "dataVerification": "Datenüberprüfung",
   "dateOfBirth": "Geburtsdatum",
+  "dateYearMonthDayShort": {
+    "day": "2-digit",
+    "month": "2-digit",
+    "year": "numeric"
+  },
+  "dateYearMonthDayWeekdayLong": {
+    "day": "2-digit",
+    "month": "2-digit",
+    "weekday": "long",
+    "year": "numeric"
+  },
+  "dateYearMonthLong": {
+    "month": "long",
+    "year": "numeric"
+  },
   "delete": "Löschen",
   "done": "Erledigt",
   "email": "E-Mail",
@@ -74,6 +90,7 @@
   "lastName": "Nachname",
   "login": "Log in",
   "logout": "Log out",
+  "name": "Name",
   "ok": "OK",
   "operating": "Sprungbetrieb",
   "picAndVid": {
@@ -125,6 +142,27 @@
     "count": "Anzahl Tandemsprünge",
     "tandem": "Tandem",
     "tandems": "Tandems"
+  },
+  "tandemmaster": {
+    "add": "Tandemmaster hinzufügen",
+    "assign": "Tandemmaster zuordnen: {firstName} {lastName}",
+    "available": "Verfügbare Tandemmaster",
+    "delete": {
+      "error": "Fehler beim Löschen des Tandemmasters",
+      "question": "Möchten Sie den Tandemmaster {firstName} {lastName} wirklich löschen?",
+      "successful": "Tandemmaster erfolgreich gelöscht"
+    },
+    "edit": "Tandemmaster bearbeiten",
+    "loading": "Lade Tandemmaster. Bitte warten...",
+    "save": {
+      "error": "Fehler beim Speichern des Tandemmasters",
+      "successful": "Tandemmaster erfolgreich gespeichert"
+    },
+    "tandemmaster": "Tandemmaster",
+    "update": {
+      "error": "Fehler beim Aktualisieren des Tandemmasters",
+      "successful": "Tandemmaster erfolgreich aktualisiert"
+    }
   },
   "tel": "Telefon",
   "to": "Bis",

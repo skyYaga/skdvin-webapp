@@ -6,3 +6,7 @@ export const GET_APPOINTMENTS = "getAppointments";
 export const UPDATE_APPOINTMENT = "updateAppointment";
 export const DELETE_APPOINTMENT = "deleteAppointment";
 export const UPDATE_APPOINTMENT_STATE = "updateAppointmentState";
+export const GET_TANDEMMASTERS = "getTandemmasters";
+export const ADD_TANDEMMASTER = "addTandemmaster";
+export const UPDATE_TANDEMMASTER = "updateTandemmaster";
+export const DELETE_TANDEMMASTER = "deleteTandemmaster";

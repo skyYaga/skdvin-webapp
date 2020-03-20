@@ -50,6 +50,12 @@ export default new Router({
       path: "/appointment/verify",
       name: "appointment-verify",
       component: () => import("./views/AppointmentVerify.vue")
+    },
+    {
+      path: "/tandemmaster",
+      name: "tandemmaster",
+      component: () => import("./views/Tandemmaster.vue"),
+      beforeEnter: authGuard
     }
   ]
 });

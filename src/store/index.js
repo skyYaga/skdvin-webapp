@@ -8,17 +8,23 @@ import {
   UPDATE_APPOINTMENT,
   GET_APPOINTMENTS,
   UPDATE_APPOINTMENT_STATE,
-  DELETE_APPOINTMENT
+  DELETE_APPOINTMENT,
+  ADD_TANDEMMASTER,
+  UPDATE_TANDEMMASTER,
+  GET_TANDEMMASTERS,
+  DELETE_TANDEMMASTER
 } from "./mutation-types";
 import { jumpdayService } from "../shared/jumpday-service";
 import { appointmentService } from "../shared/appointment-service";
+import { tandemmasterService } from "../shared/tandemmaster-service";
 
 Vue.use(Vuex);
 
 const state = () => ({
   jumpdays: [],
   appointments: [],
-  appointment: null
+  appointment: null,
+  tandemmasters: []
 });
 
 const mutations = {
@@ -57,6 +63,20 @@ const mutations = {
     );
     state.appointments[index].state = result.appointmentState;
     state.appointments = [...state.appointments];
+  },
+  [GET_TANDEMMASTERS](state, tandemmasters) {
+    state.tandemmasters = tandemmasters;
+  },
+  [ADD_TANDEMMASTER](state, tandemmaster) {
+    state.tandemmasters.unshift(tandemmaster); // mutable addition
+  },
+  [UPDATE_TANDEMMASTER](state, tandemmaster) {
+    const index = state.tandemmasters.findIndex(t => t.id === tandemmaster.id);
+    state.tandemmasters.splice(index, 1, tandemmaster);
+    state.tandemmasters = [...state.tandemmasters];
+  },
+  [DELETE_TANDEMMASTER](state, id) {
+    state.tandemmasters = [...state.tandemmasters.filter(t => t.id !== id)];
   }
 };
 
@@ -164,6 +184,49 @@ const actions = {
     if (result.success) {
       commit(DELETE_APPOINTMENT, payload.appointmentId);
     }
+    return result;
+  },
+  async addTandemmasterAction({ commit }, payload) {
+    const result = await tandemmasterService.addTandemmaster(
+      payload.tandemmaster,
+      payload.token
+    );
+    commit(ADD_TANDEMMASTER, result.payload);
+    return result;
+  },
+  async getTandemmasterAction({ commit }, token) {
+    const result = await tandemmasterService.getTandemmaster(token);
+    commit(GET_TANDEMMASTERS, result.payload);
+    return result;
+  },
+  async updateTandemmasterAction({ commit }, payload) {
+    const result = await tandemmasterService.updateTandemmaster(
+      payload.tandemmaster,
+      payload.token
+    );
+    commit(UPDATE_TANDEMMASTER, result.payload);
+    return result;
+  },
+  async deleteTandemmasterAction({ commit }, payload) {
+    const result = await tandemmasterService.deleteTandemmaster(
+      payload.id,
+      payload.token
+    );
+    commit(DELETE_TANDEMMASTER, payload.id);
+    return result;
+  },
+  async getTandemmasterDetailsAction({ commit }, payload) {
+    const appointment = await tandemmasterService.getTandemmasterDetails(
+      payload.tandemmasterId,
+      payload.token
+    );
+    return appointment;
+  },
+  async updateTandemmasterAssigmentsAction({ commit }, payload) {
+    const result = await tandemmasterService.updateTandemmasterAssigments(
+      payload.tandemmasterDetails,
+      payload.token
+    );
     return result;
   }
 };
