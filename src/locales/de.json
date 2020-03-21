@@ -167,6 +167,27 @@
   "tel": "Telefon",
   "to": "Bis",
   "update": "Aktualisieren",
+  "videoflyer": {
+    "add": "Videoflyer hinzufügen",
+    "assign": "Videoflyer zuordnen: {firstName} {lastName}",
+    "available": "Verfügbare Videoflyer",
+    "delete": {
+      "error": "Fehler beim Löschen des Videoflyer",
+      "question": "Möchten Sie den Videoflyer {firstName} {lastName} wirklich löschen?",
+      "successful": "Videoflyer erfolgreich gelöscht"
+    },
+    "edit": "Videoflyer bearbeiten",
+    "loading": "Lade Videoflyer. Bitte warten...",
+    "save": {
+      "error": "Fehler beim Speichern des Videoflyers",
+      "successful": "Videoflyer erfolgreich gespeichert"
+    },
+    "update": {
+      "error": "Fehler beim Aktualisieren des Videoflyers",
+      "successful": "Videoflyer erfolgreich aktualisiert"
+    },
+    "videoflyer": "Videoflyer"
+  },
   "weightInKg": "Gewicht in kg",
   "zip": "PLZ"
 }

@@ -12,11 +12,16 @@ import {
   ADD_TANDEMMASTER,
   UPDATE_TANDEMMASTER,
   GET_TANDEMMASTERS,
-  DELETE_TANDEMMASTER
+  DELETE_TANDEMMASTER,
+  ADD_VIDEOFLYER,
+  UPDATE_VIDEOFLYER,
+  GET_VIDEOFLYERS,
+  DELETE_VIDEOFLYER
 } from "./mutation-types";
 import { jumpdayService } from "../shared/jumpday-service";
 import { appointmentService } from "../shared/appointment-service";
 import { tandemmasterService } from "../shared/tandemmaster-service";
+import { videoflyerService } from "../shared/videoflyer-service";
 
 Vue.use(Vuex);
 
@@ -24,7 +29,8 @@ const state = () => ({
   jumpdays: [],
   appointments: [],
   appointment: null,
-  tandemmasters: []
+  tandemmasters: [],
+  videoflyers: []
 });
 
 const mutations = {
@@ -77,6 +83,20 @@ const mutations = {
   },
   [DELETE_TANDEMMASTER](state, id) {
     state.tandemmasters = [...state.tandemmasters.filter(t => t.id !== id)];
+  },
+  [GET_VIDEOFLYERS](state, videoflyers) {
+    state.videoflyers = videoflyers;
+  },
+  [ADD_VIDEOFLYER](state, videoflyer) {
+    state.videoflyers.unshift(videoflyer); // mutable addition
+  },
+  [UPDATE_VIDEOFLYER](state, videoflyer) {
+    const index = state.videoflyers.findIndex(t => t.id === videoflyer.id);
+    state.videoflyers.splice(index, 1, videoflyer);
+    state.videoflyers = [...state.videoflyers];
+  },
+  [DELETE_VIDEOFLYER](state, id) {
+    state.videoflyers = [...state.videoflyers.filter(t => t.id !== id)];
   }
 };
 
@@ -225,6 +245,49 @@ const actions = {
   async updateTandemmasterAssigmentsAction({ commit }, payload) {
     const result = await tandemmasterService.updateTandemmasterAssigments(
       payload.tandemmasterDetails,
+      payload.token
+    );
+    return result;
+  },
+  async addVideoflyerAction({ commit }, payload) {
+    const result = await videoflyerService.addVideoflyer(
+      payload.videoflyer,
+      payload.token
+    );
+    commit(ADD_VIDEOFLYER, result.payload);
+    return result;
+  },
+  async getVideoflyerAction({ commit }, token) {
+    const result = await videoflyerService.getVideoflyer(token);
+    commit(GET_VIDEOFLYERS, result.payload);
+    return result;
+  },
+  async updateVideoflyerAction({ commit }, payload) {
+    const result = await videoflyerService.updateVideoflyer(
+      payload.videoflyer,
+      payload.token
+    );
+    commit(UPDATE_VIDEOFLYER, result.payload);
+    return result;
+  },
+  async deleteVideoflyerAction({ commit }, payload) {
+    const result = await videoflyerService.deleteVideoflyer(
+      payload.id,
+      payload.token
+    );
+    commit(DELETE_VIDEOFLYER, payload.id);
+    return result;
+  },
+  async getVideoflyerDetailsAction({ commit }, payload) {
+    const appointment = await videoflyerService.getVideoflyerDetails(
+      payload.videoflyerId,
+      payload.token
+    );
+    return appointment;
+  },
+  async updateVideoflyerAssigmentsAction({ commit }, payload) {
+    const result = await videoflyerService.updateVideoflyerAssigments(
+      payload.videoflyerDetails,
       payload.token
     );
     return result;

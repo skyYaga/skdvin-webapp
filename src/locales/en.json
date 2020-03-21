@@ -167,6 +167,27 @@
   "tel": "Phone",
   "to": "To",
   "update": "Update",
+  "videoflyer": {
+    "add": "Add Videoflyer",
+    "assign": "Assign Videoflyer: {firstName} {lastName}",
+    "available": "Available Videoflyer",
+    "delete": {
+      "error": "Error deleting videoflyer",
+      "question": "Do you really want to delete videoflyer {firstName} {lastName}?",
+      "successful": "Videoflyer deleted successfully"
+    },
+    "edit": "Edit Videoflyer",
+    "loading": "Loading videoflyer. Please be patient...",
+    "save": {
+      "error": "Error saving Videoflyer",
+      "successful": "Videoflyer saved successfully"
+    },
+    "update": {
+      "error": "Error updating Videoflyer",
+      "successful": "Videoflyer update successful"
+    },
+    "videoflyer": "Videoflyer"
+  },
   "weightInKg": "Weight in kg",
   "zip": "Zip"
 }

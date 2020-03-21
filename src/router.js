@@ -56,6 +56,12 @@ export default new Router({
       name: "tandemmaster",
       component: () => import("./views/Tandemmaster.vue"),
       beforeEnter: authGuard
+    },
+    {
+      path: "/videoflyer",
+      name: "videoflyer",
+      component: () => import("./views/Videoflyer.vue"),
+      beforeEnter: authGuard
     }
   ]
 });

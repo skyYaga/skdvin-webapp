@@ -65,6 +65,20 @@
         </v-list-item>
         <v-list-item
           link
+          v-if="!$auth.loading && $auth.isAuthenticated"
+          to="/videoflyer"
+        >
+          <v-list-item-action>
+            <v-icon>mdi-camera</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>{{
+              $t("videoflyer.videoflyer")
+            }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item
+          link
           v-if="!$auth.loading && !$auth.isAuthenticated"
           @click="login"
         >

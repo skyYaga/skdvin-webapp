@@ -10,3 +10,7 @@ export const GET_TANDEMMASTERS = "getTandemmasters";
 export const ADD_TANDEMMASTER = "addTandemmaster";
 export const UPDATE_TANDEMMASTER = "updateTandemmaster";
 export const DELETE_TANDEMMASTER = "deleteTandemmaster";
+export const GET_VIDEOFLYERS = "getVideoflyers";
+export const ADD_VIDEOFLYER = "addVideoflyer";
+export const UPDATE_VIDEOFLYER = "updateVideoflyer";
+export const DELETE_VIDEOFLYER = "deleteVideoflyer";

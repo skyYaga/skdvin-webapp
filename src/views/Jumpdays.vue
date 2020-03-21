@@ -25,6 +25,8 @@
         ><v-col :lg="6"
           ><AvailableTandemmasterPanel
             :tandemmasters="jumpday.tandemmaster"/></v-col
+        ><v-col :lg="6"
+          ><AvailableVideoflyerPanel :videoflyers="jumpday.videoflyer"/></v-col
       ></v-row>
       <v-row>
         <v-form>
@@ -45,6 +47,7 @@ import Calendar from "../components/Calendar";
 import JumpdayTable from "../components/JumpdayTable";
 import EditJumpdayPanel from "../components/EditJumpdayPanel";
 import AvailableTandemmasterPanel from "../components/AvailableTandemmasterPanel";
+import AvailableVideoflyerPanel from "../components/AvailableVideoflyerPanel";
 import { mapActions, mapState, mapGetters } from "vuex";
 import moment from "moment";
 
@@ -66,7 +69,8 @@ export default {
     Calendar,
     JumpdayTable,
     EditJumpdayPanel,
-    AvailableTandemmasterPanel
+    AvailableTandemmasterPanel,
+    AvailableVideoflyerPanel
   },
   async created() {
     await this.loadJumpdays();

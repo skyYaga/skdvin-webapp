@@ -8,19 +8,17 @@
     </v-snackbar>
     <v-data-table
       :headers="headers"
-      :items="tandemmaster"
+      :items="videoflyer"
       :search="search"
       :loading="loading"
-      ><template v-slot:item.handcam="{ item }">
+      ><template v-slot:item.picAndVid="{ item }">
         <v-simple-checkbox
-          v-model="item.handcam"
+          v-model="item.picAndVid"
           disabled
         ></v-simple-checkbox> </template
       ><template v-slot:top>
         <v-toolbar flat color="white">
-          <v-toolbar-title>{{
-            $t("tandemmaster.tandemmaster")
-          }}</v-toolbar-title>
+          <v-toolbar-title>{{ $t("videoflyer.videoflyer") }}</v-toolbar-title>
           <v-divider class="mx-4" inset vertical></v-divider>
           <v-text-field
             v-model="search"
@@ -33,7 +31,7 @@
           <v-dialog v-model="dialog" max-width="500px">
             <template v-slot:activator="{ on }">
               <v-btn color="primary" dark class="mb-2" v-on="on">{{
-                $t("tandemmaster.add")
+                $t("videoflyer.add")
               }}</v-btn>
             </template>
             <v-card>
@@ -43,7 +41,7 @@
 
               <v-card-text>
                 <v-form ref="form" v-model="valid">
-                  <EditTandemmaster :tandemmaster="editedItem" />
+                  <EditVideoflyer :videoflyer="editedItem" />
                 </v-form>
               </v-card-text>
 
@@ -61,13 +59,13 @@
         </v-toolbar>
       </template>
       <template v-slot:item.actions="{ item }">
-        <v-icon small class="mr-2" @click="editTandemmaster(item)">
+        <v-icon small class="mr-2" @click="editVideoflyer(item)">
           mdi-pencil
         </v-icon>
         <v-icon small class="mr-2" @click="deleteItem(item)">
           mdi-delete
         </v-icon>
-        <v-icon small @click="assignTandemmaster(item)">
+        <v-icon small @click="assignVideoflyer(item)">
           mdi-calendar-month
         </v-icon>
       </template></v-data-table
@@ -77,12 +75,12 @@
 
 <script>
 import { mapActions } from "vuex";
-import EditTandemmaster from "./EditTandemmaster";
+import EditVideoflyer from "./EditVideoflyer";
 
 export default {
-  props: { tandemmaster: Array, loading: Boolean },
+  props: { videoflyer: Array, loading: Boolean },
   components: {
-    EditTandemmaster
+    EditVideoflyer
   },
   data() {
     return {
@@ -98,7 +96,7 @@ export default {
         { text: this.$t("lastName"), value: "lastName" },
         { text: this.$t("email"), value: "email" },
         { text: this.$t("tel"), value: "tel" },
-        { text: this.$t("handcam.handcam"), value: "handcam" },
+        { text: this.$t("picAndVid.picAndVid"), value: "picAndVid" },
         { text: this.$t("actions"), value: "actions", sortable: false }
       ],
       editedItem: {
@@ -106,22 +104,22 @@ export default {
         lastName: "",
         email: "",
         tel: "",
-        handcam: false
+        picAndVid: false
       },
       defaultItem: {
         firstName: "",
         lastName: "",
         email: "",
         tel: "",
-        handcam: false
+        picAndVid: false
       }
     };
   },
   computed: {
     formTitle() {
       return this.editedIndex === -1
-        ? this.$t("tandemmaster.add")
-        : this.$t("tandemmaster.edit");
+        ? this.$t("videoflyer.add")
+        : this.$t("videoflyer.edit");
     }
   },
   watch: {
@@ -131,9 +129,9 @@ export default {
   },
   methods: {
     ...mapActions([
-      "addTandemmasterAction",
-      "updateTandemmasterAction",
-      "deleteTandemmasterAction"
+      "addVideoflyerAction",
+      "updateVideoflyerAction",
+      "deleteVideoflyerAction"
     ]),
     close() {
       this.dialog = false;
@@ -144,82 +142,82 @@ export default {
     },
     async save() {
       if (this.editedIndex > -1) {
-        await this.updateTandemmaster();
+        await this.updateVideoflyer();
       } else {
-        await this.saveTandemmaster();
+        await this.saveVideoflyer();
       }
       this.close();
     },
-    editTandemmaster(item) {
-      this.editedIndex = this.tandemmaster.indexOf(item);
+    editVideoflyer(item) {
+      this.editedIndex = this.videoflyer.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
     },
     async deleteItem(item) {
       if (
         confirm(
-          this.$t("tandemmaster.delete.question", {
+          this.$t("videoflyer.delete.question", {
             firstName: item.firstName,
             lastName: item.lastName
           })
         )
       ) {
-        await this.deleteTandemmaster(item);
+        await this.deleteVideoflyer(item);
       }
     },
-    async saveTandemmaster() {
+    async saveVideoflyer() {
       if (this.$refs.form.validate()) {
         this.updating = true;
-        let result = await this.addTandemmasterAction({
-          tandemmaster: this.editedItem,
+        let result = await this.addVideoflyerAction({
+          videoflyer: this.editedItem,
           token: await this.$auth.getTokenSilently()
         });
         this.updating = false;
         if (result.success) {
-          this.hintText = this.$t("tandemmaster.save.successful");
+          this.hintText = this.$t("videoflyer.save.successful");
           this.hintColor = "green";
         } else {
-          this.hintText = this.$t("tandemmaster.save.error");
+          this.hintText = this.$t("videoflyer.save.error");
           this.hintColor = "red";
         }
         this.showHint = true;
       }
     },
-    async updateTandemmaster() {
+    async updateVideoflyer() {
       if (this.$refs.form.validate()) {
         this.updating = true;
-        let result = await this.updateTandemmasterAction({
-          tandemmaster: this.editedItem,
+        let result = await this.updateVideoflyerAction({
+          videoflyer: this.editedItem,
           token: await this.$auth.getTokenSilently()
         });
         this.updating = false;
         if (result.success) {
-          this.hintText = this.$t("tandemmaster.update.successful");
+          this.hintText = this.$t("videoflyer.update.successful");
           this.hintColor = "green";
         } else {
-          this.hintText = this.$t("tandemmaster.update.error");
+          this.hintText = this.$t("videoflyer.update.error");
           this.hintColor = "red";
         }
         this.showHint = true;
       }
     },
-    async deleteTandemmaster(item) {
+    async deleteVideoflyer(item) {
       this.updating = true;
-      let result = await this.deleteTandemmasterAction({
+      let result = await this.deleteVideoflyerAction({
         id: item.id,
         token: await this.$auth.getTokenSilently()
       });
       this.updating = false;
       if (result.success) {
-        this.hintText = this.$t("tandemmaster.delete.successful");
+        this.hintText = this.$t("videoflyer.delete.successful");
         this.hintColor = "green";
       } else {
-        this.hintText = this.$t("tandemmaster.delete.error");
+        this.hintText = this.$t("videoflyer.delete.error");
         this.hintColor = "red";
       }
       this.showHint = true;
     },
-    assignTandemmaster(item) {
+    assignVideoflyer(item) {
       this.$emit("handleAssignClick", item);
     }
   }
