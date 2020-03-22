@@ -42,6 +42,8 @@
 </template>
 
 <script>
+import { telRules, emailRules, nameRules } from "../shared/rules";
+
 export default {
   props: {
     tandemmaster: {
@@ -57,19 +59,9 @@ export default {
   },
   data: function() {
     return {
-      nameRules: [
-        v => !!v || this.$i18n.t("rules.fieldHasToBeFilled"),
-        v => (v && v.length <= 40) || this.$i18n.t("rules.max40Chars")
-      ],
-      emailRules: [
-        v => !v || /.+@.+\..+/.test(v) || this.$i18n.t("rules.emailValid")
-      ],
-      telRules: [
-        v =>
-          !v ||
-          (v && v.length > 0 && /[0-9 +-]{6,}$/.test(v)) ||
-          this.$i18n.t("rules.telValid")
-      ]
+      nameRules: nameRules(this.$i18n),
+      emailRules: emailRules(this.$i18n),
+      telRules: telRules(this.$i18n)
     };
   }
 };

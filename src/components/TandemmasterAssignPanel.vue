@@ -16,7 +16,7 @@
         }}</v-card-title>
         {{ message }}
         <v-row class="ma-1">
-          <v-col v-for="month in jumpMonths" :key="month" :lg="3">
+          <v-col v-for="month in jumpMonths()" :key="month" :lg="3">
             <v-card
               ><v-card-title>{{
                 $d(getDate(month), "dateYearMonthLong")
@@ -50,6 +50,7 @@
 <script>
 import { mapActions } from "vuex";
 import moment from "moment";
+import { converters } from "../shared/converters";
 
 export default {
   props: {
@@ -71,26 +72,6 @@ export default {
   watch: {
     tandemmaster: "loadTandemmaster"
   },
-  computed: {
-    jumpMonths() {
-      if (typeof this.tandemmasterDetails.assignments === "undefined") {
-        return [];
-      }
-      return [
-        ...new Set(
-          Object.keys(this.tandemmasterDetails.assignments)
-            .filter(assignment =>
-              moment(assignment.date).isSameOrAfter(moment())
-            )
-            .map(date => moment(date).format("YYYY-MM"))
-        )
-      ].sort(function(a, b) {
-        if (a === null) return 1;
-        if (b === null) return -1;
-        return moment(a).toDate() - moment(b).toDate();
-      });
-    }
-  },
   methods: {
     ...mapActions([
       "getTandemmasterDetailsAction",
@@ -108,15 +89,11 @@ export default {
     getDate(month) {
       return moment(month).toDate();
     },
+    jumpMonths() {
+      return converters.sortedJumpMonths(this.tandemmasterDetails);
+    },
     jumpdaysInMonth(month) {
-      return Object.keys(this.tandemmasterDetails.assignments)
-        .filter(date => moment(date).isSame(moment(month), "month"))
-        .map(date => date)
-        .sort(function(a, b) {
-          if (a === null) return 1;
-          if (b === null) return -1;
-          return moment(a).toDate() - moment(b).toDate();
-        });
+      return converters.sortedJumpdaysInMonth(this.tandemmasterDetails, month);
     },
     async updateAssignments() {
       let result = await this.updateTandemmasterAssigmentsAction({
