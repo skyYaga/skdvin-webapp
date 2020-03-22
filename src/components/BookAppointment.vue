@@ -67,17 +67,15 @@
                 class="mr-4"
                 @click="resetForm"
                 v-if="slots !== null && appointment.selectedTime !== null"
+                :loading="loading"
+                :disabled="loading"
                 >{{ $t("reset") }}</v-btn
               >
             </v-form>
           </v-card-text>
         </v-card>
       </v-col>
-      <v-col
-        :lg="6"
-        :sm="12"
-        v-if="slots !== null && appointment.selectedTime === null"
-      >
+      <v-col :lg="6" :sm="12" v-if="showSlotSelection">
         <v-card>
           <v-card-title>{{ $t("slot.available") }}</v-card-title>
           <v-card-text>
@@ -85,11 +83,7 @@
           </v-card-text>
         </v-card>
       </v-col>
-      <v-col
-        v-if="
-          appointment.selectedTime !== null && appointment.customer === null
-        "
-      >
+      <v-col v-if="showCustomerDataForm">
         <v-card>
           <v-card-title
             >{{ $t("reservationData") }}:
@@ -102,21 +96,21 @@
           >
           <v-card-text>
             <CustomerDataForm
-              @handleCustomerDataFilled="updateCustomer"
-              :tandem="appointment.tandem"
+              @onCustomerDataBack="backToSlotSelection"
+              @onCustomerDataContinue="continueToConfirmation"
+              :appointment="appointment"
             />
           </v-card-text>
         </v-card>
       </v-col>
-      <v-col
-        v-if="
-          appointment.selectedTime !== null && appointment.customer !== null
-        "
-      >
+      <v-col v-if="showConfirmationForm">
         <v-card>
           <v-card-title>{{ $t("dataVerification") }}</v-card-title>
           <v-card-text>
-            <CustomerConfirmationForm :appointment="appointment" />
+            <CustomerConfirmationForm
+              :appointment="appointment"
+              @onCustomerConfirmationBack="backToCustomerData"
+            />
           </v-card-text>
         </v-card>
       </v-col>
@@ -142,13 +136,41 @@ export default {
       picOrVid: 0,
       picAndVid: 0,
       handcam: 0,
-      customer: null
+      customer: {
+        firstName: "",
+        lastName: "",
+        tel: "",
+        email: "",
+        zip: "",
+        city: "",
+        jumpers: []
+      }
+    },
+    emptyAppointment: {
+      selectedDate: null,
+      selectedTime: null,
+      tandem: null,
+      picOrVid: 0,
+      picAndVid: 0,
+      handcam: 0,
+      customer: {
+        firstName: "",
+        lastName: "",
+        tel: "",
+        email: "",
+        zip: "",
+        city: "",
+        jumpers: []
+      }
     },
     items: [1, 2, 3, 4, 5],
     itemsZero: [0, 1, 2, 3, 4, 5],
     lazy: false,
     slots: null,
-    loading: false
+    loading: false,
+    showSlotSelection: false,
+    showCustomerDataForm: false,
+    showConfirmationForm: false
   }),
   components: {
     CustomerDataForm,
@@ -198,19 +220,38 @@ export default {
       this.slots = this.slots.sort(function(a, b) {
         return new Date(a.date) - new Date(b.date);
       });
+      this.showSlotSelection = true;
       this.loading = false;
     },
     selectSlot(date, time) {
       this.appointment.selectedDate = date;
       this.appointment.selectedTime = time;
+      this.showSlotSelection = false;
+      this.showCustomerDataForm = true;
     },
     resetForm() {
       this.slots = null;
-      this.appointment.selectedDate = null;
-      this.appointment.selectedTime = null;
+      this.appointment = this.emptyAppointment;
+      this.showSlotSelection = false;
+      this.showCustomerDataForm = false;
+      this.showConfirmationForm = false;
     },
     validate() {
       this.$refs.form.validate();
+    },
+    backToSlotSelection(customer) {
+      this.updateCustomer(customer);
+      this.showCustomerDataForm = false;
+      this.showSlotSelection = true;
+    },
+    continueToConfirmation(customer) {
+      this.updateCustomer(customer);
+      this.showCustomerDataForm = false;
+      this.showConfirmationForm = true;
+    },
+    backToCustomerData() {
+      this.showCustomerDataForm = true;
+      this.showConfirmationForm = false;
     },
     updateCustomer(customer) {
       this.appointment.customer = customer;

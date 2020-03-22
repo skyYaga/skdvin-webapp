@@ -34,6 +34,7 @@
     },
     "verify": "Verifying appointment, please be patient..."
   },
+  "back": "Back",
   "book": "Book",
   "bookable": "bookable",
   "cancel": "Cancel",

@@ -29,6 +29,13 @@
         <v-row
           ><v-btn
             class="mr-4 mt-3"
+            :loading="loading"
+            :disabled="loading"
+            @click="back"
+            >{{ $t("back") }}</v-btn
+          ><v-spacer></v-spacer
+          ><v-btn
+            class="mr-4 mt-3"
             color="primary"
             :loading="loading"
             :disabled="loading"
@@ -71,6 +78,9 @@ export default {
         name: "appointment-confirm",
         query: { message: message }
       });
+    },
+    back() {
+      this.$emit("onCustomerConfirmationBack", this.customer);
     }
   }
 };
