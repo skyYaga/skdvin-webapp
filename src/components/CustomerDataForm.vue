@@ -63,7 +63,9 @@
           :bookedJumper="getJumperIfAvailable(i)"
         />
         <v-row v-if="buttonVisible"
-          ><v-btn class="mr-4" @click="validate">{{
+          ><v-btn class="mr-4" @click="back">{{ $t("back") }}</v-btn
+          ><v-spacer></v-spacer
+          ><v-btn class="mr-4" @click="validate" color="primary">{{
             $t("continue")
           }}</v-btn></v-row
         >
@@ -77,7 +79,6 @@ import JumperDetailsForm from "./JumperDetailsForm";
 
 export default {
   props: {
-    tandem: Number,
     appointment: Object,
     buttonVisible: {
       type: Boolean,
@@ -112,9 +113,14 @@ export default {
     };
   },
   methods: {
+    back() {
+      this.onCustomerDataFilled();
+      this.$emit("onCustomerDataBack", this.customer);
+    },
     validate() {
       if (this.$refs.form.validate()) {
         this.onCustomerDataFilled();
+        this.$emit("onCustomerDataContinue", this.customer);
         return true;
       }
       return false;
@@ -124,7 +130,6 @@ export default {
       this.$refs.jumperDetails.forEach(jd => {
         this.customer.jumpers.push(jd.getJumper());
       });
-      this.$emit("handleCustomerDataFilled", this.customer);
     },
     getJumperIfAvailable(i) {
       if (typeof this.appointment?.customer !== "undefined") {
@@ -135,24 +140,10 @@ export default {
   },
   computed: {
     tandemSize() {
-      if (typeof this.appointment?.tandem !== "undefined") {
-        return this.appointment.tandem;
-      }
-      return this.tandem;
+      return this.appointment.tandem;
     },
     customer() {
-      if (typeof this.appointment?.customer !== "undefined") {
-        return this.appointment.customer;
-      }
-      return {
-        firstName: "",
-        lastName: "",
-        tel: "",
-        email: "",
-        zip: "",
-        city: "",
-        jumpers: []
-      };
+      return this.appointment.customer;
     }
   }
 };
