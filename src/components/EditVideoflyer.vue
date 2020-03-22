@@ -3,14 +3,14 @@
     <v-row dense
       ><v-col :lg="6"
         ><v-text-field
-          v-model="tandemmaster.firstName"
+          v-model="videoflyer.firstName"
           :label="$t('firstName')"
           :rules="nameRules"
           required
         ></v-text-field></v-col
       ><v-col :lg="6"
         ><v-text-field
-          v-model="tandemmaster.lastName"
+          v-model="videoflyer.lastName"
           :label="$t('lastName')"
           :rules="nameRules"
           required
@@ -20,13 +20,13 @@
       ><v-col :lg="6"
         ><v-text-field
           type="tel"
-          v-model="tandemmaster.tel"
+          v-model="videoflyer.tel"
           :label="$t('tel')"
           :rules="telRules"
         ></v-text-field></v-col
       ><v-col :lg="6"
         ><v-text-field
-          v-model="tandemmaster.email"
+          v-model="videoflyer.email"
           type="email"
           :label="$t('email')"
           :rules="emailRules"
@@ -34,8 +34,8 @@
     ></v-row>
     <v-row dense
       ><v-checkbox
-        v-model="tandemmaster.handcam"
-        :label="$t('handcam.handcam')"
+        v-model="videoflyer.picAndVid"
+        :label="$t('picAndVid.picAndVid')"
       ></v-checkbox
     ></v-row>
   </v-container>
@@ -46,14 +46,14 @@ import { telRules, emailRules, nameRules } from "../shared/rules";
 
 export default {
   props: {
-    tandemmaster: {
+    videoflyer: {
       type: Object,
       default: () => ({
         firstName: "",
         lastName: "",
         email: "",
         tel: "",
-        handcam: false
+        picAndVid: false
       })
     }
   },

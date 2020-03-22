@@ -9,9 +9,9 @@
     <v-col>
       <v-card>
         <v-card-title>{{
-          $t("tandemmaster.assign", {
-            firstName: tandemmaster.firstName,
-            lastName: tandemmaster.lastName
+          $t("videoflyer.assign", {
+            firstName: videoflyer.firstName,
+            lastName: videoflyer.lastName
           })
         }}</v-card-title>
         {{ message }}
@@ -24,7 +24,7 @@
               ><v-card-text
                 ><v-checkbox
                   v-for="day in jumpdaysInMonth(month)"
-                  v-model="tandemmasterDetails.assignments[day]"
+                  v-model="videoflyerDetails.assignments[day]"
                   :key="day"
                   :label="$d(getDate(day), 'dateYearMonthDayWeekdayLong')"
                 ></v-checkbox></v-card-text
@@ -54,57 +54,57 @@ import { converters } from "../shared/converters";
 
 export default {
   props: {
-    tandemmaster: Object
+    videoflyer: Object
   },
   data: () => ({
     message: "",
     loading: false,
-    tandemmasterDetails: {},
+    videoflyerDetails: {},
     showHint: false,
     hintText: "",
     hintColor: ""
   }),
   async created() {
     this.loading = true;
-    await this.loadTandemmaster();
+    await this.loadVideoflyer();
     this.loading = false;
   },
   watch: {
-    tandemmaster: "loadTandemmaster"
+    videoflyer: "loadVideoflyer"
   },
   methods: {
     ...mapActions([
-      "getTandemmasterDetailsAction",
-      "updateTandemmasterAssigmentsAction"
+      "getVideoflyerDetailsAction",
+      "updateVideoflyerAssigmentsAction"
     ]),
-    async loadTandemmaster() {
-      this.message = this.$t("tandemmaster.loading");
-      let result = await this.getTandemmasterDetailsAction({
-        tandemmasterId: this.tandemmaster.id,
+    async loadVideoflyer() {
+      this.message = this.$t("videoflyer.loading");
+      let result = await this.getVideoflyerDetailsAction({
+        videoflyerId: this.videoflyer.id,
         token: await this.$auth.getTokenSilently()
       });
-      this.tandemmasterDetails = result.payload;
+      this.videoflyerDetails = result.payload;
       this.message = "";
     },
     getDate(month) {
       return moment(month).toDate();
     },
     jumpMonths() {
-      return converters.sortedJumpMonths(this.tandemmasterDetails);
+      return converters.sortedJumpMonths(this.videoflyerDetails);
     },
     jumpdaysInMonth(month) {
-      return converters.sortedJumpdaysInMonth(this.tandemmasterDetails, month);
+      return converters.sortedJumpdaysInMonth(this.videoflyerDetails, month);
     },
     async updateAssignments() {
-      let result = await this.updateTandemmasterAssigmentsAction({
-        tandemmasterDetails: this.tandemmasterDetails,
+      let result = await this.updateVideoflyerAssigmentsAction({
+        videoflyerDetails: this.videoflyerDetails,
         token: await this.$auth.getTokenSilently()
       });
       if (result.success) {
-        this.hintText = this.$t("tandemmaster.update.successful");
+        this.hintText = this.$t("videoflyer.update.successful");
         this.hintColor = "green";
       } else {
-        this.hintText = this.$t("tandemmaster.update.error");
+        this.hintText = this.$t("videoflyer.update.error");
         this.hintColor = "red";
       }
       this.showHint = true;
