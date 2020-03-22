@@ -117,12 +117,12 @@
     "moreVideoThanTandem": "More video bookings than tandem jumps",
     "notEnoughFreeSlots": "Not enough free slots",
     "privacyPolicy": "You have to accept our privacy policy",
+    "size": "Maximum size of 1.90m",
     "slotExists": "Slot already exists",
     "telNeeded": "A phone number is needed",
     "telValid": "Phone number has to be valid",
     "timeHasToBeSelected": "You have to select a time",
-    "weightMax90": "Weight including clothing may not exceed 90kg",
-    "weightNeeded": "The weight must be indicated",
+    "weight": "Weight including clothing may not exceed 90kg",
     "zip5digit": "Zip Code must have 5 digits",
     "zipNeeded": "Zip code is needed",
     "zipNumbers": "Zip code may only consist of numbers"
@@ -130,6 +130,7 @@
   "save": "Save",
   "search": "Search",
   "selectdate": "Select date",
+  "sizeMax190": "Size max 1,90 m",
   "slot": {
     "add": "Add slot",
     "available": "Available time slots",
@@ -188,6 +189,6 @@
     },
     "videoflyer": "Videoflyer"
   },
-  "weightInKg": "Weight in kg",
+  "weightMax90": "Weight max 90 kg",
   "zip": "Zip"
 }
