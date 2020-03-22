@@ -51,10 +51,9 @@
             <li>
               <span>{{ jumper.firstName }} {{ jumper.lastName }}</span
               ><br />
-              <span
-                >{{ $d(getDate(jumper.dateOfBirth), "dateYearMonthDayShort") }},
-                {{ jumper.weight }}kg</span
-              >
+              <span>{{
+                $d(getDate(jumper.dateOfBirth), "dateYearMonthDayShort")
+              }}</span>
             </li>
           </ul>
         </v-card-text>

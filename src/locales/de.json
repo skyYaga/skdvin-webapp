@@ -117,12 +117,12 @@
     "moreVideoThanTandem": "Mehr Videobuchungen als Tandemsprünge",
     "notEnoughFreeSlots": "Nicht genügend freie Slots",
     "privacyPolicy": "Sie müssen die Datenschutzbestimmungen akzeptieren",
+    "size": "Maximalgröße von 1,90m muss eingehalten werden",
     "slotExists": "Zeitslot existiert bereits",
     "telNeeded": "Es wird eine Telefonnummer benötigt",
     "telValid": "Telefonnummer muss gültig sein",
     "timeHasToBeSelected": "Es muss eine Uhrzeit ausgewählt werden",
-    "weightMax90": "Gewicht inkl. Kleidung darf maximal 90kg betragen",
-    "weightNeeded": "Das Gewicht muss angegeben werden",
+    "weight": "Gewicht inkl. Kleidung darf maximal 90kg betragen",
     "zip5digit": "PLZ muss 5-stellig sein",
     "zipNeeded": "PLZ wird benötigt",
     "zipNumbers": "PLZ darf nur aus Zahlen bestehen"
@@ -130,6 +130,7 @@
   "save": "Speichern",
   "search": "Suchen",
   "selectdate": "Datum auswählen",
+  "sizeMax190": "Größe maximal 1,90 m",
   "slot": {
     "add": "Slot hinzufügen",
     "available": "Verfügbare Zeitslots",
@@ -188,6 +189,6 @@
     },
     "videoflyer": "Videoflyer"
   },
-  "weightInKg": "Gewicht in kg",
+  "weightMax90": "Gewicht maximal 90 kg",
   "zip": "PLZ"
 }

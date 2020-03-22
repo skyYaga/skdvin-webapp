@@ -2,14 +2,14 @@
   <div>
     <h3>Springer*in {{ jumperNum }}</h3>
     <v-row
-      ><v-col :lg="3" :sm="6"
+      ><v-col :lg="4" :sm="6"
         ><v-text-field
           v-model="jumper.firstName"
           :label="$t('firstName')"
           :rules="nameRules"
           required
         ></v-text-field></v-col
-      ><v-col :lg="3" :sm="6"
+      ><v-col :lg="4" :sm="6"
         ><v-text-field
           v-model="jumper.lastName"
           :label="$t('lastName')"
@@ -17,16 +17,7 @@
           required
         ></v-text-field
       ></v-col>
-      <v-col :lg="3" :sm="6"
-        ><v-text-field
-          v-model="jumper.weight"
-          :label="$t('weightInKg')"
-          :rules="weightRules"
-          type="number"
-          required
-        ></v-text-field
-      ></v-col>
-      <v-col :lg="3" :sm="6">
+      <v-col :lg="4" :sm="6">
         <v-menu
           ref="menu"
           v-model="menu"
@@ -57,6 +48,20 @@
         </v-menu>
       </v-col>
     </v-row>
+    <v-row class="mt-n10"
+      ><v-col :lg="6"
+        ><v-checkbox
+          v-model="weightConfirmed"
+          :label="$t('weightMax90')"
+          :rules="weightRules"
+        ></v-checkbox></v-col
+      ><v-col :lg="6"
+        ><v-checkbox
+          v-model="sizeConfirmed"
+          :label="$t('sizeMax190')"
+          :rules="sizeRules"
+        ></v-checkbox></v-col
+    ></v-row>
   </div>
 </template>
 
@@ -78,17 +83,16 @@ export default {
       jumper: {
         firstName: "",
         lastName: "",
-        dateOfBirth: "",
-        weight: ""
+        dateOfBirth: ""
       },
+      weightConfirmed: false,
+      sizeConfirmed: false,
       nameRules: [
         v => !!v || this.$i18n.t("rules.fieldHasToBeFilled"),
         v => (v && v.length <= 40) || this.$i18n.t("rules.max40Chars")
       ],
-      weightRules: [
-        v => !!v || this.$i18n.t("rules.weightNeeded"),
-        v => v <= 90 || this.$i18n.t("rules.weightMax90")
-      ],
+      weightRules: [v => !!v || this.$i18n.t("rules.weight")],
+      sizeRules: [v => !!v || this.$i18n.t("rules.size")],
       dateOfBirthRules: [v => !!v || this.$i18n.t("rules.dateOfBirthNeeded")],
       menu: false
     };
