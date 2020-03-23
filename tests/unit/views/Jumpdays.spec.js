@@ -7,7 +7,6 @@ const localVue = createLocalVue();
 
 localVue.use(Vuex);
 localVue.use(Vuetify);
-localVue.use(Vuetify);
 
 describe("Jumpdays.vue", () => {
   let actions;
