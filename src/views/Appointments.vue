@@ -11,30 +11,13 @@
     <div v-if="!loading && authorized">
       <v-row dense><h1>Termine</h1></v-row>
       <v-row
-        ><v-col :sm="4" :md="3" :lg="2"
-          ><v-menu
-            v-model="menu"
-            :close-on-content-click="true"
-            :nudge-right="40"
-            transition="scale-transition"
-            offset-y
-            min-width="290px"
-          >
-            <template v-slot:activator="{ on }">
-              <v-text-field
-                v-model="getDate"
-                :label="$t('selectdate')"
-                prepend-icon="mdi-calendar"
-                readonly
-                v-on="on"
-              ></v-text-field>
-            </template>
-            <Calendar
-              d-flex
-              flex-wrap
-              @input="menu = false"
-              @handleDateSelection="dateSelected"
-            /> </v-menu></v-col
+        ><v-col :lg="4">
+          <Calendar
+            d-flex
+            flex-wrap
+            @input="menu = false"
+            @handleDateSelection="dateSelected"
+          /> </v-col
       ></v-row>
       <v-row v-for="time in getBookedTimes" :key="time" dense>
         <v-col cols="12"
