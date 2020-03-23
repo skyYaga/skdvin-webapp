@@ -14,10 +14,15 @@ const searchSlots = async function(query) {
   }
 };
 
-const verifyAppointment = async function(id, token) {
+const verifyAppointment = async function(id, token, locale) {
   try {
     const response = await axios.get(
-      apiPath + "/appointment/" + id + "/confirm/" + token
+      apiPath + "/appointment/" + id + "/confirm/" + token,
+      {
+        headers: {
+          "Accept-Language": `${locale}`
+        }
+      }
     );
     if (!response.data.success) {
       return response.data.message;
@@ -28,10 +33,14 @@ const verifyAppointment = async function(id, token) {
   }
 };
 
-const saveAppointment = async function(appointment) {
+const saveAppointment = async function(appointment, locale) {
   try {
     convertDate(appointment);
-    const response = await axios.post(apiPath + "/appointment", appointment);
+    const response = await axios.post(apiPath + "/appointment", appointment, {
+      headers: {
+        "Accept-Language": `${locale}`
+      }
+    });
     if (response.status !== 201) throw Error(response.data.message);
     if (!response.data.success) {
       throw Error(response.data.message);
@@ -106,11 +115,12 @@ const updateAppointmentState = async function(
   }
 };
 
-const updateAppointment = async function(appointment, token) {
+const updateAppointment = async function(appointment, token, locale) {
   try {
     const response = await axios.put(apiPath + "/appointment/", appointment, {
       headers: {
-        Authorization: `Bearer ${token}` // send the access token through the 'Authorization' header
+        Authorization: `Bearer ${token}`, // send the access token through the 'Authorization' header
+        "Accept-Language": `${locale}`
       }
     });
     if (response.status !== 200) throw Error(response.data.message);
@@ -130,13 +140,14 @@ const updateAppointment = async function(appointment, token) {
   }
 };
 
-const deleteAppointment = async function(appointmentId, token) {
+const deleteAppointment = async function(appointmentId, token, locale) {
   try {
     const response = await axios.delete(
       apiPath + "/appointment/" + appointmentId,
       {
         headers: {
-          Authorization: `Bearer ${token}` // send the access token through the 'Authorization' header
+          Authorization: `Bearer ${token}`, // send the access token through the 'Authorization' header
+          "Accept-Language": `${locale}`
         }
       }
     );

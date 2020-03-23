@@ -16,7 +16,8 @@ import {
   ADD_VIDEOFLYER,
   UPDATE_VIDEOFLYER,
   GET_VIDEOFLYERS,
-  DELETE_VIDEOFLYER
+  DELETE_VIDEOFLYER,
+  SET_LOCALE
 } from "./mutation-types";
 import { jumpdayService } from "../shared/jumpday-service";
 import { appointmentService } from "../shared/appointment-service";
@@ -30,7 +31,8 @@ const state = () => ({
   appointments: [],
   appointment: null,
   tandemmasters: [],
-  videoflyers: []
+  videoflyers: [],
+  locale: null
 });
 
 const mutations = {
@@ -97,6 +99,9 @@ const mutations = {
   },
   [DELETE_VIDEOFLYER](state, id) {
     state.videoflyers = [...state.videoflyers.filter(t => t.id !== id)];
+  },
+  [SET_LOCALE](state, locale) {
+    state.locale = locale;
   }
 };
 
@@ -134,13 +139,17 @@ const actions = {
     return slots;
   },
   async addAppointmentAction({ commit }, appointment) {
-    const result = await appointmentService.saveAppointment(appointment);
+    const result = await appointmentService.saveAppointment(
+      appointment,
+      this.state.locale
+    );
     return result;
   },
   async verifyAppointmentAction({ commit }, payload) {
     const result = await appointmentService.verifyAppointment(
       payload.id,
-      payload.token
+      payload.token,
+      this.state.locale
     );
     return result;
   },
@@ -179,7 +188,8 @@ const actions = {
   async updateAppointmentAction({ commit }, payload) {
     let result = await appointmentService.updateAppointment(
       payload.appointment,
-      payload.token
+      payload.token,
+      this.state.locale
     );
     if (result.success) {
       commit(UPDATE_APPOINTMENT, result.payload);
@@ -199,7 +209,8 @@ const actions = {
   async deleteAppointmentAction({ commit }, payload) {
     let result = await appointmentService.deleteAppointment(
       payload.appointmentId,
-      payload.token
+      payload.token,
+      this.state.locale
     );
     if (result.success) {
       commit(DELETE_APPOINTMENT, payload.appointmentId);
@@ -291,6 +302,9 @@ const actions = {
       payload.token
     );
     return result;
+  },
+  setLocaleAction({ commit }, locale) {
+    commit(SET_LOCALE, locale);
   }
 };
 
