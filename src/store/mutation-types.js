@@ -14,3 +14,4 @@ export const GET_VIDEOFLYERS = "getVideoflyers";
 export const ADD_VIDEOFLYER = "addVideoflyer";
 export const UPDATE_VIDEOFLYER = "updateVideoflyer";
 export const DELETE_VIDEOFLYER = "deleteVideoflyer";
+export const SET_LOCALE = "setLocale";
