@@ -21,10 +21,25 @@
           ></v-checkbox>
         </v-row>
         <v-row>
-          <v-checkbox
-            :rules="[v => !!v || $t('rules.privacyPolicy')]"
-            :label="$t('acceptPrivacyPolicy')"
-          ></v-checkbox>
+          <v-checkbox :rules="[v => !!v || $t('rules.privacyPolicy')]"
+            ><template v-slot:label
+              ><div>
+                <i18n
+                  path="privacyPolicy.accept"
+                  tag="label"
+                  for="privacyPolicy.privacyPolicy"
+                >
+                  <a
+                    href="https://skdv.in/datenschutzerklaerung/"
+                    @click.stop
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >{{ $t("privacyPolicy.privacyPolicy") }}</a
+                  >
+                </i18n>
+              </div></template
+            ></v-checkbox
+          >
         </v-row>
         <v-row
           ><v-btn

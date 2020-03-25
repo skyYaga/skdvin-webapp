@@ -1,5 +1,9 @@
 {
-  "acceptPrivacyPolicy": "Ich akzeptiere die Datenschutzbestimmungen",
+  "aboutUs": "",
+  "privacyPolicy": {
+    "accept": "Ich akzeptiere die {0}",
+    "privacyPolicy": "Datenschutzbestimmungen"
+  },
   "accessdenied": "Ups! Zugriff verweigert :-(",
   "actions": "Aktionen",
   "active": "Aktiv",
@@ -72,6 +76,7 @@
     "info": "Für wie viele Ihrer gebuchten Tandemsprünge möchten sie ein Handcam Video (Inside Video)?<br />Hierbei werden die Aufnahmen vom Tandemmaster selbst über eine an der Hand befestigte Kamera durchgeführt."
   },
   "home": "Home",
+  "imprint": "Impressum",
   "interval": "Intervall",
   "jumpday": {
     "delete": "Sprungtag löschen",
@@ -104,6 +109,7 @@
     "info": "Für wie viele Ihrer gebuchten Tandemsprünge möchten sie Fotos ODER Video?<br />Hierbei springt ein zweiter Fallschirmspringer mit dem Tandem aus dem Flugzeug und macht die entsprechenden Aufnahmen.",
     "picOrVid": "Foto oder Video"
   },
+  "privacyStatement": "Datenschutzerklärung",
   "profile": "Profil",
   "reservationData": "Reservierungsdaten",
   "reset": "Zurücksetzen",

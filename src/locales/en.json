@@ -1,5 +1,9 @@
 {
-  "acceptPrivacyPolicy": "I accept the privacy policy",
+  "aboutUs": "About Us",
+  "privacyPolicy": {
+    "accept": "I accept the {0}",
+    "privacyPolicy": "privacy policy"
+  },
   "accessdenied": "Oh! Access denied :-(",
   "actions": "Actions",
   "active": "Active",
@@ -72,6 +76,7 @@
     "info": "For how many of your booked tandem jumps would you like to have a handcam video (inside video)?<br />In this case, the images are taken by the tandem master himself via a camera attached to his hand."
   },
   "home": "Home",
+  "imprint": "Imprint",
   "interval": "Interval",
   "jumpday": {
     "delete": "Delete jumpday",
@@ -104,6 +109,7 @@
     "info": "For how many of your booked tandem jumps would you like to have photos OR video?<br />Here a second skydiver jumps out of the airplane together with the tandem and takes the shots.",
     "picOrVid": "Picture or video"
   },
+  "privacyStatement": "Privacy Statement",
   "profile": "Profile",
   "reservationData": "Reservation data",
   "reset": "Reset",
