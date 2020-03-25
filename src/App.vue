@@ -4,8 +4,23 @@
     <v-content>
       <router-view />
     </v-content>
-    <v-footer app>
-      <span>&copy; 2019</span>
+    <v-footer app padless
+      ><v-row justify="center" no-gutters>
+        <v-btn
+          v-for="link in links"
+          :key="link.name"
+          :href="link.url"
+          target="_blank"
+          text
+          rounded
+          class="mt-2"
+        >
+          {{ link.name }}
+        </v-btn>
+        <v-col class="py-2 text-center" cols="12">
+          {{ new Date().getFullYear() }} — <strong>skdv.in</strong>
+        </v-col>
+      </v-row>
     </v-footer>
   </v-app>
 </template>
@@ -19,6 +34,20 @@ export default {
   components: { NavBar },
   created() {
     this.setLocaleAction(this.$i18n.locale);
+  },
+  data: function() {
+    return {
+      links: [
+        {
+          url: "https://skdv.in/datenschutzerklaerung/",
+          name: this.$i18n.t("privacyStatement")
+        },
+        {
+          url: "https://skdv.in/impressum/",
+          name: this.$i18n.t("imprint")
+        }
+      ]
+    };
   },
   methods: {
     ...mapActions(["setLocaleAction"]),

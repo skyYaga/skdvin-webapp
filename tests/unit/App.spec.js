@@ -25,7 +25,7 @@ describe("App.vue", () => {
     const wrapper = shallowMount(App, {
       store,
       localVue,
-      mocks: { $i18n: { locale: "de" } },
+      mocks: { $i18n: { locale: "de", t: msg => msg } },
       stubs: ["router-link", "router-view"]
     });
     expect(wrapper.html()).toContain(msg);
@@ -35,7 +35,7 @@ describe("App.vue", () => {
     const wrapper = shallowMount(App, {
       store,
       localVue,
-      mocks: { $i18n: { locale: "de" } },
+      mocks: { $i18n: { locale: "de", t: msg => msg } },
       stubs: ["router-link", "router-view"]
     });
     expect(wrapper.html()).toContain(msg);
