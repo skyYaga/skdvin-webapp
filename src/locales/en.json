@@ -1,12 +1,9 @@
 {
   "aboutUs": "About Us",
-  "privacyPolicy": {
-    "accept": "I accept the {0}",
-    "privacyPolicy": "privacy policy"
-  },
   "accessdenied": "Oh! Access denied :-(",
   "actions": "Actions",
   "active": "Active",
+  "additionalBookable": "additional slots bookable",
   "almostdone": "Almost done!",
   "api": {
     "lang": "en"
@@ -109,6 +106,10 @@
     "info": "For how many of your booked tandem jumps would you like to have photos OR video?<br />Here a second skydiver jumps out of the airplane together with the tandem and takes the shots.",
     "picOrVid": "Picture or video"
   },
+  "privacyPolicy": {
+    "accept": "I accept the {0}",
+    "privacyPolicy": "privacy policy"
+  },
   "privacyStatement": "Privacy Statement",
   "profile": "Profile",
   "reservationData": "Reservation data",
@@ -141,7 +142,7 @@
   "slot": {
     "add": "Add slot",
     "available": "Available time slots",
-    "availableAt": "Available slots on {date} at {time}",
+    "availableAt": "Available free slots for this booking on {date} at {time}",
     "noFreeFound": "No free slots found.",
     "searchnew": "Search new slot"
   },
@@ -174,6 +175,7 @@
   },
   "tel": "Phone",
   "to": "To",
+  "totalSlots": "total slots for this appointment",
   "update": "Update",
   "videoflyer": {
     "add": "Add Videoflyer",

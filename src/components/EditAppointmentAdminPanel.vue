@@ -5,24 +5,32 @@
         {{ $t("slot.availableAt", { date: getDate(), time: getTime() }) }}:
         <ul>
           <li>
-            {{ $t("tandem.tandems") }}: {{ getTandemAvailable }} (={{
-              $t("bookable")
-            }}: {{ maxBookableSlots.tandem }})
+            {{ $t("tandem.tandems") }}: <br /><strong>{{
+              getTandemAvailable
+            }}</strong>
+            {{ $t("additionalBookable") }} <br />({{ $t("totalSlots") }}:
+            {{ maxBookableSlots.tandem }})
           </li>
           <li>
-            {{ $t("picOrVid.picOrVid") }}: {{ getPicOrVidAvailable }} (={{
-              $t("bookable")
-            }}: {{ maxBookableSlots.picOrVid }})
+            {{ $t("picOrVid.picOrVid") }}: <br /><strong>{{
+              getPicOrVidAvailable
+            }}</strong>
+            {{ $t("additionalBookable") }} <br />({{ $t("totalSlots") }}:
+            {{ maxBookableSlots.picOrVid }})
           </li>
           <li>
-            {{ $t("picAndVid.picAndVid") }}: {{ getPicAndVidAvailable }} (={{
-              $t("bookable")
-            }}: {{ maxBookableSlots.picAndVid }})
+            {{ $t("picAndVid.picAndVid") }}: <br /><strong>{{
+              getPicAndVidAvailable
+            }}</strong>
+            {{ $t("additionalBookable") }} <br />({{ $t("totalSlots") }}:
+            {{ maxBookableSlots.picAndVid }})
           </li>
           <li>
-            {{ $t("handcam.handcam") }}: {{ getHandcamAvailable }} (={{
-              $t("bookable")
-            }}: {{ maxBookableSlots.handcam }})
+            {{ $t("handcam.handcam") }}: <br /><strong>{{
+              getHandcamAvailable
+            }}</strong>
+            {{ $t("additionalBookable") }} <br />({{ $t("totalSlots") }}:
+            {{ maxBookableSlots.handcam }})
           </li>
         </ul>
       </div>

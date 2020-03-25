@@ -1,12 +1,9 @@
 {
   "aboutUs": "",
-  "privacyPolicy": {
-    "accept": "Ich akzeptiere die {0}",
-    "privacyPolicy": "Datenschutzbestimmungen"
-  },
   "accessdenied": "Ups! Zugriff verweigert :-(",
   "actions": "Aktionen",
   "active": "Aktiv",
+  "additionalBookable": "Slots zusätzlich buchbar",
   "almostdone": "Fast geschafft!",
   "api": {
     "lang": "de"
@@ -109,6 +106,10 @@
     "info": "Für wie viele Ihrer gebuchten Tandemsprünge möchten sie Fotos ODER Video?<br />Hierbei springt ein zweiter Fallschirmspringer mit dem Tandem aus dem Flugzeug und macht die entsprechenden Aufnahmen.",
     "picOrVid": "Foto oder Video"
   },
+  "privacyPolicy": {
+    "accept": "Ich akzeptiere die {0}",
+    "privacyPolicy": "Datenschutzbestimmungen"
+  },
   "privacyStatement": "Datenschutzerklärung",
   "profile": "Profil",
   "reservationData": "Reservierungsdaten",
@@ -141,7 +142,7 @@
   "slot": {
     "add": "Slot hinzufügen",
     "available": "Verfügbare Zeitslots",
-    "availableAt": "Am {date} um {time} Uhr verfügbare Slots",
+    "availableAt": "Für diesen Termin am {date} um {time} Uhr zubuchbare Slots",
     "noFreeFound": "Keine freien Slots gefunden.",
     "searchnew": "Neuen Slot suchen"
   },
@@ -174,6 +175,7 @@
   },
   "tel": "Telefon",
   "to": "Bis",
+  "totalSlots": "Gesamtslots für diesen Termin",
   "update": "Aktualisieren",
   "videoflyer": {
     "add": "Videoflyer hinzufügen",
