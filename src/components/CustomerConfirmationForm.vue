@@ -33,6 +33,7 @@
                     href="https://skdv.in/datenschutzerklaerung/"
                     @click.stop
                     target="_blank"
+                    rel="noopener noreferrer"
                     >{{ $t("privacyPolicy.privacyPolicy") }}</a
                   >
                 </i18n>

@@ -11,6 +11,7 @@
           :key="link.name"
           :href="link.url"
           target="_blank"
+          rel="noopener noreferrer"
           text
           rounded
           class="mt-2"
