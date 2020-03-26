@@ -17,7 +17,8 @@ import {
   UPDATE_VIDEOFLYER,
   GET_VIDEOFLYERS,
   DELETE_VIDEOFLYER,
-  SET_LOCALE
+  SET_LOCALE,
+  UPDATE_SETTINGS
 } from "./mutation-types";
 import { jumpdayService } from "../shared/jumpday-service";
 import { appointmentService } from "../shared/appointment-service";
@@ -32,7 +33,18 @@ const state = () => ({
   appointment: null,
   tandemmasters: [],
   videoflyers: [],
-  locale: null
+  locale: null,
+  settings: {
+    startHour: "9",
+    startMinute: "30",
+    endHour: "18",
+    endMinute: "00",
+    tandem: 5,
+    picOrVid: 0,
+    picAndVid: 0,
+    handcam: 0,
+    sequence: "1:30"
+  }
 });
 
 const mutations = {
@@ -102,6 +114,9 @@ const mutations = {
   },
   [SET_LOCALE](state, locale) {
     state.locale = locale;
+  },
+  [UPDATE_SETTINGS](state, settings) {
+    state.settings = settings;
   }
 };
 
@@ -305,12 +320,16 @@ const actions = {
   },
   setLocaleAction({ commit }, locale) {
     commit(SET_LOCALE, locale);
+  },
+  updateSettingsAction({ commit }, settings) {
+    commit(UPDATE_SETTINGS, settings);
   }
 };
 
 const getters = {
   // parameterized getters are not cached. so this is just a convenience to get the state.
-  getJumpdayByDate: state => date => state.jumpdays.find(j => j.date === date)
+  getJumpdayByDate: state => date => state.jumpdays.find(j => j.date === date),
+  getSettings: state => () => state.settings
 };
 
 export default new Vuex.Store({
