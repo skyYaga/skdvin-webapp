@@ -23,14 +23,14 @@
               {{ $t("from") }}
               <v-col cols="2">
                 <v-select
-                  v-model="startHour"
+                  v-model="settings.startHour"
                   :items="hours"
                   label="HH"
                 ></v-select>
               </v-col>
               <v-col cols="2">
                 <v-select
-                  v-model="startMinute"
+                  v-model="settings.startMinute"
                   :items="minutes"
                   label="MM"
                 ></v-select>
@@ -38,21 +38,21 @@
               {{ $t("to") }}
               <v-col cols="2">
                 <v-select
-                  v-model="endHour"
+                  v-model="settings.endHour"
                   :items="hours"
                   label="HH"
                 ></v-select>
               </v-col>
               <v-col cols="2">
                 <v-select
-                  v-model="endMinute"
+                  v-model="settings.endMinute"
                   :items="minutes"
                   label="MM"
                 ></v-select>
               </v-col>
               <v-col cols="2">
                 <v-select
-                  v-model="sequence"
+                  v-model="settings.sequence"
                   :items="sequences"
                   :label="$t('interval')"
                 ></v-select>
@@ -85,28 +85,28 @@
             <v-row v-if="jumpday.jumping">
               <v-col cols="3">
                 <v-select
-                  v-model="tandem"
+                  v-model="settings.tandem"
                   :items="counts"
                   :label="$t('tandem.tandems')"
                 ></v-select>
               </v-col>
               <v-col cols="3">
                 <v-select
-                  v-model="picOrVid"
+                  v-model="settings.picOrVid"
                   :items="countsZero"
                   :label="$t('picOrVid.picOrVid')"
                 ></v-select>
               </v-col>
               <v-col cols="3">
                 <v-select
-                  v-model="picAndVid"
+                  v-model="settings.picAndVid"
                   :items="countsZero"
                   :label="$t('picAndVid.picAndVid')"
                 ></v-select>
               </v-col>
               <v-col cols="3">
                 <v-select
-                  v-model="handcam"
+                  v-model="settings.handcam"
                   :items="countsZero"
                   :label="$t('handcam.handcam')"
                 ></v-select>
@@ -154,7 +154,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import moment from "moment";
 
 export default {
@@ -162,17 +162,9 @@ export default {
     jumpday: null
   },
   data: () => ({
-    startHour: "9",
-    startMinute: "30",
-    endHour: "18",
-    endMinute: "00",
+    settings: {},
     addHour: "8",
     addMinute: "00",
-    sequence: "1:30",
-    tandem: 5,
-    picOrVid: 0,
-    picAndVid: 0,
-    handcam: 0,
     hours: [
       "8",
       "9",
@@ -196,7 +188,11 @@ export default {
     hintColor: "",
     valid: false
   }),
+  created() {
+    this.settings = { ...this.getSettings() };
+  },
   computed: {
+    ...mapGetters(["getSettings"]),
     hasBookedAppointments() {
       let count = 0;
       this.jumpday?.slots?.forEach(
@@ -217,10 +213,14 @@ export default {
     ...mapActions([
       "addJumpdayAction",
       "updateJumpdayAction",
-      "deleteJumpdayAction"
+      "deleteJumpdayAction",
+      "updateSettingsAction"
     ]),
     async saveJumpday() {
       this.updating = true;
+
+      this.updateSettingsAction(this.settings);
+
       let newJumpday = {
         date: this.jumpday.date,
         jumping: this.jumpday.jumping,
@@ -228,22 +228,25 @@ export default {
       };
 
       let currentTime = moment(
-        this.startHour + ":" + this.startMinute,
+        this.settings.startHour + ":" + this.settings.startMinute,
         "HH:mm"
       );
-      let endTime = moment(this.endHour + ":" + this.endMinute, "HH:mm");
+      let endTime = moment(
+        this.settings.endHour + ":" + this.settings.endMinute,
+        "HH:mm"
+      );
       let duration = moment.duration({
-        hours: this.sequence.split(":")[0],
-        minutes: this.sequence.split(":")[1]
+        hours: this.settings.sequence.split(":")[0],
+        minutes: this.settings.sequence.split(":")[1]
       });
 
       while (currentTime.isBefore(endTime)) {
         let slot = {
           time: currentTime.format("HH:mm"),
-          tandemTotal: this.tandem,
-          picOrVidTotal: this.picOrVid,
-          picAndVidTotal: this.picAndVid,
-          handcamTotal: this.handcam
+          tandemTotal: this.settings.tandem,
+          picOrVidTotal: this.settings.picOrVid,
+          picAndVidTotal: this.settings.picAndVid,
+          handcamTotal: this.settings.handcam
         };
         newJumpday.slots.push(slot);
 
@@ -298,10 +301,10 @@ export default {
           time: moment(this.addHour + ":" + this.addMinute, "HH:mm").format(
             "HH:mm"
           ),
-          tandemTotal: this.tandem,
-          picOrVidTotal: this.picOrVid,
-          picAndVidTotal: this.picAndVid,
-          handcamTotal: this.handcam
+          tandemTotal: this.settings.tandem,
+          picOrVidTotal: this.settings.picOrVid,
+          picAndVidTotal: this.settings.picAndVid,
+          handcamTotal: this.settings.handcam
         };
         this.jumpday.slots.push(slot);
       }
