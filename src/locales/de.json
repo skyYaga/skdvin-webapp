@@ -199,5 +199,9 @@
     "videoflyer": "Videoflyer"
   },
   "weightMax90": "Gewicht maximal 90 kg",
+  "welcome": {
+    "message": "Bitte geben Sie in der Suchmaske ein wie viele Tandemsprünge und (falls gewünscht) zusätzliche Videos Sie buchen möchten. <br/>Die verschiedenen Optionen zu verfügbaren Videos und Fotos werden in der Infobox erklärt, die sich öffnet wenn Sie auf das \"i\" neben der jeweiligen Option klicken. <br/>Für Gruppenbuchungen von 5 oder mehr Personen wenden Sie sich bitte per Mail (<a href=\"mailto:mail@fsz-hassfurt.de\">mail@fsz-hassfurt.de</a>) an uns. <br/>Bei weiteren Fragen schauen Sie bitte in unsere FAQ oder kontaktieren Sie uns per Mail oder mobil unter 0175-5915833.",
+    "title": "Willkommen beim FSZ Hassfurt e.V."
+  },
   "zip": "PLZ"
 }

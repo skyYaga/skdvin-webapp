@@ -105,7 +105,7 @@
     </v-navigation-drawer>
     <v-app-bar app color="red" dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title>Fallschirm-Sport-Zentrum Haßfurt e.V.</v-toolbar-title>
+      <v-toolbar-title>Fallschirm-Sport-Zentrum Hassfurt e.V.</v-toolbar-title>
     </v-app-bar>
   </div>
 </template>

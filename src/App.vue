@@ -3,26 +3,27 @@
     <NavBar />
     <v-content>
       <router-view />
+      <v-footer padless
+        ><v-row justify="center" no-gutters>
+          <v-btn
+            v-for="link in links"
+            :key="link.name"
+            :href="link.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            text
+            rounded
+            class="mt-2"
+          >
+            {{ link.name }}
+          </v-btn>
+          <v-col class="py-2 text-center" cols="12">
+            &copy; {{ new Date().getFullYear() }} —
+            <strong>skdv.in</strong>
+          </v-col>
+        </v-row>
+      </v-footer>
     </v-content>
-    <v-footer app padless
-      ><v-row justify="center" no-gutters>
-        <v-btn
-          v-for="link in links"
-          :key="link.name"
-          :href="link.url"
-          target="_blank"
-          rel="noopener noreferrer"
-          text
-          rounded
-          class="mt-2"
-        >
-          {{ link.name }}
-        </v-btn>
-        <v-col class="py-2 text-center" cols="12">
-          {{ new Date().getFullYear() }} — <strong>skdv.in</strong>
-        </v-col>
-      </v-row>
-    </v-footer>
   </v-app>
 </template>
 
