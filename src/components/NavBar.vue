@@ -114,7 +114,7 @@
 export default {
   name: "NavBar",
   data: () => ({
-    drawer: null
+    drawer: false
   }),
   methods: {
     // Log the user in
