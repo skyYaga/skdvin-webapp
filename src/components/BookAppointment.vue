@@ -1,6 +1,14 @@
 <template>
   <v-container fluid>
     <v-row dense>
+      <v-col>
+        <v-card>
+          <v-card-title>{{ $t("welcome.title") }}</v-card-title>
+          <v-card-text v-html="$t('welcome.message')"></v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+    <v-row dense>
       <v-col :lg="3" :md="4" :sm="12">
         <v-card>
           <v-card-title>{{ $t("tandem.book") }}</v-card-title>
