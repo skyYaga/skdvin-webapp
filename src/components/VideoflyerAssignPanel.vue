@@ -22,12 +22,14 @@
                 $d(getDate(month), "dateYearMonthLong")
               }}</v-card-title
               ><v-card-text
-                ><v-checkbox
+                ><AssignmentSelectionPanel
+                  class="mt-n5"
                   v-for="day in jumpdaysInMonth(month)"
-                  v-model="videoflyerDetails.assignments[day]"
                   :key="day"
-                  :label="$d(getDate(day), 'dateYearMonthDayWeekdayLong')"
-                ></v-checkbox></v-card-text
+                  :assignment="videoflyerDetails.assignments[day]"
+                  :day="day"
+                >
+                </AssignmentSelectionPanel></v-card-text
             ></v-card>
           </v-col>
         </v-row>
@@ -51,10 +53,14 @@
 import { mapActions } from "vuex";
 import moment from "moment";
 import { converters } from "../shared/converters";
+import AssignmentSelectionPanel from "./AssignmentSelectionPanel";
 
 export default {
   props: {
     videoflyer: Object
+  },
+  components: {
+    AssignmentSelectionPanel
   },
   data: () => ({
     message: "",
