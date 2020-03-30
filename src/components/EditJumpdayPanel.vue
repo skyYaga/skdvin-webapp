@@ -189,7 +189,7 @@ export default {
     valid: false
   }),
   created() {
-    this.settings = { ...this.getSettings() };
+    this.settings = JSON.parse(JSON.stringify(this.getSettings()));
   },
   computed: {
     ...mapGetters(["getSettings"]),
