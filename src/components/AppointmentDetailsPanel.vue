@@ -1,6 +1,6 @@
 <template>
   <v-row dense>
-    <v-col :lg="3" :sm="12">
+    <v-col :cols="12" :lg="3" :md="4" :sm="6">
       <v-card>
         <v-card-title>{{ $t("appointment.appointment") }}</v-card-title>
         <v-card-text>
@@ -24,7 +24,7 @@
         </v-card-text>
       </v-card>
     </v-col>
-    <v-col :lg="4" :sm="12">
+    <v-col :cols="12" :lg="4" :md="4" :sm="6">
       <v-card>
         <v-card-title>{{ $t("contactData") }}</v-card-title>
         <v-card-text>
@@ -43,7 +43,7 @@
         </v-card-text>
       </v-card>
     </v-col>
-    <v-col :lg="4" :sm="12">
+    <v-col :cols="12" :lg="4" :md="4" :sm="6">
       <v-card>
         <v-card-title>{{ $t("jumperData") }}</v-card-title>
         <v-card-text>

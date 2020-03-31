@@ -11,10 +11,10 @@
     <div v-if="!loading && authorized">
       <h1>{{ $t("jumpday.jumpdays") }}</h1>
       <v-row dense>
-        <v-col :lg="4" :md="4" :sm="12">
+        <v-col :cols="12" :lg="4" :md="4" :sm="12">
           <Calendar d-flex flex-wrap @handleDateSelection="loadJumpday" />
         </v-col>
-        <v-col :lg="8" :md="8" :sm="12">
+        <v-col :cols="12" :lg="8" :md="8" :sm="12">
           <EditJumpdayPanel
             :jumpday="jumpday"
             @handleJumpdayChanged="loadJumpday"
@@ -22,10 +22,10 @@
         </v-col>
       </v-row>
       <v-row v-if="jumpday.jumping"
-        ><v-col :lg="6"
+        ><v-col :cols="12" :md="6" :lg="6"
           ><AvailableTandemmasterPanel
             :tandemmasters="jumpday.tandemmaster"/></v-col
-        ><v-col :lg="6"
+        ><v-col :cols="12" :md="6" :lg="6"
           ><AvailableVideoflyerPanel :videoflyers="jumpday.videoflyer"/></v-col
       ></v-row>
       <v-row>

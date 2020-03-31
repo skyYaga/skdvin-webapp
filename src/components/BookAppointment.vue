@@ -9,7 +9,7 @@
       </v-col>
     </v-row>
     <v-row dense>
-      <v-col :lg="3" :md="4" :sm="12">
+      <v-col :cols="12" :lg="3" :md="4" :sm="12">
         <v-card>
           <v-card-title>{{ $t("tandem.book") }}</v-card-title>
           <v-card-text>
@@ -83,7 +83,7 @@
           </v-card-text>
         </v-card>
       </v-col>
-      <v-col :lg="6" :sm="12" v-if="showSlotSelection">
+      <v-col :cols="12" :lg="6" :sm="12" v-if="showSlotSelection">
         <v-card>
           <v-card-title>{{ $t("slot.available") }}</v-card-title>
           <v-card-text>
