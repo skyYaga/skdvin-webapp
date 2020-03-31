@@ -16,7 +16,14 @@
         }}</v-card-title>
         {{ message }}
         <v-row class="ma-1">
-          <v-col v-for="month in jumpMonths()" :key="month" :lg="3">
+          <v-col
+            v-for="month in jumpMonths()"
+            :key="month"
+            :lg="3"
+            :md="4"
+            :sm="6"
+            :cols="12"
+          >
             <v-card
               ><v-card-title>{{
                 $d(getDate(month), "dateYearMonthLong")
