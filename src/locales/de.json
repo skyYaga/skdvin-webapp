@@ -80,6 +80,8 @@
     "delete": "Sprungtag löschen",
     "jumpdays": "Sprungtage",
     "loading": "Sprungtage werden geladen. Bitte warten...",
+    "selectAll": "Alle Sprungtage auswählen",
+    "selectNone": "Keine Sprungtage auswählen",
     "update": {
       "error": "Fehler beim Aktualisieren des Sprungtags",
       "successful": "Sprungtag erfolgreich aktualisiert"

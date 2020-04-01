@@ -80,6 +80,8 @@
     "delete": "Delete jumpday",
     "jumpdays": "Jumpdays",
     "loading": "Loading jumpdays. Please be patient...",
+    "selectAll": "Select all Jumpdays",
+    "selectNone": "Select no Jumpdays",
     "update": {
       "error": "Error updating jumpday",
       "successful": "Jumpday updated successfully"
