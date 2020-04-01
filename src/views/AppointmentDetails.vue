@@ -16,7 +16,15 @@
               ref="customerDataForm"
               class="pa-5"
               :buttonVisible="false"
-              :appointment="localAppointment"/></v-card></v-col
+              :appointment="localAppointment"
+            />
+            <v-form class="mx-8 mt-n10">
+              <v-textarea
+                :label="$t('notes')"
+                outlined
+                v-model="localAppointment.note"
+              ></v-textarea
+            ></v-form> </v-card></v-col
         ><v-col :lg="6"
           ><AvailableSlotsPanel
             class="pb-5"
