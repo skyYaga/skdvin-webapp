@@ -19,9 +19,17 @@
             @handleDateSelection="dateSelected"
           /> </v-col
       ></v-row>
-      <v-row v-for="time in getBookedTimes" :key="time" dense>
+      <v-row v-if="jumpday.jumping"
+        ><v-col :cols="12" :md="6" :lg="6"
+          ><AvailableTandemmasterPanel
+            :tandemmasters="jumpday.tandemmaster"/></v-col
+        ><v-col :cols="12" :md="6" :lg="6"
+          ><AvailableVideoflyerPanel :videoflyers="jumpday.videoflyer"/></v-col
+      ></v-row>
+      <v-row v-for="time in getBookedTimes" :key="time" dense class="pt-4">
         <v-col cols="12"
-          ><v-subheader> {{ time }} </v-subheader> <v-divider></v-divider
+          ><v-subheader class="display-1"> {{ time }} </v-subheader>
+          <v-divider></v-divider
         ></v-col>
         <v-col
           v-for="appointment in getAppointmentsByTime(time)"
@@ -42,27 +50,37 @@
 
 <script>
 import AppointmentOverview from "../components/AppointmentOverview";
+import AvailableTandemmasterPanel from "../components/AvailableTandemmasterPanel";
+import AvailableVideoflyerPanel from "../components/AvailableVideoflyerPanel";
 import Calendar from "../components/Calendar";
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapState, mapGetters } from "vuex";
 import moment from "moment";
 
 export default {
   name: "Appointments",
   components: {
     AppointmentOverview,
-    Calendar
+    Calendar,
+    AvailableTandemmasterPanel,
+    AvailableVideoflyerPanel
   },
   data: () => ({
     menu: false,
     loading: true,
-    authorized: false
+    authorized: false,
+    jumpday: {
+      date: null,
+      jumping: false
+    }
   }),
   async created() {
     await this.loadJumpdays();
+    this.loadJumpday();
     await this.loadAppointments();
   },
   computed: {
     ...mapState(["jumpdays", "appointments"]),
+    ...mapGetters(["getJumpdayByDate"]),
     getBookedTimes() {
       let times = this.$store.state.appointments.map(
         appointment =>
@@ -114,12 +132,30 @@ export default {
         await this.getAppointmentsAction({ date: this.date, token });
       }
     },
+    loadJumpday() {
+      if (this.authorized) {
+        let loadedJumpday = { ...this.getJumpdayByDate(this.date) };
+
+        if (
+          Object.entries(loadedJumpday).length === 0 &&
+          loadedJumpday.constructor === Object
+        ) {
+          this.jumpday = {
+            jumping: false,
+            date: this.date
+          };
+        } else {
+          this.jumpday = JSON.parse(JSON.stringify(loadedJumpday));
+        }
+      }
+    },
     nowFormatted() {
       return moment().format("YYYY-MM-DD");
     },
     dateSelected(date) {
       this.date = date;
       this.loadAppointments();
+      this.loadJumpday();
     },
     getAppointmentsByTime(time) {
       return this.$store.state.appointments.filter(
