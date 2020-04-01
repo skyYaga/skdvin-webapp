@@ -23,8 +23,18 @@
       <p v-if="appointment.handcam > 0">
         {{ appointment.handcam }}x {{ $t("handcam.handcam") }}
       </p>
+      <v-textarea
+        v-if="appointment.note !== ''"
+        v-model="appointment.note"
+        disabled
+        rows="1"
+        auto-grow
+        solo
+        background-color="amber lighten-4"
+        class="body-2"
+      ></v-textarea>
     </v-card-text>
-    <v-card-actions>
+    <v-card-actions class="mt-n5">
       <v-btn
         small
         @click="changeAppointmentState('ACTIVE')"
