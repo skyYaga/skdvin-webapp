@@ -1,10 +1,13 @@
 <template>
   <v-container fluid>
     <v-row dense>
-      <v-col>
+      <v-col cols="12" md="5">
         <v-card>
           <v-card-title>{{ $t("welcome.title") }}</v-card-title>
-          <v-card-text v-html="$t('welcome.message')"></v-card-text>
+          <v-card-text
+            class="subtitle-1"
+            v-html="$t('welcome.message')"
+          ></v-card-text>
         </v-card>
       </v-col>
     </v-row>
