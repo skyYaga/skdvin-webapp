@@ -17,6 +17,14 @@
         {{ message }}
         <v-row class="ma-1">
           <v-col
+            ><v-btn @click="selectAll">{{ $t("jumpday.selectAll") }}</v-btn>
+            <v-btn class="ml-2" @click="selectNone">{{
+              $t("jumpday.selectNone")
+            }}</v-btn></v-col
+          >
+        </v-row>
+        <v-row class="ma-1">
+          <v-col
             v-for="month in jumpMonths()"
             :key="month"
             :lg="3"
@@ -121,6 +129,20 @@ export default {
         this.hintColor = "red";
       }
       this.showHint = true;
+    },
+    selectAll() {
+      Object.entries(this.videoflyerDetails.assignments).forEach(
+        ([date, assignment]) => {
+          assignment.assigned = true;
+        }
+      );
+    },
+    selectNone() {
+      Object.entries(this.videoflyerDetails.assignments).forEach(
+        ([date, assignment]) => {
+          assignment.assigned = false;
+        }
+      );
     }
   }
 };
