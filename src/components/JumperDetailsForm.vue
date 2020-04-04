@@ -48,7 +48,7 @@
         </v-menu>
       </v-col>
     </v-row>
-    <v-row class="mt-n10"
+    <v-row v-if="!isAdmin" class="mt-n10"
       ><v-col :lg="6"
         ><v-checkbox
           v-model="weightConfirmed"
@@ -67,6 +67,7 @@
 
 <script>
 import moment from "moment";
+import { roleUtil } from "../shared/roles";
 
 export default {
   props: {
@@ -126,6 +127,9 @@ export default {
         moment(this.jumper.dateOfBirth).toDate(),
         "dateYearMonthDayShort"
       );
+    },
+    isAdmin() {
+      return roleUtil.isAdmin(this.$auth);
     }
   }
 };

@@ -54,14 +54,28 @@
               required
             ></v-text-field></v-col
         ></v-row>
-
-        <JumperDetailsForm
-          ref="jumperDetails"
-          :jumperNum="i"
-          v-for="i in tandemSize"
-          :key="i"
-          :bookedJumper="getJumperIfAvailable(i)"
-        />
+        <v-row v-if="isAdmin"
+          ><v-col
+            ><v-checkbox
+              v-model="adminBooking"
+              :label="$t('booking.admin')"
+            ></v-checkbox></v-col
+        ></v-row>
+        <v-row v-if="!adminBooking"
+          ><v-col>
+            <JumperDetailsForm
+              ref="jumperDetails"
+              :jumperNum="i"
+              v-for="i in tandemSize"
+              :key="i"
+              :bookedJumper="getJumperIfAvailable(i)"/></v-col
+        ></v-row>
+        <v-textarea
+          v-if="isAdmin"
+          :label="$t('notes')"
+          outlined
+          v-model="appointment.note"
+        ></v-textarea>
         <v-row v-if="buttonVisible"
           ><v-btn class="mr-4" @click="back">{{ $t("back") }}</v-btn
           ><v-spacer></v-spacer
@@ -76,6 +90,7 @@
 
 <script>
 import JumperDetailsForm from "./JumperDetailsForm";
+import { roleUtil } from "../shared/roles";
 
 export default {
   props: {
@@ -90,6 +105,7 @@ export default {
   },
   data: function() {
     return {
+      adminBooking: false,
       valid: false,
       nameRules: [
         v => !!v || this.$i18n.t("rules.fieldHasToBeFilled"),
@@ -127,9 +143,11 @@ export default {
     },
     onCustomerDataFilled() {
       this.customer.jumpers = [];
-      this.$refs.jumperDetails.forEach(jd => {
-        this.customer.jumpers.push(jd.getJumper());
-      });
+      if (!this.adminBooking) {
+        this.$refs.jumperDetails.forEach(jd => {
+          this.customer.jumpers.push(jd.getJumper());
+        });
+      }
     },
     getJumperIfAvailable(i) {
       if (typeof this.appointment?.customer !== "undefined") {
@@ -144,6 +162,9 @@ export default {
     },
     customer() {
       return this.appointment.customer;
+    },
+    isAdmin() {
+      return roleUtil.isAdmin(this.$auth);
     }
   }
 };

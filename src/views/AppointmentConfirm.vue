@@ -14,8 +14,13 @@
       type="success"
       v-if="typeof getMessage === 'undefined' || getMessage === ''"
     >
-      <h3>{{ $t("almostdone") }}</h3>
-      <p v-html="$t('appointment.confirmation.message')"></p>
+      <div v-if="!noEmail">
+        <h3>{{ $t("almostdone") }}</h3>
+        <p v-html="$t('appointment.confirmation.message')"></p>
+      </div>
+      <div v-if="noEmail">
+        <h3>{{ $t("appointment.booking.success") }}</h3>
+      </div>
     </v-alert>
     <v-alert
       type="error"
@@ -31,6 +36,9 @@
 export default {
   name: "AppointmentConfirm",
   computed: {
+    noEmail() {
+      return this.$route.query.noemail;
+    },
     getMessage() {
       return this.$route.query.message;
     }

@@ -1,5 +1,6 @@
 import * as axios from "axios";
 import moment from "moment";
+import { responseHandler } from "./response-handler";
 
 const apiPath = process.env.VUE_APP_API;
 
@@ -41,13 +42,27 @@ const saveAppointment = async function(appointment, locale) {
         "Accept-Language": `${locale}`
       }
     });
-    if (response.status !== 201) throw Error(response.data.message);
-    if (!response.data.success) {
-      throw Error(response.data.message);
-    }
-    return "";
+    return responseHandler.handleResponse(response, 201);
   } catch (error) {
-    return error;
+    return responseHandler.handleError(error);
+  }
+};
+
+const saveAdminAppointment = async function(appointment, token) {
+  try {
+    convertDate(appointment);
+    const response = await axios.post(
+      apiPath + "/appointment/admin",
+      appointment,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    );
+    return responseHandler.handleResponse(response, 201);
+  } catch (error) {
+    return responseHandler.handleError(error);
   }
 };
 
@@ -123,20 +138,26 @@ const updateAppointment = async function(appointment, token, locale) {
         "Accept-Language": `${locale}`
       }
     });
-    if (response.status !== 200) throw Error(response.data.message);
-    if (!response.data.success) {
-      throw Error(response.data.message);
-    }
-    return response.data;
+    return responseHandler.handleResponse(response, 200);
   } catch (error) {
-    error = {
-      success: false,
-      message: error
-    };
-    if (error.response?.data?.message) {
-      error.message = error.response.data.message;
-    }
-    return error;
+    return responseHandler.handleError(error);
+  }
+};
+
+const updateAdminAppointment = async function(appointment, token) {
+  try {
+    const response = await axios.put(
+      apiPath + "/appointment/admin",
+      appointment,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    );
+    return responseHandler.handleResponse(response, 200);
+  } catch (error) {
+    return responseHandler.handleError(error);
   }
 };
 
@@ -200,5 +221,7 @@ export const appointmentService = {
   getAppointments,
   updateAppointmentState,
   updateAppointment,
-  deleteAppointment
+  updateAdminAppointment,
+  deleteAppointment,
+  saveAdminAppointment
 };

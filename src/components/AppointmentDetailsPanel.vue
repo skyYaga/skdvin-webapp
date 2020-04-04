@@ -43,7 +43,7 @@
         </v-card-text>
       </v-card>
     </v-col>
-    <v-col :cols="12" :lg="4" :md="4" :sm="6">
+    <v-col :cols="12" :lg="4" :md="4" :sm="6" v-if="!isAdmin">
       <v-card>
         <v-card-title>{{ $t("jumperData") }}</v-card-title>
         <v-card-text>
@@ -59,11 +59,20 @@
         </v-card-text>
       </v-card>
     </v-col>
+    <v-col :cols="12" :lg="4" :md="4" :sm="6" v-if="isAdmin">
+      <v-card>
+        <v-card-title>{{ $t("notes") }}</v-card-title>
+        <v-card-text>
+          {{ appointment.note }}
+        </v-card-text>
+      </v-card>
+    </v-col>
   </v-row>
 </template>
 
 <script>
 import moment from "moment";
+import { roleUtil } from "../shared/roles";
 
 export default {
   props: {
@@ -72,6 +81,11 @@ export default {
   methods: {
     getDate(date) {
       return moment(date).toDate();
+    }
+  },
+  computed: {
+    isAdmin() {
+      return roleUtil.isAdmin(this.$auth);
     }
   }
 };

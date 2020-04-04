@@ -8,19 +8,19 @@
       ></v-row>
       <v-divider class="my-10"></v-divider>
       <v-form ref="form" v-model="valid">
-        <v-row class="mb-3"
+        <v-row v-if="!isAdmin" class="mb-3"
           ><h2>{{ $t("jumpregulations.heading") }}</h2></v-row
         >
-        <v-row>
+        <v-row v-if="!isAdmin">
           <ul v-html="$t('jumpregulations.text')"></ul>
         </v-row>
-        <v-row>
+        <v-row v-if="!isAdmin">
           <v-checkbox
             :rules="[v => !!v || $t('rules.acceptRegulations')]"
             :label="$t('jumpregulations.accept')"
           ></v-checkbox>
         </v-row>
-        <v-row>
+        <v-row v-if="!isAdmin">
           <v-checkbox :rules="[v => !!v || $t('rules.privacyPolicy')]"
             ><template v-slot:label
               ><div>
@@ -66,6 +66,7 @@
 <script>
 import { mapActions } from "vuex";
 import AppointmentDetailsPanel from "./AppointmentDetailsPanel";
+import { roleUtil } from "../shared/roles";
 
 export default {
   props: {
@@ -79,23 +80,41 @@ export default {
     loading: false
   }),
   methods: {
-    ...mapActions(["addAppointmentAction"]),
+    ...mapActions(["addAppointmentAction", "addAdminAppointmentAction"]),
     async saveAppointment() {
       this.loading = true;
       if (this.$refs.form.validate()) {
-        let message = await this.addAppointmentAction(this.appointment);
-        this.onAppointmentSaved(message);
+        let result;
+        if (roleUtil.isAdmin(this.$auth)) {
+          result = await this.addAdminAppointmentAction({
+            appointment: this.appointment,
+            token: await this.$auth.getTokenSilently()
+          });
+        } else {
+          result = await this.addAppointmentAction(this.appointment);
+        }
+        this.onAppointmentSaved(result);
       }
       this.loading = false;
     },
-    onAppointmentSaved(message) {
+    onAppointmentSaved(result) {
+      let message = "";
+      if (!result.success) {
+        message = result.message;
+      }
+
       this.$router.push({
         name: "appointment-confirm",
-        query: { message: message }
+        query: { message: message, noemail: roleUtil.isAdmin(this.$auth) }
       });
     },
     back() {
       this.$emit("onCustomerConfirmationBack", this.customer);
+    }
+  },
+  computed: {
+    isAdmin() {
+      return roleUtil.isAdmin(this.$auth);
     }
   }
 };
