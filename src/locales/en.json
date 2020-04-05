@@ -13,7 +13,8 @@
     "appointment": "Appointment",
     "appointments": "Appointments",
     "booking": {
-      "error": "Unfortunately an error occurred during the booking.<br />Please try again later."
+      "error": "Unfortunately an error occurred during the booking.<br />Please try again later.",
+      "success": "Booking successful"
     },
     "confirmation": {
       "error": "There was an error confirming the appointment.",
@@ -39,6 +40,9 @@
   "back": "Back",
   "book": "Book",
   "bookable": "bookable",
+  "booking": {
+    "admin": "Admin booking"
+  },
   "cancel": "Cancel",
   "city": "City",
   "contactData": "Contact data",

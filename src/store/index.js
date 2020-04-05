@@ -160,6 +160,13 @@ const actions = {
     );
     return result;
   },
+  async addAdminAppointmentAction({ commit }, payload) {
+    const result = await appointmentService.saveAdminAppointment(
+      payload.appointment,
+      payload.token
+    );
+    return result;
+  },
   async verifyAppointmentAction({ commit }, payload) {
     const result = await appointmentService.verifyAppointment(
       payload.id,
@@ -205,6 +212,16 @@ const actions = {
       payload.appointment,
       payload.token,
       this.state.locale
+    );
+    if (result.success) {
+      commit(UPDATE_APPOINTMENT, result.payload);
+    }
+    return result;
+  },
+  async updateAdminAppointmentAction({ commit }, payload) {
+    let result = await appointmentService.updateAdminAppointment(
+      payload.appointment,
+      payload.token
     );
     if (result.success) {
       commit(UPDATE_APPOINTMENT, result.payload);

@@ -10,21 +10,14 @@
         ><h1>{{ $t("appointment.details") }}</h1></v-row
       >
       <v-row>
-        <v-col :lg="6" :sm="12"
+        <v-col cols="12" :lg="6" :sm="12"
           ><v-card
             ><CustomerDataForm
               ref="customerDataForm"
               class="pa-5"
               :buttonVisible="false"
               :appointment="localAppointment"
-            />
-            <v-form class="mx-8 mt-n10">
-              <v-textarea
-                :label="$t('notes')"
-                outlined
-                v-model="localAppointment.note"
-              ></v-textarea
-            ></v-form> </v-card></v-col
+            /> </v-card></v-col
         ><v-col :lg="6"
           ><AvailableSlotsPanel
             class="pb-5"
@@ -183,6 +176,7 @@ export default {
       "getAppointmentAction",
       "getJumpdaysAction",
       "updateAppointmentAction",
+      "updateAdminAppointmentAction",
       "searchSlotsAction",
       "deleteAppointmentAction"
     ]),
@@ -210,10 +204,18 @@ export default {
       }
       if (this.$refs.customerDataForm.validate()) {
         this.updating = true;
-        let result = await this.updateAppointmentAction({
-          appointment: this.localAppointment,
-          token: await this.$auth.getTokenSilently()
-        });
+        let result;
+        if (this.$refs.customerDataForm.adminBooking) {
+          result = await this.updateAdminAppointmentAction({
+            appointment: this.localAppointment,
+            token: await this.$auth.getTokenSilently()
+          });
+        } else {
+          result = await this.updateAppointmentAction({
+            appointment: this.localAppointment,
+            token: await this.$auth.getTokenSilently()
+          });
+        }
         this.updating = false;
         if (result.success) {
           this.hintText = this.$t("appointment.update.successful");

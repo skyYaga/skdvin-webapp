@@ -13,7 +13,8 @@
     "appointment": "Termin",
     "appointments": "Termine",
     "booking": {
-      "error": "Leider ist bei der Buchung ein Fehler aufgetreten.<br />Bitte versuchen sie es später erneut."
+      "error": "Leider ist bei der Buchung ein Fehler aufgetreten.<br />Bitte versuchen sie es später erneut.",
+      "success": "Terminbuchung erfolgreich"
     },
     "confirmation": {
       "error": "Fehler beim Bestätigen des Termins.",
@@ -39,6 +40,9 @@
   "back": "Zurück",
   "book": "Buchen",
   "bookable": "buchbar",
+  "booking": {
+    "admin": "Adminbuchung"
+  },
   "cancel": "Abbrechen",
   "city": "Wohnort",
   "contactData": "Kontaktdaten",
