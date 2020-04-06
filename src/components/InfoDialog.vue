@@ -19,10 +19,10 @@
 export default {
   props: {
     heading: String,
-    text: String
+    text: String,
   },
   data: () => ({
-    dialog: false
-  })
+    dialog: false,
+  }),
 };
 </script>

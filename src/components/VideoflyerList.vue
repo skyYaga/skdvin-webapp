@@ -80,7 +80,7 @@ import EditVideoflyer from "./EditVideoflyer";
 export default {
   props: { videoflyer: Array, loading: Boolean },
   components: {
-    EditVideoflyer
+    EditVideoflyer,
   },
   data() {
     return {
@@ -97,22 +97,22 @@ export default {
         { text: this.$t("email"), value: "email" },
         { text: this.$t("tel"), value: "tel" },
         { text: this.$t("picAndVid.picAndVid"), value: "picAndVid" },
-        { text: this.$t("actions"), value: "actions", sortable: false }
+        { text: this.$t("actions"), value: "actions", sortable: false },
       ],
       editedItem: {
         firstName: "",
         lastName: "",
         email: "",
         tel: "",
-        picAndVid: false
+        picAndVid: false,
       },
       defaultItem: {
         firstName: "",
         lastName: "",
         email: "",
         tel: "",
-        picAndVid: false
-      }
+        picAndVid: false,
+      },
     };
   },
   computed: {
@@ -120,18 +120,18 @@ export default {
       return this.editedIndex === -1
         ? this.$t("videoflyer.add")
         : this.$t("videoflyer.edit");
-    }
+    },
   },
   watch: {
     dialog(val) {
       val || this.close();
-    }
+    },
   },
   methods: {
     ...mapActions([
       "addVideoflyerAction",
       "updateVideoflyerAction",
-      "deleteVideoflyerAction"
+      "deleteVideoflyerAction",
     ]),
     close() {
       this.dialog = false;
@@ -158,7 +158,7 @@ export default {
         confirm(
           this.$t("videoflyer.delete.question", {
             firstName: item.firstName,
-            lastName: item.lastName
+            lastName: item.lastName,
           })
         )
       ) {
@@ -170,7 +170,7 @@ export default {
         this.updating = true;
         let result = await this.addVideoflyerAction({
           videoflyer: this.editedItem,
-          token: await this.$auth.getTokenSilently()
+          token: await this.$auth.getTokenSilently(),
         });
         this.updating = false;
         if (result.success) {
@@ -188,7 +188,7 @@ export default {
         this.updating = true;
         let result = await this.updateVideoflyerAction({
           videoflyer: this.editedItem,
-          token: await this.$auth.getTokenSilently()
+          token: await this.$auth.getTokenSilently(),
         });
         this.updating = false;
         if (result.success) {
@@ -205,7 +205,7 @@ export default {
       this.updating = true;
       let result = await this.deleteVideoflyerAction({
         id: item.id,
-        token: await this.$auth.getTokenSilently()
+        token: await this.$auth.getTokenSilently(),
       });
       this.updating = false;
       if (result.success) {
@@ -219,7 +219,7 @@ export default {
     },
     assignVideoflyer(item) {
       this.$emit("handleAssignClick", item);
-    }
-  }
+    },
+  },
 };
 </script>

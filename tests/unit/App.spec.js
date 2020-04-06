@@ -14,10 +14,10 @@ describe("App.vue", () => {
 
   beforeEach(() => {
     actions = {
-      setLocaleAction: jest.fn()
+      setLocaleAction: jest.fn(),
     };
     store = new Vuex.Store({
-      actions
+      actions,
     });
   });
   it("contains Navbar", () => {
@@ -25,8 +25,8 @@ describe("App.vue", () => {
     const wrapper = shallowMount(App, {
       store,
       localVue,
-      mocks: { $i18n: { locale: "de", t: message => message } },
-      stubs: ["router-link", "router-view"]
+      mocks: { $i18n: { locale: "de", t: (message) => message } },
+      stubs: ["router-link", "router-view"],
     });
     expect(wrapper.html()).toContain(msg);
   });
@@ -35,8 +35,8 @@ describe("App.vue", () => {
     const wrapper = shallowMount(App, {
       store,
       localVue,
-      mocks: { $i18n: { locale: "de", t: message => message } },
-      stubs: ["router-link", "router-view"]
+      mocks: { $i18n: { locale: "de", t: (message) => message } },
+      stubs: ["router-link", "router-view"],
     });
     expect(wrapper.html()).toContain(msg);
   });

@@ -11,7 +11,7 @@
         <v-card-title>{{
           $t("videoflyer.assign", {
             firstName: videoflyer.firstName,
-            lastName: videoflyer.lastName
+            lastName: videoflyer.lastName,
           })
         }}</v-card-title>
         {{ message }}
@@ -72,10 +72,10 @@ import AssignmentSelectionPanel from "./AssignmentSelectionPanel";
 
 export default {
   props: {
-    videoflyer: Object
+    videoflyer: Object,
   },
   components: {
-    AssignmentSelectionPanel
+    AssignmentSelectionPanel,
   },
   data: () => ({
     message: "",
@@ -83,7 +83,7 @@ export default {
     videoflyerDetails: {},
     showHint: false,
     hintText: "",
-    hintColor: ""
+    hintColor: "",
   }),
   async created() {
     this.loading = true;
@@ -91,18 +91,18 @@ export default {
     this.loading = false;
   },
   watch: {
-    videoflyer: "loadVideoflyer"
+    videoflyer: "loadVideoflyer",
   },
   methods: {
     ...mapActions([
       "getVideoflyerDetailsAction",
-      "updateVideoflyerAssigmentsAction"
+      "updateVideoflyerAssigmentsAction",
     ]),
     async loadVideoflyer() {
       this.message = this.$t("videoflyer.loading");
       let result = await this.getVideoflyerDetailsAction({
         videoflyerId: this.videoflyer.id,
-        token: await this.$auth.getTokenSilently()
+        token: await this.$auth.getTokenSilently(),
       });
       this.videoflyerDetails = result.payload;
       this.message = "";
@@ -119,7 +119,7 @@ export default {
     async updateAssignments() {
       let result = await this.updateVideoflyerAssigmentsAction({
         videoflyerDetails: this.videoflyerDetails,
-        token: await this.$auth.getTokenSilently()
+        token: await this.$auth.getTokenSilently(),
       });
       if (result.success) {
         this.hintText = this.$t("videoflyer.update.successful");
@@ -143,7 +143,7 @@ export default {
           assignment.assigned = false;
         }
       );
-    }
-  }
+    },
+  },
 };
 </script>

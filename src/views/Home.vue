@@ -7,7 +7,7 @@
         require('../assets/tandem-background.jpeg') +
         ')',
       backgroundSize: 'cover',
-      height: '100%'
+      height: '100%',
     }"
   >
     <BookAppointment />
@@ -20,7 +20,7 @@ import BookAppointment from "../components/BookAppointment";
 export default {
   name: "Home",
   components: {
-    BookAppointment
-  }
+    BookAppointment,
+  },
 };
 </script>

@@ -17,13 +17,13 @@
           ><TandemmasterList
             :loading="loading"
             :tandemmaster="getTandemmasters"
-            @handleAssignClick="tandemmasterSelected"/></v-col
+            @handleAssignClick="tandemmasterSelected" /></v-col
       ></v-row>
       <v-row
         ><v-col
           ><TandemmasterAssignPanel
             v-if="showAssignmentPanel"
-            :tandemmaster="selectedTandemmaster"/></v-col
+            :tandemmaster="selectedTandemmaster" /></v-col
       ></v-row>
     </div>
     <div v-if="!loading && !authorized">
@@ -42,7 +42,7 @@ import TandemmasterAssignPanel from "../components/TandemmasterAssignPanel";
 export default {
   components: {
     TandemmasterList,
-    TandemmasterAssignPanel
+    TandemmasterAssignPanel,
   },
   data: () => ({
     menu: false,
@@ -50,7 +50,7 @@ export default {
     authorized: false,
     message: "",
     selectedTandemmaster: {},
-    showAssignmentPanel: false
+    showAssignmentPanel: false,
   }),
   async created() {
     this.loading = true;
@@ -66,13 +66,13 @@ export default {
     tandemmasterSelected(tm) {
       this.selectedTandemmaster = tm;
       this.showAssignmentPanel = true;
-    }
+    },
   },
   computed: {
     ...mapState(["tandemmasters"]),
     getTandemmasters() {
       return JSON.parse(JSON.stringify(this.tandemmasters));
-    }
-  }
+    },
+  },
 };
 </script>

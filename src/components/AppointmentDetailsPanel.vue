@@ -76,17 +76,17 @@ import { roleUtil } from "../shared/roles";
 
 export default {
   props: {
-    appointment: null
+    appointment: null,
   },
   methods: {
     getDate(date) {
       return moment(date).toDate();
-    }
+    },
   },
   computed: {
     isAdmin() {
       return roleUtil.isAdmin(this.$auth);
-    }
-  }
+    },
+  },
 };
 </script>

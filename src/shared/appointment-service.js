@@ -4,10 +4,10 @@ import { responseHandler } from "./response-handler";
 
 const apiPath = process.env.VUE_APP_API;
 
-const searchSlots = async function(query) {
+const searchSlots = async function (query) {
   try {
     const response = await axios.get(apiPath + "/appointment/slots", {
-      params: query
+      params: query,
     });
     return parseList(response);
   } catch (error) {
@@ -15,14 +15,14 @@ const searchSlots = async function(query) {
   }
 };
 
-const verifyAppointment = async function(id, token, locale) {
+const verifyAppointment = async function (id, token, locale) {
   try {
     const response = await axios.get(
       apiPath + "/appointment/" + id + "/confirm/" + token,
       {
         headers: {
-          "Accept-Language": `${locale}`
-        }
+          "Accept-Language": `${locale}`,
+        },
       }
     );
     if (!response.data.success) {
@@ -34,13 +34,13 @@ const verifyAppointment = async function(id, token, locale) {
   }
 };
 
-const saveAppointment = async function(appointment, locale) {
+const saveAppointment = async function (appointment, locale) {
   try {
     convertDate(appointment);
     const response = await axios.post(apiPath + "/appointment", appointment, {
       headers: {
-        "Accept-Language": `${locale}`
-      }
+        "Accept-Language": `${locale}`,
+      },
     });
     return responseHandler.handleResponse(response, 201);
   } catch (error) {
@@ -48,7 +48,7 @@ const saveAppointment = async function(appointment, locale) {
   }
 };
 
-const saveAdminAppointment = async function(appointment, token) {
+const saveAdminAppointment = async function (appointment, token) {
   try {
     convertDate(appointment);
     const response = await axios.post(
@@ -56,8 +56,8 @@ const saveAdminAppointment = async function(appointment, token) {
       appointment,
       {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       }
     );
     return responseHandler.handleResponse(response, 201);
@@ -66,12 +66,12 @@ const saveAdminAppointment = async function(appointment, token) {
   }
 };
 
-const getAppointments = async function(date, token) {
+const getAppointments = async function (date, token) {
   try {
     const response = await axios.get(apiPath + "/appointment/date/" + date, {
       headers: {
-        Authorization: `Bearer ${token}` // send the access token through the 'Authorization' header
-      }
+        Authorization: `Bearer ${token}`, // send the access token through the 'Authorization' header
+      },
     });
     return parseList(response);
   } catch (error) {
@@ -82,14 +82,14 @@ const getAppointments = async function(date, token) {
   }
 };
 
-const getAppointment = async function(appointmentId, token) {
+const getAppointment = async function (appointmentId, token) {
   try {
     const response = await axios.get(
       apiPath + "/appointment/" + appointmentId,
       {
         headers: {
-          Authorization: `Bearer ${token}` // send the access token through the 'Authorization' header
-        }
+          Authorization: `Bearer ${token}`, // send the access token through the 'Authorization' header
+        },
       }
     );
     if (response.status !== 200) throw Error(response.data.message);
@@ -105,7 +105,7 @@ const getAppointment = async function(appointmentId, token) {
   }
 };
 
-const updateAppointmentState = async function(
+const updateAppointmentState = async function (
   appointmentId,
   appointmentState,
   token
@@ -116,8 +116,8 @@ const updateAppointmentState = async function(
       appointmentState,
       {
         headers: {
-          Authorization: `Bearer ${token}` // send the access token through the 'Authorization' header
-        }
+          Authorization: `Bearer ${token}`, // send the access token through the 'Authorization' header
+        },
       }
     );
     if (response.status !== 200) throw Error(response.data.message);
@@ -130,13 +130,13 @@ const updateAppointmentState = async function(
   }
 };
 
-const updateAppointment = async function(appointment, token, locale) {
+const updateAppointment = async function (appointment, token, locale) {
   try {
     const response = await axios.put(apiPath + "/appointment/", appointment, {
       headers: {
         Authorization: `Bearer ${token}`, // send the access token through the 'Authorization' header
-        "Accept-Language": `${locale}`
-      }
+        "Accept-Language": `${locale}`,
+      },
     });
     return responseHandler.handleResponse(response, 200);
   } catch (error) {
@@ -144,15 +144,15 @@ const updateAppointment = async function(appointment, token, locale) {
   }
 };
 
-const updateAdminAppointment = async function(appointment, token) {
+const updateAdminAppointment = async function (appointment, token) {
   try {
     const response = await axios.put(
       apiPath + "/appointment/admin",
       appointment,
       {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       }
     );
     return responseHandler.handleResponse(response, 200);
@@ -161,15 +161,15 @@ const updateAdminAppointment = async function(appointment, token) {
   }
 };
 
-const deleteAppointment = async function(appointmentId, token, locale) {
+const deleteAppointment = async function (appointmentId, token, locale) {
   try {
     const response = await axios.delete(
       apiPath + "/appointment/" + appointmentId,
       {
         headers: {
           Authorization: `Bearer ${token}`, // send the access token through the 'Authorization' header
-          "Accept-Language": `${locale}`
-        }
+          "Accept-Language": `${locale}`,
+        },
       }
     );
     if (response.status !== 200) throw Error(response.data.message);
@@ -180,7 +180,7 @@ const deleteAppointment = async function(appointmentId, token, locale) {
   } catch (error) {
     error = {
       success: false,
-      message: error
+      message: error,
     };
     if (error.response?.data?.message) {
       error.message = error.response.data.message;
@@ -189,7 +189,7 @@ const deleteAppointment = async function(appointmentId, token, locale) {
   }
 };
 
-const convertDate = appointment => {
+const convertDate = (appointment) => {
   let parsedMoment = moment(
     appointment.selectedDate + appointment.selectedTime,
     "YYYY-MM-DD HH:mm"
@@ -199,7 +199,7 @@ const convertDate = appointment => {
   delete appointment.selectedTime;
 };
 
-const parseList = response => {
+const parseList = (response) => {
   if (!response.data) return [];
 
   if (!response.data.success) {
@@ -223,5 +223,5 @@ export const appointmentService = {
   updateAppointment,
   updateAdminAppointment,
   deleteAppointment,
-  saveAdminAppointment
+  saveAdminAppointment,
 };

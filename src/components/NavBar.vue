@@ -114,7 +114,7 @@
 export default {
   name: "NavBar",
   data: () => ({
-    drawer: false
+    drawer: false,
   }),
   methods: {
     // Log the user in
@@ -124,9 +124,9 @@ export default {
     // Log the user out
     logout() {
       this.$auth.logout({
-        returnTo: window.location.origin
+        returnTo: window.location.origin,
       });
-    }
-  }
+    },
+  },
 };
 </script>

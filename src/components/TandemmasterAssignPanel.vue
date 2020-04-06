@@ -11,7 +11,7 @@
         <v-card-title>{{
           $t("tandemmaster.assign", {
             firstName: tandemmaster.firstName,
-            lastName: tandemmaster.lastName
+            lastName: tandemmaster.lastName,
           })
         }}</v-card-title>
         {{ message }}
@@ -72,10 +72,10 @@ import AssignmentSelectionPanel from "./AssignmentSelectionPanel";
 
 export default {
   props: {
-    tandemmaster: Object
+    tandemmaster: Object,
   },
   components: {
-    AssignmentSelectionPanel
+    AssignmentSelectionPanel,
   },
   data: () => ({
     message: "",
@@ -83,7 +83,7 @@ export default {
     tandemmasterDetails: {},
     showHint: false,
     hintText: "",
-    hintColor: ""
+    hintColor: "",
   }),
   async created() {
     this.loading = true;
@@ -91,18 +91,18 @@ export default {
     this.loading = false;
   },
   watch: {
-    tandemmaster: "loadTandemmaster"
+    tandemmaster: "loadTandemmaster",
   },
   methods: {
     ...mapActions([
       "getTandemmasterDetailsAction",
-      "updateTandemmasterAssigmentsAction"
+      "updateTandemmasterAssigmentsAction",
     ]),
     async loadTandemmaster() {
       this.message = this.$t("tandemmaster.loading");
       let result = await this.getTandemmasterDetailsAction({
         tandemmasterId: this.tandemmaster.id,
-        token: await this.$auth.getTokenSilently()
+        token: await this.$auth.getTokenSilently(),
       });
       this.tandemmasterDetails = result.payload;
       this.message = "";
@@ -119,7 +119,7 @@ export default {
     async updateAssignments() {
       let result = await this.updateTandemmasterAssigmentsAction({
         tandemmasterDetails: this.tandemmasterDetails,
-        token: await this.$auth.getTokenSilently()
+        token: await this.$auth.getTokenSilently(),
       });
       if (result.success) {
         this.hintText = this.$t("tandemmaster.update.successful");
@@ -143,7 +143,7 @@ export default {
           assignment.assigned = false;
         }
       );
-    }
-  }
+    },
+  },
 };
 </script>

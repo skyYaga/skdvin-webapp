@@ -24,9 +24,9 @@
       <v-row v-if="jumpday.jumping"
         ><v-col :cols="12" :md="6" :lg="6"
           ><AvailableTandemmasterPanel
-            :tandemmasters="jumpday.tandemmaster"/></v-col
+            :tandemmasters="jumpday.tandemmaster" /></v-col
         ><v-col :cols="12" :md="6" :lg="6"
-          ><AvailableVideoflyerPanel :videoflyers="jumpday.videoflyer"/></v-col
+          ><AvailableVideoflyerPanel :videoflyers="jumpday.videoflyer" /></v-col
       ></v-row>
       <v-row>
         <v-form>
@@ -61,8 +61,8 @@ export default {
       message: "",
       jumpday: {
         date: this.nowFormatted(),
-        jumping: false
-      }
+        jumping: false,
+      },
     };
   },
   components: {
@@ -70,7 +70,7 @@ export default {
     JumpdayTable,
     EditJumpdayPanel,
     AvailableTandemmasterPanel,
-    AvailableVideoflyerPanel
+    AvailableVideoflyerPanel,
   },
   async created() {
     await this.loadJumpdays();
@@ -78,7 +78,7 @@ export default {
   },
   computed: {
     ...mapState(["jumpdays"]),
-    ...mapGetters(["getJumpdayByDate"])
+    ...mapGetters(["getJumpdayByDate"]),
   },
   methods: {
     ...mapActions(["getJumpdaysAction"]),
@@ -107,7 +107,7 @@ export default {
         ) {
           this.jumpday = {
             jumping: false,
-            date: this.date
+            date: this.date,
           };
         } else {
           this.jumpday = JSON.parse(JSON.stringify(loadedJumpday));
@@ -116,7 +116,7 @@ export default {
     },
     nowFormatted() {
       return moment().format("YYYY-MM-DD");
-    }
-  }
+    },
+  },
 };
 </script>

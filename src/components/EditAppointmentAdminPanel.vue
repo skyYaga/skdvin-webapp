@@ -54,18 +54,18 @@ export default {
         tandem: 0,
         picOrVid: 0,
         picAndVid: 0,
-        handcam: 0
-      })
+        handcam: 0,
+      }),
     },
     slots: Object,
-    update: { type: Boolean, default: () => false }
+    update: { type: Boolean, default: () => false },
   },
   components: {
-    SlotSelectionForm
+    SlotSelectionForm,
   },
   data: () => ({
     valid: true,
-    maxBookableSlots: {}
+    maxBookableSlots: {},
   }),
   computed: {
     getTandemAvailable() {
@@ -79,13 +79,13 @@ export default {
     },
     getHandcamAvailable() {
       return this.slots?.handcamAvailable;
-    }
+    },
   },
   watch: {
     appointment: "validate",
-    slots: function() {
+    slots: function () {
       this.calculateMaxBookableSlots();
-    }
+    },
   },
   methods: {
     validate() {
@@ -105,9 +105,9 @@ export default {
         tandem: this.slots?.tandemAvailable + this.appointment.tandem,
         picOrVid: this.slots?.picOrVidAvailable + this.appointment.picOrVid,
         picAndVid: this.slots?.picAndVidAvailable + this.appointment.picAndVid,
-        handcam: this.slots?.handcamAvailable + this.appointment.handcam
+        handcam: this.slots?.handcamAvailable + this.appointment.handcam,
       };
-    }
-  }
+    },
+  },
 };
 </script>

@@ -37,18 +37,18 @@ export default {
   created() {
     this.setLocaleAction(this.$i18n.locale);
   },
-  data: function() {
+  data: function () {
     return {
       links: [
         {
           url: "https://skdv.in/datenschutzerklaerung/",
-          name: this.$i18n.t("privacyStatement")
+          name: this.$i18n.t("privacyStatement"),
         },
         {
           url: "https://skdv.in/impressum/",
-          name: this.$i18n.t("imprint")
-        }
-      ]
+          name: this.$i18n.t("imprint"),
+        },
+      ],
     };
   },
   methods: {
@@ -60,9 +60,9 @@ export default {
     // Log the user out
     logout() {
       this.$auth.logout({
-        returnTo: window.location.origin
+        returnTo: window.location.origin,
       });
-    }
-  }
+    },
+  },
 };
 </script>

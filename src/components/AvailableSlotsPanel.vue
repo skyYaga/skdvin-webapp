@@ -44,22 +44,22 @@ import moment from "moment";
 
 export default {
   props: {
-    slots: Array
+    slots: Array,
   },
   computed: {
     getMonthsForSlots() {
       return [
         ...new Set(
           this.slots
-            .filter(slot => moment(slot.date).isSameOrAfter(moment()))
-            .map(slot => moment(slot.date).format("YYYY-MM"))
-        )
-      ].sort(function(a, b) {
+            .filter((slot) => moment(slot.date).isSameOrAfter(moment()))
+            .map((slot) => moment(slot.date).format("YYYY-MM"))
+        ),
+      ].sort(function (a, b) {
         if (a === null) return 1;
         if (b === null) return -1;
         return moment(a).toDate() - moment(b).toDate();
       });
-    }
+    },
   },
   methods: {
     selectSlot(date, time) {
@@ -71,16 +71,16 @@ export default {
     slotsInMonth(month) {
       return this.slots
         .filter(
-          slot =>
+          (slot) =>
             moment(slot.date).isSame(moment(month), "month") &&
             moment(slot.date).isSameOrAfter(moment())
         )
-        .sort(function(a, b) {
+        .sort(function (a, b) {
           if (a === null) return 1;
           if (b === null) return -1;
           return moment(a.date).toDate() - moment(b.date).toDate();
         });
-    }
-  }
+    },
+  },
 };
 </script>

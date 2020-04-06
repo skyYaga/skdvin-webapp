@@ -53,16 +53,16 @@ export default {
         lastName: "",
         email: "",
         tel: "",
-        picAndVid: false
-      })
-    }
+        picAndVid: false,
+      }),
+    },
   },
-  data: function() {
+  data: function () {
     return {
       nameRules: nameRules(this.$i18n),
       emailRules: emailRules(this.$i18n),
-      telRules: telRules(this.$i18n)
+      telRules: telRules(this.$i18n),
     };
-  }
+  },
 };
 </script>

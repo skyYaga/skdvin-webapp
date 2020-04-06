@@ -10,13 +10,13 @@ describe("Profile.vue", () => {
     const $auth = {
       user: {
         name: "Bob",
-        email: "bob@example.com"
-      }
+        email: "bob@example.com",
+      },
     };
     const wrapper = shallowMount(Profile, {
       mocks: {
-        $auth
-      }
+        $auth,
+      },
     });
     expect(wrapper.find("h2").text()).toMatch($auth.user.name);
     expect(wrapper.find("p").text()).toMatch($auth.user.email);

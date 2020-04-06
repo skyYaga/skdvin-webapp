@@ -22,9 +22,9 @@
       <v-row v-if="jumpday.jumping"
         ><v-col :cols="12" :md="6" :lg="6"
           ><AvailableTandemmasterPanel
-            :tandemmasters="jumpday.tandemmaster"/></v-col
+            :tandemmasters="jumpday.tandemmaster" /></v-col
         ><v-col :cols="12" :md="6" :lg="6"
-          ><AvailableVideoflyerPanel :videoflyers="jumpday.videoflyer"/></v-col
+          ><AvailableVideoflyerPanel :videoflyers="jumpday.videoflyer" /></v-col
       ></v-row>
       <v-row v-for="time in getBookedTimes" :key="time" dense class="pt-4">
         <v-col cols="12"
@@ -37,7 +37,7 @@
           :md="4"
           :sm="6"
           :key="appointment.appointmentId"
-          ><AppointmentOverview :appointment="appointment"/></v-col
+          ><AppointmentOverview :appointment="appointment" /></v-col
       ></v-row>
     </div>
     <div v-if="!loading && !authorized">
@@ -62,7 +62,7 @@ export default {
     AppointmentOverview,
     Calendar,
     AvailableTandemmasterPanel,
-    AvailableVideoflyerPanel
+    AvailableVideoflyerPanel,
   },
   data: () => ({
     menu: false,
@@ -70,8 +70,8 @@ export default {
     authorized: false,
     jumpday: {
       date: null,
-      jumping: false
-    }
+      jumping: false,
+    },
   }),
   async created() {
     await this.loadJumpdays();
@@ -83,32 +83,32 @@ export default {
     ...mapGetters(["getJumpdayByDate"]),
     getBookedTimes() {
       let times = this.$store.state.appointments.map(
-        appointment =>
+        (appointment) =>
           appointment !== null && moment(appointment?.date).format("HH:mm")
       );
       let uniqueTimes = [...new Set(times)];
       return uniqueTimes;
     },
     date: {
-      get: function() {
+      get: function () {
         if (typeof this.$route.query.date === "undefined") {
           return new Date().toISOString().substr(0, 10);
         }
         return this.$route.query.date;
       },
-      set: function(date) {
+      set: function (date) {
         this.$router.push({
           name: "appointments",
-          query: { date }
+          query: { date },
         });
-      }
+      },
     },
     getDate() {
       if (this.date === "") {
         return "";
       }
       return this.$d(moment(this.date).toDate(), "dateYearMonthDayShort");
-    }
+    },
   },
   methods: {
     ...mapActions(["getJumpdaysAction", "getAppointmentsAction"]),
@@ -142,7 +142,7 @@ export default {
         ) {
           this.jumpday = {
             jumping: false,
-            date: this.date
+            date: this.date,
           };
         } else {
           this.jumpday = JSON.parse(JSON.stringify(loadedJumpday));
@@ -159,9 +159,9 @@ export default {
     },
     getAppointmentsByTime(time) {
       return this.$store.state.appointments.filter(
-        appointment => moment(appointment?.date).format("HH:mm") === time
+        (appointment) => moment(appointment?.date).format("HH:mm") === time
       );
-    }
-  }
+    },
+  },
 };
 </script>

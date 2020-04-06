@@ -72,36 +72,36 @@ import { roleUtil } from "../shared/roles";
 export default {
   props: {
     jumperNum: null,
-    bookedJumper: null
+    bookedJumper: null,
   },
   created() {
     if (this.bookedJumper != null) {
       this.jumper = this.bookedJumper;
     }
   },
-  data: function() {
+  data: function () {
     return {
       jumper: {
         firstName: "",
         lastName: "",
-        dateOfBirth: ""
+        dateOfBirth: "",
       },
       weightConfirmed: false,
       sizeConfirmed: false,
       nameRules: [
-        v => !!v || this.$i18n.t("rules.fieldHasToBeFilled"),
-        v => (v && v.length <= 40) || this.$i18n.t("rules.max40Chars")
+        (v) => !!v || this.$i18n.t("rules.fieldHasToBeFilled"),
+        (v) => (v && v.length <= 40) || this.$i18n.t("rules.max40Chars"),
       ],
-      weightRules: [v => !!v || this.$i18n.t("rules.weight")],
-      sizeRules: [v => !!v || this.$i18n.t("rules.size")],
-      dateOfBirthRules: [v => !!v || this.$i18n.t("rules.dateOfBirthNeeded")],
-      menu: false
+      weightRules: [(v) => !!v || this.$i18n.t("rules.weight")],
+      sizeRules: [(v) => !!v || this.$i18n.t("rules.size")],
+      dateOfBirthRules: [(v) => !!v || this.$i18n.t("rules.dateOfBirthNeeded")],
+      menu: false,
     };
   },
   watch: {
     menu(val) {
       val && setTimeout(() => (this.$refs.picker.activePicker = "YEAR"));
-    }
+    },
   },
   methods: {
     save(date) {
@@ -109,7 +109,7 @@ export default {
     },
     getJumper() {
       return this.jumper;
-    }
+    },
   },
   computed: {
     maxDate14years() {
@@ -130,7 +130,7 @@ export default {
     },
     isAdmin() {
       return roleUtil.isAdmin(this.$auth);
-    }
-  }
+    },
+  },
 };
 </script>

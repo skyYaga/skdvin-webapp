@@ -37,7 +37,7 @@
               {{
                 $t("appointment.newselected", {
                   date: getDate(),
-                  time: getTime()
+                  time: getTime(),
                 })
               }}
               <ul>
@@ -138,13 +138,13 @@ export default {
   components: {
     CustomerDataForm,
     EditAppointmentAdminPanel,
-    AvailableSlotsPanel
+    AvailableSlotsPanel,
   },
   props: {
     id: {
       type: Number,
-      default: 0
-    }
+      default: 0,
+    },
   },
   data: () => ({
     loading: true,
@@ -157,14 +157,14 @@ export default {
     updating: false,
     availableSlots: [],
     slotSelected: false,
-    showDeletionDialog: false
+    showDeletionDialog: false,
   }),
   async created() {
     await this.loadPage();
   },
   computed: {
     ...mapState(["jumpdays"]),
-    ...mapGetters(["getJumpdayByDate"])
+    ...mapGetters(["getJumpdayByDate"]),
   },
   methods: {
     async loadPage() {
@@ -178,13 +178,13 @@ export default {
       "updateAppointmentAction",
       "updateAdminAppointmentAction",
       "searchSlotsAction",
-      "deleteAppointmentAction"
+      "deleteAppointmentAction",
     ]),
     async loadAppointment() {
       let token = await this.$auth.getTokenSilently();
       this.localAppointment = await this.getAppointmentAction({
         appointmentId: this.id,
-        token
+        token,
       });
       this.loading = false;
     },
@@ -192,7 +192,7 @@ export default {
       this.slots = {
         ...this.getJumpdayByDate(
           moment(date).format("YYYY-MM-DD")
-        ).slots.filter(slot => slot.time === moment(date).format("HH:mm"))[0]
+        ).slots.filter((slot) => slot.time === moment(date).format("HH:mm"))[0],
       };
     },
     async loadJumpdays() {
@@ -208,12 +208,12 @@ export default {
         if (this.$refs.customerDataForm.adminBooking) {
           result = await this.updateAdminAppointmentAction({
             appointment: this.localAppointment,
-            token: await this.$auth.getTokenSilently()
+            token: await this.$auth.getTokenSilently(),
           });
         } else {
           result = await this.updateAppointmentAction({
             appointment: this.localAppointment,
-            token: await this.$auth.getTokenSilently()
+            token: await this.$auth.getTokenSilently(),
           });
         }
         this.updating = false;
@@ -233,7 +233,7 @@ export default {
       this.showDeletionDialog = false;
       let result = await this.deleteAppointmentAction({
         appointmentId: this.localAppointment.appointmentId,
-        token: await this.$auth.getTokenSilently()
+        token: await this.$auth.getTokenSilently(),
       });
       if (result.success) {
         this.backToOverview();
@@ -253,10 +253,10 @@ export default {
           tandem: this.localAppointment.tandem,
           picOrVid: this.localAppointment.picOrVid,
           picAndVid: this.localAppointment.picAndVid,
-          handcam: this.localAppointment.handcam
+          handcam: this.localAppointment.handcam,
         };
         this.availableSlots = await this.searchSlotsAction(query);
-        this.availableSlots = this.availableSlots.sort(function(a, b) {
+        this.availableSlots = this.availableSlots.sort(function (a, b) {
           return new Date(a.date) - new Date(b.date);
         });
       }
@@ -284,9 +284,11 @@ export default {
     backToOverview() {
       this.$router.push({
         name: "appointments",
-        query: { date: moment(this.localAppointment.date).format("YYYY-MM-DD") }
+        query: {
+          date: moment(this.localAppointment.date).format("YYYY-MM-DD"),
+        },
       });
-    }
-  }
+    },
+  },
 };
 </script>

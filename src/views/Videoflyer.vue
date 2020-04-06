@@ -17,13 +17,13 @@
           ><VideoflyerList
             :loading="loading"
             :videoflyer="getVideoflyers"
-            @handleAssignClick="videoflyerSelected"/></v-col
+            @handleAssignClick="videoflyerSelected" /></v-col
       ></v-row>
       <v-row
         ><v-col
           ><VideoflyerAssignPanel
             v-if="showAssignmentPanel"
-            :videoflyer="selectedVideoflyer"/></v-col
+            :videoflyer="selectedVideoflyer" /></v-col
       ></v-row>
     </div>
     <div v-if="!loading && !authorized">
@@ -42,7 +42,7 @@ import VideoflyerAssignPanel from "../components/VideoflyerAssignPanel";
 export default {
   components: {
     VideoflyerList,
-    VideoflyerAssignPanel
+    VideoflyerAssignPanel,
   },
   data: () => ({
     menu: false,
@@ -50,7 +50,7 @@ export default {
     authorized: false,
     message: "",
     selectedVideoflyer: {},
-    showAssignmentPanel: false
+    showAssignmentPanel: false,
   }),
   async created() {
     this.loading = true;
@@ -66,13 +66,13 @@ export default {
     videoflyerSelected(tm) {
       this.selectedVideoflyer = tm;
       this.showAssignmentPanel = true;
-    }
+    },
   },
   computed: {
     ...mapState(["videoflyers"]),
     getVideoflyers() {
       return JSON.parse(JSON.stringify(this.videoflyers));
-    }
-  }
+    },
+  },
 };
 </script>
