@@ -3,12 +3,12 @@ import { responseHandler } from "./response-handler";
 
 const apiPath = process.env.VUE_APP_API;
 
-const addTandemmaster = async function(tandemmaster, token) {
+const addTandemmaster = async function (tandemmaster, token) {
   try {
     const response = await axios.post(apiPath + "/tandemmaster", tandemmaster, {
       headers: {
-        Authorization: `Bearer ${token}` // send the access token through the 'Authorization' header
-      }
+        Authorization: `Bearer ${token}`, // send the access token through the 'Authorization' header
+      },
     });
     return responseHandler.handleResponse(response, 201);
   } catch (error) {
@@ -16,12 +16,12 @@ const addTandemmaster = async function(tandemmaster, token) {
   }
 };
 
-const getTandemmaster = async function(token) {
+const getTandemmaster = async function (token) {
   try {
     const response = await axios.get(apiPath + "/tandemmaster", {
       headers: {
-        Authorization: `Bearer ${token}` // send the access token through the 'Authorization' header
-      }
+        Authorization: `Bearer ${token}`, // send the access token through the 'Authorization' header
+      },
     });
     return responseHandler.handleResponse(response, 200);
   } catch (error) {
@@ -29,14 +29,14 @@ const getTandemmaster = async function(token) {
   }
 };
 
-const getTandemmasterDetails = async function(tandemmasterId, token) {
+const getTandemmasterDetails = async function (tandemmasterId, token) {
   try {
     const response = await axios.get(
       apiPath + "/tandemmaster/" + tandemmasterId,
       {
         headers: {
-          Authorization: `Bearer ${token}` // send the access token through the 'Authorization' header
-        }
+          Authorization: `Bearer ${token}`, // send the access token through the 'Authorization' header
+        },
       }
     );
     return responseHandler.handleResponse(response, 200);
@@ -45,15 +45,15 @@ const getTandemmasterDetails = async function(tandemmasterId, token) {
   }
 };
 
-const updateTandemmaster = async function(tandemmaster, token) {
+const updateTandemmaster = async function (tandemmaster, token) {
   try {
     const response = await axios.put(
       apiPath + "/tandemmaster/" + tandemmaster.id,
       tandemmaster,
       {
         headers: {
-          Authorization: `Bearer ${token}` // send the access token through the 'Authorization' header
-        }
+          Authorization: `Bearer ${token}`, // send the access token through the 'Authorization' header
+        },
       }
     );
     return responseHandler.handleResponse(response, 200);
@@ -62,12 +62,12 @@ const updateTandemmaster = async function(tandemmaster, token) {
   }
 };
 
-const deleteTandemmaster = async function(id, token) {
+const deleteTandemmaster = async function (id, token) {
   try {
     const response = await axios.delete(apiPath + "/tandemmaster/" + id, {
       headers: {
-        Authorization: `Bearer ${token}` // send the access token through the 'Authorization' header
-      }
+        Authorization: `Bearer ${token}`, // send the access token through the 'Authorization' header
+      },
     });
     return responseHandler.handleResponse(response, 200);
   } catch (error) {
@@ -75,7 +75,7 @@ const deleteTandemmaster = async function(id, token) {
   }
 };
 
-const updateTandemmasterAssigments = async function(
+const updateTandemmasterAssigments = async function (
   tandemmasterDetails,
   token
 ) {
@@ -85,8 +85,8 @@ const updateTandemmasterAssigments = async function(
       tandemmasterDetails,
       {
         headers: {
-          Authorization: `Bearer ${token}` // send the access token through the 'Authorization' header
-        }
+          Authorization: `Bearer ${token}`, // send the access token through the 'Authorization' header
+        },
       }
     );
     return responseHandler.handleResponse(response, 200);
@@ -101,5 +101,5 @@ export const tandemmasterService = {
   updateTandemmaster,
   deleteTandemmaster,
   getTandemmasterDetails,
-  updateTandemmasterAssigments
+  updateTandemmasterAssigments,
 };

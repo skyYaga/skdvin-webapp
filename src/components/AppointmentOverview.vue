@@ -6,7 +6,7 @@
         class="button"
         :to="{
           name: 'appointment-details',
-          params: { id: appointment.appointmentId }
+          params: { id: appointment.appointmentId },
         }"
         >{{ appointment.appointmentId }} {{ appointment.customer.firstName }}
         {{ appointment.customer.lastName }}</router-link
@@ -66,7 +66,7 @@ import { mapActions } from "vuex";
 export default {
   name: "AppointmentOverview",
   props: {
-    appointment: Object
+    appointment: Object,
   },
   data: () => ({ loading: false }),
   computed: {
@@ -82,7 +82,7 @@ export default {
         return "grey";
       }
       return "white";
-    }
+    },
   },
   methods: {
     ...mapActions(["updateAppointmentStateAction"]),
@@ -92,12 +92,12 @@ export default {
       await this.updateAppointmentStateAction({
         appointmentId: this.appointment.appointmentId,
         appointmentState: {
-          state: newState
+          state: newState,
         },
-        token
+        token,
       });
       this.loading = false;
-    }
-  }
+    },
+  },
 };
 </script>

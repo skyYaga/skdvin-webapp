@@ -8,7 +8,7 @@ Vue.use(Vuetify);
 describe("Calendar.vue", () => {
   it("renders Calendar", () => {
     const wrapper = shallowMount(Calendar, {
-      mocks: { $i18n: { locale: "de" } }
+      mocks: { $i18n: { locale: "de" } },
     });
     expect(wrapper.find("v-calendar")).toBeDefined();
   });

@@ -20,7 +20,7 @@
               <v-select
                 v-model="appointment.tandem"
                 :items="items"
-                :rules="[v => !!v || $t('rules.atLeast1Tandem')]"
+                :rules="[(v) => !!v || $t('rules.atLeast1Tandem')]"
                 :label="$t('tandem.count')"
                 type="number"
                 :disabled="slots !== null && appointment.selectedTime !== null"
@@ -70,7 +70,7 @@
                 :loading="loading"
                 :disabled="
                   loading === true ||
-                    (slots !== null && appointment.selectedTime !== null)
+                  (slots !== null && appointment.selectedTime !== null)
                 "
                 >{{ $t("search") }}</v-btn
               >
@@ -154,8 +154,8 @@ export default {
         email: "",
         zip: "",
         city: "",
-        jumpers: []
-      }
+        jumpers: [],
+      },
     },
     emptyAppointment: {
       selectedDate: null,
@@ -171,8 +171,8 @@ export default {
         email: "",
         zip: "",
         city: "",
-        jumpers: []
-      }
+        jumpers: [],
+      },
     },
     items: [1, 2, 3, 4, 5],
     itemsZero: [0, 1, 2, 3, 4, 5],
@@ -181,23 +181,23 @@ export default {
     loading: false,
     showSlotSelection: false,
     showCustomerDataForm: false,
-    showConfirmationForm: false
+    showConfirmationForm: false,
   }),
   components: {
     CustomerDataForm,
     CustomerConfirmationForm,
     AvailableSlotsPanel,
-    InfoDialog
+    InfoDialog,
   },
   computed: {
     rules() {
       const rules = [];
 
-      const rule = v =>
+      const rule = (v) =>
         (!!v && v) <= this.appointment.tandem ||
         this.$t("rules.moreVideoThanTandem");
 
-      const allVidsRule = v =>
+      const allVidsRule = (v) =>
         this.appointment.picOrVid +
           this.appointment.picAndVid +
           this.appointment.handcam <=
@@ -207,15 +207,15 @@ export default {
       rules.push(allVidsRule);
 
       return rules;
-    }
+    },
   },
   watch: {
     appointment: {
       tandem: "validate",
       picOrVid: "validate",
       picAndVid: "validate",
-      handcam: "validate"
-    }
+      handcam: "validate",
+    },
   },
   methods: {
     ...mapActions(["searchSlotsAction"]),
@@ -225,10 +225,10 @@ export default {
         tandem: this.appointment.tandem,
         picOrVid: this.appointment.picOrVid,
         picAndVid: this.appointment.picAndVid,
-        handcam: this.appointment.handcam
+        handcam: this.appointment.handcam,
       };
       this.slots = await this.searchSlotsAction(query);
-      this.slots = this.slots.sort(function(a, b) {
+      this.slots = this.slots.sort(function (a, b) {
         return new Date(a.date) - new Date(b.date);
       });
       this.showSlotSelection = true;
@@ -269,7 +269,7 @@ export default {
     },
     getDate(date) {
       return moment(date).toDate();
-    }
-  }
+    },
+  },
 };
 </script>

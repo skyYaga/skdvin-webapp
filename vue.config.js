@@ -6,9 +6,9 @@ module.exports = {
       "/api": {
         target: "http://localhost:8081", // target host
         ws: true, // proxy websockets
-        changeOrigin: true // needed for virtual hosted sites
-      }
-    }
+        changeOrigin: true, // needed for virtual hosted sites
+      },
+    },
   },
 
   pluginOptions: {
@@ -16,7 +16,7 @@ module.exports = {
       locale: "de",
       fallbackLocale: "en",
       localeDir: "locales",
-      enableInSFC: false
-    }
-  }
+      enableInSFC: false,
+    },
+  },
 };

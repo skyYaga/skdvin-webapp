@@ -19,13 +19,13 @@ Vue.use(Auth0Plugin, {
   domain,
   clientId,
   audience,
-  onRedirectCallback: appState => {
+  onRedirectCallback: (appState) => {
     router.push(
       appState && appState.targetUrl
         ? appState.targetUrl
         : window.location.pathname
     );
-  }
+  },
 });
 
 Vue.config.productionTip = false;
@@ -35,5 +35,5 @@ new Vue({
   store,
   vuetify,
   i18n,
-  render: h => h(App)
+  render: (h) => h(App),
 }).$mount("#app");

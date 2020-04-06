@@ -27,7 +27,7 @@ export const useAuth0 = ({
         user: {},
         auth0Client: null,
         popupOpen: false,
-        error: null
+        error: null,
       };
     },
     methods: {
@@ -39,7 +39,7 @@ export const useAuth0 = ({
           await this.auth0Client.loginWithPopup(o);
         } catch (e) {
           // eslint-disable-next-line
-                    console.error(e);
+          console.error(e);
         } finally {
           this.popupOpen = false;
         }
@@ -80,7 +80,7 @@ export const useAuth0 = ({
       /** Logs the user out and removes their session on the authorization server */
       logout(o) {
         return this.auth0Client.logout(o);
-      }
+      },
     },
     /** Use this lifecycle method to instantiate the SDK client */
     async created() {
@@ -89,7 +89,7 @@ export const useAuth0 = ({
         domain: options.domain,
         client_id: options.clientId,
         audience: options.audience,
-        redirect_uri: redirectUri
+        redirect_uri: redirectUri,
       });
 
       try {
@@ -113,7 +113,7 @@ export const useAuth0 = ({
         this.user = await this.auth0Client.getUser();
         this.loading = false;
       }
-    }
+    },
   });
 
   return instance;
@@ -123,5 +123,5 @@ export const useAuth0 = ({
 export const Auth0Plugin = {
   install(Vue, options) {
     Vue.prototype.$auth = useAuth0(options);
-  }
+  },
 };

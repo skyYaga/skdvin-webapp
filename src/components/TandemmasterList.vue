@@ -82,7 +82,7 @@ import EditTandemmaster from "./EditTandemmaster";
 export default {
   props: { tandemmaster: Array, loading: Boolean },
   components: {
-    EditTandemmaster
+    EditTandemmaster,
   },
   data() {
     return {
@@ -99,22 +99,22 @@ export default {
         { text: this.$t("email"), value: "email" },
         { text: this.$t("tel"), value: "tel" },
         { text: this.$t("handcam.handcam"), value: "handcam" },
-        { text: this.$t("actions"), value: "actions", sortable: false }
+        { text: this.$t("actions"), value: "actions", sortable: false },
       ],
       editedItem: {
         firstName: "",
         lastName: "",
         email: "",
         tel: "",
-        handcam: false
+        handcam: false,
       },
       defaultItem: {
         firstName: "",
         lastName: "",
         email: "",
         tel: "",
-        handcam: false
-      }
+        handcam: false,
+      },
     };
   },
   computed: {
@@ -122,18 +122,18 @@ export default {
       return this.editedIndex === -1
         ? this.$t("tandemmaster.add")
         : this.$t("tandemmaster.edit");
-    }
+    },
   },
   watch: {
     dialog(val) {
       val || this.close();
-    }
+    },
   },
   methods: {
     ...mapActions([
       "addTandemmasterAction",
       "updateTandemmasterAction",
-      "deleteTandemmasterAction"
+      "deleteTandemmasterAction",
     ]),
     close() {
       this.dialog = false;
@@ -160,7 +160,7 @@ export default {
         confirm(
           this.$t("tandemmaster.delete.question", {
             firstName: item.firstName,
-            lastName: item.lastName
+            lastName: item.lastName,
           })
         )
       ) {
@@ -172,7 +172,7 @@ export default {
         this.updating = true;
         let result = await this.addTandemmasterAction({
           tandemmaster: this.editedItem,
-          token: await this.$auth.getTokenSilently()
+          token: await this.$auth.getTokenSilently(),
         });
         this.updating = false;
         if (result.success) {
@@ -190,7 +190,7 @@ export default {
         this.updating = true;
         let result = await this.updateTandemmasterAction({
           tandemmaster: this.editedItem,
-          token: await this.$auth.getTokenSilently()
+          token: await this.$auth.getTokenSilently(),
         });
         this.updating = false;
         if (result.success) {
@@ -207,7 +207,7 @@ export default {
       this.updating = true;
       let result = await this.deleteTandemmasterAction({
         id: item.id,
-        token: await this.$auth.getTokenSilently()
+        token: await this.$auth.getTokenSilently(),
       });
       this.updating = false;
       if (result.success) {
@@ -221,7 +221,7 @@ export default {
     },
     assignTandemmaster(item) {
       this.$emit("handleAssignClick", item);
-    }
-  }
+    },
+  },
 };
 </script>

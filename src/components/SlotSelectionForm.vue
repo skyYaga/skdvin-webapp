@@ -4,9 +4,9 @@
       v-model="appointment.tandem"
       :items="items"
       :rules="[
-        v => !!v || $t('rules.atLeast1Tandem'),
+        (v) => !!v || $t('rules.atLeast1Tandem'),
         availableSlotsRule,
-        moreTandemThanVideoRule
+        moreTandemThanVideoRule,
       ]"
       :label="$t('tandem.tandems')"
       type="number"
@@ -41,11 +41,11 @@
 export default {
   props: {
     appointment: Object,
-    maxBookableSlots: Object
+    maxBookableSlots: Object,
   },
   data: () => ({
     items: [1, 2, 3, 4, 5],
-    itemsZero: [0, 1, 2, 3, 4, 5]
+    itemsZero: [0, 1, 2, 3, 4, 5],
   }),
   computed: {
     availableSlotsRule() {
@@ -73,7 +73,7 @@ export default {
         return this.$t("rules.moreVideoThanTandem");
       }
       return true;
-    }
-  }
+    },
+  },
 };
 </script>

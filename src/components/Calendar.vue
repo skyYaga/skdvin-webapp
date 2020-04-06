@@ -29,26 +29,26 @@ export default {
       multiple: false,
       readonly: false,
       disabled: false,
-      enableEvents: true
+      enableEvents: true,
     };
   },
 
   computed: {
     functionEvents() {
       return this.dateFunctionEvents;
-    }
+    },
   },
 
   methods: {
     dateFunctionEvents(date) {
-      if (this.$store.state.jumpdays.map(j => j.date).includes(date)) {
+      if (this.$store.state.jumpdays.map((j) => j.date).includes(date)) {
         return ["green"];
       }
       return false;
     },
     onDateSelection(date) {
       this.$emit("handleDateSelection", date);
-    }
-  }
+    },
+  },
 };
 </script>

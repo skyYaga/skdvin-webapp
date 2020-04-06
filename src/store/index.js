@@ -18,7 +18,7 @@ import {
   GET_VIDEOFLYERS,
   DELETE_VIDEOFLYER,
   SET_LOCALE,
-  UPDATE_SETTINGS
+  UPDATE_SETTINGS,
 } from "./mutation-types";
 import { jumpdayService } from "../shared/jumpday-service";
 import { appointmentService } from "../shared/appointment-service";
@@ -43,8 +43,8 @@ const state = () => ({
     picOrVid: 0,
     picAndVid: 0,
     handcam: 0,
-    sequence: "1:30"
-  }
+    sequence: "1:30",
+  },
 });
 
 const mutations = {
@@ -55,31 +55,31 @@ const mutations = {
     state.jumpdays.unshift(jumpday); // mutable addition
   },
   [UPDATE_JUMPDAY](state, jumpday) {
-    const index = state.jumpdays.findIndex(j => j.date === jumpday.date);
+    const index = state.jumpdays.findIndex((j) => j.date === jumpday.date);
     state.jumpdays.splice(index, 1, jumpday);
     state.jumpdays = [...state.jumpdays];
   },
   [DELETE_JUMPDAY](state, date) {
-    state.jumpdays = [...state.jumpdays.filter(j => j.date !== date)];
+    state.jumpdays = [...state.jumpdays.filter((j) => j.date !== date)];
   },
   [GET_APPOINTMENTS](state, appointments) {
     state.appointments = appointments;
   },
   [UPDATE_APPOINTMENT](state, appointment) {
     const index = state.appointments.findIndex(
-      a => a.appointmentId === appointment.appointmentId
+      (a) => a.appointmentId === appointment.appointmentId
     );
     state.appointments.splice(index, 1, appointment);
     state.appointments = [...state.appointments];
   },
   [DELETE_APPOINTMENT](state, appointmentId) {
     state.appointments = [
-      ...state.appointments.filter(a => a.appointmentId !== appointmentId)
+      ...state.appointments.filter((a) => a.appointmentId !== appointmentId),
     ];
   },
   [UPDATE_APPOINTMENT_STATE](state, result) {
     const index = state.appointments?.findIndex(
-      a => a.appointmentId === result.appointmentId
+      (a) => a.appointmentId === result.appointmentId
     );
     state.appointments[index].state = result.appointmentState;
     state.appointments = [...state.appointments];
@@ -91,12 +91,14 @@ const mutations = {
     state.tandemmasters.unshift(tandemmaster); // mutable addition
   },
   [UPDATE_TANDEMMASTER](state, tandemmaster) {
-    const index = state.tandemmasters.findIndex(t => t.id === tandemmaster.id);
+    const index = state.tandemmasters.findIndex(
+      (t) => t.id === tandemmaster.id
+    );
     state.tandemmasters.splice(index, 1, tandemmaster);
     state.tandemmasters = [...state.tandemmasters];
   },
   [DELETE_TANDEMMASTER](state, id) {
-    state.tandemmasters = [...state.tandemmasters.filter(t => t.id !== id)];
+    state.tandemmasters = [...state.tandemmasters.filter((t) => t.id !== id)];
   },
   [GET_VIDEOFLYERS](state, videoflyers) {
     state.videoflyers = videoflyers;
@@ -105,19 +107,19 @@ const mutations = {
     state.videoflyers.unshift(videoflyer); // mutable addition
   },
   [UPDATE_VIDEOFLYER](state, videoflyer) {
-    const index = state.videoflyers.findIndex(t => t.id === videoflyer.id);
+    const index = state.videoflyers.findIndex((t) => t.id === videoflyer.id);
     state.videoflyers.splice(index, 1, videoflyer);
     state.videoflyers = [...state.videoflyers];
   },
   [DELETE_VIDEOFLYER](state, id) {
-    state.videoflyers = [...state.videoflyers.filter(t => t.id !== id)];
+    state.videoflyers = [...state.videoflyers.filter((t) => t.id !== id)];
   },
   [SET_LOCALE](state, locale) {
     state.locale = locale;
   },
   [UPDATE_SETTINGS](state, settings) {
     state.settings = settings;
-  }
+  },
 };
 
 const actions = {
@@ -180,7 +182,7 @@ const actions = {
       payload.date,
       payload.token
     );
-    appointments.sort(function(a, b) {
+    appointments.sort(function (a, b) {
       if (a === null) return 1;
       if (b === null) return -1;
       // Turn your strings into dates, and then subtract them
@@ -204,7 +206,7 @@ const actions = {
     );
     commit(UPDATE_APPOINTMENT_STATE, {
       appointmentId: payload.appointmentId,
-      appointmentState: payload.appointmentState.state
+      appointmentState: payload.appointmentState.state,
     });
   },
   async updateAppointmentAction({ commit }, payload) {
@@ -340,13 +342,14 @@ const actions = {
   },
   updateSettingsAction({ commit }, settings) {
     commit(UPDATE_SETTINGS, settings);
-  }
+  },
 };
 
 const getters = {
   // parameterized getters are not cached. so this is just a convenience to get the state.
-  getJumpdayByDate: state => date => state.jumpdays.find(j => j.date === date),
-  getSettings: state => () => state.settings
+  getJumpdayByDate: (state) => (date) =>
+    state.jumpdays.find((j) => j.date === date),
+  getSettings: (state) => () => state.settings,
 };
 
 export default new Vuex.Store({
@@ -354,5 +357,5 @@ export default new Vuex.Store({
   state,
   mutations,
   actions,
-  getters
+  getters,
 });

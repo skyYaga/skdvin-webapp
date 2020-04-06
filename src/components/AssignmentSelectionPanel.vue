@@ -94,17 +94,17 @@ export default {
   name: "AssignmentSelectionPanel",
   props: {
     assignment: Object,
-    day: String
+    day: String,
   },
   data: () => ({
     fromPicker: false,
-    toPicker: false
+    toPicker: false,
   }),
   methods: {
     getDate(month) {
       return moment(month).toDate();
     },
-    allowedStep: m => m % 15 === 0
-  }
+    allowedStep: (m) => m % 15 === 0,
+  },
 };
 </script>

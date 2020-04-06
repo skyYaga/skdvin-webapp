@@ -13,8 +13,8 @@ describe("NavBar.vue", () => {
       stubs: ["router-link", "router-view"],
       mocks: {
         $auth,
-        $t: msg => msg
-      }
+        $t: (msg) => msg,
+      },
     });
     expect(wrapper.html()).toContain(msg);
   });
@@ -25,8 +25,8 @@ describe("NavBar.vue", () => {
       stubs: ["router-link", "router-view"],
       mocks: {
         $auth,
-        $t: msg => msg
-      }
+        $t: (msg) => msg,
+      },
     });
     expect(wrapper.html()).toContain(msg);
   });
@@ -36,8 +36,8 @@ describe("NavBar.vue", () => {
       stubs: ["router-link", "router-view"],
       mocks: {
         $auth,
-        $t: msg => msg
-      }
+        $t: (msg) => msg,
+      },
     });
     expect(wrapper.html()).not.toContain(
       "<v-list-item-title-stub>profile</v-list-item-title-stub>"
@@ -49,8 +49,8 @@ describe("NavBar.vue", () => {
       stubs: ["router-link", "router-view"],
       mocks: {
         $auth,
-        $t: msg => msg
-      }
+        $t: (msg) => msg,
+      },
     });
     expect(wrapper.html()).toContain(
       "<v-list-item-title-stub>profile</v-list-item-title-stub>"

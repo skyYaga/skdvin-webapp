@@ -16,12 +16,12 @@
         </v-row>
         <v-row v-if="!isAdmin">
           <v-checkbox
-            :rules="[v => !!v || $t('rules.acceptRegulations')]"
+            :rules="[(v) => !!v || $t('rules.acceptRegulations')]"
             :label="$t('jumpregulations.accept')"
           ></v-checkbox>
         </v-row>
         <v-row v-if="!isAdmin">
-          <v-checkbox :rules="[v => !!v || $t('rules.privacyPolicy')]"
+          <v-checkbox :rules="[(v) => !!v || $t('rules.privacyPolicy')]"
             ><template v-slot:label
               ><div>
                 <i18n
@@ -70,14 +70,14 @@ import { roleUtil } from "../shared/roles";
 
 export default {
   props: {
-    appointment: null
+    appointment: null,
   },
   components: {
-    AppointmentDetailsPanel
+    AppointmentDetailsPanel,
   },
   data: () => ({
     valid: false,
-    loading: false
+    loading: false,
   }),
   methods: {
     ...mapActions(["addAppointmentAction", "addAdminAppointmentAction"]),
@@ -88,7 +88,7 @@ export default {
         if (roleUtil.isAdmin(this.$auth)) {
           result = await this.addAdminAppointmentAction({
             appointment: this.appointment,
-            token: await this.$auth.getTokenSilently()
+            token: await this.$auth.getTokenSilently(),
           });
         } else {
           result = await this.addAppointmentAction(this.appointment);
@@ -105,17 +105,17 @@ export default {
 
       this.$router.push({
         name: "appointment-confirm",
-        query: { message: message, noemail: roleUtil.isAdmin(this.$auth) }
+        query: { message: message, noemail: roleUtil.isAdmin(this.$auth) },
       });
     },
     back() {
       this.$emit("onCustomerConfirmationBack", this.customer);
-    }
+    },
   },
   computed: {
     isAdmin() {
       return roleUtil.isAdmin(this.$auth);
-    }
-  }
+    },
+  },
 };
 </script>

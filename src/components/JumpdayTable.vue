@@ -68,7 +68,7 @@
             ><v-icon
               v-if="
                 typeof slot.tandemBooked !== 'undefined' &&
-                  slot.tandemBooked === 0
+                slot.tandemBooked === 0
               "
               @click="deleteSlot(slot)"
             >
@@ -84,24 +84,28 @@
 <script>
 export default {
   props: {
-    jumpday: Object
+    jumpday: Object,
   },
   methods: {
     calculateItems(minCount) {
       if (typeof minCount !== "undefined") {
-        return [...Array(11).keys()].filter(key => key > 0 && key >= minCount);
+        return [...Array(11).keys()].filter(
+          (key) => key > 0 && key >= minCount
+        );
       }
-      return [...Array(11).keys()].filter(key => key > 0);
+      return [...Array(11).keys()].filter((key) => key > 0);
     },
     calculateItemsZero(minCount) {
       if (typeof minCount !== "undefined") {
-        return [...Array(11).keys()].filter(key => key >= minCount);
+        return [...Array(11).keys()].filter((key) => key >= minCount);
       }
       return [...Array(11).keys()];
     },
     deleteSlot(slot) {
-      this.jumpday.slots = this.jumpday.slots.filter(s => s.time !== slot.time);
-    }
-  }
+      this.jumpday.slots = this.jumpday.slots.filter(
+        (s) => s.time !== slot.time
+      );
+    },
+  },
 };
 </script>

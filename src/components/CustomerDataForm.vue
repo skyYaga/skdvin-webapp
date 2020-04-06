@@ -68,7 +68,7 @@
               :jumperNum="i"
               v-for="i in tandemSize"
               :key="i"
-              :bookedJumper="getJumperIfAvailable(i)"/></v-col
+              :bookedJumper="getJumperIfAvailable(i)" /></v-col
         ></v-row>
         <v-textarea
           v-if="isAdmin"
@@ -97,35 +97,35 @@ export default {
     appointment: Object,
     buttonVisible: {
       type: Boolean,
-      default: () => true
-    }
+      default: () => true,
+    },
   },
   components: {
-    JumperDetailsForm
+    JumperDetailsForm,
   },
-  data: function() {
+  data: function () {
     return {
       adminBooking: false,
       valid: false,
       nameRules: [
-        v => !!v || this.$i18n.t("rules.fieldHasToBeFilled"),
-        v => (v && v.length <= 40) || this.$i18n.t("rules.max40Chars")
+        (v) => !!v || this.$i18n.t("rules.fieldHasToBeFilled"),
+        (v) => (v && v.length <= 40) || this.$i18n.t("rules.max40Chars"),
       ],
       zipRules: [
-        v => !!v || this.$i18n.t("rules.zipNeeded"),
-        v => v.length === 5 || this.$i18n.t("rules.zip5digit"),
-        v => !isNaN(v) || this.$i18n.t("rules.zipNumbers")
+        (v) => !!v || this.$i18n.t("rules.zipNeeded"),
+        (v) => v.length === 5 || this.$i18n.t("rules.zip5digit"),
+        (v) => !isNaN(v) || this.$i18n.t("rules.zipNumbers"),
       ],
       emailRules: [
-        v => !!v || this.$i18n.t("rules.emailNeeded"),
-        v => /.+@.+\..+/.test(v) || this.$i18n.t("rules.emailValid")
+        (v) => !!v || this.$i18n.t("rules.emailNeeded"),
+        (v) => /.+@.+\..+/.test(v) || this.$i18n.t("rules.emailValid"),
       ],
       telRules: [
-        v => !!v || this.$i18n.t("rules.telNeeded"),
-        v =>
+        (v) => !!v || this.$i18n.t("rules.telNeeded"),
+        (v) =>
           (v && v.length > 0 && /[0-9 +-]{6,}$/.test(v)) ||
-          this.$i18n.t("rules.telValid")
-      ]
+          this.$i18n.t("rules.telValid"),
+      ],
     };
   },
   methods: {
@@ -144,7 +144,7 @@ export default {
     onCustomerDataFilled() {
       this.customer.jumpers = [];
       if (!this.adminBooking) {
-        this.$refs.jumperDetails.forEach(jd => {
+        this.$refs.jumperDetails.forEach((jd) => {
           this.customer.jumpers.push(jd.getJumper());
         });
       }
@@ -154,7 +154,7 @@ export default {
         return this.appointment.customer.jumpers[i - 1];
       }
       return null;
-    }
+    },
   },
   computed: {
     tandemSize() {
@@ -165,7 +165,7 @@ export default {
     },
     isAdmin() {
       return roleUtil.isAdmin(this.$auth);
-    }
-  }
+    },
+  },
 };
 </script>

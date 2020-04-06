@@ -7,7 +7,7 @@
         require('../assets/tandem-background.jpeg') +
         ')',
       backgroundSize: 'cover',
-      height: '100%'
+      height: '100%',
     }"
   >
     <v-alert
@@ -41,7 +41,7 @@ export default {
     },
     getMessage() {
       return this.$route.query.message;
-    }
-  }
+    },
+  },
 };
 </script>

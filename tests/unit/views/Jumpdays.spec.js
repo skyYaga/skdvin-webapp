@@ -16,14 +16,14 @@ describe("Jumpdays.vue", () => {
 
   beforeEach(() => {
     actions = {
-      getJumpdaysAction: jumpersActionMock
+      getJumpdaysAction: jumpersActionMock,
     };
     getters = {
-      getJumpdayByDate: state => date => state.jumpdays
+      getJumpdayByDate: (state) => (date) => state.jumpdays,
     };
     store = new Vuex.Store({
       actions,
-      getters
+      getters,
     });
   });
   it("renders page when authorized", async () => {
@@ -35,8 +35,8 @@ describe("Jumpdays.vue", () => {
       localVue,
       mocks: {
         $auth,
-        $t: msg => msg
-      }
+        $t: (msg) => msg,
+      },
     });
     wrapper.setData({ loading: false, authorized: true });
     await localVue.nextTick();
@@ -52,8 +52,8 @@ describe("Jumpdays.vue", () => {
       localVue,
       mocks: {
         $auth,
-        $t: msg => msg
-      }
+        $t: (msg) => msg,
+      },
     });
     await localVue.nextTick();
     await wrapper.vm.$nextTick();
@@ -67,8 +67,8 @@ describe("Jumpdays.vue", () => {
       localVue,
       mocks: {
         $auth,
-        $t: msg => msg
-      }
+        $t: (msg) => msg,
+      },
     });
     expect(wrapper.text()).toMatch("jumpday.loading");
   });

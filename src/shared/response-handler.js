@@ -1,7 +1,7 @@
-const handleError = error => {
+const handleError = (error) => {
   let localError = {
     success: false,
-    message: error
+    message: error,
   };
   if (error.response?.data?.message) {
     localError.message = error.response.data.message;
@@ -19,5 +19,5 @@ const handleResponse = (response, code) => {
 
 export const responseHandler = {
   handleError,
-  handleResponse
+  handleResponse,
 };

@@ -3,12 +3,12 @@ import { responseHandler } from "./response-handler";
 
 const apiPath = process.env.VUE_APP_API;
 
-const getJumpdays = async function(token) {
+const getJumpdays = async function (token) {
   try {
     const response = await axios.get(apiPath + "/jumpday", {
       headers: {
-        Authorization: `Bearer ${token}` // send the access token through the 'Authorization' header
-      }
+        Authorization: `Bearer ${token}`, // send the access token through the 'Authorization' header
+      },
     });
     return parseList(response);
   } catch (error) {
@@ -19,15 +19,15 @@ const getJumpdays = async function(token) {
   }
 };
 
-const addJumpday = async function(jumpday, token) {
+const addJumpday = async function (jumpday, token) {
   try {
     const response = await axios.post(
       apiPath + "/jumpday",
       createJumpday(jumpday),
       {
         headers: {
-          Authorization: `Bearer ${token}` // send the access token through the 'Authorization' header
-        }
+          Authorization: `Bearer ${token}`, // send the access token through the 'Authorization' header
+        },
       }
     );
     return responseHandler.handleResponse(response, 201);
@@ -36,15 +36,15 @@ const addJumpday = async function(jumpday, token) {
   }
 };
 
-const updateJumpday = async function(jumpday, token) {
+const updateJumpday = async function (jumpday, token) {
   try {
     const response = await axios.put(
       apiPath + "/jumpday/" + jumpday.date,
       jumpday,
       {
         headers: {
-          Authorization: `Bearer ${token}` // send the access token through the 'Authorization' header
-        }
+          Authorization: `Bearer ${token}`, // send the access token through the 'Authorization' header
+        },
       }
     );
     return responseHandler.handleResponse(response, 200);
@@ -53,12 +53,12 @@ const updateJumpday = async function(jumpday, token) {
   }
 };
 
-const deleteJumpday = async function(date, token) {
+const deleteJumpday = async function (date, token) {
   try {
     const response = await axios.delete(apiPath + "/jumpday/" + date, {
       headers: {
-        Authorization: `Bearer ${token}` // send the access token through the 'Authorization' header
-      }
+        Authorization: `Bearer ${token}`, // send the access token through the 'Authorization' header
+      },
     });
     return responseHandler.handleResponse(response, 200);
   } catch (error) {
@@ -66,7 +66,7 @@ const deleteJumpday = async function(date, token) {
   }
 };
 
-const parseList = response => {
+const parseList = (response) => {
   if (response.status !== 200) {
     throw Error(response.message);
   }
@@ -84,16 +84,16 @@ const parseList = response => {
   return list;
 };
 
-const createJumpday = jumpday => {
+const createJumpday = (jumpday) => {
   let newJumpday = {
     date: jumpday.date,
     jumping: jumpday.jumping,
     freeTimes: false,
     slots: [],
     tandemmaster: [],
-    videoflyer: []
+    videoflyer: [],
   };
-  jumpday.slots.forEach(s => {
+  jumpday.slots.forEach((s) => {
     newJumpday.slots.push({
       time: s.time,
       tandemTotal: s.tandemTotal,
@@ -108,7 +108,7 @@ const createJumpday = jumpday => {
       picAndVidBooked: 0,
       picAndVidAvailable: s.picAndVidTotal,
       handcamBooked: 0,
-      handcamAvailable: s.handcamTotal
+      handcamAvailable: s.handcamTotal,
     });
   });
   return newJumpday;
@@ -118,5 +118,5 @@ export const jumpdayService = {
   getJumpdays,
   addJumpday,
   updateJumpday,
-  deleteJumpday
+  deleteJumpday,
 };

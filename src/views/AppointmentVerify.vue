@@ -7,7 +7,7 @@
         require('../assets/tandem-background.jpeg') +
         ')',
       backgroundSize: 'cover',
-      height: '100%'
+      height: '100%',
     }"
   >
     <v-alert :type="alertType">
@@ -27,7 +27,7 @@ export default {
     message: "",
     error: "",
     loaded: false,
-    alertType: "info"
+    alertType: "info",
   }),
   async created() {
     await this.verifyAppointment();
@@ -38,7 +38,7 @@ export default {
     },
     getToken() {
       return this.$route.query.token;
-    }
+    },
   },
   methods: {
     ...mapActions(["verifyAppointmentAction"]),
@@ -46,7 +46,7 @@ export default {
       this.message = this.$t("appointment.verify");
       this.error = await this.verifyAppointmentAction({
         id: this.getId,
-        token: this.getToken
+        token: this.getToken,
       });
 
       this.loaded = true;
@@ -58,7 +58,7 @@ export default {
         this.message = this.$t("appointment.confirmation.error");
         this.alertType = "error";
       }
-    }
-  }
+    },
+  },
 };
 </script>

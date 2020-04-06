@@ -64,8 +64,8 @@
                   v-model="addHour"
                   :items="hours"
                   :rules="[
-                    v => (!!v && v > 0) || $t('rules.timeHasToBeSelected'),
-                    timeExistsRule
+                    (v) => (!!v && v > 0) || $t('rules.timeHasToBeSelected'),
+                    timeExistsRule,
                   ]"
                   label="HH"
                 ></v-select>
@@ -75,8 +75,8 @@
                   v-model="addMinute"
                   :items="minutes"
                   :rules="[
-                    v => !!v || $t('rules.timeHasToBeSelected'),
-                    timeExistsRule
+                    (v) => !!v || $t('rules.timeHasToBeSelected'),
+                    timeExistsRule,
                   ]"
                   label="MM"
                 ></v-select>
@@ -159,7 +159,7 @@ import moment from "moment";
 
 export default {
   props: {
-    jumpday: null
+    jumpday: null,
   },
   data: () => ({
     settings: {},
@@ -178,7 +178,7 @@ export default {
       "17",
       "18",
       "19",
-      "20"
+      "20",
     ], // eslint-disable-line
     minutes: ["00", "15", "30", "45"],
     sequences: ["0:30", "1:00", "1:30", "2:00", "2:30"],
@@ -186,7 +186,7 @@ export default {
     showHint: false,
     hintText: "",
     hintColor: "",
-    valid: false
+    valid: false,
   }),
   created() {
     this.settings = JSON.parse(JSON.stringify(this.getSettings()));
@@ -196,25 +196,25 @@ export default {
     hasBookedAppointments() {
       let count = 0;
       this.jumpday?.slots?.forEach(
-        s =>
+        (s) =>
           typeof s.appointments !== "undefined" &&
           (count = count + s.appointments.length)
       );
       return count > 0;
     },
     counts() {
-      return [...Array(11).keys()].filter(key => key > 0);
+      return [...Array(11).keys()].filter((key) => key > 0);
     },
     countsZero() {
       return [...Array(11).keys()];
-    }
+    },
   },
   methods: {
     ...mapActions([
       "addJumpdayAction",
       "updateJumpdayAction",
       "deleteJumpdayAction",
-      "updateSettingsAction"
+      "updateSettingsAction",
     ]),
     async saveJumpday() {
       this.updating = true;
@@ -224,7 +224,7 @@ export default {
       let newJumpday = {
         date: this.jumpday.date,
         jumping: this.jumpday.jumping,
-        slots: []
+        slots: [],
       };
 
       let currentTime = moment(
@@ -237,7 +237,7 @@ export default {
       );
       let duration = moment.duration({
         hours: this.settings.sequence.split(":")[0],
-        minutes: this.settings.sequence.split(":")[1]
+        minutes: this.settings.sequence.split(":")[1],
       });
 
       while (currentTime.isBefore(endTime)) {
@@ -246,7 +246,7 @@ export default {
           tandemTotal: this.settings.tandem,
           picOrVidTotal: this.settings.picOrVid,
           picAndVidTotal: this.settings.picAndVid,
-          handcamTotal: this.settings.handcam
+          handcamTotal: this.settings.handcam,
         };
         newJumpday.slots.push(slot);
 
@@ -255,7 +255,7 @@ export default {
 
       let result = await this.addJumpdayAction({
         jumpday: newJumpday,
-        token: await this.$auth.getTokenSilently()
+        token: await this.$auth.getTokenSilently(),
       });
       this.onJumpdayChanged(result.payload.date);
       this.updating = false;
@@ -268,7 +268,7 @@ export default {
       this.updating = true;
       let result = await this.updateJumpdayAction({
         jumpday: this.jumpday,
-        token: await this.$auth.getTokenSilently()
+        token: await this.$auth.getTokenSilently(),
       });
       this.onJumpdayChanged(this.jumpday.date);
       this.updating = false;
@@ -289,7 +289,7 @@ export default {
     },
     timeExistsRule() {
       let duplicateSlot = this.jumpday.slots.filter(
-        s =>
+        (s) =>
           s.time ===
           moment(this.addHour + ":" + this.addMinute, "HH:mm").format("HH:mm")
       );
@@ -304,7 +304,7 @@ export default {
           tandemTotal: this.settings.tandem,
           picOrVidTotal: this.settings.picOrVid,
           picAndVidTotal: this.settings.picAndVid,
-          handcamTotal: this.settings.handcam
+          handcamTotal: this.settings.handcam,
         };
         this.jumpday.slots.push(slot);
       }
@@ -313,12 +313,12 @@ export default {
       this.updating = true;
       let result = await this.deleteJumpdayAction({
         date: this.jumpday.date,
-        token: await this.$auth.getTokenSilently()
+        token: await this.$auth.getTokenSilently(),
       });
       this.onJumpdayChanged(this.jumpday.date);
       this.updating = false;
       this.handleHint(result);
-    }
-  }
+    },
+  },
 };
 </script>
