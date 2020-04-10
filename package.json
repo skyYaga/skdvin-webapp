@@ -13,7 +13,7 @@
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.6.5",
     "axios": "^0.19.2",
-    "core-js": "^3.6.4",
+    "core-js": "^3.6.5",
     "moment": "^2.24.0",
     "vue": "^2.6.11",
     "vue-i18n": "^8.16.0",
