@@ -214,12 +214,12 @@ export default {
       "addJumpdayAction",
       "updateJumpdayAction",
       "deleteJumpdayAction",
-      "updateSettingsAction",
+      "updateLocalSettingsAction",
     ]),
     async saveJumpday() {
       this.updating = true;
 
-      this.updateSettingsAction(this.settings);
+      this.updateLocalSettingsAction(this.settings);
 
       let newJumpday = {
         date: this.jumpday.date,

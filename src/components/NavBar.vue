@@ -79,6 +79,18 @@
         </v-list-item>
         <v-list-item
           link
+          v-if="!$auth.loading && $auth.isAuthenticated"
+          to="/settings"
+        >
+          <v-list-item-action>
+            <v-icon>mdi-cog-outline</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>{{ $t("settings.settings") }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item
+          link
           v-if="!$auth.loading && !$auth.isAuthenticated"
           @click="login"
         >

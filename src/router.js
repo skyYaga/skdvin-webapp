@@ -63,5 +63,11 @@ export default new Router({
       component: () => import("./views/Videoflyer.vue"),
       beforeEnter: authGuard,
     },
+    {
+      path: "/settings",
+      name: "settings",
+      component: () => import("./views/Settings.vue"),
+      beforeEnter: authGuard,
+    },
   ],
 });

@@ -66,9 +66,19 @@
   },
   "delete": "Delete",
   "done": "Done",
+  "dropzone": {
+    "dropzone": "Dropzone",
+    "name": "Dropzone name"
+  },
   "email": "Email",
   "error": {
     "occurred": "An error has occurred"
+  },
+  "faq": {
+    "answer": "Anwser",
+    "faq": "FAQ",
+    "number": "Number",
+    "question": "Question"
   },
   "firstName": "First name",
   "from": "From",
@@ -114,6 +124,9 @@
     "info": "For how many of your booked tandem jumps would you like to have photos OR video?<br />Here a second skydiver jumps out of the airplane together with the tandem and takes the shots.",
     "picOrVid": "Picture or video"
   },
+  "pricelist": {
+    "url": "Pricelist URL"
+  },
   "privacyPolicy": {
     "accept": "I accept the {0}",
     "privacyPolicy": "privacy policy"
@@ -146,6 +159,11 @@
   "save": "Save",
   "search": "Search",
   "selectdate": "Select date",
+  "settings": {
+    "admin": "Admin settings",
+    "common": "Common Settings",
+    "settings": "Settings"
+  },
   "sizeMax190": "Size max 1,90 m",
   "slot": {
     "add": "Add slot",

@@ -1,0 +1,53 @@
+import * as axios from "axios";
+import { responseHandler } from "./response-handler";
+
+const apiPath = process.env.VUE_APP_API;
+
+const getSettings = async function (token) {
+  try {
+    const response = await axios.get(apiPath + "/settings", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return responseHandler.handleResponse(response, 200);
+  } catch (error) {
+    return responseHandler.handleError(error);
+  }
+};
+
+const saveSettings = async function (settings, token) {
+  try {
+    const response = await axios.post(apiPath + "/settings", settings, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return responseHandler.handleResponse(response, 201);
+  } catch (error) {
+    return responseHandler.handleError(error);
+  }
+};
+
+const updateSettings = async function (settings, token) {
+  try {
+    const response = await axios.put(
+      apiPath + "/settings/" + settings.id,
+      settings,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return responseHandler.handleResponse(response, 200);
+  } catch (error) {
+    return responseHandler.handleError(error);
+  }
+};
+
+export const settingsService = {
+  getSettings,
+  saveSettings,
+  updateSettings,
+};

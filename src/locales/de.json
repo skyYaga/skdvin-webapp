@@ -66,9 +66,19 @@
   },
   "delete": "Löschen",
   "done": "Erledigt",
+  "dropzone": {
+    "dropzone": "Sprungplatz",
+    "name": "Name des Sprungplatzes"
+  },
   "email": "E-Mail",
   "error": {
     "occurred": "Ein Fehler ist aufgetreten"
+  },
+  "faq": {
+    "answer": "Antwort",
+    "faq": "FAQ",
+    "number": "Nummer",
+    "question": "Frage"
   },
   "firstName": "Vorname",
   "from": "Von",
@@ -114,6 +124,9 @@
     "info": "Für wie viele Ihrer gebuchten Tandemsprünge möchten sie Fotos ODER Video?<br />Hierbei springt ein zweiter Fallschirmspringer mit dem Tandem aus dem Flugzeug und macht die entsprechenden Aufnahmen.",
     "picOrVid": "Foto oder Video"
   },
+  "pricelist": {
+    "url": "URL zur Preisliste"
+  },
   "privacyPolicy": {
     "accept": "Ich akzeptiere die {0}",
     "privacyPolicy": "Datenschutzbestimmungen"
@@ -146,6 +159,11 @@
   "save": "Speichern",
   "search": "Suchen",
   "selectdate": "Datum auswählen",
+  "settings": {
+    "admin": "Admineinstellungen",
+    "common": "Allgemeine Einstellungen",
+    "settings": "Einstellungen"
+  },
   "sizeMax190": "Größe maximal 1,90 m",
   "slot": {
     "add": "Slot hinzufügen",

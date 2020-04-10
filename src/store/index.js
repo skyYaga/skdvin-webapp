@@ -18,12 +18,13 @@ import {
   GET_VIDEOFLYERS,
   DELETE_VIDEOFLYER,
   SET_LOCALE,
-  UPDATE_SETTINGS,
+  UPDATE_LOCAL_SETTINGS,
 } from "./mutation-types";
 import { jumpdayService } from "../shared/jumpday-service";
 import { appointmentService } from "../shared/appointment-service";
 import { tandemmasterService } from "../shared/tandemmaster-service";
 import { videoflyerService } from "../shared/videoflyer-service";
+import { settingsService } from "../shared/settings-service";
 
 Vue.use(Vuex);
 
@@ -117,7 +118,7 @@ const mutations = {
   [SET_LOCALE](state, locale) {
     state.locale = locale;
   },
-  [UPDATE_SETTINGS](state, settings) {
+  [UPDATE_LOCAL_SETTINGS](state, settings) {
     state.settings = settings;
   },
 };
@@ -340,8 +341,20 @@ const actions = {
   setLocaleAction({ commit }, locale) {
     commit(SET_LOCALE, locale);
   },
-  updateSettingsAction({ commit }, settings) {
+  updateLocalSettingsAction({ commit }, settings) {
     commit(UPDATE_SETTINGS, settings);
+  },
+  async getSettingsAction({ commit }, token) {
+    return await settingsService.getSettings(token);
+  },
+  async saveSettingsAction({ commit }, payload) {
+    return await settingsService.saveSettings(payload.settings, payload.token);
+  },
+  async updateSettingsAction({ commit }, payload) {
+    return await settingsService.updateSettings(
+      payload.settings,
+      payload.token
+    );
   },
 };
 
