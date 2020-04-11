@@ -75,6 +75,7 @@
     "occurred": "An error has occurred"
   },
   "faq": {
+    "add": "Add FAQ entry",
     "answer": "Anwser",
     "faq": "FAQ",
     "number": "Number",
@@ -162,6 +163,10 @@
   "settings": {
     "admin": "Admin settings",
     "common": "Common Settings",
+    "save": {
+      "error": "Error saving settings",
+      "successful": "Settings saved successfully"
+    },
     "settings": "Settings"
   },
   "sizeMax190": "Size max 1,90 m",
@@ -226,7 +231,7 @@
   },
   "weightMax90": "Weight max 90 kg",
   "welcome": {
-    "message": "Please enter in the search mask how many tandem jumps and (if desired) additional videos you want to book. <br/>The different options for available videos and photos are explained in the info box that opens when you click on the \"i\" next to each option. <br/>For group bookings of 5 or more people please contact us by mail (<a href=\"mailto:mail@fsz-hassfurt.de\">mail@fsz-hassfurt.de</a>). <br/>If you have any further questions, please check our FAQ or contact us by mail or mobile on 0175-5915833.",
+    "message": "Please enter in the search mask how many tandem jumps and (if desired) additional videos you want to book. {br}The different options for available videos and photos are explained in the info box that opens when you click on the \"i\" next to each option. {br}For group bookings of 5 or more people please contact us by mail ({mail}). {br}If you have any further questions, please check our {faq} or contact us by mail or mobile on 0175-5915833.",
     "title": "Welcome to FSZ Hassfurt e.V."
   },
   "zip": "Zip"

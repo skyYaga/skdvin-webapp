@@ -19,6 +19,7 @@ import {
   DELETE_VIDEOFLYER,
   SET_LOCALE,
   UPDATE_LOCAL_SETTINGS,
+  GET_COMMON_SETTINGS,
 } from "./mutation-types";
 import { jumpdayService } from "../shared/jumpday-service";
 import { appointmentService } from "../shared/appointment-service";
@@ -45,6 +46,12 @@ const state = () => ({
     picAndVid: 0,
     handcam: 0,
     sequence: "1:30",
+  },
+  commonSettings: {
+    dropzone: {
+      name: "",
+      email: "",
+    },
   },
 });
 
@@ -120,6 +127,9 @@ const mutations = {
   },
   [UPDATE_LOCAL_SETTINGS](state, settings) {
     state.settings = settings;
+  },
+  [GET_COMMON_SETTINGS](state, commonSettings) {
+    state.commonSettings = commonSettings;
   },
 };
 
@@ -356,6 +366,10 @@ const actions = {
       payload.token
     );
   },
+  async getCommonSettingsAction({ commit }) {
+    const result = await settingsService.getCommonSettings(this.state.locale);
+    commit(GET_COMMON_SETTINGS, result.payload);
+  },
 };
 
 const getters = {
@@ -363,6 +377,8 @@ const getters = {
   getJumpdayByDate: (state) => (date) =>
     state.jumpdays.find((j) => j.date === date),
   getSettings: (state) => () => state.settings,
+  getFaq: (state) => () => state.commonSettings.faq,
+  getCommonSettings: (state) => () => state.commonSettings,
 };
 
 export default new Vuex.Store({

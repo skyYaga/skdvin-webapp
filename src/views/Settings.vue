@@ -1,5 +1,10 @@
 <template>
-  <v-container fluid
+  <v-container fluid>
+    <v-snackbar :color="hintColor" v-model="showHint" :timeout="5000">
+      {{ hintText }}
+      <v-btn text @click="showHint = false">
+        {{ $t("ok") }}
+      </v-btn> </v-snackbar
     ><v-row
       ><v-col
         ><h1>{{ $t("settings.settings") }}</h1></v-col
@@ -36,6 +41,9 @@ export default {
     CommonSettingsPanel,
   },
   data: () => ({
+    showHint: false,
+    hintText: "",
+    hintColor: "",
     loading: true,
     settings: {
       adminSettings: {
@@ -50,19 +58,14 @@ export default {
       commonSettings: {
         de: {
           dropzone: {
-            name: "Example DZ",
+            name: "Beispiel DZ",
             priceListUrl: "https://example.com",
           },
           faq: [
             {
               id: 1,
-              question: "Example question 1?",
-              answer: "Example answer 1",
-            },
-            {
-              id: 2,
-              question: "Example question 2?",
-              answer: "Example answer 2",
+              question: "Beispielfrage 1?",
+              answer: "Beispielantwort 1",
             },
           ],
         },
@@ -77,11 +80,6 @@ export default {
               question: "Example question 1?",
               answer: "Example answer 1",
             },
-            {
-              id: 2,
-              question: "Example question 2?",
-              answer: "Example answer 2",
-            },
           ],
         },
       },
@@ -93,6 +91,7 @@ export default {
   methods: {
     ...mapActions([
       "getSettingsAction",
+      "getCommonSettingsAction",
       "saveSettingsAction",
       "updateSettingsAction",
     ]),
@@ -105,6 +104,9 @@ export default {
       if (result.payload != null) {
         this.settings = result.payload;
       }
+    },
+    async loadCommonSettings() {
+      await this.getCommonSettingsAction();
     },
     async saveSettings() {
       this.loading = true;
@@ -120,10 +122,22 @@ export default {
           token: await this.$auth.getTokenSilently(),
         });
       }
-      this.loading = false;
       if (result.payload != null) {
         this.settings = result.payload;
       }
+      this.loading = false;
+      this.handleHint(result);
+    },
+    async handleHint(result) {
+      if (result.success) {
+        this.hintText = this.$t("settings.save.successful");
+        this.hintColor = "green";
+        await this.loadCommonSettings();
+      } else {
+        this.hintText = this.$t("settings.save.error");
+        this.hintColor = "red";
+      }
+      this.showHint = true;
     },
   },
 };

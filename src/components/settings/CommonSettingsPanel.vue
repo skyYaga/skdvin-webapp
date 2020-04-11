@@ -27,13 +27,19 @@
                         :label="$t('pricelist.url')"
                       ></v-text-field
                     ></v-col>
+                    <v-col cols="12"
+                      ><v-text-field
+                        v-model="commonSetting.dropzone.email"
+                        :label="$t('email')"
+                      ></v-text-field
+                    ></v-col>
                   </v-row>
                   <v-divider class="ma-10"></v-divider>
                   <h2 class="mb-3">{{ $t("faq.faq") }}</h2>
                   <v-expansion-panels>
                     <v-expansion-panel
-                      v-for="pair in commonSetting.faq"
-                      :key="pair.id"
+                      v-for="(pair, index) in commonSetting.faq"
+                      :key="index"
                     >
                       <v-expansion-panel-header
                         >{{ pair.id }}.
@@ -41,10 +47,10 @@
                       >
                       <v-expansion-panel-content>
                         <v-row>
-                          <v-col cols="2">
-                            <v-text-field
+                          <v-col cols="2"
+                            ><v-text-field
+                              type="number"
                               v-model="pair.id"
-                              :label="$t('faq.number')"
                             ></v-text-field
                           ></v-col>
                           <v-col cols="10">
@@ -53,7 +59,7 @@
                               :label="$t('faq.question')"
                             ></v-text-field
                           ></v-col>
-                          <v-col>
+                          <v-col cols="12">
                             <v-textarea
                               outlined
                               rows="3"
@@ -62,12 +68,24 @@
                               :label="$t('faq.answer')"
                             ></v-textarea></v-col
                         ></v-row>
+                        <v-row
+                          ><v-spacer></v-spacer
+                          ><v-icon @click="deleteFaq(commonSetting.faq, index)"
+                            >mdi-delete</v-icon
+                          ></v-row
+                        >
                       </v-expansion-panel-content>
                     </v-expansion-panel>
-                  </v-expansion-panels> </v-card-text
-              ></v-card>
-            </v-col> </v-row></v-card-text
-      ></v-card>
+                  </v-expansion-panels>
+                  <v-btn class="mt-3" @click="addFaq(commonSetting.faq)">{{
+                    $t("faq.add")
+                  }}</v-btn>
+                </v-card-text></v-card
+              >
+            </v-col>
+          </v-row></v-card-text
+        ></v-card
+      >
     </v-form>
   </v-container>
 </template>
@@ -76,6 +94,14 @@
 export default {
   props: {
     commonSettings: Object,
+  },
+  methods: {
+    addFaq(faq) {
+      faq.push({ id: "", question: "", answer: "" });
+    },
+    deleteFaq(faq, id) {
+      faq.splice(id, 1);
+    },
   },
 };
 </script>
