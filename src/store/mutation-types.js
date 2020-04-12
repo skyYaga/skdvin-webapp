@@ -15,4 +15,5 @@ export const ADD_VIDEOFLYER = "addVideoflyer";
 export const UPDATE_VIDEOFLYER = "updateVideoflyer";
 export const DELETE_VIDEOFLYER = "deleteVideoflyer";
 export const SET_LOCALE = "setLocale";
-export const UPDATE_SETTINGS = "updateSettings";
+export const UPDATE_LOCAL_SETTINGS = "updateLocalSettingsAction";
+export const GET_COMMON_SETTINGS = "getCommonSettingsAction";

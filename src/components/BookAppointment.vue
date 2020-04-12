@@ -4,9 +4,19 @@
       <v-col cols="12" md="5">
         <v-card>
           <v-card-title>{{ $t("welcome.title") }}</v-card-title>
-          <v-card-text
-            class="subtitle-1"
-            v-html="$t('welcome.message')"
+          <v-card-text class="subtitle-1"
+            ><i18n path="welcome.message">
+              <template v-slot:mail
+                ><a :href="commonSettings.dropzone.email">{{
+                  commonSettings.dropzone.email
+                }}</a></template
+              >
+              <template v-slot:faq
+                ><router-link :to="{ name: 'faq' }">{{
+                  $t("faq.faq")
+                }}</router-link></template
+              >
+              <template v-slot:br><br /></template> </i18n
           ></v-card-text>
         </v-card>
       </v-col>
@@ -130,7 +140,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import CustomerDataForm from "./CustomerDataForm";
 import CustomerConfirmationForm from "./CustomerConfirmationForm";
 import AvailableSlotsPanel from "./AvailableSlotsPanel";
@@ -190,6 +200,10 @@ export default {
     InfoDialog,
   },
   computed: {
+    ...mapGetters(["getCommonSettings"]),
+    commonSettings() {
+      return this.getCommonSettings();
+    },
     rules() {
       const rules = [];
 

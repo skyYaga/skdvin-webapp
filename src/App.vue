@@ -34,8 +34,9 @@ import { mapActions } from "vuex";
 export default {
   name: "App",
   components: { NavBar },
-  created() {
+  async created() {
     this.setLocaleAction(this.$i18n.locale);
+    await this.loadCommonSettings();
   },
   data: function () {
     return {
@@ -52,7 +53,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["setLocaleAction"]),
+    ...mapActions(["setLocaleAction", "getCommonSettingsAction"]),
     // Log the user in
     login() {
       this.$auth.loginWithRedirect();
@@ -62,6 +63,9 @@ export default {
       this.$auth.logout({
         returnTo: window.location.origin,
       });
+    },
+    async loadCommonSettings() {
+      await this.getCommonSettingsAction();
     },
   },
 };

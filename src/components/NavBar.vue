@@ -10,6 +10,14 @@
             <v-list-item-title>{{ $t("home") }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-list-item link to="/faq">
+          <v-list-item-action>
+            <v-icon>mdi-frequently-asked-questions</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>{{ $t("faq.faq") }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
         <!-- Check that the SDK client is not currently loading before accessing is methods -->
         <v-list-item
           link
@@ -79,6 +87,18 @@
         </v-list-item>
         <v-list-item
           link
+          v-if="!$auth.loading && $auth.isAuthenticated"
+          to="/settings"
+        >
+          <v-list-item-action>
+            <v-icon>mdi-cog-outline</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>{{ $t("settings.settings") }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item
+          link
           v-if="!$auth.loading && !$auth.isAuthenticated"
           @click="login"
         >
@@ -105,18 +125,31 @@
     </v-navigation-drawer>
     <v-app-bar app color="red" dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title>Fallschirm-Sport-Zentrum Hassfurt e.V.</v-toolbar-title>
+      <v-toolbar-title>{{ getName }}</v-toolbar-title>
     </v-app-bar>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
+
 export default {
   name: "NavBar",
   data: () => ({
-    drawer: false,
+    drawer: true,
   }),
+  computed: {
+    ...mapGetters(["getCommonSettings"]),
+    getName() {
+      let commonSettings = this.getCommonSettings();
+      if (typeof commonSettings.dropzone !== "undefined") {
+        return commonSettings.dropzone.name;
+      }
+      return "";
+    },
+  },
   methods: {
+    ...mapActions(["getCommonSettingsAction"]),
     // Log the user in
     login() {
       this.$auth.loginWithRedirect();

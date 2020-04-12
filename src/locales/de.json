@@ -66,9 +66,20 @@
   },
   "delete": "Löschen",
   "done": "Erledigt",
+  "dropzone": {
+    "dropzone": "Sprungplatz",
+    "name": "Name des Sprungplatzes"
+  },
   "email": "E-Mail",
   "error": {
     "occurred": "Ein Fehler ist aufgetreten"
+  },
+  "faq": {
+    "add": "FAQ Eintrag hinzufügen",
+    "answer": "Antwort",
+    "faq": "FAQ",
+    "number": "Nummer",
+    "question": "Frage"
   },
   "firstName": "Vorname",
   "from": "Von",
@@ -114,6 +125,9 @@
     "info": "Für wie viele Ihrer gebuchten Tandemsprünge möchten sie Fotos ODER Video?<br />Hierbei springt ein zweiter Fallschirmspringer mit dem Tandem aus dem Flugzeug und macht die entsprechenden Aufnahmen.",
     "picOrVid": "Foto oder Video"
   },
+  "pricelist": {
+    "url": "URL zur Preisliste"
+  },
   "privacyPolicy": {
     "accept": "Ich akzeptiere die {0}",
     "privacyPolicy": "Datenschutzbestimmungen"
@@ -146,6 +160,15 @@
   "save": "Speichern",
   "search": "Suchen",
   "selectdate": "Datum auswählen",
+  "settings": {
+    "admin": "Admineinstellungen",
+    "common": "Allgemeine Einstellungen",
+    "save": {
+      "error": "Fehler beim Speichern der Einstellungen",
+      "successful": "Einstellungen erfolgreich gespeichert"
+    },
+    "settings": "Einstellungen"
+  },
   "sizeMax190": "Größe maximal 1,90 m",
   "slot": {
     "add": "Slot hinzufügen",
@@ -208,7 +231,7 @@
   },
   "weightMax90": "Gewicht maximal 90 kg",
   "welcome": {
-    "message": "Bitte geben Sie in der Suchmaske ein wie viele Tandemsprünge und (falls gewünscht) zusätzliche Videos Sie buchen möchten. <br/>Die verschiedenen Optionen zu verfügbaren Videos und Fotos werden in der Infobox erklärt, die sich öffnet wenn Sie auf das \"i\" neben der jeweiligen Option klicken. <br/>Für Gruppenbuchungen von 5 oder mehr Personen wenden Sie sich bitte per Mail (<a href=\"mailto:mail@fsz-hassfurt.de\">mail@fsz-hassfurt.de</a>) an uns. <br/>Bei weiteren Fragen schauen Sie bitte in unsere FAQ oder kontaktieren Sie uns per Mail oder mobil unter 0175-5915833.",
+    "message": "Bitte geben Sie in der Suchmaske ein wie viele Tandemsprünge und (falls gewünscht) zusätzliche Videos Sie buchen möchten. {br}Die verschiedenen Optionen zu verfügbaren Videos und Fotos werden in der Infobox erklärt, die sich öffnet wenn Sie auf das \"i\" neben der jeweiligen Option klicken. {br}Für Gruppenbuchungen von 5 oder mehr Personen wenden Sie sich bitte per Mail ({mail}) an uns. {br}Bei weiteren Fragen schauen Sie bitte in unsere {faq} oder kontaktieren Sie uns per Mail oder mobil unter 0175-5915833.",
     "title": "Willkommen beim FSZ Hassfurt e.V."
   },
   "zip": "PLZ"
