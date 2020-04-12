@@ -126,6 +126,8 @@
     "picOrVid": "Picture or video"
   },
   "pricelist": {
+    "infos": "For more information on our prices have a look at our",
+    "pricelist": "Price list",
     "url": "Pricelist URL"
   },
   "privacyPolicy": {
@@ -180,6 +182,7 @@
   "tandem": {
     "book": "Book tandem skydive",
     "count": "Tandem count",
+    "info": "Please select how many tandem jumps you would like to book.",
     "tandem": "Tandem",
     "tandems": "Tandems"
   },

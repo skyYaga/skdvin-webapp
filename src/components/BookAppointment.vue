@@ -35,7 +35,11 @@
                 type="number"
                 :disabled="slots !== null && appointment.selectedTime !== null"
                 required
-              >
+                ><InfoDialog
+                  slot="append-outer"
+                  :heading="$t('tandem.tandem')"
+                  :text="$t('tandem.info')"
+                />
               </v-select>
               <v-select
                 v-model="appointment.picOrVid"
