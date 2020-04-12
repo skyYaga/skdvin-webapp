@@ -126,6 +126,8 @@
     "picOrVid": "Foto oder Video"
   },
   "pricelist": {
+    "infos": "Für Informationen zu unseren Preisen schauen Sie bitte in die",
+    "pricelist": "Preisliste",
     "url": "URL zur Preisliste"
   },
   "privacyPolicy": {
@@ -180,6 +182,7 @@
   "tandem": {
     "book": "Tandemsprung buchen",
     "count": "Anzahl Tandemsprünge",
+    "info": "Bitte wählen Sie aus, wie viele Tandemsprünge Sie buchen möchten.",
     "tandem": "Tandem",
     "tandems": "Tandems"
   },

@@ -4,8 +4,14 @@
       ><v-icon v-on="on">mdi-information</v-icon></template
     ><v-card>
       <v-card-title>{{ heading }}</v-card-title>
-      <v-card-text v-html="text"></v-card-text
-      ><v-card-actions
+      <v-card-text
+        ><div v-html="text"></div>
+        <p class="pt-5">
+          {{ $t("pricelist.infos") }}
+          <a :href="pricelist">{{ $t("pricelist.pricelist") }}</a>
+        </p>
+      </v-card-text>
+      <v-card-actions
         ><v-spacer></v-spacer>
         <v-btn color="primary" text @click="dialog = false">
           {{ $t("ok") }}
@@ -16,6 +22,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   props: {
     heading: String,
@@ -24,5 +32,18 @@ export default {
   data: () => ({
     dialog: false,
   }),
+  computed: {
+    ...mapGetters(["getCommonSettings"]),
+    commonSettings() {
+      return this.getCommonSettings();
+    },
+    pricelist() {
+      let commonSettings = this.getCommonSettings();
+      if (typeof commonSettings?.dropzone?.priceListUrl !== "undefined") {
+        return commonSettings.dropzone.priceListUrl;
+      }
+      return "";
+    },
+  },
 };
 </script>
