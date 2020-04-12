@@ -1,15 +1,37 @@
-import { shallowMount } from "@vue/test-utils";
+import { shallowMount, createLocalVue } from "@vue/test-utils";
 import Vuetify from "vuetify";
-import Vue from "vue";
+import Vuex from "vuex";
 import NavBar from "@/components/NavBar.vue";
 
-Vue.use(Vuetify);
+const localVue = createLocalVue();
+
+localVue.use(Vuetify);
+localVue.use(Vuex);
 
 describe("NavBar.vue", () => {
+  let store;
+  let getters;
+
+  beforeEach(() => {
+    getters = {
+      getCommonSettings: (state) => () => {
+        return {
+          dropzone: {
+            name: "Example DZ",
+          },
+        };
+      },
+    };
+    store = new Vuex.Store({
+      getters,
+    });
+  });
   it("shows login button when not authenticated", () => {
     const $auth = { isAuthenticated: false };
     const msg = "login";
     const wrapper = shallowMount(NavBar, {
+      store,
+      localVue,
       stubs: ["router-link", "router-view"],
       mocks: {
         $auth,
@@ -22,6 +44,8 @@ describe("NavBar.vue", () => {
     const $auth = { isAuthenticated: true };
     const msg = "logout";
     const wrapper = shallowMount(NavBar, {
+      store,
+      localVue,
       stubs: ["router-link", "router-view"],
       mocks: {
         $auth,
@@ -33,6 +57,8 @@ describe("NavBar.vue", () => {
   it("displays public menu when not authenticated", () => {
     const $auth = { isAuthenticated: false };
     const wrapper = shallowMount(NavBar, {
+      store,
+      localVue,
       stubs: ["router-link", "router-view"],
       mocks: {
         $auth,
@@ -46,6 +72,8 @@ describe("NavBar.vue", () => {
   it("displays profile menu when authenticated", () => {
     const $auth = { isAuthenticated: true };
     const wrapper = shallowMount(NavBar, {
+      store,
+      localVue,
       stubs: ["router-link", "router-view"],
       mocks: {
         $auth,
