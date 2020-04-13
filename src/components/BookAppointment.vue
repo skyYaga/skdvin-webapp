@@ -7,7 +7,7 @@
           <v-card-text class="subtitle-1"
             ><i18n path="welcome.message">
               <template v-slot:mail
-                ><a :href="commonSettings.dropzone.email">{{
+                ><a :href="'mailto:' + commonSettings.dropzone.email">{{
                   commonSettings.dropzone.email
                 }}</a></template
               >
