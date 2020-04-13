@@ -42,6 +42,19 @@ const getVideoflyerDetails = async function (videoflyerId, token) {
   }
 };
 
+const getMeVideoflyer = async function (token) {
+  try {
+    const response = await axios.get(apiPath + "/videoflyer/me", {
+      headers: {
+        Authorization: `Bearer ${token}`, // send the access token through the 'Authorization' header
+      },
+    });
+    return responseHandler.handleResponse(response, 200);
+  } catch (error) {
+    return responseHandler.handleError(error);
+  }
+};
+
 const updateVideoflyer = async function (videoflyer, token) {
   try {
     const response = await axios.put(
@@ -79,7 +92,24 @@ const updateVideoflyerAssigments = async function (videoflyerDetails, token) {
       videoflyerDetails,
       {
         headers: {
-          Authorization: `Bearer ${token}`, // send the access token through the 'Authorization' header
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return responseHandler.handleResponse(response, 200);
+  } catch (error) {
+    return responseHandler.handleError(error);
+  }
+};
+
+const updateMeVideoflyerAssigments = async function (videoflyerDetails, token) {
+  try {
+    const response = await axios.patch(
+      apiPath + "/videoflyer/me/assign",
+      videoflyerDetails,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
         },
       }
     );
@@ -95,5 +125,7 @@ export const videoflyerService = {
   updateVideoflyer,
   deleteVideoflyer,
   getVideoflyerDetails,
+  getMeVideoflyer,
   updateVideoflyerAssigments,
+  updateMeVideoflyerAssigments,
 };

@@ -298,12 +298,20 @@ const actions = {
     );
     return appointment;
   },
+  async getMeTandemmasterAction({ commit }, token) {
+    return await tandemmasterService.getMeTandemmaster(token);
+  },
   async updateTandemmasterAssigmentsAction({ commit }, payload) {
-    const result = await tandemmasterService.updateTandemmasterAssigments(
+    return await tandemmasterService.updateTandemmasterAssigments(
       payload.tandemmasterDetails,
       payload.token
     );
-    return result;
+  },
+  async updateMeTandemmasterAssigmentsAction({ commit }, payload) {
+    return await tandemmasterService.updateMeTandemmasterAssigments(
+      payload.tandemmasterDetails,
+      payload.token
+    );
   },
   async addVideoflyerAction({ commit }, payload) {
     const result = await videoflyerService.addVideoflyer(
@@ -335,18 +343,26 @@ const actions = {
     return result;
   },
   async getVideoflyerDetailsAction({ commit }, payload) {
-    const appointment = await videoflyerService.getVideoflyerDetails(
+    const videoflyer = await videoflyerService.getVideoflyerDetails(
       payload.videoflyerId,
       payload.token
     );
-    return appointment;
+    return videoflyer;
+  },
+  async getMeVideoflyerAction({ commit }, token) {
+    return await videoflyerService.getMeVideoflyer(token);
   },
   async updateVideoflyerAssigmentsAction({ commit }, payload) {
-    const result = await videoflyerService.updateVideoflyerAssigments(
+    return await videoflyerService.updateVideoflyerAssigments(
       payload.videoflyerDetails,
       payload.token
     );
-    return result;
+  },
+  async updateMeVideoflyerAssigmentsAction({ commit }, payload) {
+    return await videoflyerService.updateMeVideoflyerAssigments(
+      payload.videoflyerDetails,
+      payload.token
+    );
   },
   setLocaleAction({ commit }, locale) {
     commit(SET_LOCALE, locale);

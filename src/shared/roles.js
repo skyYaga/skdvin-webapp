@@ -1,4 +1,6 @@
 const ROLE_ADMIN = "ROLE_ADMIN";
+const ROLE_TANDEMMASTER = "ROLE_TANDEMMASTER";
+const ROLE_VIDEOFLYER = "ROLE_VIDEOFLYER";
 
 const hasRole = function (auth, role) {
   if (auth?.user != null && auth.user["https://skdv.in/roles"] !== null) {
@@ -8,11 +10,18 @@ const hasRole = function (auth, role) {
 };
 
 const isAdmin = function (auth) {
-  return this.hasRole(auth, this.ROLE_ADMIN);
+  return this.hasRole(auth, ROLE_ADMIN);
+};
+const isVideoflyer = function (auth) {
+  return this.hasRole(auth, ROLE_VIDEOFLYER);
+};
+const isTandemmaster = function (auth) {
+  return this.hasRole(auth, ROLE_TANDEMMASTER);
 };
 
 export const roleUtil = {
   hasRole,
   isAdmin,
-  ROLE_ADMIN,
+  isVideoflyer,
+  isTandemmaster,
 };

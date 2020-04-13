@@ -138,6 +138,7 @@
   "profile": "Profil",
   "reservationData": "Reservierungsdaten",
   "reset": "Zurücksetzen",
+  "roles": "Rollen",
   "rules": {
     "acceptRegulations": "Sie müssen die Sprungbestimmungen akzeptieren",
     "atLeast1Tandem": "Es muss mindestens 1 Tandemsprung ausgewählt werden",
@@ -196,6 +197,7 @@
       "successful": "Tandemmaster erfolgreich gelöscht"
     },
     "edit": "Tandemmaster bearbeiten",
+    "loadMeError": "Fehler beim Laden der Tandemmasterzuordnung.",
     "loading": "Lade Tandemmaster. Bitte warten...",
     "save": {
       "error": "Fehler beim Speichern des Tandemmasters",
@@ -221,6 +223,7 @@
       "successful": "Videoflyer erfolgreich gelöscht"
     },
     "edit": "Videoflyer bearbeiten",
+    "loadMeError": "Fehler beim Laden der Videoflyerzuordnung.",
     "loading": "Lade Videoflyer. Bitte warten...",
     "save": {
       "error": "Fehler beim Speichern des Videoflyers",

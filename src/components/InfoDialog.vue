@@ -8,7 +8,9 @@
         ><div v-html="text"></div>
         <p class="pt-5">
           {{ $t("pricelist.infos") }}
-          <a :href="pricelist">{{ $t("pricelist.pricelist") }}</a>
+          <a :href="pricelist" target="_blank" rel="noopener noreferrer">{{
+            $t("pricelist.pricelist")
+          }}</a>
         </p>
       </v-card-text>
       <v-card-actions

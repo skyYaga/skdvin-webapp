@@ -18,22 +18,9 @@
             <v-list-item-title>{{ $t("faq.faq") }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <!-- Check that the SDK client is not currently loading before accessing is methods -->
         <v-list-item
           link
-          v-if="!$auth.loading && $auth.isAuthenticated"
-          to="/profile"
-        >
-          <v-list-item-action>
-            <v-icon>mdi-account</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>{{ $t("profile") }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item
-          link
-          v-if="!$auth.loading && $auth.isAuthenticated"
+          v-if="!$auth.loading && $auth.isAuthenticated && isAdmin"
           to="/jumpdays"
         >
           <v-list-item-action>
@@ -45,7 +32,7 @@
         </v-list-item>
         <v-list-item
           link
-          v-if="!$auth.loading && $auth.isAuthenticated"
+          v-if="!$auth.loading && $auth.isAuthenticated && isAdmin"
           to="/appointments"
         >
           <v-list-item-action>
@@ -59,7 +46,7 @@
         </v-list-item>
         <v-list-item
           link
-          v-if="!$auth.loading && $auth.isAuthenticated"
+          v-if="!$auth.loading && $auth.isAuthenticated && isAdmin"
           to="/tandemmaster"
         >
           <v-list-item-action>
@@ -73,7 +60,7 @@
         </v-list-item>
         <v-list-item
           link
-          v-if="!$auth.loading && $auth.isAuthenticated"
+          v-if="!$auth.loading && $auth.isAuthenticated && isAdmin"
           to="/videoflyer"
         >
           <v-list-item-action>
@@ -87,7 +74,7 @@
         </v-list-item>
         <v-list-item
           link
-          v-if="!$auth.loading && $auth.isAuthenticated"
+          v-if="!$auth.loading && $auth.isAuthenticated && isAdmin"
           to="/settings"
         >
           <v-list-item-action>
@@ -95,6 +82,18 @@
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>{{ $t("settings.settings") }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item
+          link
+          v-if="!$auth.loading && $auth.isAuthenticated"
+          to="/profile"
+        >
+          <v-list-item-action>
+            <v-icon>mdi-account</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>{{ $t("profile") }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item
@@ -132,6 +131,7 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import { roleUtil } from "../shared/roles";
 
 export default {
   name: "NavBar",
@@ -146,6 +146,9 @@ export default {
         return commonSettings.dropzone.name;
       }
       return "";
+    },
+    isAdmin() {
+      return roleUtil.isAdmin(this.$auth);
     },
   },
   methods: {

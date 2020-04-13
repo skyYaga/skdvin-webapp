@@ -138,6 +138,7 @@
   "profile": "Profile",
   "reservationData": "Reservation data",
   "reset": "Reset",
+  "roles": "Roles",
   "rules": {
     "acceptRegulations": "You have to accept the skydive regulations",
     "atLeast1Tandem": "You have to select at least 1 tandem",
@@ -196,6 +197,7 @@
       "successful": "Tandemmaster deleted successfully"
     },
     "edit": "Edit Tandemmaster",
+    "loadMeError": "Error loading tandemmaster assignment.",
     "loading": "Loading tandemmaster. Please be patient...",
     "save": {
       "error": "Error saving Tandemmaster",
@@ -221,6 +223,7 @@
       "successful": "Videoflyer deleted successfully"
     },
     "edit": "Edit Videoflyer",
+    "loadMeError": "Error loading videoflyer assignment.",
     "loading": "Loading videoflyer. Please be patient...",
     "save": {
       "error": "Error saving Videoflyer",

@@ -73,6 +73,7 @@ import AssignmentSelectionPanel from "./AssignmentSelectionPanel";
 export default {
   props: {
     tandemmaster: Object,
+    selfAssign: { type: Boolean, default: false },
   },
   components: {
     AssignmentSelectionPanel,
@@ -97,14 +98,21 @@ export default {
     ...mapActions([
       "getTandemmasterDetailsAction",
       "updateTandemmasterAssigmentsAction",
+      "updateMeTandemmasterAssigmentsAction",
     ]),
     async loadTandemmaster() {
       this.message = this.$t("tandemmaster.loading");
-      let result = await this.getTandemmasterDetailsAction({
-        tandemmasterId: this.tandemmaster.id,
-        token: await this.$auth.getTokenSilently(),
-      });
-      this.tandemmasterDetails = result.payload;
+
+      if (this.selfAssign) {
+        this.tandemmasterDetails = this.tandemmaster;
+      } else {
+        let result = await this.getTandemmasterDetailsAction({
+          tandemmasterId: this.tandemmaster.id,
+          token: await this.$auth.getTokenSilently(),
+        });
+        this.tandemmasterDetails = result.payload;
+      }
+
       this.message = "";
     },
     getDate(month) {
@@ -117,10 +125,18 @@ export default {
       return converters.sortedJumpdaysInMonth(this.tandemmasterDetails, month);
     },
     async updateAssignments() {
-      let result = await this.updateTandemmasterAssigmentsAction({
-        tandemmasterDetails: this.tandemmasterDetails,
-        token: await this.$auth.getTokenSilently(),
-      });
+      let result;
+      if (this.selfAssign) {
+        result = await this.updateMeTandemmasterAssigmentsAction({
+          tandemmasterDetails: this.tandemmasterDetails,
+          token: await this.$auth.getTokenSilently(),
+        });
+      } else {
+        result = await this.updateTandemmasterAssigmentsAction({
+          tandemmasterDetails: this.tandemmasterDetails,
+          token: await this.$auth.getTokenSilently(),
+        });
+      }
       if (result.success) {
         this.hintText = this.$t("tandemmaster.update.successful");
         this.hintColor = "green";
