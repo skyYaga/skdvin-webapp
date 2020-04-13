@@ -144,7 +144,7 @@ import { roleUtil } from "../shared/roles";
 export default {
   name: "NavBar",
   data: () => ({
-    drawer: true,
+    drawer: null,
   }),
   computed: {
     ...mapGetters(["getCommonSettings"]),
