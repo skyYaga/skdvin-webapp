@@ -20,7 +20,9 @@
         </v-list-item>
         <v-list-item
           link
-          v-if="!$auth.loading && $auth.isAuthenticated && isAdmin"
+          v-if="
+            !$auth.loading && $auth.isAuthenticated && (isAdmin || isModerator)
+          "
           to="/jumpdays"
         >
           <v-list-item-action>
@@ -32,7 +34,9 @@
         </v-list-item>
         <v-list-item
           link
-          v-if="!$auth.loading && $auth.isAuthenticated && isAdmin"
+          v-if="
+            !$auth.loading && $auth.isAuthenticated && (isAdmin || isModerator)
+          "
           to="/appointments"
         >
           <v-list-item-action>
@@ -46,7 +50,9 @@
         </v-list-item>
         <v-list-item
           link
-          v-if="!$auth.loading && $auth.isAuthenticated && isAdmin"
+          v-if="
+            !$auth.loading && $auth.isAuthenticated && (isAdmin || isModerator)
+          "
           to="/tandemmaster"
         >
           <v-list-item-action>
@@ -60,7 +66,9 @@
         </v-list-item>
         <v-list-item
           link
-          v-if="!$auth.loading && $auth.isAuthenticated && isAdmin"
+          v-if="
+            !$auth.loading && $auth.isAuthenticated && (isAdmin || isModerator)
+          "
           to="/videoflyer"
         >
           <v-list-item-action>
@@ -149,6 +157,9 @@ export default {
     },
     isAdmin() {
       return roleUtil.isAdmin(this.$auth);
+    },
+    isModerator() {
+      return roleUtil.isModerator(this.$auth);
     },
   },
   methods: {

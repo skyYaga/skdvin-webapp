@@ -1,4 +1,5 @@
 const ROLE_ADMIN = "ROLE_ADMIN";
+const ROLE_MODERATOR = "ROLE_MODERATOR";
 const ROLE_TANDEMMASTER = "ROLE_TANDEMMASTER";
 const ROLE_VIDEOFLYER = "ROLE_VIDEOFLYER";
 
@@ -18,10 +19,14 @@ const isVideoflyer = function (auth) {
 const isTandemmaster = function (auth) {
   return this.hasRole(auth, ROLE_TANDEMMASTER);
 };
+const isModerator = function (auth) {
+  return this.hasRole(auth, ROLE_MODERATOR);
+};
 
 export const roleUtil = {
   hasRole,
   isAdmin,
+  isModerator,
   isVideoflyer,
   isTandemmaster,
 };
