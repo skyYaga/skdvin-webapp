@@ -73,6 +73,7 @@ import AssignmentSelectionPanel from "./AssignmentSelectionPanel";
 export default {
   props: {
     videoflyer: Object,
+    selfAssign: { type: Boolean, default: false },
   },
   components: {
     AssignmentSelectionPanel,
@@ -97,14 +98,21 @@ export default {
     ...mapActions([
       "getVideoflyerDetailsAction",
       "updateVideoflyerAssigmentsAction",
+      "updateMeVideoflyerAssigmentsAction",
     ]),
     async loadVideoflyer() {
       this.message = this.$t("videoflyer.loading");
-      let result = await this.getVideoflyerDetailsAction({
-        videoflyerId: this.videoflyer.id,
-        token: await this.$auth.getTokenSilently(),
-      });
-      this.videoflyerDetails = result.payload;
+
+      if (this.selfAssign) {
+        this.videoflyerDetails = this.videoflyer;
+      } else {
+        let result = await this.getVideoflyerDetailsAction({
+          videoflyerId: this.videoflyer.id,
+          token: await this.$auth.getTokenSilently(),
+        });
+        this.videoflyerDetails = result.payload;
+      }
+
       this.message = "";
     },
     getDate(month) {
@@ -117,10 +125,19 @@ export default {
       return converters.sortedJumpdaysInMonth(this.videoflyerDetails, month);
     },
     async updateAssignments() {
-      let result = await this.updateVideoflyerAssigmentsAction({
-        videoflyerDetails: this.videoflyerDetails,
-        token: await this.$auth.getTokenSilently(),
-      });
+      let result;
+      if (this.selfAssign) {
+        result = await this.updateMeVideoflyerAssigmentsAction({
+          videoflyerDetails: this.videoflyerDetails,
+          token: await this.$auth.getTokenSilently(),
+        });
+      } else {
+        result = await this.updateVideoflyerAssigmentsAction({
+          videoflyerDetails: this.videoflyerDetails,
+          token: await this.$auth.getTokenSilently(),
+        });
+      }
+
       if (result.success) {
         this.hintText = this.$t("videoflyer.update.successful");
         this.hintColor = "green";

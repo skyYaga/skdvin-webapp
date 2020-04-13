@@ -16,9 +16,9 @@ describe("Profile.vue", () => {
     const wrapper = shallowMount(Profile, {
       mocks: {
         $auth,
+        $t: (msg) => msg,
       },
     });
-    expect(wrapper.find("h2").text()).toMatch($auth.user.name);
-    expect(wrapper.find("p").text()).toMatch($auth.user.email);
+    expect(wrapper.find("h2").text()).toMatch($auth.user.email);
   });
 });
