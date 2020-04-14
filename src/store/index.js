@@ -368,7 +368,7 @@ const actions = {
     commit(SET_LOCALE, locale);
   },
   updateLocalSettingsAction({ commit }, settings) {
-    commit(UPDATE_SETTINGS, settings);
+    commit(UPDATE_LOCAL_SETTINGS, settings);
   },
   async getSettingsAction({ commit }, token) {
     return await settingsService.getSettings(token);
