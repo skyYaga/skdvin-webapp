@@ -2,12 +2,14 @@
   <v-container>
     <v-row>
       <v-checkbox
+        :readonly="!editable"
         v-model="assignment.assigned"
         :label="$d(getDate(day), 'dateYearMonthDayWeekdayLong')"
       ></v-checkbox
     ></v-row>
     <v-row>
       <v-checkbox
+        :readonly="!editable"
         class="pl-5 mt-n4"
         v-if="assignment.assigned"
         v-model="assignment.allday"
@@ -38,6 +40,8 @@
             ></v-text-field>
           </template>
           <v-time-picker
+            :disabled="!editable"
+            :readonly="!editable"
             v-if="fromPicker"
             v-model="assignment.from"
             min="9:00"
@@ -72,6 +76,8 @@
             ></v-text-field>
           </template>
           <v-time-picker
+            :disabled="!editable"
+            :readonly="!editable"
             v-if="toPicker"
             v-model="assignment.to"
             :min="assignment.from"
@@ -95,6 +101,7 @@ export default {
   props: {
     assignment: Object,
     day: String,
+    editable: { type: Boolean, default: true },
   },
   data: () => ({
     fromPicker: false,
