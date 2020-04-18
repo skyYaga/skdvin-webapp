@@ -190,6 +190,7 @@
   "tandemmaster": {
     "add": "Tandemmaster hinzufügen",
     "assign": "Tandemmaster zuordnen: {firstName} {lastName}",
+    "assignment": "Tandemmasterzuordnung",
     "available": "Verfügbare Tandemmaster",
     "delete": {
       "error": "Fehler beim Löschen des Tandemmasters",
@@ -216,6 +217,7 @@
   "videoflyer": {
     "add": "Videoflyer hinzufügen",
     "assign": "Videoflyer zuordnen: {firstName} {lastName}",
+    "assignment": "Videoflyerzuordnung",
     "available": "Verfügbare Videoflyer",
     "delete": {
       "error": "Fehler beim Löschen des Videoflyer",
