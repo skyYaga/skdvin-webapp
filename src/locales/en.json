@@ -1,4 +1,6 @@
 {
+  "Deutsch": "Deutsch",
+  "English": "English",
   "aboutUs": "About Us",
   "accessdenied": "Oh! Access denied :-(",
   "actions": "Actions",
@@ -86,7 +88,7 @@
   "handcam": {
     "count": "Handcam count",
     "handcam": "Handcam",
-    "info": "For how many of your booked tandem jumps would you like to have a handcam video (inside video)?<br />In this case, the images are taken by the tandem master himself via a camera attached to his hand."
+    "info": "For how many of your booked tandem jumps would you like to have a handcam video (inside video)?<br />In this case, the images are taken by the tandemmaster himself via a camera attached to his hand."
   },
   "home": "Home",
   "imprint": "Imprint",
@@ -108,6 +110,7 @@
     "heading": "Skydive regulations",
     "text": "<li>skydiving is highly dependent on the weather. Therefore, for safety reasons, the final <strong>decision</strong> whether to jump or not lies with the <strong>tandem pilot</strong>.</li><li>Take at <strong>least 2 - 3 hours</strong> for your skydive, because the sequence and operation depend on many factors (weather, ...). In exceptional cases it may take longer. <br />The agreed appointment is only to be understood as a <strong>guideline</strong>. It is also worthwhile to stay the whole day.</li><li> It is essential to note <strong>minimum and maximum dimensions</strong> for passengers. In case of non-compliance there is no claim to the skydive.<ul><li>Minimum height: 140 cm</li><li>Maximum height: 190 cm</li><li>Maximum weight (with clothes!): 90 kg</li><li>Minimum age: 14 years (for minors the signature of <strong>both parents or guardians</strong> is required. The transport contract can also be filled out in advance).</li></ul></li><li>You should not show any <strong>serious bone injuries</strong> within the last 12 months.</li><li>On the day of the jump any influence of <strong>drugs or alcohol is forbidden</strong>.</li><li><strong>No pregnancy</strong> is allowed.</li><li>Please bring <strong>comfortable clothes and sneakers</strong> (without hooks and eyes) with you.</li><li>For safety reasons, it is not possible to jump with your <strong>own equipment</strong> (GoPro, Smartphone, etc.). If you want video/photos, please book this option.</li>"
   },
+  "language": "Language",
   "lastName": "Last name",
   "login": "Log in",
   "logout": "Log out",
@@ -203,7 +206,7 @@
       "error": "Error saving Tandemmaster",
       "successful": "Tandemmaster saved successfully"
     },
-    "tandemmaster": "Tandem master",
+    "tandemmaster": "Tandemmaster",
     "update": {
       "error": "Error updating tandemmaster",
       "successful": "Tandemmaster update successful"

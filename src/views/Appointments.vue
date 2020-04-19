@@ -9,7 +9,9 @@
       </v-row>
     </div>
     <div v-if="!loading && authorized">
-      <v-row dense><h1>Termine</h1></v-row>
+      <v-row dense
+        ><h1>{{ $t("appointment.appointments") }}</h1></v-row
+      >
       <v-row
         ><v-col :lg="4">
           <Calendar
