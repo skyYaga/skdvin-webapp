@@ -193,6 +193,7 @@
   "tandemmaster": {
     "add": "Add Tandemmaster",
     "assign": "Assign Tandemmaster: {firstName} {lastName}",
+    "assignment": "Tandemmaster assignment",
     "available": "Available Tandemmaster",
     "delete": {
       "error": "Error deleting tandemmaster",
@@ -219,6 +220,7 @@
   "videoflyer": {
     "add": "Add Videoflyer",
     "assign": "Assign Videoflyer: {firstName} {lastName}",
+    "assignment": "Videoflyer assignment",
     "available": "Available Videoflyer",
     "delete": {
       "error": "Error deleting videoflyer",

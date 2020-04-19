@@ -17,6 +17,7 @@
         ><TandemmasterAssignPanel
           :tandemmaster="tandemmaster"
           :selfAssign="true"
+          :editable="false"
         ></TandemmasterAssignPanel></v-col
     ></v-row>
     <v-row v-if="!loading && vfError"
@@ -31,6 +32,7 @@
         ><VideoflyerAssignPanel
           :videoflyer="videoflyer"
           :selfAssign="true"
+          :editable="false"
         ></VideoflyerAssignPanel></v-col
     ></v-row>
 

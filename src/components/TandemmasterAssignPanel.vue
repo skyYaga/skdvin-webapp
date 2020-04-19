@@ -9,13 +9,13 @@
     <v-col>
       <v-card>
         <v-card-title>{{
-          $t("tandemmaster.assign", {
+          $t("tandemmaster.assignment", {
             firstName: tandemmaster.firstName,
             lastName: tandemmaster.lastName,
           })
         }}</v-card-title>
         {{ message }}
-        <v-row class="ma-1">
+        <v-row class="ma-1" v-if="editable">
           <v-col
             ><v-btn @click="selectAll">{{ $t("jumpday.selectAll") }}</v-btn>
             <v-btn class="ml-2" @click="selectNone">{{
@@ -43,12 +43,13 @@
                   :key="day"
                   :assignment="tandemmasterDetails.assignments[day]"
                   :day="day"
+                  :editable="editable"
                 >
                 </AssignmentSelectionPanel></v-card-text
             ></v-card>
           </v-col>
         </v-row>
-        <v-row>
+        <v-row v-if="editable">
           <v-spacer></v-spacer>
           <v-btn
             color="primary"
@@ -74,6 +75,7 @@ export default {
   props: {
     tandemmaster: Object,
     selfAssign: { type: Boolean, default: false },
+    editable: { type: Boolean, default: true },
   },
   components: {
     AssignmentSelectionPanel,
