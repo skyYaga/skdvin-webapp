@@ -35,6 +35,7 @@ describe("NavBar.vue", () => {
       stubs: ["router-link", "router-view"],
       mocks: {
         $auth,
+        $i18n: { locale: "de", t: (message) => message },
         $t: (msg) => msg,
       },
     });
@@ -49,6 +50,7 @@ describe("NavBar.vue", () => {
       stubs: ["router-link", "router-view"],
       mocks: {
         $auth,
+        $i18n: { locale: "de", t: (message) => message },
         $t: (msg) => msg,
       },
     });
@@ -62,6 +64,7 @@ describe("NavBar.vue", () => {
       stubs: ["router-link", "router-view"],
       mocks: {
         $auth,
+        $i18n: { locale: "de", t: (message) => message },
         $t: (msg) => msg,
       },
     });
@@ -77,6 +80,7 @@ describe("NavBar.vue", () => {
       stubs: ["router-link", "router-view"],
       mocks: {
         $auth,
+        $i18n: { locale: "de", t: (message) => message },
         $t: (msg) => msg,
       },
     });
