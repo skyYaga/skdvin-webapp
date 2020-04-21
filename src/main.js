@@ -2,6 +2,16 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import * as Sentry from "@sentry/browser";
+import { Vue as VueIntegration } from "@sentry/integrations";
+
+// Setup Sentry integration
+if (process.env.NODE_ENV === "production") {
+  Sentry.init({
+    dsn: process.env.VUE_APP_SENTRY_DSN,
+    integrations: [new VueIntegration({ Vue, attachProps: true })],
+  });
+}
 
 // Import the Auth0 configuration
 let domain = process.env.VUE_APP_AUTH0_DOMAIN;
