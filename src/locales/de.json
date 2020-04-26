@@ -118,6 +118,7 @@
   "lastTime": "Letzte Zeit",
   "login": "Log in",
   "logout": "Log out",
+  "minors": "Minderjährige",
   "name": "Name",
   "notes": "Notizen",
   "ok": "OK",
@@ -228,6 +229,12 @@
   "time": "Uhrzeit",
   "to": "Bis",
   "totalSlots": "Gesamtslots für diesen Termin",
+  "transportationAgreement": {
+    "download": "Formular herunterladen",
+    "transportationAgreement": "Beförderungsvertrag und Haftungsvereinbarung",
+    "url": "URL zu Beförderungsvertrag und Haftungsvereinbarung"
+  },
+  "transportationHint": "Auf dem Beförderungsvertrag, der vor Ort ausgefüllt werden muss, wird die Unterschrift BEIDER Erziehungsberechtigter benötigt! Für den Fall, dass nicht beide Erziehungsberechtigten vor Ort sein werden, kann das Formular im Vorfeld ausgefüllt werden ({url}).",
   "update": "Aktualisieren",
   "videoflyer": {
     "add": "Videoflyer hinzufügen",

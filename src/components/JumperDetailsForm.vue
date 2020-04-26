@@ -62,12 +62,30 @@
           :rules="sizeRules"
         ></v-checkbox></v-col
     ></v-row>
+    <v-row
+      ><v-col
+        ><v-alert v-if="!isAdmin && isMinor" text type="error" prominent>
+          <div class="title">{{ $t("minors") }}</div>
+          <i18n path="transportationHint" tag="div">
+            <template v-slot:url>
+              <a
+                :href="commonSettings.dropzone.transportationAgreementUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                >{{ $t("transportationAgreement.download") }}</a
+              >
+            </template>
+          </i18n>
+        </v-alert></v-col
+      ></v-row
+    >
   </div>
 </template>
 
 <script>
 import moment from "moment";
 import { roleUtil } from "../shared/roles";
+import { mapState } from "vuex";
 
 export default {
   props: {
@@ -112,12 +130,21 @@ export default {
     },
   },
   computed: {
+    ...mapState(["commonSettings"]),
     maxDate14years() {
       return moment()
         .subtract(14, "years")
         .toDate()
         .toISOString()
         .substr(0, 10);
+    },
+    isMinor() {
+      if (this.jumper.dateOfBirth !== "") {
+        if (moment(this.jumper.dateOfBirth).add(18, "y").isAfter(moment())) {
+          return true;
+        }
+      }
+      return false;
     },
     getDate() {
       if (this.jumper.dateOfBirth === "") {
