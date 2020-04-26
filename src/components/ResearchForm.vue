@@ -36,7 +36,7 @@ export default {
     ...mapActions(["getGroupSlotsAction"]),
     async searchGroupSlots() {
       this.loading = true;
-      let result = await this.getGroupSlotsAction({
+      await this.getGroupSlotsAction({
         query: { tandem: this.tandemCount },
         token: await this.$auth.getTokenSilently(),
       });

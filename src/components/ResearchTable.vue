@@ -10,11 +10,11 @@
         <v-simple-table class="my-5"
           ><thead>
             <tr>
-              <th>{{ $t("time") }}</th>
-              <th>{{ $t("tandem.available") }}</th>
-              <th>{{ $t("picOrVid.available") }}</th>
-              <th>{{ $t("picAndVid.available") }}</th>
-              <th>{{ $t("handcam.available") }}</th>
+              <th scope="col">{{ $t("time") }}</th>
+              <th scope="col">{{ $t("tandem.available") }}</th>
+              <th scope="col">{{ $t("picOrVid.available") }}</th>
+              <th scope="col">{{ $t("picAndVid.available") }}</th>
+              <th scope="col">{{ $t("handcam.available") }}</th>
             </tr>
           </thead>
           <tbody>
