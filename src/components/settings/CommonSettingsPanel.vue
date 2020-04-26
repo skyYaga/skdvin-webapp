@@ -29,6 +29,14 @@
                     ></v-col>
                     <v-col cols="12"
                       ><v-text-field
+                        v-model="
+                          commonSetting.dropzone.transportationAgreementUrl
+                        "
+                        :label="$t('transportationAgreement.url')"
+                      ></v-text-field
+                    ></v-col>
+                    <v-col cols="12"
+                      ><v-text-field
                         v-model="commonSetting.dropzone.email"
                         :label="$t('email')"
                       ></v-text-field
