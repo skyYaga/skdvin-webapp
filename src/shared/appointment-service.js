@@ -70,7 +70,7 @@ const getAppointments = async function (date, token) {
   try {
     const response = await axios.get(apiPath + "/appointment/date/" + date, {
       headers: {
-        Authorization: `Bearer ${token}`, // send the access token through the 'Authorization' header
+        Authorization: `Bearer ${token}`,
       },
     });
     return parseList(response);
@@ -88,7 +88,7 @@ const getAppointment = async function (appointmentId, token) {
       apiPath + "/appointment/" + appointmentId,
       {
         headers: {
-          Authorization: `Bearer ${token}`, // send the access token through the 'Authorization' header
+          Authorization: `Bearer ${token}`,
         },
       }
     );
@@ -116,7 +116,7 @@ const updateAppointmentState = async function (
       appointmentState,
       {
         headers: {
-          Authorization: `Bearer ${token}`, // send the access token through the 'Authorization' header
+          Authorization: `Bearer ${token}`,
         },
       }
     );
@@ -134,7 +134,7 @@ const updateAppointment = async function (appointment, token, locale) {
   try {
     const response = await axios.put(apiPath + "/appointment/", appointment, {
       headers: {
-        Authorization: `Bearer ${token}`, // send the access token through the 'Authorization' header
+        Authorization: `Bearer ${token}`,
         "Accept-Language": `${locale}`,
       },
     });
@@ -167,25 +167,28 @@ const deleteAppointment = async function (appointmentId, token, locale) {
       apiPath + "/appointment/" + appointmentId,
       {
         headers: {
-          Authorization: `Bearer ${token}`, // send the access token through the 'Authorization' header
+          Authorization: `Bearer ${token}`,
           "Accept-Language": `${locale}`,
         },
       }
     );
-    if (response.status !== 200) throw Error(response.data.message);
-    if (!response.data.success) {
-      throw Error(response.data.message);
-    }
-    return response.data;
+    return responseHandler.handleResponse(response, 200);
   } catch (error) {
-    error = {
-      success: false,
-      message: error,
-    };
-    if (error.response?.data?.message) {
-      error.message = error.response.data.message;
-    }
-    return error;
+    return responseHandler.handleError(error);
+  }
+};
+
+const getGroupSlots = async function (query, token) {
+  try {
+    const response = await axios.get(apiPath + "/appointment/groupslots", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      params: query,
+    });
+    return responseHandler.handleResponse(response, 200);
+  } catch (error) {
+    return responseHandler.handleError(error);
   }
 };
 
@@ -224,4 +227,5 @@ export const appointmentService = {
   updateAdminAppointment,
   deleteAppointment,
   saveAdminAppointment,
+  getGroupSlots,
 };

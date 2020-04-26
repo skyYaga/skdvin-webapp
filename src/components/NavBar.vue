@@ -82,6 +82,20 @@
         </v-list-item>
         <v-list-item
           link
+          v-if="
+            !$auth.loading && $auth.isAuthenticated && (isAdmin || isModerator)
+          "
+          :to="'/' + this.$i18n.locale + '/research'"
+        >
+          <v-list-item-action>
+            <v-icon>mdi-magnify</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>{{ $t("research.research") }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item
+          link
           v-if="!$auth.loading && $auth.isAuthenticated && isAdmin"
           :to="'/' + this.$i18n.locale + '/settings'"
         >

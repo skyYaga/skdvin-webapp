@@ -9,6 +9,7 @@ import {
   GET_APPOINTMENTS,
   UPDATE_APPOINTMENT_STATE,
   DELETE_APPOINTMENT,
+  GET_GROUP_SLOTS,
   ADD_TANDEMMASTER,
   UPDATE_TANDEMMASTER,
   GET_TANDEMMASTERS,
@@ -36,6 +37,7 @@ const state = () => ({
   tandemmasters: [],
   videoflyers: [],
   locale: null,
+  groupSlots: [],
   settings: {
     startHour: "9",
     startMinute: "30",
@@ -91,6 +93,9 @@ const mutations = {
     );
     state.appointments[index].state = result.appointmentState;
     state.appointments = [...state.appointments];
+  },
+  [GET_GROUP_SLOTS](state, slots) {
+    state.groupSlots = slots;
   },
   [GET_TANDEMMASTERS](state, tandemmasters) {
     state.tandemmasters = tandemmasters;
@@ -261,6 +266,13 @@ const actions = {
       commit(DELETE_APPOINTMENT, payload.appointmentId);
     }
     return result;
+  },
+  async getGroupSlotsAction({ commit }, payload) {
+    const result = await appointmentService.getGroupSlots(
+      payload.query,
+      payload.token
+    );
+    commit(GET_GROUP_SLOTS, result.payload);
   },
   async addTandemmasterAction({ commit }, payload) {
     const result = await tandemmasterService.addTandemmaster(
