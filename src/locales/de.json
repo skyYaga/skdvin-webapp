@@ -1,7 +1,7 @@
 {
   "Deutsch": "Deutsch",
   "English": "English",
-  "aboutUs": "",
+  "aboutUs": "Über uns",
   "accessdenied": "Ups! Zugriff verweigert :-(",
   "actions": "Aktionen",
   "active": "Aktiv",
@@ -50,6 +50,7 @@
   "contactData": "Kontaktdaten",
   "continue": "Weiter",
   "dataVerification": "Datenüberprüfung",
+  "date": "Datum",
   "dateOfBirth": "Geburtsdatum",
   "dateYearMonthDayShort": {
     "day": "2-digit",
@@ -84,8 +85,10 @@
     "question": "Frage"
   },
   "firstName": "Vorname",
+  "firstTime": "Erste Zeit",
   "from": "Von",
   "handcam": {
+    "available": "Handcam Verfügbar",
     "count": "Anzahl Handcam",
     "handcam": "Handcam",
     "info": "Für wie viele Ihrer gebuchten Tandemsprünge möchten sie ein Handcam Video (Inside Video)?<br />Hierbei werden die Aufnahmen vom Tandemmaster selbst über eine an der Hand befestigte Kamera durchgeführt."
@@ -112,6 +115,7 @@
   },
   "language": "Sprache",
   "lastName": "Nachname",
+  "lastTime": "Letzte Zeit",
   "login": "Log in",
   "logout": "Log out",
   "name": "Name",
@@ -119,11 +123,13 @@
   "ok": "OK",
   "operating": "Sprungbetrieb",
   "picAndVid": {
+    "available": "Foto u. Video verfügbar",
     "count": "Anzahl Foto und Video",
     "info": "Für wie viele Ihrer gebuchten Tandemsprünge möchten sie Fotos UND Video?<br />Hierbei springt ein zweiter Fallschirmspringer mit dem Tandem aus dem Flugzeug und macht die entsprechenden Aufnahmen.",
     "picAndVid": "Foto und Video"
   },
   "picOrVid": {
+    "available": "Foto od. Video verfügbar",
     "count": "Anzahl Foto oder Video",
     "info": "Für wie viele Ihrer gebuchten Tandemsprünge möchten sie Fotos ODER Video?<br />Hierbei springt ein zweiter Fallschirmspringer mit dem Tandem aus dem Flugzeug und macht die entsprechenden Aufnahmen.",
     "picOrVid": "Foto oder Video"
@@ -139,6 +145,9 @@
   },
   "privacyStatement": "Datenschutzerklärung",
   "profile": "Profil",
+  "research": {
+    "research": "Recherche"
+  },
   "reservationData": "Reservierungsdaten",
   "reset": "Zurücksetzen",
   "roles": "Rollen",
@@ -180,10 +189,12 @@
     "add": "Slot hinzufügen",
     "available": "Verfügbare Zeitslots",
     "availableAt": "Für diesen Termin am {date} um {time} Uhr zubuchbare Slots",
+    "count": "Anzahl Slots",
     "noFreeFound": "Keine freien Slots gefunden.",
     "searchnew": "Neuen Slot suchen"
   },
   "tandem": {
+    "available": "Tandem verfügbar",
     "book": "Tandemsprung buchen",
     "count": "Anzahl Tandemsprünge",
     "info": "Bitte wählen Sie aus, wie viele Tandemsprünge Sie buchen möchten.",
@@ -214,6 +225,7 @@
     }
   },
   "tel": "Telefon",
+  "time": "Uhrzeit",
   "to": "Bis",
   "totalSlots": "Gesamtslots für diesen Termin",
   "update": "Aktualisieren",

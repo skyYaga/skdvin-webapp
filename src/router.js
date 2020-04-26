@@ -87,6 +87,12 @@ export default new Router({
           beforeEnter: authGuard,
         },
         {
+          path: "research",
+          name: "research",
+          component: () => import("./views/Research.vue"),
+          beforeEnter: authGuard,
+        },
+        {
           path: "settings",
           name: "settings",
           component: () => import("./views/Settings.vue"),

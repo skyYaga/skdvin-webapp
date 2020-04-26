@@ -50,6 +50,7 @@
   "contactData": "Contact data",
   "continue": "Continue",
   "dataVerification": "Data verification",
+  "date": "Date",
   "dateOfBirth": "Date of birth",
   "dateYearMonthDayShort": {
     "day": "2-digit",
@@ -84,8 +85,10 @@
     "question": "Question"
   },
   "firstName": "First name",
+  "firstTime": "First Time",
   "from": "From",
   "handcam": {
+    "available": "Handcam available",
     "count": "Handcam count",
     "handcam": "Handcam",
     "info": "For how many of your booked tandem jumps would you like to have a handcam video (inside video)?<br />In this case, the images are taken by the tandemmaster himself via a camera attached to his hand."
@@ -112,6 +115,7 @@
   },
   "language": "Language",
   "lastName": "Last name",
+  "lastTime": "Last Time",
   "login": "Log in",
   "logout": "Log out",
   "name": "Name",
@@ -119,11 +123,13 @@
   "ok": "OK",
   "operating": "Operating",
   "picAndVid": {
+    "available": "Pic and Vid available",
     "count": "Picture and video count",
     "info": "For how many of your booked tandem jumps would you like to have photos AND video?<br />Here a second skydiver jumps out of the airplane together with the tandem and takes the shots.",
     "picAndVid": "Picture or video"
   },
   "picOrVid": {
+    "available": "Pic or Vid available",
     "count": "Picture or video count",
     "info": "For how many of your booked tandem jumps would you like to have photos OR video?<br />Here a second skydiver jumps out of the airplane together with the tandem and takes the shots.",
     "picOrVid": "Picture or video"
@@ -139,6 +145,9 @@
   },
   "privacyStatement": "Privacy Statement",
   "profile": "Profile",
+  "research": {
+    "research": "Research"
+  },
   "reservationData": "Reservation data",
   "reset": "Reset",
   "roles": "Roles",
@@ -180,10 +189,12 @@
     "add": "Add slot",
     "available": "Available time slots",
     "availableAt": "Available free slots for this booking on {date} at {time}",
+    "count": "Slot Count",
     "noFreeFound": "No free slots found.",
     "searchnew": "Search new slot"
   },
   "tandem": {
+    "available": "Tandem available",
     "book": "Book tandem skydive",
     "count": "Tandem count",
     "info": "Please select how many tandem jumps you would like to book.",
@@ -214,6 +225,7 @@
     }
   },
   "tel": "Phone",
+  "time": "Time",
   "to": "To",
   "totalSlots": "total slots for this appointment",
   "update": "Update",
