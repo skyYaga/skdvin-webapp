@@ -1,18 +1,26 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
+  <v-container
+    fluid
+    :style="{
+      background:
+        'center top no-repeat fixed url(' +
+        require('../assets/tandem-background.jpeg') +
+        ')',
+      backgroundSize: 'cover',
+      height: '100%',
+    }"
+  >
+    <BookAppointment />
+  </v-container>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import BookAppointment from "../components/BookAppointment";
 
 export default {
-  name: "home",
+  name: "Home",
   components: {
-    HelloWorld
-  }
+    BookAppointment,
+  },
 };
 </script>

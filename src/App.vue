@@ -1,31 +1,72 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
-  </div>
+  <v-app>
+    <NavBar />
+    <v-content>
+      <router-view />
+      <v-footer padless
+        ><v-row justify="center" no-gutters>
+          <v-btn
+            v-for="link in links"
+            :key="link.name"
+            :href="link.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            text
+            rounded
+            class="mt-2"
+          >
+            {{ $t(link.name) }}
+          </v-btn>
+          <v-col class="py-2 text-center" cols="12">
+            &copy; {{ new Date().getFullYear() }} —
+            <strong>skdv.in</strong>
+          </v-col>
+        </v-row>
+      </v-footer>
+    </v-content>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-}
+<script>
+import NavBar from "@/components/NavBar";
+import { mapActions } from "vuex";
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+export default {
+  name: "App",
+  components: { NavBar },
+  async created() {
+    this.setLocaleAction(this.$i18n.locale);
+    await this.loadCommonSettings();
+  },
+  data: function () {
+    return {
+      links: [
+        {
+          url: "https://skdv.in/datenschutzerklaerung/",
+          name: "privacyStatement",
+        },
+        {
+          url: "https://skdv.in/impressum/",
+          name: "imprint",
+        },
+      ],
+    };
+  },
+  methods: {
+    ...mapActions(["setLocaleAction", "getCommonSettingsAction"]),
+    // Log the user in
+    login() {
+      this.$auth.loginWithRedirect();
+    },
+    // Log the user out
+    logout() {
+      this.$auth.logout({
+        returnTo: window.location.origin,
+      });
+    },
+    async loadCommonSettings() {
+      await this.getCommonSettingsAction();
+    },
+  },
+};
+</script>

@@ -1,0 +1,268 @@
+{
+  "Deutsch": "Deutsch",
+  "English": "English",
+  "aboutUs": "Über uns",
+  "accessdenied": "Ups! Zugriff verweigert :-(",
+  "actions": "Aktionen",
+  "active": "Aktiv",
+  "additionalBookable": "Slots zusätzlich buchbar",
+  "allDay": "Ganztägig",
+  "almostdone": "Fast geschafft!",
+  "api": {
+    "lang": "de"
+  },
+  "appointment": {
+    "appointment": "Termin",
+    "appointments": "Termine",
+    "booking": {
+      "error": "Leider ist bei der Buchung ein Fehler aufgetreten.<br />Bitte versuchen sie es später erneut.",
+      "success": "Terminbuchung erfolgreich"
+    },
+    "confirmation": {
+      "error": "Fehler beim Bestätigen des Termins.",
+      "message": "Wir haben Ihnen eine E-Mail mit ihren Termindaten geschickt!<br />Bitte bestätigen Sie ihren Termin durch einen Klick auf den Link in der E-Mail!<br />Unbestätigte Termine werden automatisch nach 24 Stunden storniert.",
+      "success": "Termin erfolgreich bestätigt."
+    },
+    "delete": {
+      "error": "Fehler beim Löschen des Termins",
+      "message": "Termin löschen",
+      "question": "Soll der Termin gelöscht werden?"
+    },
+    "details": "Termindetails",
+    "newselected": "Neu gewählter Termin: {date} um {time} Uhr",
+    "overview": {
+      "back": "Zurück zur Terminübersicht"
+    },
+    "update": {
+      "error": "Fehler beim Aktualisieren des Termins",
+      "successful": "Termin erfolgreich aktualisiert"
+    },
+    "verify": "Termin wird verifiziert, bitte warten..."
+  },
+  "back": "Zurück",
+  "book": "Buchen",
+  "bookable": "buchbar",
+  "booking": {
+    "admin": "Adminbuchung"
+  },
+  "cancel": "Abbrechen",
+  "city": "Wohnort",
+  "contactData": "Kontaktdaten",
+  "continue": "Weiter",
+  "dataVerification": "Datenüberprüfung",
+  "date": "Datum",
+  "dateOfBirth": "Geburtsdatum",
+  "dateYearMonthDayShort": {
+    "day": "2-digit",
+    "month": "2-digit",
+    "year": "numeric"
+  },
+  "dateYearMonthDayWeekdayLong": {
+    "day": "2-digit",
+    "month": "2-digit",
+    "weekday": "long",
+    "year": "numeric"
+  },
+  "dateYearMonthLong": {
+    "month": "long",
+    "year": "numeric"
+  },
+  "delete": "Löschen",
+  "done": "Erledigt",
+  "dropzone": {
+    "dropzone": "Sprungplatz",
+    "name": "Name des Sprungplatzes"
+  },
+  "email": "E-Mail",
+  "error": {
+    "occurred": "Ein Fehler ist aufgetreten"
+  },
+  "faq": {
+    "add": "FAQ Eintrag hinzufügen",
+    "answer": "Antwort",
+    "faq": "FAQ",
+    "number": "Nummer",
+    "question": "Frage"
+  },
+  "firstName": "Vorname",
+  "firstTime": "Erste Zeit",
+  "from": "Von",
+  "handcam": {
+    "available": "Handcam Verfügbar",
+    "count": "Anzahl Handcam",
+    "handcam": "Handcam",
+    "info": "Für wie viele Ihrer gebuchten Tandemsprünge möchten sie ein Handcam Video (Inside Video)?<br />Hierbei werden die Aufnahmen vom Tandemmaster selbst über eine an der Hand befestigte Kamera durchgeführt."
+  },
+  "home": "Home",
+  "imprint": "Impressum",
+  "interval": "Intervall",
+  "jumpday": {
+    "delete": "Sprungtag löschen",
+    "jumpdays": "Sprungtage",
+    "loading": "Sprungtage werden geladen. Bitte warten...",
+    "selectAll": "Alle Sprungtage auswählen",
+    "selectNone": "Keine Sprungtage auswählen",
+    "update": {
+      "error": "Fehler beim Aktualisieren des Sprungtags",
+      "successful": "Sprungtag erfolgreich aktualisiert"
+    }
+  },
+  "jumperData": "Springerdaten",
+  "jumpregulations": {
+    "accept": "Die obenstehenden Sprungbestimmungen habe ich gelesen und akzeptiert.",
+    "heading": "Sprungbestimmungen",
+    "text": "<li>Fallschirmspringen ist in hohem Maße vom Wetter abhängig. Deshalb liegt aus Sicherheitsgründen die letzte <strong>Entscheidung</strong>, ob gesprungen wird oder nicht, <strong>beim Tandempiloten</strong>. </li><li>Nehmen Sie sich für Ihren Sprung <strong>mindestens 2 – 3 Stunden Zeit</strong>, da die Sprungreihenfolge und der Sprungbetrieb von vielen Faktoren abhängt (Wetter, …). In Ausnahmefällen kann es auch länger dauern.<br />Der ausgemachte Termin ist lediglich als <strong>Richtwert</strong> zu verstehen. Es lohnt sich auch, den ganzen Tag zu bleiben.</li><li>Unbedingt zu beachten sind <strong>Mindest- und Höchstmaße</strong> für Passagiere. Bei Nichteinhaltung besteht kein Anspruch auf den Sprung.<ul><li>Mindestgröße: 140 cm</li><li>Maximalgröße: 190 cm</li><li>Maximalgewicht (mit Kleidung!): 90 kg</li><li>Mindestalter: 14 Jahre (bei Minderjährigen wird die Unterschrift <strong>beider Erziehungsberechtigten</strong> benötigt. Der Beförderungsvertrag kann dazu auch im Vorfeld ausgefüllt werden.)</li></ul></li><li>Sie sollten <strong>keine schweren Knochenverletzungen</strong> innerhalb der letzten 12 Monate vorweisen.</li><li>Am Sprungtag ist jeglicher Einfluss von <strong>Drogen oder Alkohol tabu</strong>.</li><li>Es darf <strong>keine Schwangerschaft vorliegen</strong>.</li><li>Bitte bringen Sie <strong>bequeme Kleidung und Turnschuhe</strong> (ohne Haken und Ösen) mit.</li><li>Das Aufnehmen des Sprungs mit Ihrer <strong>Ausrüstung</strong> (GoPro, Smartphone, etc.) ist aus Sicherheitsgründen nicht möglich. Wenn Sie Video/Fotos möchten, buchen Sie bitte diese Option mit.</li>"
+  },
+  "language": "Sprache",
+  "lastName": "Nachname",
+  "lastTime": "Letzte Zeit",
+  "login": "Log in",
+  "logout": "Log out",
+  "minors": "Minderjährige",
+  "name": "Name",
+  "notes": "Notizen",
+  "ok": "OK",
+  "operating": "Sprungbetrieb",
+  "picAndVid": {
+    "available": "Foto u. Video verfügbar",
+    "count": "Anzahl Foto und Video",
+    "info": "Für wie viele Ihrer gebuchten Tandemsprünge möchten sie Fotos UND Video?<br />Hierbei springt ein zweiter Fallschirmspringer mit dem Tandem aus dem Flugzeug und macht die entsprechenden Aufnahmen.",
+    "picAndVid": "Foto und Video"
+  },
+  "picOrVid": {
+    "available": "Foto od. Video verfügbar",
+    "count": "Anzahl Foto oder Video",
+    "info": "Für wie viele Ihrer gebuchten Tandemsprünge möchten sie Fotos ODER Video?<br />Hierbei springt ein zweiter Fallschirmspringer mit dem Tandem aus dem Flugzeug und macht die entsprechenden Aufnahmen.",
+    "picOrVid": "Foto oder Video"
+  },
+  "pricelist": {
+    "infos": "Für Informationen zu unseren Preisen schauen Sie bitte in die",
+    "pricelist": "Preisliste",
+    "url": "URL zur Preisliste"
+  },
+  "privacyPolicy": {
+    "accept": "Ich akzeptiere die {0}",
+    "privacyPolicy": "Datenschutzbestimmungen"
+  },
+  "privacyStatement": "Datenschutzerklärung",
+  "profile": "Profil",
+  "research": {
+    "research": "Recherche"
+  },
+  "reservationData": "Reservierungsdaten",
+  "reset": "Zurücksetzen",
+  "roles": "Rollen",
+  "rules": {
+    "acceptRegulations": "Sie müssen die Sprungbestimmungen akzeptieren",
+    "atLeast1Tandem": "Es muss mindestens 1 Tandemsprung ausgewählt werden",
+    "dateOfBirthNeeded": "Geburtsdatum muss angegeben werden",
+    "emailNeeded": "E-Mail wird benötigt",
+    "emailValid": "E-mail muss gültig sein",
+    "fieldHasToBeFilled": "Das Feld muss befüllt werden",
+    "max40Chars": "Wert darf aus maximal 40 Zeichen bestehen",
+    "moreVideoThanTandem": "Mehr Videobuchungen als Tandemsprünge",
+    "notEnoughFreeSlots": "Nicht genügend freie Slots",
+    "privacyPolicy": "Sie müssen die Datenschutzbestimmungen akzeptieren",
+    "size": "Maximalgröße von 1,90m muss eingehalten werden",
+    "slotExists": "Zeitslot existiert bereits",
+    "telNeeded": "Es wird eine Telefonnummer benötigt",
+    "telValid": "Telefonnummer muss gültig sein",
+    "timeHasToBeSelected": "Es muss eine Uhrzeit ausgewählt werden",
+    "weight": "Gewicht inkl. Kleidung darf maximal 90kg betragen",
+    "zip5digit": "PLZ muss 5-stellig sein",
+    "zipNeeded": "PLZ wird benötigt",
+    "zipNumbers": "PLZ darf nur aus Zahlen bestehen"
+  },
+  "save": "Speichern",
+  "search": "Suchen",
+  "selectdate": "Datum auswählen",
+  "settings": {
+    "admin": "Admineinstellungen",
+    "common": "Allgemeine Einstellungen",
+    "save": {
+      "error": "Fehler beim Speichern der Einstellungen",
+      "successful": "Einstellungen erfolgreich gespeichert"
+    },
+    "settings": "Einstellungen"
+  },
+  "sizeMax190": "Größe maximal 1,90 m",
+  "slot": {
+    "add": "Slot hinzufügen",
+    "available": "Verfügbare Zeitslots",
+    "availableAt": "Für diesen Termin am {date} um {time} Uhr zubuchbare Slots",
+    "count": "Anzahl Slots",
+    "noFreeFound": "Keine freien Slots gefunden.",
+    "searchnew": "Neuen Slot suchen"
+  },
+  "tandem": {
+    "available": "Tandem verfügbar",
+    "book": "Tandemsprung buchen",
+    "count": "Anzahl Tandemsprünge",
+    "info": "Bitte wählen Sie aus, wie viele Tandemsprünge Sie buchen möchten.",
+    "tandem": "Tandem",
+    "tandems": "Tandems"
+  },
+  "tandemmaster": {
+    "add": "Tandemmaster hinzufügen",
+    "assign": "Tandemmaster zuordnen: {firstName} {lastName}",
+    "assignment": "Tandemmasterzuordnung",
+    "available": "Verfügbare Tandemmaster",
+    "delete": {
+      "error": "Fehler beim Löschen des Tandemmasters",
+      "question": "Möchten Sie den Tandemmaster {firstName} {lastName} wirklich löschen?",
+      "successful": "Tandemmaster erfolgreich gelöscht"
+    },
+    "edit": "Tandemmaster bearbeiten",
+    "loadMeError": "Fehler beim Laden der Tandemmasterzuordnung.",
+    "loading": "Lade Tandemmaster. Bitte warten...",
+    "save": {
+      "error": "Fehler beim Speichern des Tandemmasters",
+      "successful": "Tandemmaster erfolgreich gespeichert"
+    },
+    "tandemmaster": "Tandemmaster",
+    "update": {
+      "error": "Fehler beim Aktualisieren des Tandemmasters",
+      "successful": "Tandemmaster erfolgreich aktualisiert"
+    }
+  },
+  "tel": "Telefon",
+  "time": "Uhrzeit",
+  "to": "Bis",
+  "totalSlots": "Gesamtslots für diesen Termin",
+  "transportationAgreement": {
+    "download": "Formular herunterladen",
+    "transportationAgreement": "Beförderungsvertrag und Haftungsvereinbarung",
+    "url": "URL zu Beförderungsvertrag und Haftungsvereinbarung"
+  },
+  "transportationHint": "Auf dem Beförderungsvertrag, der vor Ort ausgefüllt werden muss, wird die Unterschrift BEIDER Erziehungsberechtigter benötigt! Für den Fall, dass nicht beide Erziehungsberechtigten vor Ort sein werden, kann das Formular im Vorfeld ausgefüllt werden ({url}).",
+  "update": "Aktualisieren",
+  "videoflyer": {
+    "add": "Videoflyer hinzufügen",
+    "assign": "Videoflyer zuordnen: {firstName} {lastName}",
+    "assignment": "Videoflyerzuordnung",
+    "available": "Verfügbare Videoflyer",
+    "delete": {
+      "error": "Fehler beim Löschen des Videoflyer",
+      "question": "Möchten Sie den Videoflyer {firstName} {lastName} wirklich löschen?",
+      "successful": "Videoflyer erfolgreich gelöscht"
+    },
+    "edit": "Videoflyer bearbeiten",
+    "loadMeError": "Fehler beim Laden der Videoflyerzuordnung.",
+    "loading": "Lade Videoflyer. Bitte warten...",
+    "save": {
+      "error": "Fehler beim Speichern des Videoflyers",
+      "successful": "Videoflyer erfolgreich gespeichert"
+    },
+    "update": {
+      "error": "Fehler beim Aktualisieren des Videoflyers",
+      "successful": "Videoflyer erfolgreich aktualisiert"
+    },
+    "videoflyer": "Videoflyer"
+  },
+  "weightMax90": "Gewicht maximal 90 kg",
+  "welcome": {
+    "message": "Bitte geben Sie in der Suchmaske ein wie viele Tandemsprünge und (falls gewünscht) zusätzliche Videos Sie buchen möchten. {br}Die verschiedenen Optionen zu verfügbaren Videos und Fotos werden in der Infobox erklärt, die sich öffnet wenn Sie auf das \"i\" neben der jeweiligen Option klicken. {br}Für Gruppenbuchungen von 5 oder mehr Personen wenden Sie sich bitte per Mail ({mail}) an uns. {br}Bei weiteren Fragen schauen Sie bitte in unsere {faq} oder kontaktieren Sie uns per Mail oder mobil unter 0175-5915833.",
+    "title": "Willkommen beim FSZ Hassfurt e.V."
+  },
+  "zip": "PLZ"
+}

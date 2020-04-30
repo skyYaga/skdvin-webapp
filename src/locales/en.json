@@ -1,0 +1,268 @@
+{
+  "Deutsch": "Deutsch",
+  "English": "English",
+  "aboutUs": "About Us",
+  "accessdenied": "Oh! Access denied :-(",
+  "actions": "Actions",
+  "active": "Active",
+  "additionalBookable": "additional slots bookable",
+  "allDay": "All-day",
+  "almostdone": "Almost done!",
+  "api": {
+    "lang": "en"
+  },
+  "appointment": {
+    "appointment": "Appointment",
+    "appointments": "Appointments",
+    "booking": {
+      "error": "Unfortunately an error occurred during the booking.<br />Please try again later.",
+      "success": "Booking successful"
+    },
+    "confirmation": {
+      "error": "There was an error confirming the appointment.",
+      "message": "We have sent you an e-mail with your appointment data!<br />Please confirm your appointment by clicking on the link in the e-mail!<br />Unconfirmed appointments are automatically cancelled after 24 hours.",
+      "success": "Appointment confirmed successfully."
+    },
+    "delete": {
+      "error": "Error deleting appointment",
+      "message": "Delete appointment",
+      "question": "Should the appointment be deleted?"
+    },
+    "details": "Appointment details",
+    "newselected": "New selected appointment: {date} at {time}",
+    "overview": {
+      "back": "Back to appointment overview"
+    },
+    "update": {
+      "error": "Error updating the appointment",
+      "successful": "Error updated successfully"
+    },
+    "verify": "Verifying appointment, please be patient..."
+  },
+  "back": "Back",
+  "book": "Book",
+  "bookable": "bookable",
+  "booking": {
+    "admin": "Admin booking"
+  },
+  "cancel": "Cancel",
+  "city": "City",
+  "contactData": "Contact data",
+  "continue": "Continue",
+  "dataVerification": "Data verification",
+  "date": "Date",
+  "dateOfBirth": "Date of birth",
+  "dateYearMonthDayShort": {
+    "day": "2-digit",
+    "month": "2-digit",
+    "year": "numeric"
+  },
+  "dateYearMonthDayWeekdayLong": {
+    "day": "2-digit",
+    "month": "2-digit",
+    "weekday": "long",
+    "year": "numeric"
+  },
+  "dateYearMonthLong": {
+    "month": "long",
+    "year": "numeric"
+  },
+  "delete": "Delete",
+  "done": "Done",
+  "dropzone": {
+    "dropzone": "Dropzone",
+    "name": "Dropzone name"
+  },
+  "email": "Email",
+  "error": {
+    "occurred": "An error has occurred"
+  },
+  "faq": {
+    "add": "Add FAQ entry",
+    "answer": "Anwser",
+    "faq": "FAQ",
+    "number": "Number",
+    "question": "Question"
+  },
+  "firstName": "First name",
+  "firstTime": "First Time",
+  "from": "From",
+  "handcam": {
+    "available": "Handcam available",
+    "count": "Handcam count",
+    "handcam": "Handcam",
+    "info": "For how many of your booked tandem jumps would you like to have a handcam video (inside video)?<br />In this case, the images are taken by the tandemmaster himself via a camera attached to his hand."
+  },
+  "home": "Home",
+  "imprint": "Imprint",
+  "interval": "Interval",
+  "jumpday": {
+    "delete": "Delete jumpday",
+    "jumpdays": "Jumpdays",
+    "loading": "Loading jumpdays. Please be patient...",
+    "selectAll": "Select all Jumpdays",
+    "selectNone": "Select no Jumpdays",
+    "update": {
+      "error": "Error updating jumpday",
+      "successful": "Jumpday updated successfully"
+    }
+  },
+  "jumperData": "Jumper data",
+  "jumpregulations": {
+    "accept": "I have read and accepted the skydive regulations above.",
+    "heading": "Skydive regulations",
+    "text": "<li>skydiving is highly dependent on the weather. Therefore, for safety reasons, the final <strong>decision</strong> whether to jump or not lies with the <strong>tandem pilot</strong>.</li><li>Take at <strong>least 2 - 3 hours</strong> for your skydive, because the sequence and operation depend on many factors (weather, ...). In exceptional cases it may take longer. <br />The agreed appointment is only to be understood as a <strong>guideline</strong>. It is also worthwhile to stay the whole day.</li><li> It is essential to note <strong>minimum and maximum dimensions</strong> for passengers. In case of non-compliance there is no claim to the skydive.<ul><li>Minimum height: 140 cm</li><li>Maximum height: 190 cm</li><li>Maximum weight (with clothes!): 90 kg</li><li>Minimum age: 14 years (for minors the signature of <strong>both parents or guardians</strong> is required. The transport contract can also be filled out in advance).</li></ul></li><li>You should not show any <strong>serious bone injuries</strong> within the last 12 months.</li><li>On the day of the jump any influence of <strong>drugs or alcohol is forbidden</strong>.</li><li><strong>No pregnancy</strong> is allowed.</li><li>Please bring <strong>comfortable clothes and sneakers</strong> (without hooks and eyes) with you.</li><li>For safety reasons, it is not possible to jump with your <strong>own equipment</strong> (GoPro, Smartphone, etc.). If you want video/photos, please book this option.</li>"
+  },
+  "language": "Language",
+  "lastName": "Last name",
+  "lastTime": "Last Time",
+  "login": "Log in",
+  "logout": "Log out",
+  "minors": "Minors",
+  "name": "Name",
+  "notes": "Notes",
+  "ok": "OK",
+  "operating": "Operating",
+  "picAndVid": {
+    "available": "Pic and Vid available",
+    "count": "Picture and video count",
+    "info": "For how many of your booked tandem jumps would you like to have photos AND video?<br />Here a second skydiver jumps out of the airplane together with the tandem and takes the shots.",
+    "picAndVid": "Picture or video"
+  },
+  "picOrVid": {
+    "available": "Pic or Vid available",
+    "count": "Picture or video count",
+    "info": "For how many of your booked tandem jumps would you like to have photos OR video?<br />Here a second skydiver jumps out of the airplane together with the tandem and takes the shots.",
+    "picOrVid": "Picture or video"
+  },
+  "pricelist": {
+    "infos": "For more information on our prices have a look at our",
+    "pricelist": "Price list",
+    "url": "Pricelist URL"
+  },
+  "privacyPolicy": {
+    "accept": "I accept the {0}",
+    "privacyPolicy": "privacy policy"
+  },
+  "privacyStatement": "Privacy Statement",
+  "profile": "Profile",
+  "research": {
+    "research": "Research"
+  },
+  "reservationData": "Reservation data",
+  "reset": "Reset",
+  "roles": "Roles",
+  "rules": {
+    "acceptRegulations": "You have to accept the skydive regulations",
+    "atLeast1Tandem": "You have to select at least 1 tandem",
+    "dateOfBirthNeeded": "You need to fill out date of birth",
+    "emailNeeded": "Email is needed",
+    "emailValid": "Email has to be vaild",
+    "fieldHasToBeFilled": "Field may not be empty",
+    "max40Chars": "Maximum of 40 characters",
+    "moreVideoThanTandem": "More video bookings than tandem jumps",
+    "notEnoughFreeSlots": "Not enough free slots",
+    "privacyPolicy": "You have to accept our privacy policy",
+    "size": "Maximum size of 1.90m",
+    "slotExists": "Slot already exists",
+    "telNeeded": "A phone number is needed",
+    "telValid": "Phone number has to be valid",
+    "timeHasToBeSelected": "You have to select a time",
+    "weight": "Weight including clothing may not exceed 90kg",
+    "zip5digit": "Zip Code must have 5 digits",
+    "zipNeeded": "Zip code is needed",
+    "zipNumbers": "Zip code may only consist of numbers"
+  },
+  "save": "Save",
+  "search": "Search",
+  "selectdate": "Select date",
+  "settings": {
+    "admin": "Admin settings",
+    "common": "Common Settings",
+    "save": {
+      "error": "Error saving settings",
+      "successful": "Settings saved successfully"
+    },
+    "settings": "Settings"
+  },
+  "sizeMax190": "Size max 1,90 m",
+  "slot": {
+    "add": "Add slot",
+    "available": "Available time slots",
+    "availableAt": "Available free slots for this booking on {date} at {time}",
+    "count": "Slot Count",
+    "noFreeFound": "No free slots found.",
+    "searchnew": "Search new slot"
+  },
+  "tandem": {
+    "available": "Tandem available",
+    "book": "Book tandem skydive",
+    "count": "Tandem count",
+    "info": "Please select how many tandem jumps you would like to book.",
+    "tandem": "Tandem",
+    "tandems": "Tandems"
+  },
+  "tandemmaster": {
+    "add": "Add Tandemmaster",
+    "assign": "Assign Tandemmaster: {firstName} {lastName}",
+    "assignment": "Tandemmaster assignment",
+    "available": "Available Tandemmaster",
+    "delete": {
+      "error": "Error deleting tandemmaster",
+      "question": "Do you really want to delete tandemmaster {firstName} {lastName}?",
+      "successful": "Tandemmaster deleted successfully"
+    },
+    "edit": "Edit Tandemmaster",
+    "loadMeError": "Error loading tandemmaster assignment.",
+    "loading": "Loading tandemmaster. Please be patient...",
+    "save": {
+      "error": "Error saving Tandemmaster",
+      "successful": "Tandemmaster saved successfully"
+    },
+    "tandemmaster": "Tandemmaster",
+    "update": {
+      "error": "Error updating tandemmaster",
+      "successful": "Tandemmaster update successful"
+    }
+  },
+  "tel": "Phone",
+  "time": "Time",
+  "to": "To",
+  "totalSlots": "total slots for this appointment",
+  "transportationAgreement": {
+    "download": "Download form",
+    "transportationAgreement": "transportation and liability agreement",
+    "url": "Transportation and liability agreement URL"
+  },
+  "transportationHint": "On the transportation agreement, which must be filled out on site, the signature of BOTH parents or guardians is required! If not both will be on site, the form can be filled out in advance ({url}).",
+  "update": "Update",
+  "videoflyer": {
+    "add": "Add Videoflyer",
+    "assign": "Assign Videoflyer: {firstName} {lastName}",
+    "assignment": "Videoflyer assignment",
+    "available": "Available Videoflyer",
+    "delete": {
+      "error": "Error deleting videoflyer",
+      "question": "Do you really want to delete videoflyer {firstName} {lastName}?",
+      "successful": "Videoflyer deleted successfully"
+    },
+    "edit": "Edit Videoflyer",
+    "loadMeError": "Error loading videoflyer assignment.",
+    "loading": "Loading videoflyer. Please be patient...",
+    "save": {
+      "error": "Error saving Videoflyer",
+      "successful": "Videoflyer saved successfully"
+    },
+    "update": {
+      "error": "Error updating Videoflyer",
+      "successful": "Videoflyer update successful"
+    },
+    "videoflyer": "Videoflyer"
+  },
+  "weightMax90": "Weight max 90 kg",
+  "welcome": {
+    "message": "Please enter in the search mask how many tandem jumps and (if desired) additional videos you want to book. {br}The different options for available videos and photos are explained in the info box that opens when you click on the \"i\" next to each option. {br}For group bookings of 5 or more people please contact us by mail ({mail}). {br}If you have any further questions, please check our {faq} or contact us by mail or mobile on 0175-5915833.",
+    "title": "Welcome to FSZ Hassfurt e.V."
+  },
+  "zip": "Zip"
+}
