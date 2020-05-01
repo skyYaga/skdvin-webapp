@@ -1,13 +1,8 @@
 <template>
   <v-menu bottom left>
     <template v-slot:activator="{ on }">
-      <v-btn
-        class="subtitle-1 text-capitalize"
-        color="primary"
-        depressed
-        v-on="on"
-      >
-        <v-icon left>mdi-translate</v-icon> {{ longLang($i18n.locale) }}
+      <v-btn :class="buttonClass" color="primary" depressed v-on="on">
+        <v-icon left>mdi-translate</v-icon> {{ conditionalLang($i18n.locale) }}
         <v-icon right>mdi-chevron-down</v-icon>
       </v-btn>
     </template>
@@ -38,6 +33,12 @@ export default {
         (l) => l.toUpperCase() !== selectedLang.toUpperCase()
       );
     },
+    buttonClass() {
+      if (this.$vuetify.breakpoint.name == "xs") {
+        return "subtitle-1";
+      }
+      return "subtitle-1 text-capitalize";
+    },
   },
   methods: {
     ...mapActions(["setLocaleAction", "getCommonSettingsAction"]),
@@ -47,6 +48,19 @@ export default {
       this.setLocaleAction(this.$i18n.locale);
       await this.loadCommonSettings();
       this.$router.push(to.location);
+    },
+    conditionalLang(lang) {
+      if (this.$vuetify.breakpoint.name == "xs") {
+        switch (lang) {
+          case "de":
+            return lang;
+          case "en":
+            return lang;
+          default:
+            return "";
+        }
+      }
+      return this.longLang(lang);
     },
     longLang(lang) {
       if (lang === "de") {
