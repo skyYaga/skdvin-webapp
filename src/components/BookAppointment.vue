@@ -1,9 +1,11 @@
 <template>
-  <v-container fluid>
+  <div>
     <v-row dense>
       <v-col cols="12" md="5">
         <v-card>
-          <v-card-title>{{ $t("welcome.title") }}</v-card-title>
+          <v-card-title>{{
+            $t("welcome.title", { name: commonSettings.dropzone.name })
+          }}</v-card-title>
           <v-card-text class="subtitle-1"
             ><i18n path="welcome.message">
               <template v-slot:mail
@@ -16,8 +18,12 @@
                   $t("faq.faq")
                 }}</router-link></template
               >
-              <template v-slot:br><br /></template> </i18n
-          ></v-card-text>
+              <template v-slot:br><br /></template>
+              <template v-slot:tel>{{
+                commonSettings.dropzone.mobile
+              }}</template></i18n
+            ></v-card-text
+          >
         </v-card>
       </v-col>
     </v-row>
@@ -140,7 +146,7 @@
         </v-card>
       </v-col>
     </v-row>
-  </v-container>
+  </div>
 </template>
 
 <script>
