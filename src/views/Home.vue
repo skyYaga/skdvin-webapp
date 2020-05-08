@@ -10,16 +10,19 @@
       height: '100%',
     }"
   >
+    <HomepageHint />
     <BookAppointment />
   </v-container>
 </template>
 
 <script>
 import BookAppointment from "../components/BookAppointment";
+import HomepageHint from "../components/HomepageHint";
 
 export default {
   name: "Home",
   components: {
+    HomepageHint,
     BookAppointment,
   },
 };

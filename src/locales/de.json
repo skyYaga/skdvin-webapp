@@ -87,6 +87,7 @@
   "firstName": "Vorname",
   "firstTime": "Erste Zeit",
   "from": "Von",
+  "general": "Allgemein",
   "handcam": {
     "available": "Handcam Verfügbar",
     "count": "Anzahl Handcam",
@@ -94,6 +95,10 @@
     "info": "Für wie viele Ihrer gebuchten Tandemsprünge möchten sie ein Handcam Video (Inside Video)?<br />Hierbei werden die Aufnahmen vom Tandemmaster selbst über eine an der Hand befestigte Kamera durchgeführt."
   },
   "home": "Home",
+  "homepageHint": {
+    "hint": "Homepage Hinweis",
+    "title": "Homepage Hinweis Titel"
+  },
   "imprint": "Impressum",
   "interval": "Intervall",
   "jumpday": {
@@ -119,6 +124,7 @@
   "login": "Log in",
   "logout": "Log out",
   "minors": "Minderjährige",
+  "mobile": "Mobil",
   "name": "Name",
   "notes": "Notizen",
   "ok": "OK",
@@ -261,8 +267,8 @@
   },
   "weightMax90": "Gewicht maximal 90 kg",
   "welcome": {
-    "message": "Bitte geben Sie in der Suchmaske ein wie viele Tandemsprünge und (falls gewünscht) zusätzliche Videos Sie buchen möchten. {br}Die verschiedenen Optionen zu verfügbaren Videos und Fotos werden in der Infobox erklärt, die sich öffnet wenn Sie auf das \"i\" neben der jeweiligen Option klicken. {br}Für Gruppenbuchungen von 5 oder mehr Personen wenden Sie sich bitte per Mail ({mail}) an uns. {br}Bei weiteren Fragen schauen Sie bitte in unsere {faq} oder kontaktieren Sie uns per Mail oder mobil unter 0175-5915833.",
-    "title": "Willkommen beim FSZ Hassfurt e.V."
+    "message": "Bitte geben Sie in der Suchmaske ein wie viele Tandemsprünge und (falls gewünscht) zusätzliche Videos Sie buchen möchten. {br}Die verschiedenen Optionen zu verfügbaren Videos und Fotos werden in der Infobox erklärt, die sich öffnet wenn Sie auf das \"i\" neben der jeweiligen Option klicken. {br}Für Gruppenbuchungen von 5 oder mehr Personen wenden Sie sich bitte per Mail ({mail}) an uns. {br}Bei weiteren Fragen schauen Sie bitte in unsere {faq} oder kontaktieren Sie uns per Mail oder mobil unter {tel}.",
+    "title": "Willkommen beim {name}"
   },
   "zip": "PLZ"
 }

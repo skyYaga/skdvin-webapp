@@ -19,7 +19,7 @@
           </v-btn>
           <v-col class="py-2 text-center" cols="12">
             &copy; {{ new Date().getFullYear() }} —
-            <strong>skdv.in</strong>
+            <strong>skdv.in / mydropzone.de</strong>
           </v-col>
         </v-row>
       </v-footer>
@@ -29,7 +29,7 @@
 
 <script>
 import NavBar from "@/components/NavBar";
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 
 export default {
   name: "App",
@@ -37,6 +37,7 @@ export default {
   async created() {
     this.setLocaleAction(this.$i18n.locale);
     await this.loadCommonSettings();
+    document.title = this.commonSettings.dropzone.name;
   },
   data: function () {
     return {
@@ -52,6 +53,7 @@ export default {
       ],
     };
   },
+  computed: { ...mapState(["commonSettings"]) },
   methods: {
     ...mapActions(["setLocaleAction", "getCommonSettingsAction"]),
     // Log the user in
