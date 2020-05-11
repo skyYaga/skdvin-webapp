@@ -26,6 +26,9 @@
 import { mapActions } from "vuex";
 
 export default {
+  created() {
+    this.$vuetify.lang.current = this.$i18n.locale;
+  },
   computed: {
     availableLangs() {
       let selectedLang = this.$i18n.locale;
@@ -45,6 +48,7 @@ export default {
     async changeLocale(lang) {
       const to = this.$router.resolve({ params: { lang } });
       this.$i18n.locale = lang;
+      this.$vuetify.lang.current = lang;
       this.setLocaleAction(this.$i18n.locale);
       await this.loadCommonSettings();
       this.$router.push(to.location);
