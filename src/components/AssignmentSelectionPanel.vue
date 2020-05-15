@@ -2,14 +2,14 @@
   <v-container>
     <v-row>
       <v-checkbox
-        :readonly="!editable"
+        :readonly="!isEditable"
         v-model="assignment.assigned"
         :label="$d(getDate(day), 'dateYearMonthDayWeekdayLong')"
       ></v-checkbox
     ></v-row>
     <v-row>
       <v-checkbox
-        :readonly="!editable"
+        :readonly="!isEditable"
         class="pl-5 mt-n4"
         v-if="assignment.assigned"
         v-model="assignment.allday"
@@ -40,8 +40,8 @@
             ></v-text-field>
           </template>
           <v-time-picker
-            :disabled="!editable"
-            :readonly="!editable"
+            :disabled="!isEditable"
+            :readonly="!isEditable"
             v-if="fromPicker"
             v-model="assignment.from"
             min="9:00"
@@ -76,8 +76,8 @@
             ></v-text-field>
           </template>
           <v-time-picker
-            :disabled="!editable"
-            :readonly="!editable"
+            :disabled="!isEditable"
+            :readonly="!isEditable"
             v-if="toPicker"
             v-model="assignment.to"
             :min="assignment.from"
@@ -102,16 +102,34 @@ export default {
     assignment: Object,
     day: String,
     editable: { type: Boolean, default: true },
+    deleteable: { type: Boolean, default: true },
   },
   data: () => ({
     fromPicker: false,
     toPicker: false,
+    initiallyAssigned: false,
   }),
+  created() {
+    this.initiallyAssigned = this.assignment.assigned;
+  },
   methods: {
     getDate(month) {
       return moment(month).toDate();
     },
     allowedStep: (m) => m % 15 === 0,
+  },
+  computed: {
+    isEditable() {
+      if (this.editable && this.deleteable) {
+        return true;
+      }
+      if (this.editable && !this.deleteable) {
+        if (!this.initiallyAssigned) {
+          return true;
+        }
+      }
+      return false;
+    },
   },
 };
 </script>

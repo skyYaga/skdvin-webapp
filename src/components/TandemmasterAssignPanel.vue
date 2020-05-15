@@ -44,6 +44,7 @@
                   :assignment="tandemmasterDetails.assignments[day]"
                   :day="day"
                   :editable="editable"
+                  :deleteable="deleteable"
                 >
                 </AssignmentSelectionPanel></v-card-text
             ></v-card>
@@ -76,6 +77,7 @@ export default {
     tandemmaster: Object,
     selfAssign: { type: Boolean, default: false },
     editable: { type: Boolean, default: true },
+    deleteable: { type: Boolean, default: true },
   },
   components: {
     AssignmentSelectionPanel,
