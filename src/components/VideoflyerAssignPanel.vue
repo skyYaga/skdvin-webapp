@@ -131,7 +131,6 @@ export default {
     async updateAssignments() {
       let result;
       if (this.selfAssign) {
-        let hasDeletions = this.checkForDeletions();
         result = await this.updateMeVideoflyerAssigmentsAction({
           videoflyerDetails: this.videoflyerDetails,
           token: await this.$auth.getTokenSilently(),
