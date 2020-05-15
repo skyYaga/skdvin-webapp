@@ -91,6 +91,7 @@ export default {
       let result = await this.getMeTandemmasterAction(
         await this.$auth.getTokenSilently()
       );
+
       if (!result.success) {
         this.tmError = true;
       } else {
