@@ -17,7 +17,8 @@
         ><TandemmasterAssignPanel
           :tandemmaster="tandemmaster"
           :selfAssign="true"
-          :editable="false"
+          :editable="true"
+          :deleteable="false"
         ></TandemmasterAssignPanel></v-col
     ></v-row>
     <v-row v-if="!loading && vfError"
@@ -32,7 +33,8 @@
         ><VideoflyerAssignPanel
           :videoflyer="videoflyer"
           :selfAssign="true"
-          :editable="false"
+          :editable="true"
+          :deleteable="false"
         ></VideoflyerAssignPanel></v-col
     ></v-row>
 
@@ -89,6 +91,7 @@ export default {
       let result = await this.getMeTandemmasterAction(
         await this.$auth.getTokenSilently()
       );
+
       if (!result.success) {
         this.tmError = true;
       } else {

@@ -4,7 +4,13 @@ import Vuetify from "vuetify/lib";
 
 Vue.use(Vuetify);
 
+import en from "vuetify/es5/locale/en";
+import de from "vuetify/es5/locale/de";
+
 export default new Vuetify({
+  lang: {
+    locales: { en, de },
+  },
   icons: {
     iconfont: "mdi", // default - only for display purposes
   },
