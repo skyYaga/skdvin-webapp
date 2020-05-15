@@ -44,6 +44,7 @@
                   :assignment="videoflyerDetails.assignments[day]"
                   :day="day"
                   :editable="editable"
+                  :deleteable="deleteable"
                 >
                 </AssignmentSelectionPanel></v-card-text
             ></v-card>
@@ -76,6 +77,7 @@ export default {
     videoflyer: Object,
     selfAssign: { type: Boolean, default: false },
     editable: { type: Boolean, default: true },
+    deleteable: { type: Boolean, default: true },
   },
   components: {
     AssignmentSelectionPanel,
@@ -129,6 +131,7 @@ export default {
     async updateAssignments() {
       let result;
       if (this.selfAssign) {
+        let hasDeletions = this.checkForDeletions();
         result = await this.updateMeVideoflyerAssigmentsAction({
           videoflyerDetails: this.videoflyerDetails,
           token: await this.$auth.getTokenSilently(),
