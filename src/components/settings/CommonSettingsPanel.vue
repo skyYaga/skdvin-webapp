@@ -24,7 +24,7 @@
                     ><v-col cols="12"
                       ><v-text-field
                         v-model="commonSetting.dropzone.email"
-                        :label="$t('email')"
+                        :label="$t('email.email')"
                       ></v-text-field></v-col
                     ><v-col cols="12"
                       ><v-text-field
@@ -35,8 +35,19 @@
                       ><v-text-field
                         v-model="commonSetting.dropzone.mobile"
                         :label="$t('mobile')"
-                      ></v-text-field></v-col
-                    ><v-col cols="12"
+                      ></v-text-field
+                    ></v-col>
+                  </v-row>
+                  <v-divider class="ma-10"></v-divider>
+                  <h2 class="mb-3">{{ $t("settings.system") }}</h2>
+                  <v-row>
+                    <v-col cols="12"
+                      ><v-text-field
+                        v-model="commonSetting.bccMail"
+                        :label="$t('email.bcc')"
+                      ></v-text-field
+                    ></v-col>
+                    <v-col cols="12"
                       ><v-text-field
                         v-model="commonSetting.dropzone.priceListUrl"
                         :label="$t('pricelist.url')"
@@ -50,10 +61,6 @@
                         :label="$t('transportationAgreement.url')"
                       ></v-text-field
                     ></v-col>
-                  </v-row>
-                  <v-divider class="ma-10"></v-divider>
-                  <h2 class="mb-3">{{ $t("general") }}</h2>
-                  <v-row>
                     <v-col cols="12"
                       ><v-text-field
                         v-model="commonSetting.homepageHintTitle"
