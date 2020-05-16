@@ -10,7 +10,9 @@
     <v-col cols="12" md="5">
       <v-alert prominent type="info">
         <h3>{{ commonSettings.homepageHintTitle }}</h3>
-        <div>{{ commonSettings.homepageHint }}</div>
+        <span style="white-space: pre-line;">{{
+          commonSettings.homepageHint
+        }}</span>
       </v-alert>
     </v-col>
   </v-row>
