@@ -67,11 +67,14 @@
                         :label="$t('homepageHint.title')"
                       ></v-text-field
                     ></v-col>
-                    <v-col cols="12"
-                      ><v-text-field
+                    <v-col cols="12">
+                      <v-textarea
+                        outlined
+                        rows="2"
+                        auto-grow
                         v-model="commonSetting.homepageHint"
                         :label="$t('homepageHint.hint')"
-                      ></v-text-field
+                      ></v-textarea
                     ></v-col>
                   </v-row>
                   <v-divider class="ma-10"></v-divider>
