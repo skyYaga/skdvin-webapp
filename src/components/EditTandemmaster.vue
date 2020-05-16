@@ -28,7 +28,7 @@
         ><v-text-field
           v-model="tandemmaster.email"
           type="email"
-          :label="$t('email')"
+          :label="$t('email.email')"
           :rules="emailRules"
         ></v-text-field></v-col
     ></v-row>

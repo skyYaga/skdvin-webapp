@@ -17,8 +17,7 @@
         ><TandemmasterAssignPanel
           :tandemmaster="tandemmaster"
           :selfAssign="true"
-          :editable="true"
-          :deleteable="false"
+          :selfAssignmentMode="commonSettings.selfAssignmentMode"
         ></TandemmasterAssignPanel></v-col
     ></v-row>
     <v-row v-if="!loading && vfError"
@@ -33,8 +32,7 @@
         ><VideoflyerAssignPanel
           :videoflyer="videoflyer"
           :selfAssign="true"
-          :editable="true"
-          :deleteable="false"
+          :selfAssignmentMode="commonSettings.selfAssignmentMode"
         ></VideoflyerAssignPanel></v-col
     ></v-row>
 
@@ -60,7 +58,7 @@
 
 <script>
 import { roleUtil } from "../shared/roles";
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 import VideoflyerAssignPanel from "../components/VideoflyerAssignPanel";
 import TandemmasterAssignPanel from "../components/TandemmasterAssignPanel";
 
@@ -110,6 +108,7 @@ export default {
     },
   },
   computed: {
+    ...mapState(["commonSettings"]),
     isTandemmaster() {
       return roleUtil.isTandemmaster(this.$auth);
     },

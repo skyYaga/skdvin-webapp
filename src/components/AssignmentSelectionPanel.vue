@@ -101,8 +101,8 @@ export default {
   props: {
     assignment: Object,
     day: String,
-    editable: { type: Boolean, default: true },
-    deleteable: { type: Boolean, default: true },
+    selfAssign: { type: Boolean, default: false },
+    selfAssignmentMode: { type: String, default: "" },
   },
   data: () => ({
     fromPicker: false,
@@ -120,10 +120,13 @@ export default {
   },
   computed: {
     isEditable() {
-      if (this.editable && this.deleteable) {
+      if (!this.selfAssign) {
         return true;
       }
-      if (this.editable && !this.deleteable) {
+      if (this.selfAssign && this.selfAssignmentMode === "WRITE_DELETE") {
+        return true;
+      }
+      if (this.selfAssign && this.selfAssignmentMode === "NODELETE") {
         if (!this.initiallyAssigned) {
           return true;
         }

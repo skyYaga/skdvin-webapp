@@ -73,7 +73,10 @@
     "dropzone": "Sprungplatz",
     "name": "Name des Sprungplatzes"
   },
-  "email": "E-Mail",
+  "email": {
+    "bcc": "E-Mail Blindkopie (Bcc)",
+    "email": "E-Mail"
+  },
   "error": {
     "occurred": "Ein Fehler ist aufgetreten"
   },
@@ -182,6 +185,12 @@
   "save": "Speichern",
   "search": "Suchen",
   "selectdate": "Datum auswählen",
+  "selfassignment": {
+    "mode": "Selbstzuordnungsmodus",
+    "nodelete": "Schreiben ohne löschen",
+    "readonly": "Nur Lesen",
+    "write-delete": "Schreiben und löschen"
+  },
   "settings": {
     "admin": "Admineinstellungen",
     "common": "Allgemeine Einstellungen",
@@ -189,7 +198,8 @@
       "error": "Fehler beim Speichern der Einstellungen",
       "successful": "Einstellungen erfolgreich gespeichert"
     },
-    "settings": "Einstellungen"
+    "settings": "Einstellungen",
+    "system": "Systemeinstellungen"
   },
   "sizeMax190": "Größe maximal 1,90 m",
   "slot": {

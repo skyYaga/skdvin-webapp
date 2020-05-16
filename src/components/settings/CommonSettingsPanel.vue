@@ -24,7 +24,7 @@
                     ><v-col cols="12"
                       ><v-text-field
                         v-model="commonSetting.dropzone.email"
-                        :label="$t('email')"
+                        :label="$t('email.email')"
                       ></v-text-field></v-col
                     ><v-col cols="12"
                       ><v-text-field
@@ -35,8 +35,19 @@
                       ><v-text-field
                         v-model="commonSetting.dropzone.mobile"
                         :label="$t('mobile')"
-                      ></v-text-field></v-col
-                    ><v-col cols="12"
+                      ></v-text-field
+                    ></v-col>
+                  </v-row>
+                  <v-divider class="ma-10"></v-divider>
+                  <h2 class="mb-3">{{ $t("settings.system") }}</h2>
+                  <v-row>
+                    <v-col cols="12"
+                      ><v-text-field
+                        v-model="commonSetting.bccMail"
+                        :label="$t('email.bcc')"
+                      ></v-text-field
+                    ></v-col>
+                    <v-col cols="12"
                       ><v-text-field
                         v-model="commonSetting.dropzone.priceListUrl"
                         :label="$t('pricelist.url')"
@@ -50,21 +61,27 @@
                         :label="$t('transportationAgreement.url')"
                       ></v-text-field
                     ></v-col>
-                  </v-row>
-                  <v-divider class="ma-10"></v-divider>
-                  <h2 class="mb-3">{{ $t("general") }}</h2>
-                  <v-row>
                     <v-col cols="12"
                       ><v-text-field
                         v-model="commonSetting.homepageHintTitle"
                         :label="$t('homepageHint.title')"
                       ></v-text-field
                     ></v-col>
-                    <v-col cols="12"
-                      ><v-text-field
+                    <v-col cols="12">
+                      <v-textarea
+                        outlined
+                        rows="2"
+                        auto-grow
                         v-model="commonSetting.homepageHint"
                         :label="$t('homepageHint.hint')"
-                      ></v-text-field
+                      ></v-textarea
+                    ></v-col>
+                    <v-col cols="12">
+                      <v-select
+                        v-model="commonSetting.selfAssignmentMode"
+                        :label="$t('selfassignment.mode')"
+                        :items="selfassignmentItems"
+                      ></v-select
                     ></v-col>
                   </v-row>
                   <v-divider class="ma-10"></v-divider>
@@ -127,6 +144,15 @@
 export default {
   props: {
     commonSettings: Object,
+  },
+  data() {
+    return {
+      selfassignmentItems: [
+        { text: this.$t("selfassignment.readonly"), value: "READONLY" },
+        { text: this.$t("selfassignment.nodelete"), value: "NODELETE" },
+        { text: this.$t("selfassignment.write-delete"), value: "WRITE_DELETE" },
+      ],
+    };
   },
   methods: {
     addFaq(faq) {

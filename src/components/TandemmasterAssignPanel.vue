@@ -43,8 +43,8 @@
                   :key="day"
                   :assignment="tandemmasterDetails.assignments[day]"
                   :day="day"
-                  :editable="editable"
-                  :deleteable="deleteable"
+                  :selfAssign="selfAssign"
+                  :selfAssignmentMode="selfAssignmentMode"
                 >
                 </AssignmentSelectionPanel></v-card-text
             ></v-card>
@@ -76,8 +76,7 @@ export default {
   props: {
     tandemmaster: Object,
     selfAssign: { type: Boolean, default: false },
-    editable: { type: Boolean, default: true },
-    deleteable: { type: Boolean, default: true },
+    selfAssignmentMode: { type: String, default: "" },
   },
   components: {
     AssignmentSelectionPanel,
@@ -97,6 +96,11 @@ export default {
   },
   watch: {
     tandemmaster: "loadTandemmaster",
+  },
+  computed: {
+    editable() {
+      return this.selfAssignmentMode !== "READONLY";
+    },
   },
   methods: {
     ...mapActions([
