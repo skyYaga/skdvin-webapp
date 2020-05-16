@@ -185,6 +185,12 @@
   "save": "Save",
   "search": "Search",
   "selectdate": "Select date",
+  "selfassignment": {
+    "mode": "Selfassignment Mode",
+    "nodelete": "Write without delete",
+    "readonly": "Read-only",
+    "write-delete": "Write and delete"
+  },
   "settings": {
     "admin": "Admin settings",
     "common": "Common Settings",

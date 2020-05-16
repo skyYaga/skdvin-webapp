@@ -76,6 +76,13 @@
                         :label="$t('homepageHint.hint')"
                       ></v-textarea
                     ></v-col>
+                    <v-col cols="12">
+                      <v-select
+                        v-model="commonSetting.selfAssignmentMode"
+                        :label="$t('selfassignment.mode')"
+                        :items="selfassignmentItems"
+                      ></v-select
+                    ></v-col>
                   </v-row>
                   <v-divider class="ma-10"></v-divider>
                   <h2 class="mb-3">{{ $t("faq.faq") }}</h2>
@@ -137,6 +144,15 @@
 export default {
   props: {
     commonSettings: Object,
+  },
+  data() {
+    return {
+      selfassignmentItems: [
+        { text: this.$t("selfassignment.readonly"), value: "READONLY" },
+        { text: this.$t("selfassignment.nodelete"), value: "NODELETE" },
+        { text: this.$t("selfassignment.write-delete"), value: "WRITE_DELETE" },
+      ],
+    };
   },
   methods: {
     addFaq(faq) {

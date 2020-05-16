@@ -185,6 +185,12 @@
   "save": "Speichern",
   "search": "Suchen",
   "selectdate": "Datum auswählen",
+  "selfassignment": {
+    "mode": "Selbstzuordnungsmodus",
+    "nodelete": "Schreiben ohne löschen",
+    "readonly": "Nur Lesen",
+    "write-delete": "Schreiben und löschen"
+  },
   "settings": {
     "admin": "Admineinstellungen",
     "common": "Allgemeine Einstellungen",
