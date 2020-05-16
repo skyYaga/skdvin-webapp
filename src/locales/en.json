@@ -73,7 +73,10 @@
     "dropzone": "Dropzone",
     "name": "Dropzone name"
   },
-  "email": "Email",
+  "email": {
+    "bcc": "Email Blind Carbon Copy (Bcc)",
+    "email": "Email"
+  },
   "error": {
     "occurred": "An error has occurred"
   },
@@ -189,7 +192,8 @@
       "error": "Error saving settings",
       "successful": "Settings saved successfully"
     },
-    "settings": "Settings"
+    "settings": "Settings",
+    "system": "System settings"
   },
   "sizeMax190": "Size max 1,90 m",
   "slot": {

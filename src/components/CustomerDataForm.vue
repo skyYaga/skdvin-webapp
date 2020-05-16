@@ -33,7 +33,7 @@
             ><v-text-field
               v-model="customer.email"
               type="email"
-              :label="$t('email')"
+              :label="$t('email.email')"
               :rules="emailRules"
               required
             ></v-text-field></v-col

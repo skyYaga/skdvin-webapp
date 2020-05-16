@@ -96,7 +96,7 @@ export default {
       headers: [
         { text: this.$t("firstName"), value: "firstName" },
         { text: this.$t("lastName"), value: "lastName" },
-        { text: this.$t("email"), value: "email" },
+        { text: this.$t("email.email"), value: "email" },
         { text: this.$t("tel"), value: "tel" },
         { text: this.$t("handcam.handcam"), value: "handcam" },
         { text: this.$t("actions"), value: "actions", sortable: false },
