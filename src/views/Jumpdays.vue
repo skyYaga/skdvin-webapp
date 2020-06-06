@@ -29,9 +29,11 @@
           ><AvailableVideoflyerPanel :videoflyers="jumpday.videoflyer" /></v-col
       ></v-row>
       <v-row>
-        <v-form>
-          <JumpdayTable :jumpday="jumpday" />
-        </v-form>
+        <v-col :cols="12">
+          <v-form>
+            <JumpdayTable :jumpday="jumpday" />
+          </v-form>
+        </v-col>
       </v-row>
     </div>
     <div v-if="!loading && !authorized">
