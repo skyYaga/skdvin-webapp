@@ -35,7 +35,7 @@
             <v-form ref="form" v-model="valid" :lazy-validation="lazy">
               <v-select
                 v-model="appointment.tandem"
-                :items="items"
+                :items="isAdmin ? itemsAdmin : items"
                 :rules="[(v) => !!v || $t('rules.atLeast1Tandem')]"
                 :label="$t('tandem.count')"
                 type="number"
@@ -49,7 +49,7 @@
               </v-select>
               <v-select
                 v-model="appointment.picOrVid"
-                :items="itemsZero"
+                :items="isAdmin ? itemsAdminZero : itemsZero"
                 :rules="rules"
                 :label="$t('picOrVid.count')"
                 type="number"
@@ -62,7 +62,7 @@
               /></v-select>
               <v-select
                 v-model="appointment.picAndVid"
-                :items="itemsZero"
+                :items="isAdmin ? itemsAdminZero : itemsZero"
                 :rules="rules"
                 :label="$t('picAndVid.count')"
                 :disabled="slots !== null && appointment.selectedTime !== null"
@@ -74,7 +74,7 @@
               /></v-select>
               <v-select
                 v-model="appointment.handcam"
-                :items="itemsZero"
+                :items="isAdmin ? itemsAdminZero : itemsZero"
                 :rules="rules"
                 :label="$t('handcam.count')"
                 :disabled="slots !== null && appointment.selectedTime !== null"
@@ -156,6 +156,7 @@ import CustomerConfirmationForm from "./CustomerConfirmationForm";
 import AvailableSlotsPanel from "./AvailableSlotsPanel";
 import InfoDialog from "./InfoDialog";
 import moment from "moment";
+import { roleUtil } from "../shared/roles";
 
 export default {
   data: () => ({
@@ -195,7 +196,9 @@ export default {
       },
     },
     items: [1, 2, 3, 4, 5],
+    itemsAdmin: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     itemsZero: [0, 1, 2, 3, 4, 5],
+    itemsAdminZero: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     lazy: false,
     slots: null,
     loading: false,
@@ -231,6 +234,9 @@ export default {
       rules.push(allVidsRule);
 
       return rules;
+    },
+    isAdmin() {
+      return roleUtil.isAdmin(this.$auth);
     },
   },
   watch: {
