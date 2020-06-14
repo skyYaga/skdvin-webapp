@@ -4,7 +4,7 @@ const ROLE_TANDEMMASTER = "ROLE_TANDEMMASTER";
 const ROLE_VIDEOFLYER = "ROLE_VIDEOFLYER";
 
 const hasRole = function (auth, role) {
-  if (auth?.user != null && auth.user["https://skdv.in/roles"] !== null) {
+  if (auth?.user != null && auth.user.hasOwnProperty("https://skdv.in/roles")) {
     return auth.user["https://skdv.in/roles"].includes(role);
   }
   return false;
