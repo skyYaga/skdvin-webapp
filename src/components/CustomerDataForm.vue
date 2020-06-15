@@ -68,7 +68,8 @@
               :jumperNum="i"
               v-for="i in tandemSize"
               :key="i"
-              :bookedJumper="getJumperIfAvailable(i)" /></v-col
+              :bookedJumper="getJumperIfAvailable(i)"
+              @onRemoveJumper="removeJumper" /></v-col
         ></v-row>
         <v-textarea
           v-if="isAdmin"
@@ -154,6 +155,10 @@ export default {
         return this.appointment.customer.jumpers[i - 1];
       }
       return null;
+    },
+    removeJumper(i) {
+      this.appointment.customer.jumpers.splice(i - 1, 1);
+      this.appointment.tandem--;
     },
   },
   computed: {

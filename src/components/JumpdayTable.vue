@@ -1,7 +1,7 @@
 <template>
-  <v-container fluid v-if="jumpday.jumping">
+  <div fluid v-if="jumpday.jumping">
     <v-row dense>
-      <v-col :lg="4" v-for="slot in jumpday.slots" :key="slot.time">
+      <v-col :lg="4" :md="6" v-for="slot in jumpday.slots" :key="slot.time">
         <v-card>
           <v-card-title v-text="slot.time"></v-card-title>
 
@@ -78,7 +78,7 @@
         </v-card>
       </v-col>
     </v-row>
-  </v-container>
+  </div>
 </template>
 
 <script>

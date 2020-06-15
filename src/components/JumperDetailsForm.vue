@@ -35,6 +35,11 @@
               v-on="on"
               v-model="getDate"
             >
+              <template v-if="isAdmin" v-slot:append-outer>
+                <v-icon color="red" @click="removeJumper"
+                  >mdi-minus-circle</v-icon
+                >
+              </template>
             </v-text-field>
           </template>
           <v-date-picker
@@ -89,8 +94,8 @@ import { mapState } from "vuex";
 
 export default {
   props: {
-    jumperNum: null,
-    bookedJumper: null,
+    jumperNum: Number,
+    bookedJumper: Object,
   },
   created() {
     if (this.bookedJumper != null) {
@@ -120,6 +125,9 @@ export default {
     menu(val) {
       val && setTimeout(() => (this.$refs.picker.activePicker = "YEAR"));
     },
+    bookedJumper: function (newJumper, oldJumper) {
+      this.jumper = newJumper;
+    },
   },
   methods: {
     save(date) {
@@ -127,6 +135,9 @@ export default {
     },
     getJumper() {
       return this.jumper;
+    },
+    removeJumper() {
+      this.$emit("onRemoveJumper", this.jumperNum);
     },
   },
   computed: {
