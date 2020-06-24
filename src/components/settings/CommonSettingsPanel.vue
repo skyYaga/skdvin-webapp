@@ -77,6 +77,15 @@
                       ></v-textarea
                     ></v-col>
                     <v-col cols="12">
+                      <v-textarea
+                        outlined
+                        rows="2"
+                        auto-grow
+                        v-model="commonSetting.additionalReminderHint"
+                        :label="$t('additionalReminderHint.hint')"
+                      ></v-textarea
+                    ></v-col>
+                    <v-col cols="12">
                       <v-select
                         v-model="commonSetting.selfAssignmentMode"
                         :label="$t('selfassignment.mode')"
