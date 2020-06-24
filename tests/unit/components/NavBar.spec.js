@@ -5,12 +5,12 @@ import NavBar from "@/components/NavBar.vue";
 
 const localVue = createLocalVue();
 
-localVue.use(Vuetify);
 localVue.use(Vuex);
 
 describe("NavBar.vue", () => {
   let store;
   let getters;
+  let vuetify;
 
   beforeEach(() => {
     getters = {
@@ -25,6 +25,7 @@ describe("NavBar.vue", () => {
     store = new Vuex.Store({
       getters,
     });
+    vuetify = new Vuetify();
   });
   it("shows login button when not authenticated", () => {
     const $auth = { isAuthenticated: false };
@@ -32,6 +33,7 @@ describe("NavBar.vue", () => {
     const wrapper = shallowMount(NavBar, {
       store,
       localVue,
+      vuetify,
       stubs: ["router-link", "router-view"],
       mocks: {
         $auth,
@@ -47,6 +49,7 @@ describe("NavBar.vue", () => {
     const wrapper = shallowMount(NavBar, {
       store,
       localVue,
+      vuetify,
       stubs: ["router-link", "router-view"],
       mocks: {
         $auth,
@@ -61,6 +64,7 @@ describe("NavBar.vue", () => {
     const wrapper = shallowMount(NavBar, {
       store,
       localVue,
+      vuetify,
       stubs: ["router-link", "router-view"],
       mocks: {
         $auth,
@@ -69,7 +73,7 @@ describe("NavBar.vue", () => {
       },
     });
     expect(wrapper.html()).not.toContain(
-      "<v-list-item-title-stub>profile</v-list-item-title-stub>"
+      "<v-list-item-title>profile</v-list-item-title>"
     );
   });
   it("displays profile menu when authenticated", () => {
@@ -77,6 +81,7 @@ describe("NavBar.vue", () => {
     const wrapper = shallowMount(NavBar, {
       store,
       localVue,
+      vuetify,
       stubs: ["router-link", "router-view"],
       mocks: {
         $auth,
@@ -85,7 +90,7 @@ describe("NavBar.vue", () => {
       },
     });
     expect(wrapper.html()).toContain(
-      "<v-list-item-title-stub>profile</v-list-item-title-stub>"
+      "<v-list-item-title>profile</v-list-item-title>"
     );
   });
 });
