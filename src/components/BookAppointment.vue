@@ -164,7 +164,7 @@ export default {
     appointment: {
       selectedDate: null,
       selectedTime: null,
-      tandem: null,
+      tandem: 1,
       picOrVid: 0,
       picAndVid: 0,
       handcam: 0,
@@ -181,7 +181,7 @@ export default {
     emptyAppointment: {
       selectedDate: null,
       selectedTime: null,
-      tandem: null,
+      tandem: 1,
       picOrVid: 0,
       picAndVid: 0,
       handcam: 0,
@@ -240,28 +240,25 @@ export default {
     },
   },
   watch: {
-    appointment: {
-      tandem: "validate",
-      picOrVid: "validate",
-      picAndVid: "validate",
-      handcam: "validate",
-    },
+    appointment: "validate",
   },
   methods: {
     ...mapActions(["searchSlotsAction"]),
     async searchForSlots() {
       this.loading = true;
-      let query = {
-        tandem: this.appointment.tandem,
-        picOrVid: this.appointment.picOrVid,
-        picAndVid: this.appointment.picAndVid,
-        handcam: this.appointment.handcam,
-      };
-      this.slots = await this.searchSlotsAction(query);
-      this.slots = this.slots.sort(function (a, b) {
-        return new Date(a.date) - new Date(b.date);
-      });
-      this.showSlotSelection = true;
+      if (this.$refs.form.validate()) {
+        let query = {
+          tandem: this.appointment.tandem,
+          picOrVid: this.appointment.picOrVid,
+          picAndVid: this.appointment.picAndVid,
+          handcam: this.appointment.handcam,
+        };
+        this.slots = await this.searchSlotsAction(query);
+        this.slots = this.slots.sort(function (a, b) {
+          return new Date(a.date) - new Date(b.date);
+        });
+        this.showSlotSelection = true;
+      }
       this.loading = false;
     },
     selectSlot(date, time) {
