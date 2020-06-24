@@ -6,6 +6,9 @@
   "actions": "Actions",
   "active": "Active",
   "additionalBookable": "additional slots bookable",
+  "additionalReminderHint": {
+    "hint": "Additional hint for appointment reminder"
+  },
   "allDay": "All-day",
   "almostdone": "Almost done!",
   "api": {

@@ -99,10 +99,12 @@ export default {
         return this.$route.query.date;
       },
       set: function (date) {
-        this.$router.push({
-          name: "appointments",
-          query: { date },
-        });
+        this.$router
+          .push({
+            name: "appointments",
+            query: { date },
+          })
+          .catch((err) => {});
       },
     },
     getDate() {
