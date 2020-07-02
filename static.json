@@ -4,5 +4,14 @@
   "https_only": true,
   "routes": {
     "/**": "index.html"
+  },
+  "headers": {
+    "/**": {
+      "Content-Security-Policy-Report-Only": "default-src 'self'; report-uri ${VUE_APP_SENTRY_REPORT};",
+      "Referrer-Policy": "no-referrer-when-downgrade",
+      "Strict-Transport-Security": "Strict-Transport-Security: max-age=31536000; includeSubDomains",
+      "X-Content-Type-Options": "nosniff",
+      "X-Frame-Options": "DENY"
+    }
   }
 }
