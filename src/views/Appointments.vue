@@ -17,6 +17,7 @@
           <Calendar
             d-flex
             flex-wrap
+            :date="date"
             @input="menu = false"
             @handleDateSelection="dateSelected"
           /> </v-col

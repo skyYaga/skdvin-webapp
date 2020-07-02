@@ -215,7 +215,21 @@ export default {
   computed: {
     ...mapGetters(["getCommonSettings"]),
     commonSettings() {
-      return this.getCommonSettings();
+      let commonSettings = this.getCommonSettings();
+      if (
+        typeof commonSettings !== "undefined" &&
+        "dropzone" in commonSettings &&
+        "name" in commonSettings.dropzone
+      ) {
+        return commonSettings;
+      }
+      return {
+        dropzone: {
+          name: "",
+          email: "",
+          mobile: "",
+        },
+      };
     },
     rules() {
       const rules = [];

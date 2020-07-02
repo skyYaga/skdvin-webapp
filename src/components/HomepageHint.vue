@@ -1,10 +1,10 @@
 <template>
   <v-row
     v-if="
-      (typeof commonSettings.homepageHintTitle !== 'undefined' &&
+      (typeof commonSettings !== 'undefined' &&
+        'homepageHintTitle' in commonSettings &&
         commonSettings.homepageHintTitle !== '') ||
-      (typeof commonSettings.homepageHintTitle !== 'undefined' &&
-        commonSettings.homepageHint !== '')
+      ('homepageHint' in commonSettings && commonSettings.homepageHint !== '')
     "
   >
     <v-col cols="12" md="5">
