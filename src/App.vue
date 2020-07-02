@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <NavBar />
-    <v-content>
+    <v-main>
       <router-view />
       <v-footer padless
         ><v-row justify="center" no-gutters>
@@ -23,7 +23,7 @@
           </v-col>
         </v-row>
       </v-footer>
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
@@ -37,7 +37,12 @@ export default {
   async created() {
     this.setLocaleAction(this.$i18n.locale);
     await this.loadCommonSettings();
-    document.title = this.commonSettings.dropzone.name;
+    if (
+      typeof this.commonSettings !== "undefined" &&
+      "dropzone" in this.commonSettings
+    ) {
+      document.title = this.commonSettings.dropzone.name;
+    }
   },
   data: function () {
     return {

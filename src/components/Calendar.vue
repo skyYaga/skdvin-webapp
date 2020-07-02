@@ -18,9 +18,15 @@
 
 <script>
 export default {
+  props: {
+    date: {
+      type: String,
+      default: new Date().toISOString().substr(0, 10),
+    },
+  },
   data() {
     return {
-      picker: new Date().toISOString().substr(0, 10),
+      picker: this.date,
       landscape: false,
       reactive: false,
       fullWidth: false,
