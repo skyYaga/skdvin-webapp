@@ -170,7 +170,11 @@ export default {
     ...mapGetters(["getCommonSettings"]),
     getName() {
       let commonSettings = this.getCommonSettings();
-      if (typeof commonSettings.dropzone !== "undefined") {
+      if (
+        typeof commonSettings !== undefined &&
+        "dropzone" in commonSettings &&
+        "name" in commonSettings.dropzone
+      ) {
         return commonSettings.dropzone.name;
       }
       return "";
