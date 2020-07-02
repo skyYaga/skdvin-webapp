@@ -1,7 +1,7 @@
 <template>
   <v-row
     v-if="
-      (typeof commonSettings !== undefined &&
+      (typeof commonSettings !== 'undefined' &&
         'homepageHintTitle' in commonSettings &&
         commonSettings.homepageHintTitle !== '') ||
       ('homepageHint' in commonSettings && commonSettings.homepageHint !== '')

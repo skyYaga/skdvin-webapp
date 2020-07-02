@@ -171,7 +171,7 @@ export default {
     getName() {
       let commonSettings = this.getCommonSettings();
       if (
-        typeof commonSettings !== undefined &&
+        typeof commonSettings !== "undefined" &&
         "dropzone" in commonSettings &&
         "name" in commonSettings.dropzone
       ) {

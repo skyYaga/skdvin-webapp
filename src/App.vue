@@ -38,7 +38,7 @@ export default {
     this.setLocaleAction(this.$i18n.locale);
     await this.loadCommonSettings();
     if (
-      typeof this.commonSettings !== undefined &&
+      typeof this.commonSettings !== "undefined" &&
       "dropzone" in this.commonSettings
     ) {
       document.title = this.commonSettings.dropzone.name;
