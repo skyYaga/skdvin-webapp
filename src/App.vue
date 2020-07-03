@@ -24,6 +24,9 @@
         </v-row>
       </v-footer>
     </v-main>
+    <v-overlay :value="overlay">
+      <v-progress-circular indeterminate size="64"></v-progress-circular>
+    </v-overlay>
   </v-app>
 </template>
 
@@ -35,6 +38,7 @@ export default {
   name: "App",
   components: { NavBar },
   async created() {
+    this.overlay = true;
     this.setLocaleAction(this.$i18n.locale);
     await this.loadCommonSettings();
     if (
@@ -43,9 +47,11 @@ export default {
     ) {
       document.title = this.commonSettings.dropzone.name;
     }
+    this.overlay = false;
   },
   data: function () {
     return {
+      overlay: false,
       links: [
         {
           url: "https://skdv.in/datenschutzerklaerung/",
