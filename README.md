@@ -1,6 +1,6 @@
 # skdvin-webapp
 
-[![Build Status](https://travis-ci.com/skyYaga/skdvin-webapp.svg?branch=develop)](https://travis-ci.com/skyYaga/skdvin-webapp)
+![Node.js CI](https://github.com/skyYaga/skdvin-webapp/workflows/Node.js%20CI/badge.svg)
 [![Known Vulnerabilities](https://snyk.io//test/github/skyYaga/skdvin-webapp/badge.svg?targetFile=package.json)](https://snyk.io//test/github/skyYaga/skdvin-webapp?targetFile=package.json)
 
 ## Project setup
