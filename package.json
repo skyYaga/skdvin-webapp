@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.10.0",
-    "@sentry/apm": "^5.20.0",
     "@sentry/browser": "^5.19.2",
     "@sentry/integrations": "^5.19.2",
     "axios": "^0.19.2",

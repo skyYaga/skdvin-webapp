@@ -4,17 +4,12 @@ import router from "./router";
 import store from "./store";
 import * as Sentry from "@sentry/browser";
 import { Vue as VueIntegration } from "@sentry/integrations";
-import { Integrations } from "@sentry/apm";
 
 // Setup Sentry integration
 if (process.env.NODE_ENV === "production") {
   Sentry.init({
     dsn: process.env.VUE_APP_SENTRY_DSN,
-    integrations: [
-      new Integrations.Tracing(),
-      new VueIntegration({ Vue, attachProps: true, tracing: true }),
-    ],
-    tracesSampleRate: 0.1,
+    integrations: [new VueIntegration({ Vue, attachProps: true })],
   });
 }
 
