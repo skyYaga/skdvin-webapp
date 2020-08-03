@@ -257,7 +257,9 @@ export default {
         jumpday: newJumpday,
         token: await this.$auth.getTokenSilently(),
       });
-      this.onJumpdayChanged(result.payload.date);
+      if (result.success) {
+        this.onJumpdayChanged(result.payload.date);
+      }
       this.updating = false;
       this.handleHint(result);
     },
