@@ -59,7 +59,7 @@
         </v-card-text>
       </v-card>
     </v-col>
-    <v-col :cols="12" :lg="4" :md="4" :sm="6" v-if="isAdmin">
+    <v-col :cols="12" :lg="4" :md="4" :sm="6" v-if="isAdminOrModerator">
       <v-card>
         <v-card-title>{{ $t("notes") }}</v-card-title>
         <v-card-text>
@@ -84,8 +84,8 @@ export default {
     },
   },
   computed: {
-    isAdmin() {
-      return roleUtil.isAdmin(this.$auth);
+    isAdminOrModerator() {
+      return roleUtil.isAdminOrModerator(this.$auth);
     },
   },
 };

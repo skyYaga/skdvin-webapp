@@ -54,7 +54,7 @@
               required
             ></v-text-field></v-col
         ></v-row>
-        <v-row v-if="isAdmin"
+        <v-row v-if="isAdminOrModerator"
           ><v-col
             ><v-checkbox
               v-model="adminBooking"
@@ -72,7 +72,7 @@
               @onRemoveJumper="removeJumper" /></v-col
         ></v-row>
         <v-textarea
-          v-if="isAdmin"
+          v-if="isAdminOrModerator"
           :label="$t('notes')"
           outlined
           v-model="appointment.note"
@@ -168,8 +168,8 @@ export default {
     customer() {
       return this.appointment.customer;
     },
-    isAdmin() {
-      return roleUtil.isAdmin(this.$auth);
+    isAdminOrModerator() {
+      return roleUtil.isAdminOrModerator(this.$auth);
     },
   },
 };

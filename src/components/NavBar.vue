@@ -20,9 +20,7 @@
         </v-list-item>
         <v-list-item
           link
-          v-if="
-            !$auth.loading && $auth.isAuthenticated && (isAdmin || isModerator)
-          "
+          v-if="!$auth.loading && $auth.isAuthenticated && isAdminOrModerator"
           :to="'/' + this.$i18n.locale + '/jumpdays'"
         >
           <v-list-item-action>
@@ -34,9 +32,7 @@
         </v-list-item>
         <v-list-item
           link
-          v-if="
-            !$auth.loading && $auth.isAuthenticated && (isAdmin || isModerator)
-          "
+          v-if="!$auth.loading && $auth.isAuthenticated && isAdminOrModerator"
           :to="'/' + this.$i18n.locale + '/appointments'"
         >
           <v-list-item-action>
@@ -50,9 +46,7 @@
         </v-list-item>
         <v-list-item
           link
-          v-if="
-            !$auth.loading && $auth.isAuthenticated && (isAdmin || isModerator)
-          "
+          v-if="!$auth.loading && $auth.isAuthenticated && isAdminOrModerator"
           :to="'/' + this.$i18n.locale + '/tandemmaster'"
         >
           <v-list-item-action>
@@ -66,9 +60,7 @@
         </v-list-item>
         <v-list-item
           link
-          v-if="
-            !$auth.loading && $auth.isAuthenticated && (isAdmin || isModerator)
-          "
+          v-if="!$auth.loading && $auth.isAuthenticated && isAdminOrModerator"
           :to="'/' + this.$i18n.locale + '/videoflyer'"
         >
           <v-list-item-action>
@@ -82,9 +74,7 @@
         </v-list-item>
         <v-list-item
           link
-          v-if="
-            !$auth.loading && $auth.isAuthenticated && (isAdmin || isModerator)
-          "
+          v-if="!$auth.loading && $auth.isAuthenticated && isAdminOrModerator"
           :to="'/' + this.$i18n.locale + '/research'"
         >
           <v-list-item-action>
@@ -179,11 +169,8 @@ export default {
       }
       return "";
     },
-    isAdmin() {
-      return roleUtil.isAdmin(this.$auth);
-    },
-    isModerator() {
-      return roleUtil.isModerator(this.$auth);
+    isAdminOrModerator() {
+      return roleUtil.isAdminOrModerator(this.$auth);
     },
   },
   methods: {

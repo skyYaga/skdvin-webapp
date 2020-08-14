@@ -22,10 +22,14 @@ const isTandemmaster = function (auth) {
 const isModerator = function (auth) {
   return this.hasRole(auth, ROLE_MODERATOR);
 };
+const isAdminOrModerator = function (auth) {
+  return this.hasRole(auth, ROLE_MODERATOR) || this.hasRole(auth, ROLE_ADMIN);
+};
 
 export const roleUtil = {
   hasRole,
   isAdmin,
+  isAdminOrModerator,
   isModerator,
   isVideoflyer,
   isTandemmaster,
