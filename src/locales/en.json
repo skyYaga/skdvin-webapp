@@ -153,7 +153,7 @@
     "url": "Pricelist URL"
   },
   "privacyPolicy": {
-    "accept": "I accept the {0}",
+    "accept": "I have taken note of the {0}. I agree that my details and data for the booking are collected and stored electronically.",
     "privacyPolicy": "privacy policy"
   },
   "privacyStatement": "Privacy Statement",
