@@ -169,6 +169,9 @@ export default {
       }
       return "";
     },
+    isAdmin() {
+      return roleUtil.isAdmin(this.$auth);
+    },
     isAdminOrModerator() {
       return roleUtil.isAdminOrModerator(this.$auth);
     },

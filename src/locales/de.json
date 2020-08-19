@@ -153,7 +153,7 @@
     "url": "URL zur Preisliste"
   },
   "privacyPolicy": {
-    "accept": "Ich akzeptiere die {0}",
+    "accept": "Ich habe die {0} zur Kenntnis genommen. Ich stimme zu, dass meine Angaben und Daten für die Buchung elektronisch erhoben und gespeichert werden.",
     "privacyPolicy": "Datenschutzbestimmungen"
   },
   "privacyStatement": "Datenschutzerklärung",
