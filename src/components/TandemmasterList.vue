@@ -86,7 +86,13 @@ export default {
   components: {
     EditTandemmaster,
   },
-  props: { tandemmaster: Array, loading: Boolean },
+  props: {
+    tandemmaster: {
+      type: Array,
+      default: () => [],
+    },
+    loading: Boolean,
+  },
   data() {
     return {
       valid: false,

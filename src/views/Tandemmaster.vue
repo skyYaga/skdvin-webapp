@@ -52,6 +52,12 @@ export default {
     selectedTandemmaster: {},
     showAssignmentPanel: false,
   }),
+  computed: {
+    ...mapState(["tandemmasters"]),
+    getTandemmasters() {
+      return JSON.parse(JSON.stringify(this.tandemmasters));
+    },
+  },
   async created() {
     this.loading = true;
     await this.loadTandemmaster();
@@ -66,12 +72,6 @@ export default {
     tandemmasterSelected(tm) {
       this.selectedTandemmaster = tm;
       this.showAssignmentPanel = true;
-    },
-  },
-  computed: {
-    ...mapState(["tandemmasters"]),
-    getTandemmasters() {
-      return JSON.parse(JSON.stringify(this.tandemmasters));
     },
   },
 };

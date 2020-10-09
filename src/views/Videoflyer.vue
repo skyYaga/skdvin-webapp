@@ -52,6 +52,12 @@ export default {
     selectedVideoflyer: {},
     showAssignmentPanel: false,
   }),
+  computed: {
+    ...mapState(["videoflyers"]),
+    getVideoflyers() {
+      return JSON.parse(JSON.stringify(this.videoflyers));
+    },
+  },
   async created() {
     this.loading = true;
     await this.loadVideoflyer();
@@ -66,12 +72,6 @@ export default {
     videoflyerSelected(tm) {
       this.selectedVideoflyer = tm;
       this.showAssignmentPanel = true;
-    },
-  },
-  computed: {
-    ...mapState(["videoflyers"]),
-    getVideoflyers() {
-      return JSON.parse(JSON.stringify(this.videoflyers));
     },
   },
 };

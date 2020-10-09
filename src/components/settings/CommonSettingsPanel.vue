@@ -97,8 +97,8 @@
                   <h2 class="mb-3">{{ $t("faq.faq") }}</h2>
                   <v-expansion-panels>
                     <v-expansion-panel
-                      v-for="(pair, index) in commonSetting.faq"
-                      :key="index"
+                      v-for="(pair, faqIndex) in commonSetting.faq"
+                      :key="faqIndex"
                     >
                       <v-expansion-panel-header
                         >{{ pair.id }}.
@@ -129,7 +129,8 @@
                         ></v-row>
                         <v-row
                           ><v-spacer></v-spacer
-                          ><v-icon @click="deleteFaq(commonSetting.faq, index)"
+                          ><v-icon
+                            @click="deleteFaq(commonSetting.faq, faqIndex)"
                             >mdi-delete</v-icon
                           ></v-row
                         >
@@ -152,7 +153,12 @@
 <script>
 export default {
   props: {
-    commonSettings: Object,
+    commonSettings: {
+      type: Object,
+      default: function () {
+        return {};
+      },
+    },
   },
   data() {
     return {

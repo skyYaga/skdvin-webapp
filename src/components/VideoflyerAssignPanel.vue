@@ -78,7 +78,12 @@ export default {
     AssignmentSelectionPanel,
   },
   props: {
-    videoflyer: Object,
+    videoflyer: {
+      type: Object,
+      default: function () {
+        return {};
+      },
+    },
     selfAssign: { type: Boolean, default: false },
     selfAssignmentMode: { type: String, default: "" },
   },

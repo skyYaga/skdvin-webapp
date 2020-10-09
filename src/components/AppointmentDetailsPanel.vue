@@ -76,7 +76,10 @@ import { roleUtil } from "../shared/roles";
 
 export default {
   props: {
-    appointment: null,
+    appointment: {
+      type: Object,
+      default: () => {},
+    },
   },
   computed: {
     isAdminOrModerator() {

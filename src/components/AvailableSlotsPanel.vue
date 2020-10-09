@@ -44,7 +44,10 @@ import moment from "moment";
 
 export default {
   props: {
-    slots: Array,
+    slots: {
+      type: Array,
+      default: () => [],
+    },
   },
   computed: {
     getMonthsForSlots() {
