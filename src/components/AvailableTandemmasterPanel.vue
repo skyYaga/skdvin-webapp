@@ -42,7 +42,10 @@
 <script>
 export default {
   props: {
-    tandemmasters: Array,
+    tandemmasters: {
+      type: Array,
+      default: () => [],
+    },
   },
 };
 </script>

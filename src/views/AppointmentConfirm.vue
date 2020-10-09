@@ -16,6 +16,7 @@
     >
       <div v-if="!noEmail">
         <h3>{{ $t("almostdone") }}</h3>
+        <!-- eslint-disable-next-line vue/no-v-html -->
         <p v-html="$t('appointment.confirmation.message')"></p>
       </div>
       <div v-if="noEmail">
@@ -27,6 +28,7 @@
       type="error"
     >
       <h3>{{ $t("error.occurred") }}</h3>
+      <!-- eslint-disable-next-line vue/no-v-html -->
       <p v-html="$t('appointment.booking.error')"></p>
     </v-alert>
   </v-container>

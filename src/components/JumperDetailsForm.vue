@@ -94,8 +94,16 @@ import { mapState } from "vuex";
 
 export default {
   props: {
-    jumperNum: Number,
-    bookedJumper: Object,
+    jumperNum: {
+      type: Number,
+      default: 0,
+    },
+    bookedJumper: {
+      type: Object,
+      default: function () {
+        return {};
+      },
+    },
   },
   data: function () {
     return {
@@ -115,30 +123,6 @@ export default {
       dateOfBirthRules: [(v) => !!v || this.$i18n.t("rules.dateOfBirthNeeded")],
       menu: false,
     };
-  },
-  watch: {
-    menu(val) {
-      val && setTimeout(() => (this.$refs.picker.activePicker = "YEAR"));
-    },
-    bookedJumper: function (newJumper, oldJumper) {
-      this.jumper = newJumper;
-    },
-  },
-  created() {
-    if (this.bookedJumper != null) {
-      this.jumper = this.bookedJumper;
-    }
-  },
-  methods: {
-    save(date) {
-      this.$refs.menu.save(date);
-    },
-    getJumper() {
-      return this.jumper;
-    },
-    removeJumper() {
-      this.$emit("on-remove-jumper", this.jumperNum);
-    },
   },
   computed: {
     ...mapState(["commonSettings"]),
@@ -168,6 +152,30 @@ export default {
     },
     isAdmin() {
       return roleUtil.isAdmin(this.$auth);
+    },
+  },
+  watch: {
+    menu(val) {
+      val && setTimeout(() => (this.$refs.picker.activePicker = "YEAR"));
+    },
+    bookedJumper: function (newJumper, oldJumper) {
+      this.jumper = newJumper;
+    },
+  },
+  created() {
+    if (this.bookedJumper != null) {
+      this.jumper = this.bookedJumper;
+    }
+  },
+  methods: {
+    save(date) {
+      this.$refs.menu.save(date);
+    },
+    getJumper() {
+      return this.jumper;
+    },
+    removeJumper() {
+      this.$emit("on-remove-jumper", this.jumperNum);
     },
   },
 };

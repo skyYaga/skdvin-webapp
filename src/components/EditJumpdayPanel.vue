@@ -193,9 +193,6 @@ export default {
     hintColor: "",
     valid: false,
   }),
-  created() {
-    this.settings = JSON.parse(JSON.stringify(this.getSettings()));
-  },
   computed: {
     ...mapGetters(["getSettings"]),
     hasBookedAppointments() {
@@ -213,6 +210,9 @@ export default {
     countsZero() {
       return [...Array(11).keys()];
     },
+  },
+  created() {
+    this.settings = JSON.parse(JSON.stringify(this.getSettings()));
   },
   methods: {
     ...mapActions([

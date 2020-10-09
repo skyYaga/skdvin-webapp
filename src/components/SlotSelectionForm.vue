@@ -44,8 +44,18 @@
 <script>
 export default {
   props: {
-    appointment: Object,
-    maxBookableSlots: Object,
+    appointment: {
+      type: Object,
+      default: function () {
+        return {};
+      },
+    },
+    maxBookableSlots: {
+      type: Object,
+      default: function () {
+        return {};
+      },
+    },
   },
   data: () => ({
     items: [1, 2, 3, 4, 5],

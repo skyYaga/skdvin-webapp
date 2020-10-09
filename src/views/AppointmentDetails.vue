@@ -160,12 +160,12 @@ export default {
     slotSelected: false,
     showDeletionDialog: false,
   }),
-  async created() {
-    await this.loadPage();
-  },
   computed: {
     ...mapState(["jumpdays"]),
     ...mapGetters(["getJumpdayByDate"]),
+  },
+  async created() {
+    await this.loadPage();
   },
   methods: {
     async loadPage() {

@@ -84,7 +84,12 @@
 <script>
 export default {
   props: {
-    jumpday: Object,
+    jumpday: {
+      type: Object,
+      default: function () {
+        return {};
+      },
+    },
   },
   methods: {
     calculateItems(minCount) {

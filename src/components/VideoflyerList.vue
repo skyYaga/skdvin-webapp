@@ -84,7 +84,15 @@ export default {
   components: {
     EditVideoflyer,
   },
-  props: { videoflyer: Array, loading: Boolean },
+  props: {
+    videoflyer: {
+      type: Array,
+      default: function () {
+        return [];
+      },
+    },
+    loading: Boolean,
+  },
   data() {
     return {
       valid: false,

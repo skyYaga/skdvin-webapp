@@ -12,6 +12,7 @@
           ><h2>{{ $t("jumpregulations.heading") }}</h2></v-row
         >
         <v-row v-if="!isAdmin">
+          <!-- eslint-disable-next-line vue/no-v-html -->
           <ul v-html="$t('jumpregulations.text')"></ul>
         </v-row>
         <v-row v-if="!isAdmin">
@@ -73,12 +74,22 @@ export default {
     AppointmentDetailsPanel,
   },
   props: {
-    appointment: null,
+    appointment: {
+      type: Object,
+      default: function () {
+        return {};
+      },
+    },
   },
   data: () => ({
     valid: false,
     loading: false,
   }),
+  computed: {
+    isAdmin() {
+      return roleUtil.isAdmin(this.$auth);
+    },
+  },
   methods: {
     ...mapActions(["addAppointmentAction", "addAdminAppointmentAction"]),
     async saveAppointment() {
@@ -110,11 +121,6 @@ export default {
     },
     back() {
       this.$emit("on-customer-confirmation-back", this.customer);
-    },
-  },
-  computed: {
-    isAdmin() {
-      return roleUtil.isAdmin(this.$auth);
     },
   },
 };

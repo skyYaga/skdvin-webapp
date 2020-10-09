@@ -66,7 +66,10 @@ import { mapActions } from "vuex";
 export default {
   name: "AppointmentOverview",
   props: {
-    appointment: Object,
+    appointment: {
+      type: Object,
+      default: () => {},
+    },
   },
   data: () => ({ loading: false }),
   computed: {

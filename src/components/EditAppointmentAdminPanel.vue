@@ -61,7 +61,10 @@ export default {
         handcam: 0,
       }),
     },
-    slots: Object,
+    slots: {
+      type: Object,
+      default: () => ({}),
+    },
     update: { type: Boolean, default: () => false },
   },
   data: () => ({

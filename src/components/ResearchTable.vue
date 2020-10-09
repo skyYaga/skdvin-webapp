@@ -1,6 +1,6 @@
 <template>
   <v-data-table
-    :headers="headers"
+    :headers="researchTableHeaders"
     :items="getGroupSlots"
     show-expand
     single-expand
@@ -39,7 +39,7 @@ import { mapState } from "vuex";
 export default {
   data() {
     return {
-      headers: [
+      researchTableHeaders: [
         { text: this.$t("date"), value: "date" },
         { text: this.$t("slot.count"), value: "slots.length" },
         { text: this.$t("firstTime"), value: "firstTime" },

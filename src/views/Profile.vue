@@ -74,6 +74,15 @@ export default {
     videoflyer: {},
     vfError: false,
   }),
+  computed: {
+    ...mapState(["commonSettings"]),
+    isTandemmaster() {
+      return roleUtil.isTandemmaster(this.$auth);
+    },
+    isVideoflyer() {
+      return roleUtil.isVideoflyer(this.$auth);
+    },
+  },
   async created() {
     if (this.isTandemmaster) {
       await this.loadTandemmaster();
@@ -105,15 +114,6 @@ export default {
       } else {
         this.videoflyer = result.payload;
       }
-    },
-  },
-  computed: {
-    ...mapState(["commonSettings"]),
-    isTandemmaster() {
-      return roleUtil.isTandemmaster(this.$auth);
-    },
-    isVideoflyer() {
-      return roleUtil.isVideoflyer(this.$auth);
     },
   },
 };

@@ -78,7 +78,12 @@ export default {
     AssignmentSelectionPanel,
   },
   props: {
-    tandemmaster: Object,
+    tandemmaster: {
+      type: Object,
+      default: function () {
+        return {};
+      },
+    },
     selfAssign: { type: Boolean, default: false },
     selfAssignmentMode: { type: String, default: "" },
   },

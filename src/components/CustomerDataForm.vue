@@ -99,7 +99,10 @@ export default {
     JumperDetailsForm,
   },
   props: {
-    appointment: Object,
+    appointment: {
+      type: Object,
+      default: () => ({}),
+    },
     buttonVisible: {
       type: Boolean,
       default: () => true,

@@ -105,8 +105,14 @@ import moment from "moment";
 export default {
   name: "AssignmentSelectionPanel",
   props: {
-    assignment: Object,
-    day: String,
+    assignment: {
+      type: Object,
+      default: () => {},
+    },
+    day: {
+      type: String,
+      default: () => moment().toDate(),
+    },
     selfAssign: { type: Boolean, default: false },
     selfAssignmentMode: { type: String, default: "" },
   },

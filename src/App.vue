@@ -52,6 +52,7 @@ export default {
       ],
     };
   },
+  computed: { ...mapState(["commonSettings"]) },
   async created() {
     this.overlay = true;
     this.setLocaleAction(this.$i18n.locale);
@@ -64,7 +65,6 @@ export default {
     }
     this.overlay = false;
   },
-  computed: { ...mapState(["commonSettings"]) },
   methods: {
     ...mapActions(["setLocaleAction", "getCommonSettingsAction"]),
     // Log the user in
