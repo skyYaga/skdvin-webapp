@@ -2,10 +2,10 @@
   <v-data-table
     :headers="headers"
     :items="getGroupSlots"
-    showExpand
+    show-expand
     single-expand
   >
-    <template v-slot:expanded-item="{ headers, item }">
+    <template #expanded-item="{ headers, item }">
       <td :colspan="headers.length">
         <v-simple-table class="my-5"
           ><thead>

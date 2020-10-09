@@ -43,7 +43,7 @@
         </v-card-text>
       </v-card>
     </v-col>
-    <v-col :cols="12" :lg="4" :md="4" :sm="6" v-if="!isAdminOrModerator">
+    <v-col v-if="!isAdminOrModerator" :cols="12" :lg="4" :md="4" :sm="6">
       <v-card>
         <v-card-title>{{ $t("jumperData") }}</v-card-title>
         <v-card-text>
@@ -59,7 +59,7 @@
         </v-card-text>
       </v-card>
     </v-col>
-    <v-col :cols="12" :lg="4" :md="4" :sm="6" v-if="isAdminOrModerator">
+    <v-col v-if="isAdminOrModerator" :cols="12" :lg="4" :md="4" :sm="6">
       <v-card>
         <v-card-title>{{ $t("notes") }}</v-card-title>
         <v-card-text>
@@ -78,14 +78,14 @@ export default {
   props: {
     appointment: null,
   },
-  methods: {
-    getDate(date) {
-      return moment(date).toDate();
-    },
-  },
   computed: {
     isAdminOrModerator() {
       return roleUtil.isAdminOrModerator(this.$auth);
+    },
+  },
+  methods: {
+    getDate(date) {
+      return moment(date).toDate();
     },
   },
 };

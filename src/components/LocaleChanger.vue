@@ -1,6 +1,6 @@
 <template>
   <v-menu bottom left>
-    <template v-slot:activator="{ on }">
+    <template #activator="{ on }">
       <v-btn :class="buttonClass" color="primary" depressed v-on="on">
         <v-icon left>mdi-translate</v-icon> {{ conditionalLang($i18n.locale) }}
         <v-icon right>mdi-chevron-down</v-icon>
@@ -26,9 +26,6 @@
 import { mapActions } from "vuex";
 
 export default {
-  created() {
-    this.$vuetify.lang.current = this.$i18n.locale;
-  },
   computed: {
     availableLangs() {
       let selectedLang = this.$i18n.locale;
@@ -42,6 +39,9 @@ export default {
       }
       return "subtitle-1 text-capitalize";
     },
+  },
+  created() {
+    this.$vuetify.lang.current = this.$i18n.locale;
   },
   methods: {
     ...mapActions(["setLocaleAction", "getCommonSettingsAction"]),

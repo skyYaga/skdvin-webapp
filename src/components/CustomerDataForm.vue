@@ -21,8 +21,8 @@
         <v-row
           ><v-col
             ><v-text-field
-              type="tel"
               v-model="customer.tel"
+              type="tel"
               :label="$t('tel')"
               :rules="telRules"
               required
@@ -64,23 +64,24 @@
         <v-row v-if="!adminBooking"
           ><v-col>
             <JumperDetailsForm
-              ref="jumperDetails"
-              :jumperNum="i"
               v-for="i in tandemSize"
+              ref="jumperDetails"
               :key="i"
-              :bookedJumper="getJumperIfAvailable(i)"
-              @onRemoveJumper="removeJumper" /></v-col
+              :jumper-num="i"
+              :booked-jumper="getJumperIfAvailable(i)"
+              @on-remove-jumper="removeJumper" /></v-col
         ></v-row>
         <v-textarea
           v-if="isAdminOrModerator"
+          :value="appointment.note"
           :label="$t('notes')"
           outlined
-          v-model="appointment.note"
+          @input="updateAppointmentNote"
         ></v-textarea>
         <v-row v-if="buttonVisible"
           ><v-btn class="mr-4" @click="back">{{ $t("back") }}</v-btn
           ><v-spacer></v-spacer
-          ><v-btn class="mr-4" @click="validate" color="primary">{{
+          ><v-btn class="mr-4" color="primary" @click="validate">{{
             $t("continue")
           }}</v-btn></v-row
         >
@@ -90,19 +91,19 @@
 </template>
 
 <script>
-import JumperDetailsForm from "./JumperDetailsForm";
+import JumperDetailsForm from "./JumperDetailsForm.vue";
 import { roleUtil } from "../shared/roles";
 
 export default {
+  components: {
+    JumperDetailsForm,
+  },
   props: {
     appointment: Object,
     buttonVisible: {
       type: Boolean,
       default: () => true,
     },
-  },
-  components: {
-    JumperDetailsForm,
   },
   data: function () {
     return {
@@ -129,15 +130,26 @@ export default {
       ],
     };
   },
+  computed: {
+    tandemSize() {
+      return this.appointment.tandem;
+    },
+    customer() {
+      return this.appointment.customer;
+    },
+    isAdminOrModerator() {
+      return roleUtil.isAdminOrModerator(this.$auth);
+    },
+  },
   methods: {
     back() {
       this.onCustomerDataFilled();
-      this.$emit("onCustomerDataBack", this.customer);
+      this.$emit("on-customer-data-back", this.customer);
     },
     validate() {
       if (this.$refs.form.validate()) {
         this.onCustomerDataFilled();
-        this.$emit("onCustomerDataContinue", this.customer);
+        this.$emit("on-customer-data-continue", this.customer);
         return true;
       }
       return false;
@@ -157,19 +169,10 @@ export default {
       return null;
     },
     removeJumper(i) {
-      this.appointment.customer.jumpers.splice(i - 1, 1);
-      this.appointment.tandem--;
+      this.$emit("remove-jumper", i);
     },
-  },
-  computed: {
-    tandemSize() {
-      return this.appointment.tandem;
-    },
-    customer() {
-      return this.appointment.customer;
-    },
-    isAdminOrModerator() {
-      return roleUtil.isAdminOrModerator(this.$auth);
+    updateAppointmentNote(note) {
+      this.$emit("update-appointment-note", note);
     },
   },
 };

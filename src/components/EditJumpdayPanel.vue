@@ -1,7 +1,7 @@
 <template>
   <v-card class="d-inline-block mx-auto">
     <v-container>
-      <v-snackbar :color="hintColor" v-model="showHint" :timeout="5000">
+      <v-snackbar v-model="showHint" :color="hintColor" :timeout="5000">
         {{ hintText }}
         <v-btn text @click="showHint = false">
           {{ $t("ok") }}
@@ -114,35 +114,35 @@
             </v-row>
             <v-row>
               <v-btn
-                class="ma-1"
                 v-if="jumpday.jumping && !jumpday.slots"
-                @click="saveJumpday"
+                class="ma-1"
                 :loading="updating"
                 :disabled="updating"
+                @click="saveJumpday"
                 >{{ $t("save") }}</v-btn
               >
               <v-btn
-                class="ma-1"
                 v-if="jumpday.jumping && jumpday.slots"
+                class="ma-1"
                 color="primary"
-                @click="updateJumpday"
                 :loading="updating"
                 :disabled="updating"
+                @click="updateJumpday"
                 >{{ $t("update") }}</v-btn
               ><v-btn
-                class="ma-1"
                 v-if="jumpday.jumping && jumpday.slots"
-                @click="addSlot"
+                class="ma-1"
                 :loading="updating"
                 :disabled="updating"
+                @click="addSlot"
                 >{{ $t("slot.add") }}</v-btn
               ><v-btn
+                v-if="!jumpday.jumping && jumpday.slots"
                 class="ma-1"
                 color="primary"
-                v-if="!jumpday.jumping && jumpday.slots"
-                @click="deleteJumpday"
                 :loading="updating"
                 :disabled="updating"
+                @click="deleteJumpday"
                 >{{ $t("jumpday.delete") }}</v-btn
               >
             </v-row>
@@ -159,7 +159,12 @@ import moment from "moment";
 
 export default {
   props: {
-    jumpday: null,
+    jumpday: {
+      type: Object,
+      default: function () {
+        return { jumping: false };
+      },
+    },
   },
   data: () => ({
     settings: {},
@@ -264,7 +269,7 @@ export default {
       this.handleHint(result);
     },
     onJumpdayChanged(date) {
-      this.$emit("handleJumpdayChanged", date);
+      this.$emit("handle-jumpday-changed", date);
     },
     async updateJumpday() {
       this.updating = true;
@@ -277,7 +282,9 @@ export default {
       this.handleHint(result);
     },
     toggleJumping() {
-      this.jumpday.jumping = !this.jumpday.jumping;
+      let localJumpday = JSON.parse(JSON.stringify(this.jumpday));
+      localJumpday.jumping = !localJumpday.jumping;
+      this.$emit("handle-dirty-jumpday", localJumpday);
     },
     handleHint(result) {
       if (result.success) {
@@ -308,7 +315,9 @@ export default {
           picAndVidTotal: this.settings.picAndVid,
           handcamTotal: this.settings.handcam,
         };
-        this.jumpday.slots.push(slot);
+        let localJumpday = JSON.parse(JSON.stringify(this.jumpday));
+        localJumpday.slots.push(slot);
+        this.$emit("handle-dirty-jumpday", localJumpday);
       }
     },
     async deleteJumpday() {

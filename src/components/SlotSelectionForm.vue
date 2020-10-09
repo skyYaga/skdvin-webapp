@@ -1,7 +1,7 @@
 <template>
   <v-form>
     <v-select
-      v-model="appointment.tandem"
+      :value="appointment.tandem"
       :items="items"
       :rules="[
         (v) => !!v || $t('rules.atLeast1Tandem'),
@@ -11,28 +11,32 @@
       :label="$t('tandem.tandems')"
       type="number"
       required
+      @change="updateAppointment('tandem', $event)"
     ></v-select>
     <v-select
-      v-model="appointment.picOrVid"
+      :value="appointment.picOrVid"
       :items="itemsZero"
       :rules="[availableSlotsRule, moreTandemThanVideoRule]"
       :label="$t('picOrVid.picOrVid')"
       type="number"
       required
+      @change="updateAppointment('picOrVid', $event)"
     ></v-select>
     <v-select
-      v-model="appointment.picAndVid"
+      :value="appointment.picAndVid"
       :items="itemsZero"
       :rules="[availableSlotsRule, moreTandemThanVideoRule]"
       :label="$t('picAndVid.picAndVid')"
       required
+      @change="updateAppointment('picAndVid', $event)"
     ></v-select>
     <v-select
-      v-model="appointment.handcam"
+      :value="appointment.handcam"
       :items="itemsZero"
       :rules="[availableSlotsRule, moreTandemThanVideoRule]"
       :label="$t('handcam.handcam')"
       required
+      @change="updateAppointment('handcam', $event)"
     ></v-select>
   </v-form>
 </template>
@@ -73,6 +77,13 @@ export default {
         return this.$t("rules.moreVideoThanTandem");
       }
       return true;
+    },
+  },
+  methods: {
+    updateAppointment(field, value) {
+      let tmpAppointment = JSON.parse(JSON.stringify(this.appointment));
+      tmpAppointment[field] = value;
+      this.$emit("update-appointment", tmpAppointment);
     },
   },
 };

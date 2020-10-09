@@ -16,8 +16,8 @@
 </template>
 
 <script>
-import BookAppointment from "../components/BookAppointment";
-import HomepageHint from "../components/HomepageHint";
+import BookAppointment from "../components/BookAppointment.vue";
+import HomepageHint from "../components/HomepageHint.vue";
 
 export default {
   name: "Home",

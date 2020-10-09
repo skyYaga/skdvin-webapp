@@ -19,8 +19,8 @@
           </v-list-item-content>
         </v-list-item>
         <v-list-item
-          link
           v-if="!$auth.loading && $auth.isAuthenticated && isAdminOrModerator"
+          link
           :to="'/' + this.$i18n.locale + '/jumpdays'"
         >
           <v-list-item-action>
@@ -31,8 +31,8 @@
           </v-list-item-content>
         </v-list-item>
         <v-list-item
-          link
           v-if="!$auth.loading && $auth.isAuthenticated && isAdminOrModerator"
+          link
           :to="'/' + this.$i18n.locale + '/appointments'"
         >
           <v-list-item-action>
@@ -45,8 +45,8 @@
           </v-list-item-content>
         </v-list-item>
         <v-list-item
-          link
           v-if="!$auth.loading && $auth.isAuthenticated && isAdminOrModerator"
+          link
           :to="'/' + this.$i18n.locale + '/tandemmaster'"
         >
           <v-list-item-action>
@@ -59,8 +59,8 @@
           </v-list-item-content>
         </v-list-item>
         <v-list-item
-          link
           v-if="!$auth.loading && $auth.isAuthenticated && isAdminOrModerator"
+          link
           :to="'/' + this.$i18n.locale + '/videoflyer'"
         >
           <v-list-item-action>
@@ -73,8 +73,8 @@
           </v-list-item-content>
         </v-list-item>
         <v-list-item
-          link
           v-if="!$auth.loading && $auth.isAuthenticated && isAdminOrModerator"
+          link
           :to="'/' + this.$i18n.locale + '/research'"
         >
           <v-list-item-action>
@@ -85,8 +85,8 @@
           </v-list-item-content>
         </v-list-item>
         <v-list-item
-          link
           v-if="!$auth.loading && $auth.isAuthenticated && isAdmin"
+          link
           :to="'/' + this.$i18n.locale + '/settings'"
         >
           <v-list-item-action>
@@ -97,8 +97,8 @@
           </v-list-item-content>
         </v-list-item>
         <v-list-item
-          link
           v-if="!$auth.loading && $auth.isAuthenticated"
+          link
           :to="'/' + this.$i18n.locale + '/profile'"
         >
           <v-list-item-action>
@@ -109,8 +109,8 @@
           </v-list-item-content>
         </v-list-item>
         <v-list-item
-          link
           v-if="!$auth.loading && !$auth.isAuthenticated"
+          link
           @click="login"
         >
           <v-list-item-action>
@@ -121,8 +121,8 @@
           </v-list-item-content>
         </v-list-item>
         <v-list-item
-          link
           v-if="!$auth.loading && $auth.isAuthenticated"
+          link
           @click="logout"
         >
           <v-list-item-action>
@@ -146,7 +146,7 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import { roleUtil } from "../shared/roles";
-import LocaleChanger from "../components/LocaleChanger";
+import LocaleChanger from "../components/LocaleChanger.vue";
 
 export default {
   name: "NavBar",

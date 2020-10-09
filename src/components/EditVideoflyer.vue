@@ -3,39 +3,44 @@
     <v-row dense
       ><v-col :lg="6"
         ><v-text-field
-          v-model="videoflyer.firstName"
+          :value="videoflyer.firstName"
           :label="$t('firstName')"
           :rules="nameRules"
           required
+          @input="updateVideoflyer('firstName', $event)"
         ></v-text-field></v-col
       ><v-col :lg="6"
         ><v-text-field
-          v-model="videoflyer.lastName"
+          :value="videoflyer.lastName"
           :label="$t('lastName')"
           :rules="nameRules"
           required
+          @input="updateVideoflyer('lastName', $event)"
         ></v-text-field></v-col
     ></v-row>
     <v-row dense
       ><v-col :lg="6"
         ><v-text-field
+          :value="videoflyer.tel"
           type="tel"
-          v-model="videoflyer.tel"
           :label="$t('tel')"
           :rules="telRules"
+          @input="updateVideoflyer('tel', $event)"
         ></v-text-field></v-col
       ><v-col :lg="6"
         ><v-text-field
-          v-model="videoflyer.email"
+          :value="videoflyer.email"
           type="email"
           :label="$t('email.email')"
           :rules="emailRules"
+          @input="updateVideoflyer('email', $event)"
         ></v-text-field></v-col
     ></v-row>
     <v-row dense
       ><v-checkbox
-        v-model="videoflyer.picAndVid"
+        :checked="videoflyer.picAndVid"
         :label="$t('picAndVid.picAndVid')"
+        @change="updateVideoflyer('picAndVid', $event)"
       ></v-checkbox
     ></v-row>
   </v-container>
@@ -63,6 +68,13 @@ export default {
       emailRules: emailRules(this.$i18n),
       telRules: telRules(this.$i18n),
     };
+  },
+  methods: {
+    updateVideoflyer(field, value) {
+      let tmpVideoflyer = JSON.parse(JSON.stringify(this.videoflyer));
+      tmpVideoflyer[field] = value;
+      this.$emit("update-videoflyer", tmpVideoflyer);
+    },
   },
 };
 </script>

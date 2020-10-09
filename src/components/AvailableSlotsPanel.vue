@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-alert type="info" v-if="slots.length === 0">{{
+    <v-alert v-if="slots.length === 0" type="info">{{
       $t("slot.noFreeFound")
     }}</v-alert>
     <v-expansion-panels>
@@ -63,7 +63,7 @@ export default {
   },
   methods: {
     selectSlot(date, time) {
-      this.$emit("onSlotSelected", date, time);
+      this.$emit("on-slot-selected", date, time);
     },
     getDate(date) {
       return moment(date).toDate();
