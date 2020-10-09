@@ -1,6 +1,6 @@
 <template>
   <v-dialog slot="append-outer" v-model="dialog" width="300"
-    ><template v-slot:activator="{ on }"
+    ><template #activator="{ on }"
       ><v-icon v-on="on">mdi-information</v-icon></template
     ><v-card>
       <v-card-title>{{ heading }}</v-card-title>

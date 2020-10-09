@@ -26,16 +26,16 @@
           offset-y
           min-width="290px"
         >
-          <template v-slot:activator="{ on }">
+          <template #activator="{ on }">
             <v-text-field
+              v-model="getDate"
               :rules="dateOfBirthRules"
               :label="$t('dateOfBirth')"
               readonly
               required
               v-on="on"
-              v-model="getDate"
             >
-              <template v-if="isAdmin" v-slot:append-outer>
+              <template v-if="isAdmin" #append-outer>
                 <v-icon color="red" @click="removeJumper"
                   >mdi-minus-circle</v-icon
                 >
@@ -72,7 +72,7 @@
         ><v-alert v-if="!isAdmin && isMinor" text type="error" prominent>
           <div class="title">{{ $t("minors") }}</div>
           <i18n path="transportationHint" tag="div">
-            <template v-slot:url>
+            <template #url>
               <a
                 :href="commonSettings.dropzone.transportationAgreementUrl"
                 target="_blank"
@@ -96,11 +96,6 @@ export default {
   props: {
     jumperNum: Number,
     bookedJumper: Object,
-  },
-  created() {
-    if (this.bookedJumper != null) {
-      this.jumper = this.bookedJumper;
-    }
   },
   data: function () {
     return {
@@ -129,6 +124,11 @@ export default {
       this.jumper = newJumper;
     },
   },
+  created() {
+    if (this.bookedJumper != null) {
+      this.jumper = this.bookedJumper;
+    }
+  },
   methods: {
     save(date) {
       this.$refs.menu.save(date);
@@ -137,7 +137,7 @@ export default {
       return this.jumper;
     },
     removeJumper() {
-      this.$emit("onRemoveJumper", this.jumperNum);
+      this.$emit("on-remove-jumper", this.jumperNum);
     },
   },
   computed: {

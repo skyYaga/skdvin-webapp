@@ -17,7 +17,7 @@
           ><TandemmasterList
             :loading="loading"
             :tandemmaster="getTandemmasters"
-            @handleAssignClick="tandemmasterSelected" /></v-col
+            @handle-assign-click="tandemmasterSelected" /></v-col
       ></v-row>
       <v-row
         ><v-col
@@ -36,8 +36,8 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
-import TandemmasterList from "../components/TandemmasterList";
-import TandemmasterAssignPanel from "../components/TandemmasterAssignPanel";
+import TandemmasterList from "../components/TandemmasterList.vue";
+import TandemmasterAssignPanel from "../components/TandemmasterAssignPanel.vue";
 
 export default {
   components: {

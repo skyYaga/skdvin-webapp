@@ -13,9 +13,9 @@
       <v-col cols="12" sm="6" md="3" lg="2"
         ><v-btn
           color="primary"
-          @click="searchGroupSlots()"
           :disabled="loading"
           :loading="loading"
+          @click="searchGroupSlots()"
           >{{ $t("search") }}</v-btn
         ></v-col
       ></v-row

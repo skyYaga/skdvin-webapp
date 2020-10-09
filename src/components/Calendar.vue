@@ -53,7 +53,7 @@ export default {
       return false;
     },
     onDateSelection(date) {
-      this.$emit("handleDateSelection", date);
+      this.$emit("handle-date-selection", date);
     },
   },
 };

@@ -6,10 +6,10 @@
         ><v-card-text>
           <v-row>
             <v-col
-              cols="12"
-              md="6"
               v-for="(commonSetting, index) in commonSettings"
               :key="index"
+              cols="12"
+              md="6"
             >
               <v-card
                 ><v-card-title>{{ index }}</v-card-title>
@@ -69,19 +69,19 @@
                     ></v-col>
                     <v-col cols="12">
                       <v-textarea
+                        v-model="commonSetting.homepageHint"
                         outlined
                         rows="2"
                         auto-grow
-                        v-model="commonSetting.homepageHint"
                         :label="$t('homepageHint.hint')"
                       ></v-textarea
                     ></v-col>
                     <v-col cols="12">
                       <v-textarea
+                        v-model="commonSetting.additionalReminderHint"
                         outlined
                         rows="2"
                         auto-grow
-                        v-model="commonSetting.additionalReminderHint"
                         :label="$t('additionalReminderHint.hint')"
                       ></v-textarea
                     ></v-col>
@@ -108,8 +108,8 @@
                         <v-row>
                           <v-col cols="2"
                             ><v-text-field
-                              type="number"
                               v-model="pair.id"
+                              type="number"
                             ></v-text-field
                           ></v-col>
                           <v-col cols="10">
@@ -120,10 +120,10 @@
                           ></v-col>
                           <v-col cols="12">
                             <v-textarea
+                              v-model="pair.answer"
                               outlined
                               rows="3"
                               auto-grow
-                              v-model="pair.answer"
                               :label="$t('faq.answer')"
                             ></v-textarea></v-col
                         ></v-row>

@@ -22,7 +22,7 @@
         </v-row>
         <v-row v-if="!isAdmin">
           <v-checkbox :rules="[(v) => !!v || $t('rules.privacyPolicy')]"
-            ><template v-slot:label
+            ><template #label
               ><div>
                 <i18n
                   path="privacyPolicy.accept"
@@ -31,9 +31,9 @@
                 >
                   <a
                     href="https://skdv.in/datenschutzerklaerung/"
-                    @click.stop
                     target="_blank"
                     rel="noopener noreferrer"
+                    @click.stop
                     >{{ $t("privacyPolicy.privacyPolicy") }}</a
                   >
                 </i18n>
@@ -65,15 +65,15 @@
 
 <script>
 import { mapActions } from "vuex";
-import AppointmentDetailsPanel from "./AppointmentDetailsPanel";
+import AppointmentDetailsPanel from "./AppointmentDetailsPanel.vue";
 import { roleUtil } from "../shared/roles";
 
 export default {
-  props: {
-    appointment: null,
-  },
   components: {
     AppointmentDetailsPanel,
+  },
+  props: {
+    appointment: null,
   },
   data: () => ({
     valid: false,
@@ -109,7 +109,7 @@ export default {
       });
     },
     back() {
-      this.$emit("onCustomerConfirmationBack", this.customer);
+      this.$emit("on-customer-confirmation-back", this.customer);
     },
   },
   computed: {

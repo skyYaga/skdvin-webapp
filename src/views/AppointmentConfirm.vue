@@ -11,8 +11,8 @@
     }"
   >
     <v-alert
-      type="success"
       v-if="typeof getMessage === 'undefined' || getMessage === ''"
+      type="success"
     >
       <div v-if="!noEmail">
         <h3>{{ $t("almostdone") }}</h3>
@@ -23,8 +23,8 @@
       </div>
     </v-alert>
     <v-alert
-      type="error"
       v-if="typeof getMessage !== 'undefined' && getMessage !== ''"
+      type="error"
     >
       <h3>{{ $t("error.occurred") }}</h3>
       <p v-html="$t('appointment.booking.error')"></p>

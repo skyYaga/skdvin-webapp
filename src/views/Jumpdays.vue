@@ -12,12 +12,13 @@
       <h1>{{ $t("jumpday.jumpdays") }}</h1>
       <v-row dense>
         <v-col :cols="12" :lg="4" :md="4" :sm="12">
-          <Calendar d-flex flex-wrap @handleDateSelection="loadJumpday" />
+          <Calendar d-flex flex-wrap @handle-date-selection="loadJumpday" />
         </v-col>
         <v-col :cols="12" :lg="8" :md="8" :sm="12">
           <EditJumpdayPanel
             :jumpday="jumpday"
-            @handleJumpdayChanged="loadJumpday"
+            @handle-jumpday-changed="loadJumpday"
+            @handle-dirty-jumpday="jumpday = $event"
           />
         </v-col>
       </v-row>
@@ -31,7 +32,10 @@
       <v-row>
         <v-col :cols="12">
           <v-form>
-            <JumpdayTable :jumpday="jumpday" />
+            <JumpdayTable
+              :jumpday="jumpday"
+              @update-jumpday="jumpday = $event"
+            />
           </v-form>
         </v-col>
       </v-row>
@@ -45,16 +49,23 @@
 </template>
 
 <script>
-import Calendar from "../components/Calendar";
-import JumpdayTable from "../components/JumpdayTable";
-import EditJumpdayPanel from "../components/EditJumpdayPanel";
-import AvailableTandemmasterPanel from "../components/AvailableTandemmasterPanel";
-import AvailableVideoflyerPanel from "../components/AvailableVideoflyerPanel";
+import Calendar from "../components/Calendar.vue";
+import JumpdayTable from "../components/JumpdayTable.vue";
+import EditJumpdayPanel from "../components/EditJumpdayPanel.vue";
+import AvailableTandemmasterPanel from "../components/AvailableTandemmasterPanel.vue";
+import AvailableVideoflyerPanel from "../components/AvailableVideoflyerPanel.vue";
 import { mapActions, mapState, mapGetters } from "vuex";
 import moment from "moment";
 
 export default {
   name: "Jumpdays",
+  components: {
+    Calendar,
+    JumpdayTable,
+    EditJumpdayPanel,
+    AvailableTandemmasterPanel,
+    AvailableVideoflyerPanel,
+  },
   data() {
     return {
       loading: true,
@@ -67,20 +78,13 @@ export default {
       },
     };
   },
-  components: {
-    Calendar,
-    JumpdayTable,
-    EditJumpdayPanel,
-    AvailableTandemmasterPanel,
-    AvailableVideoflyerPanel,
+  computed: {
+    ...mapState(["jumpdays"]),
+    ...mapGetters(["getJumpdayByDate"]),
   },
   async created() {
     await this.loadJumpdays();
     this.loadJumpday(this.date);
-  },
-  computed: {
-    ...mapState(["jumpdays"]),
-    ...mapGetters(["getJumpdayByDate"]),
   },
   methods: {
     ...mapActions(["getJumpdaysAction"]),

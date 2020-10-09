@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <v-snackbar :color="hintColor" v-model="showHint" :timeout="5000">
+    <v-snackbar v-model="showHint" :color="hintColor" :timeout="5000">
       {{ hintText }}
       <v-btn text @click="showHint = false">
         {{ $t("ok") }}
@@ -12,18 +12,18 @@
     ><v-row
       ><v-col
         ><CommonSettingsPanel
-          :commonSettings="settings.commonSettings" /></v-col></v-row
+          :common-settings="settings.commonSettings" /></v-col></v-row
     ><v-row
       ><v-col
         ><AdminSettingsPanel
-          :adminSettings="settings.adminSettings" /></v-col></v-row
+          :admin-settings="settings.adminSettings" /></v-col></v-row
     ><v-row dense
       ><v-spacer></v-spacer
       ><v-btn
         color="primary"
-        @click="saveSettings"
         :loading="loading"
         :disabled="loading"
+        @click="saveSettings"
         >{{ $t("save") }}</v-btn
       ></v-row
     ></v-container
@@ -32,8 +32,8 @@
 
 <script>
 import { mapActions } from "vuex";
-import AdminSettingsPanel from "../components/settings/AdminSettingsPanel";
-import CommonSettingsPanel from "../components/settings/CommonSettingsPanel";
+import AdminSettingsPanel from "../components/settings/AdminSettingsPanel.vue";
+import CommonSettingsPanel from "../components/settings/CommonSettingsPanel.vue";
 
 export default {
   components: {

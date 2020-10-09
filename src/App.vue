@@ -31,24 +31,12 @@
 </template>
 
 <script>
-import NavBar from "@/components/NavBar";
+import NavBar from "@/components/NavBar.vue";
 import { mapActions, mapState } from "vuex";
 
 export default {
   name: "App",
   components: { NavBar },
-  async created() {
-    this.overlay = true;
-    this.setLocaleAction(this.$i18n.locale);
-    await this.loadCommonSettings();
-    if (
-      typeof this.commonSettings !== "undefined" &&
-      "dropzone" in this.commonSettings
-    ) {
-      document.title = this.commonSettings.dropzone.name;
-    }
-    this.overlay = false;
-  },
   data: function () {
     return {
       overlay: false,
@@ -63,6 +51,18 @@ export default {
         },
       ],
     };
+  },
+  async created() {
+    this.overlay = true;
+    this.setLocaleAction(this.$i18n.locale);
+    await this.loadCommonSettings();
+    if (
+      typeof this.commonSettings !== "undefined" &&
+      "dropzone" in this.commonSettings
+    ) {
+      document.title = this.commonSettings.dropzone.name;
+    }
+    this.overlay = false;
   },
   computed: { ...mapState(["commonSettings"]) },
   methods: {
