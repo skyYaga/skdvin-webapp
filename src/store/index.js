@@ -27,6 +27,7 @@ import { appointmentService } from "../shared/appointment-service";
 import { tandemmasterService } from "../shared/tandemmaster-service";
 import { videoflyerService } from "../shared/videoflyer-service";
 import { settingsService } from "../shared/settings-service";
+import { userService } from "../shared/user-service";
 
 Vue.use(Vuex);
 
@@ -398,6 +399,9 @@ const actions = {
   async getCommonSettingsAction({ commit }) {
     const result = await settingsService.getCommonSettings(this.state.locale);
     commit(GET_COMMON_SETTINGS, result.payload);
+  },
+  async getUsersAction({ commit }, token) {
+    return await userService.getUsers(token);
   },
 };
 /* eslint-enable no-unused-vars */
