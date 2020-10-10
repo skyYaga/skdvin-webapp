@@ -243,7 +243,7 @@ export default {
         (!!v && v) <= this.appointment.tandem ||
         this.$t("rules.moreVideoThanTandem");
 
-      const allVidsRule = (v) =>
+      const allVidsRule = () =>
         this.appointment.picOrVid +
           this.appointment.picAndVid +
           this.appointment.handcam <=
