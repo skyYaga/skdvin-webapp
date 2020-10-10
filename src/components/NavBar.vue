@@ -84,18 +84,30 @@
             <v-list-item-title>{{ $t("research.research") }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item
+        <v-list-group
           v-if="!$auth.loading && $auth.isAuthenticated && isAdmin"
-          link
-          :to="'/' + this.$i18n.locale + '/settings'"
+          :value="false"
+          prepend-icon="mdi-cog-outline"
+          no-action
         >
-          <v-list-item-action>
-            <v-icon>mdi-cog-outline</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>{{ $t("settings.settings") }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+          <template #activator>
+            <v-list-item-content>
+              <v-list-item-title>{{
+                $t("settings.settings")
+              }}</v-list-item-title>
+            </v-list-item-content>
+          </template>
+          <v-list-item link :to="'/' + this.$i18n.locale + '/settings/general'">
+            <v-list-item-content>
+              <v-list-item-title>{{ $t("general") }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item link :to="'/' + this.$i18n.locale + '/settings/users'">
+            <v-list-item-content>
+              <v-list-item-title>{{ $t("users") }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-group>
         <v-list-item
           v-if="!$auth.loading && $auth.isAuthenticated"
           link
