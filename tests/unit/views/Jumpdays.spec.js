@@ -19,7 +19,7 @@ describe("Jumpdays.vue", () => {
       getJumpdaysAction: jumpersActionMock,
     };
     getters = {
-      getJumpdayByDate: (state) => (date) => state.jumpdays,
+      getJumpdayByDate: (state) => () => state.jumpdays,
     };
     store = new Vuex.Store({
       actions,

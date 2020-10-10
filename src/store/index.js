@@ -138,6 +138,7 @@ const mutations = {
   },
 };
 
+/* eslint-disable no-unused-vars */
 const actions = {
   async getJumpdaysAction({ commit }, token) {
     const jumpdays = await jumpdayService.getJumpdays(token);
@@ -399,6 +400,7 @@ const actions = {
     commit(GET_COMMON_SETTINGS, result.payload);
   },
 };
+/* eslint-enable no-unused-vars */
 
 const getters = {
   // parameterized getters are not cached. so this is just a convenience to get the state.

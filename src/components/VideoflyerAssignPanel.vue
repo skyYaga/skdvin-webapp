@@ -162,15 +162,15 @@ export default {
       this.showHint = true;
     },
     selectAll() {
-      Object.entries(this.videoflyerDetails.assignments).forEach(
-        ([date, assignment]) => {
+      Object.values(this.videoflyerDetails.assignments).forEach(
+        (assignment) => {
           assignment.assigned = true;
         }
       );
     },
     selectNone() {
-      Object.entries(this.videoflyerDetails.assignments).forEach(
-        ([date, assignment]) => {
+      Object.values(this.videoflyerDetails.assignments).forEach(
+        (assignment) => {
           assignment.assigned = false;
         }
       );
