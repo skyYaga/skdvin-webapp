@@ -161,15 +161,15 @@ export default {
       this.showHint = true;
     },
     selectAll() {
-      Object.entries(this.tandemmasterDetails.assignments).forEach(
-        ([date, assignment]) => {
+      Object.values(this.tandemmasterDetails.assignments).forEach(
+        (assignment) => {
           assignment.assigned = true;
         }
       );
     },
     selectNone() {
-      Object.entries(this.tandemmasterDetails.assignments).forEach(
-        ([date, assignment]) => {
+      Object.values(this.tandemmasterDetails.assignments).forEach(
+        (assignment) => {
           assignment.assigned = false;
         }
       );

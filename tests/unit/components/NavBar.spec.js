@@ -14,7 +14,7 @@ describe("NavBar.vue", () => {
 
   beforeEach(() => {
     getters = {
-      getCommonSettings: (state) => () => {
+      getCommonSettings: () => () => {
         return {
           dropzone: {
             name: "Example DZ",
