@@ -132,10 +132,6 @@ export default {
       this.showHint = true;
       await this.loadUsers();
     },
-    updateRoleSelection(event) {
-      console.log(event);
-      this.currentUser.roles;
-    },
   },
 };
 </script>
