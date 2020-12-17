@@ -255,6 +255,12 @@
   },
   "transportationHint": "Auf dem Beförderungsvertrag, der vor Ort ausgefüllt werden muss, wird die Unterschrift BEIDER Erziehungsberechtigter benötigt! Für den Fall, dass nicht beide Erziehungsberechtigten vor Ort sein werden, kann das Formular im Vorfeld ausgefüllt werden ({url}).",
   "update": "Aktualisieren",
+  "user": {
+    "update": {
+      "error": "Fehler beim Aktualisieren des Benutzers",
+      "successful": "Aktualisierung des Benutzers erfolgreich"
+    }
+  },
   "users": "Benutzer",
   "videoflyer": {
     "add": "Videoflyer hinzufügen",

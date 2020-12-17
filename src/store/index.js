@@ -402,6 +402,12 @@ const actions = {
   async getUsersAction({ commit }, token) {
     return await userService.getUsers(token);
   },
+  async updateUserAction({ commit }, payload) {
+    return await userService.updateUser(payload.user, payload.token);
+  },
+  async getRolesAction({ commit }, token) {
+    return await userService.getRoles(token);
+  },
 };
 
 const getters = {
