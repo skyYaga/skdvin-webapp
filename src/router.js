@@ -93,9 +93,15 @@ export default new Router({
           beforeEnter: authGuard,
         },
         {
-          path: "settings",
-          name: "settings",
-          component: () => import("./views/Settings.vue"),
+          path: "settings/general",
+          name: "general-settings",
+          component: () => import("./views/GeneralSettings.vue"),
+          beforeEnter: authGuard,
+        },
+        {
+          path: "settings/users",
+          name: "user-settings",
+          component: () => import("./views/UserSettings.vue"),
           beforeEnter: authGuard,
         },
       ],
