@@ -158,7 +158,7 @@ export default {
     menu(val) {
       val && setTimeout(() => (this.$refs.picker.activePicker = "YEAR"));
     },
-    bookedJumper: function (newJumper, oldJumper) {
+    bookedJumper: function (newJumper) {
       this.jumper = newJumper;
     },
   },
