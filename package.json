@@ -14,7 +14,7 @@
     "@auth0/auth0-spa-js": "^1.13.5",
     "@sentry/browser": "^5.29.2",
     "@sentry/integrations": "^5.29.2",
-    "axios": "^0.21.0",
+    "axios": "^0.21.1",
     "core-js": "^3.8.1",
     "moment": "^2.29.1",
     "vue": "^2.6.12",
