@@ -2,14 +2,14 @@
   <div>
     <h3>Springer*in {{ jumperNum }}</h3>
     <v-row
-      ><v-col :lg="4" :sm="6"
+      ><v-col cols="6" :lg="4"
         ><v-text-field
           v-model="jumper.firstName"
           :label="$t('firstName')"
           :rules="nameRules"
           required
         ></v-text-field></v-col
-      ><v-col :lg="4" :sm="6"
+      ><v-col cols="6" :lg="4"
         ><v-text-field
           v-model="jumper.lastName"
           :label="$t('lastName')"
@@ -17,7 +17,7 @@
           required
         ></v-text-field
       ></v-col>
-      <v-col :lg="4" :sm="6">
+      <v-col cols="6" :lg="4">
         <v-menu
           ref="menu"
           v-model="menu"
@@ -53,19 +53,25 @@
         </v-menu>
       </v-col>
     </v-row>
-    <v-row v-if="!isAdmin" class="mt-n10"
-      ><v-col :lg="6"
+    <v-row class="mt-n10"
+      ><v-col v-if="!isAdmin" cols="6" :lg="4"
         ><v-checkbox
           v-model="weightConfirmed"
           :label="$t('weightMax90')"
           :rules="weightRules"
         ></v-checkbox></v-col
-      ><v-col :lg="6"
+      ><v-col v-if="!isAdmin" cols="6" :lg="4"
         ><v-checkbox
           v-model="sizeConfirmed"
           :label="$t('sizeMax190')"
           :rules="sizeRules"
         ></v-checkbox></v-col
+      ><v-col cols="6" :lg="4"
+        ><v-checkbox v-model="jumper.voucher" :label="$t('voucher.voucher')"
+          ><InfoDialog
+            slot="append"
+            :heading="$t('voucher.voucher')"
+            :text="$t('voucher.info')" /></v-checkbox></v-col
     ></v-row>
     <v-row
       ><v-col
@@ -91,8 +97,12 @@
 import moment from "moment";
 import { roleUtil } from "../shared/roles";
 import { mapState } from "vuex";
+import InfoDialog from "./InfoDialog.vue";
 
 export default {
+  components: {
+    InfoDialog,
+  },
   props: {
     jumperNum: {
       type: Number,
@@ -111,6 +121,7 @@ export default {
         firstName: "",
         lastName: "",
         dateOfBirth: "",
+        voucher: false,
       },
       weightConfirmed: false,
       sizeConfirmed: false,
