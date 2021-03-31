@@ -1,10 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import {
-  GET_JUMPDAYS,
-  ADD_JUMPDAY,
-  UPDATE_JUMPDAY,
-  DELETE_JUMPDAY,
   UPDATE_APPOINTMENT,
   GET_APPOINTMENTS,
   UPDATE_APPOINTMENT_STATE,
@@ -19,60 +15,27 @@ import {
   GET_VIDEOFLYERS,
   DELETE_VIDEOFLYER,
   SET_LOCALE,
-  UPDATE_LOCAL_SETTINGS,
-  GET_COMMON_SETTINGS,
 } from "./mutation-types";
-import { jumpdayService } from "../shared/jumpday-service";
+import jumpday from "./modules/jumpday";
+import settings from "./modules/settings";
+
 import { appointmentService } from "../shared/appointment-service";
 import { tandemmasterService } from "../shared/tandemmaster-service";
 import { videoflyerService } from "../shared/videoflyer-service";
-import { settingsService } from "../shared/settings-service";
 import { userService } from "../shared/user-service";
 
 Vue.use(Vuex);
 
 const state = () => ({
-  jumpdays: [],
   appointments: [],
   appointment: null,
   tandemmasters: [],
   videoflyers: [],
   locale: null,
   groupSlots: [],
-  settings: {
-    startHour: "9",
-    startMinute: "30",
-    endHour: "18",
-    endMinute: "00",
-    tandem: 5,
-    picOrVid: 0,
-    picAndVid: 0,
-    handcam: 0,
-    sequence: "1:30",
-  },
-  commonSettings: {
-    dropzone: {
-      name: "",
-      email: "",
-    },
-  },
 });
 
 const mutations = {
-  [GET_JUMPDAYS](state, jumpdays) {
-    state.jumpdays = jumpdays;
-  },
-  [ADD_JUMPDAY](state, jumpday) {
-    state.jumpdays.unshift(jumpday); // mutable addition
-  },
-  [UPDATE_JUMPDAY](state, jumpday) {
-    const index = state.jumpdays.findIndex((j) => j.date === jumpday.date);
-    state.jumpdays.splice(index, 1, jumpday);
-    state.jumpdays = [...state.jumpdays];
-  },
-  [DELETE_JUMPDAY](state, date) {
-    state.jumpdays = [...state.jumpdays.filter((j) => j.date !== date)];
-  },
   [GET_APPOINTMENTS](state, appointments) {
     state.appointments = appointments;
   },
@@ -131,44 +94,10 @@ const mutations = {
   [SET_LOCALE](state, locale) {
     state.locale = locale;
   },
-  [UPDATE_LOCAL_SETTINGS](state, settings) {
-    state.settings = settings;
-  },
-  [GET_COMMON_SETTINGS](state, commonSettings) {
-    state.commonSettings = commonSettings;
-  },
 };
 
 /* eslint-disable no-unused-vars */
 const actions = {
-  async getJumpdaysAction({ commit }, token) {
-    const jumpdays = await jumpdayService.getJumpdays(token);
-    if (typeof jumpdays === "number") {
-      return jumpdays;
-    }
-    commit(GET_JUMPDAYS, jumpdays);
-    return "";
-  },
-  async addJumpdayAction({ commit }, payload) {
-    const result = await jumpdayService.addJumpday(
-      payload.jumpday,
-      payload.token
-    );
-    if (result.success) {
-      commit(ADD_JUMPDAY, result.payload);
-    }
-    return result;
-  },
-  async deleteJumpdayAction({ commit }, payload) {
-    let result = await jumpdayService.deleteJumpday(
-      payload.date,
-      payload.token
-    );
-    if (result.success) {
-      commit(DELETE_JUMPDAY, payload.date);
-    }
-    return result;
-  },
   async searchSlotsAction({ commit }, query) {
     const slots = await appointmentService.searchSlots(query);
     return slots;
@@ -245,16 +174,6 @@ const actions = {
     );
     if (result.success) {
       commit(UPDATE_APPOINTMENT, result.payload);
-    }
-    return result;
-  },
-  async updateJumpdayAction({ commit }, payload) {
-    let result = await jumpdayService.updateJumpday(
-      payload.jumpday,
-      payload.token
-    );
-    if (result.success) {
-      commit(UPDATE_JUMPDAY, result.payload);
     }
     return result;
   },
@@ -381,25 +300,6 @@ const actions = {
   setLocaleAction({ commit }, locale) {
     commit(SET_LOCALE, locale);
   },
-  updateLocalSettingsAction({ commit }, settings) {
-    commit(UPDATE_LOCAL_SETTINGS, settings);
-  },
-  async getSettingsAction({ commit }, token) {
-    return await settingsService.getSettings(token);
-  },
-  async saveSettingsAction({ commit }, payload) {
-    return await settingsService.saveSettings(payload.settings, payload.token);
-  },
-  async updateSettingsAction({ commit }, payload) {
-    return await settingsService.updateSettings(
-      payload.settings,
-      payload.token
-    );
-  },
-  async getCommonSettingsAction({ commit }) {
-    const result = await settingsService.getCommonSettings(this.state.locale);
-    commit(GET_COMMON_SETTINGS, result.payload);
-  },
   async getUsersAction({ commit }, token) {
     return await userService.getUsers(token);
   },
@@ -414,14 +314,14 @@ const actions = {
 
 const getters = {
   // parameterized getters are not cached. so this is just a convenience to get the state.
-  getJumpdayByDate: (state) => (date) =>
-    state.jumpdays.find((j) => j.date === date),
-  getSettings: (state) => () => state.settings,
   getFaq: (state) => () => state.commonSettings.faq,
-  getCommonSettings: (state) => () => state.commonSettings,
 };
 
 export default new Vuex.Store({
+  modules: {
+    jumpday,
+    settings,
+  },
   strict: process.env.NODE_ENV !== "production",
   state,
   mutations,

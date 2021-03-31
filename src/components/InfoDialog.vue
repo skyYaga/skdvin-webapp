@@ -6,7 +6,7 @@
       <v-card-title>{{ heading }}</v-card-title>
       <v-card-text>
         <!-- eslint-disable-next-line vue/no-v-html -->
-        <div v-html="text"></div>
+        <div v-html="sanitizedText"></div>
         <p class="pt-5">
           {{ $t("pricelist.infos") }}
           <a :href="pricelist" target="_blank" rel="noopener noreferrer">{{
@@ -26,6 +26,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+import DOMPurify from "dompurify";
 
 export default {
   props: {
@@ -49,6 +50,9 @@ export default {
         return commonSettings.dropzone.priceListUrl;
       }
       return "";
+    },
+    sanitizedText() {
+      return DOMPurify.sanitize(this.text);
     },
   },
 };

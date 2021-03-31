@@ -289,6 +289,9 @@
     "info": "Please check, if the jumper has a voucher",
     "voucher": "Voucher"
   },
+  "waiver": {
+    "waiver": "Waiver"
+  },
   "weightMax90": "Weight max 90 kg",
   "welcome": {
     "message": "Please enter in the search mask how many tandem jumps and (if desired) additional videos you want to book. {br}The different options for available videos and photos are explained in the info box that opens when you click on the \"i\" next to each option. {br}For group bookings of 5 or more people please contact us by mail ({mail}). {br}If you have any further questions, please check our {faq} or contact us by mail or mobile on {tel}.",
