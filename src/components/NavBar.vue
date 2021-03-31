@@ -102,6 +102,11 @@
               <v-list-item-title>{{ $t("general") }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+          <v-list-item link :to="'/' + this.$i18n.locale + '/settings/waiver'">
+            <v-list-item-content>
+              <v-list-item-title>{{ $t("waiver.waiver") }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
           <v-list-item link :to="'/' + this.$i18n.locale + '/settings/users'">
             <v-list-item-content>
               <v-list-item-title>{{ $t("users") }}</v-list-item-title>

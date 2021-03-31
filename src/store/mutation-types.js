@@ -18,3 +18,5 @@ export const DELETE_VIDEOFLYER = "deleteVideoflyer";
 export const SET_LOCALE = "setLocale";
 export const UPDATE_LOCAL_SETTINGS = "updateLocalSettingsAction";
 export const GET_COMMON_SETTINGS = "getCommonSettingsAction";
+export const SET_SETTINGS = "setSettings";
+export const UPDATE_WAIVER_SETTINGS = "updateWaiverSettings";
