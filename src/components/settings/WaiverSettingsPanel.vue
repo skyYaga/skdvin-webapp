@@ -50,7 +50,6 @@ export default {
   methods: {
     ...mapMutations(["updateWaiverSettings"]),
     updateSettingsStore(lang, e) {
-      console.log(lang + e);
       this.updateWaiverSettings({ lang: lang, tandemwaiver: e });
     },
   },
