@@ -15,7 +15,7 @@
     "@sentry/browser": "^6.2.5",
     "@sentry/integrations": "^6.2.5",
     "axios": "^0.21.1",
-    "core-js": "^3.9.1",
+    "core-js": "^3.10.0",
     "dompurify": "^2.2.7",
     "moment": "^2.29.1",
     "signature_pad": "^3.0.0-beta.4",
