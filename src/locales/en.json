@@ -32,6 +32,7 @@
       "question": "Should the appointment be deleted?"
     },
     "details": "Appointment details",
+    "idOptional": "Appointment ID (optional)",
     "newselected": "New selected appointment: {date} at {time}",
     "overview": {
       "back": "Back to appointment overview"
@@ -93,6 +94,10 @@
   "firstName": "First name",
   "firstTime": "First Time",
   "from": "From",
+  "gdpr": {
+    "health": "I acknowledge and consent that {dz} collects and stores information about my state of health in the context of a declaration or by presenting a certificate of fitness. Active participation in the tandem jump operations of the club is not possible without this consent.",
+    "social": "I agree that {dz} may publish videos and pictures of my person on its website or social networks for promotional or educational purposes."
+  },
   "general": "General",
   "handcam": {
     "available": "Handcam available",
@@ -171,6 +176,7 @@
     "emailNeeded": "Email is needed",
     "emailValid": "Email has to be vaild",
     "fieldHasToBeFilled": "Field may not be empty",
+    "gdpr": "You have to accept this.",
     "max40Chars": "Maximum of 40 characters",
     "moreVideoThanTandem": "More video bookings than tandem jumps",
     "notEnoughFreeSlots": "Not enough free slots",
@@ -204,6 +210,13 @@
     "settings": "Settings",
     "system": "System settings"
   },
+  "signature": {
+    "minorsNeedParent": "Minors need the signature of BOTH parents or guardians",
+    "parent1": "Signature parent or guardian 1",
+    "parent2": "Signature parent or guardian 2",
+    "reset": "Reset signature",
+    "signature": "Signature"
+  },
   "sizeMax190": "Size max 1,90 m",
   "slot": {
     "add": "Add slot",
@@ -213,6 +226,7 @@
     "noFreeFound": "No free slots found.",
     "searchnew": "Search new slot"
   },
+  "streetAdress": "Street address",
   "tandem": {
     "available": "Tandem available",
     "book": "Book tandem skydive",
@@ -290,7 +304,17 @@
     "voucher": "Voucher"
   },
   "waiver": {
+    "save": {
+      "error": "Error saving waiver",
+      "successful": "Waiver saved successfully"
+    },
+    "signature": {
+      "required": "The signature is mandatory"
+    },
     "waiver": "Waiver"
+  },
+  "wavier": {
+    "new": "Create another waiver"
   },
   "weightMax90": "Weight max 90 kg",
   "welcome": {

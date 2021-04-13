@@ -32,6 +32,7 @@
       "question": "Soll der Termin gelöscht werden?"
     },
     "details": "Termindetails",
+    "idOptional": "Buchungsnummer (optional)",
     "newselected": "Neu gewählter Termin: {date} um {time} Uhr",
     "overview": {
       "back": "Zurück zur Terminübersicht"
@@ -93,6 +94,10 @@
   "firstName": "Vorname",
   "firstTime": "Erste Zeit",
   "from": "Von",
+  "gdpr": {
+    "health": "Ich nehme zur Kenntnis und willige ein, dass {dz} Informationen über meinen Gesundheitszustand im Rahmen einer Erklärung bzw. durch Vorlage eines Tauglichkeitszeugnisses erhebt und speichert. Eine aktive Teilnahme am Tandemsprungbetrieb des Vereins ist ohne diese Einwilligung nicht möglich.",
+    "social": "Ich willige ein, dass {dz} Videos und Bilder von meinen Person zu Werbe- bzw. Ausbildungszwecken auf seiner Internetseite oder sozialen Netzwerken veröffentlichen darf."
+  },
   "general": "Allgemein",
   "handcam": {
     "available": "Handcam Verfügbar",
@@ -171,6 +176,7 @@
     "emailNeeded": "E-Mail wird benötigt",
     "emailValid": "E-mail muss gültig sein",
     "fieldHasToBeFilled": "Das Feld muss befüllt werden",
+    "gdpr": "Dies muss akzeptiert werden.",
     "max40Chars": "Wert darf aus maximal 40 Zeichen bestehen",
     "moreVideoThanTandem": "Mehr Videobuchungen als Tandemsprünge",
     "notEnoughFreeSlots": "Nicht genügend freie Slots",
@@ -204,6 +210,13 @@
     "settings": "Einstellungen",
     "system": "Systemeinstellungen"
   },
+  "signature": {
+    "minorsNeedParent": "Minderjährige benötigen die Unterschrift BEIDER Erziehungsberechtigten",
+    "parent1": "Unterschrift Erziehungsberechtigte*r 1",
+    "parent2": "Unterschrift Erziehungsberechtigte*r 2",
+    "reset": "Unterschrift zurücksetzen",
+    "signature": "Unterschrift"
+  },
   "sizeMax190": "Größe maximal 1,90 m",
   "slot": {
     "add": "Slot hinzufügen",
@@ -213,6 +226,7 @@
     "noFreeFound": "Keine freien Slots gefunden.",
     "searchnew": "Neuen Slot suchen"
   },
+  "streetAdress": "Straße und Hausnummer",
   "tandem": {
     "available": "Tandem verfügbar",
     "book": "Tandemsprung buchen",
@@ -290,7 +304,17 @@
     "voucher": "Gutschein"
   },
   "waiver": {
+    "save": {
+      "error": "Fehler beim Speichern der Haftungsvereinbarung",
+      "successful": "Haftungsvereinbarung erfolgreich gespeichert"
+    },
+    "signature": {
+      "required": "Die Unterschrift wird benötigt"
+    },
     "waiver": "Haftungsvereinbarung"
+  },
+  "wavier": {
+    "new": "Weitere Haftungsvereinbarung erstellen"
   },
   "weightMax90": "Gewicht maximal 90 kg",
   "welcome": {

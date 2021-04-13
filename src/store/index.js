@@ -18,6 +18,7 @@ import {
 } from "./mutation-types";
 import jumpday from "./modules/jumpday";
 import settings from "./modules/settings";
+import waiver from "./modules/waiver";
 
 import { appointmentService } from "../shared/appointment-service";
 import { tandemmasterService } from "../shared/tandemmaster-service";
@@ -321,6 +322,7 @@ export default new Vuex.Store({
   modules: {
     jumpday,
     settings,
+    waiver,
   },
   strict: process.env.NODE_ENV !== "production",
   state,

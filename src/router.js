@@ -113,7 +113,12 @@ export default new Router({
         {
           path: "tandem/waiver",
           name: "tandem-waiver",
-          component: () => import("./views/TandemWaiver.vue"),
+          component: () => import("./views/waiver/TandemWaiver.vue"),
+        },
+        {
+          path: "tandem/waiver/confirm",
+          name: "waiver-confirm",
+          component: () => import("./views/waiver/WaiverConfirm.vue"),
         },
       ],
     },

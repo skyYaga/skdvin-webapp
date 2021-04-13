@@ -6,9 +6,15 @@
       </div>
     </v-row>
     <v-row>
-      <v-btn small @click="clear()">{{ $t("reset") }}</v-btn>
-      <v-btn small @click="save()">{{ $t("save") }}</v-btn>
+      <v-btn x-small @click="clear()">{{ $t("signature.reset") }}</v-btn>
     </v-row>
+    <v-row v-if="showValidationError"
+      ><v-col
+        ><v-alert type="error">{{
+          $t("waiver.signature.required")
+        }}</v-alert></v-col
+      ></v-row
+    >
   </div>
 </template>
 
@@ -18,6 +24,7 @@ import SignaturePad from "signature_pad";
 export default {
   data: () => ({
     signaturePad: null,
+    showValidationError: false,
   }),
   mounted() {
     let canvas = this.$refs.signaturePadCanvas;
@@ -50,8 +57,16 @@ export default {
     clear() {
       this.signaturePad.clear();
     },
-    save() {
-      //console.log(this.signaturePad.toDataURL());
+    getSignature() {
+      return this.signaturePad.toDataURL();
+    },
+    validate() {
+      if (this.signaturePad.isEmpty()) {
+        this.showValidationError = true;
+        return false;
+      }
+      this.showValidationError = false;
+      return true;
     },
   },
 };
@@ -59,7 +74,7 @@ export default {
 
 <style lang="scss" scoped>
 #signature-pad-canvas {
-  width: 500px;
+  width: 450px;
   height: 200px;
   border-style: solid;
   border-width: 1px;
