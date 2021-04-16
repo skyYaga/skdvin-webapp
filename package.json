@@ -17,6 +17,7 @@
     "axios": "^0.21.1",
     "core-js": "^3.10.1",
     "dompurify": "^2.2.7",
+    "luxon": "^1.26.0",
     "moment": "^2.29.1",
     "signature_pad": "^3.0.0-beta.4",
     "tiptap": "^1.32.2",
