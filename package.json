@@ -16,7 +16,7 @@
     "@sentry/integrations": "^6.3.4",
     "axios": "^0.21.1",
     "core-js": "^3.11.0",
-    "dompurify": "^2.2.7",
+    "dompurify": "^2.2.8",
     "luxon": "^1.26.0",
     "moment": "^2.29.1",
     "signature_pad": "^3.0.0-beta.4",
