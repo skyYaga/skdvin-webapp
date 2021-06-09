@@ -36,7 +36,13 @@
       </v-card>
     </v-dialog>
 
-    <v-data-table :headers="headers" :items="users" :loading="loading"
+    <v-data-table
+      :headers="headers"
+      :items="users"
+      :options.sync="options"
+      :server-items-length="total"
+      :loading="loading"
+      :footer-props="footerProps"
       ><template #[`item.actions`]="{ item }">
         <v-icon small class="mr-2" @click="editUser(item)"> mdi-pencil </v-icon>
       </template>
@@ -44,8 +50,8 @@
         <span v-for="role in item.roles" :key="role.id">
           <v-chip>{{ role.name }}</v-chip>
         </span>
-      </template>
-    </v-data-table>
+      </template></v-data-table
+    >
   </v-card>
 </template>
 
@@ -55,6 +61,11 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
+      total: 0,
+      options: {},
+      footerProps: {
+        itemsPerPageOptions: [3, 5, 8],
+      },
       dialog: false,
       currentUser: {},
       headers: [
@@ -78,20 +89,33 @@ export default {
       return [];
     },
   },
+  watch: {
+    options: {
+      handler() {
+        this.loadUsers();
+      },
+      deep: true,
+    },
+  },
   async created() {
-    await this.loadUsers();
     await this.loadRoles();
   },
   methods: {
     ...mapActions(["getUsersAction", "getRolesAction", "updateUserAction"]),
     async loadUsers() {
       this.loading = true;
-      let result = await this.getUsersAction(
-        await this.$auth.getTokenSilently()
-      );
+      const { page, itemsPerPage } = this.options;
+
+      let token = await this.$auth.getTokenSilently();
+      let result = await this.getUsersAction({
+        page: page - 1,
+        itemsPerPage,
+        token,
+      });
       this.loading = false;
       if (result.payload != null) {
-        this.users = result.payload;
+        this.users = result.payload.users;
+        this.total = result.payload.total;
       }
     },
     async loadRoles() {
