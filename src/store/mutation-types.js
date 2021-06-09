@@ -20,3 +20,5 @@ export const UPDATE_LOCAL_SETTINGS = "updateLocalSettingsAction";
 export const GET_COMMON_SETTINGS = "getCommonSettingsAction";
 export const SET_SETTINGS = "setSettings";
 export const UPDATE_WAIVER_SETTINGS = "updateWaiverSettings";
+export const GET_WAIVERS = "getWaivers";
+export const UPDATE_WAIVERS = "updateWaivers";

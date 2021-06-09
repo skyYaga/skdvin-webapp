@@ -10,21 +10,21 @@
     </div>
     <div v-if="!loading && authorized">
       <v-row dense
-        ><h1>{{ $t("tandemmaster.tandemmaster") }}</h1></v-row
+        ><h1>{{ $t("waiver.waiver") }}</h1></v-row
       >
       <v-row
         ><v-col
-          ><TandemmasterList
+          ><WaiverList
             :loading="loading"
-            :tandemmaster="getTandemmasters"
-            @handle-assign-click="tandemmasterSelected" /></v-col
+            :waiver="getWaivers"
+            @handle-assign-click="waiverSelected" /></v-col
       ></v-row>
-      <v-row
+      <!--<v-row
         ><v-col
-          ><TandemmasterAssignPanel
+          ><WaiverAssignPanel
             v-if="showAssignmentPanel"
-            :tandemmaster="selectedTandemmaster" /></v-col
-      ></v-row>
+            :waiver="selectedWaiver" /></v-col
+      ></v-row>-->
     </div>
     <div v-if="!loading && !authorized">
       <v-row dense>
@@ -36,41 +36,41 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
-import TandemmasterList from "../components/TandemmasterList.vue";
-import TandemmasterAssignPanel from "../components/TandemmasterAssignPanel.vue";
+import WaiverList from "../../components/waiver/WaiverList.vue";
+//import WaiverAssignPanel from "../components/WaiverAssignPanel.vue";
 
 export default {
   components: {
-    TandemmasterList,
-    TandemmasterAssignPanel,
+    WaiverList,
+    //WaiverAssignPanel,
   },
   data: () => ({
     menu: false,
     loading: false,
     authorized: false,
     message: "",
-    selectedTandemmaster: {},
+    selectedWaiver: {},
     showAssignmentPanel: false,
   }),
   computed: {
-    ...mapState(["tandemmaster"]),
-    getTandemmasters() {
-      return JSON.parse(JSON.stringify(this.tandemmaster.tandemmasters));
+    ...mapState(["waiver"]),
+    getWaivers() {
+      return JSON.parse(JSON.stringify(this.waiver.waivers));
     },
   },
   async created() {
     this.loading = true;
-    await this.loadTandemmaster();
+    await this.loadWaiver();
     this.loading = false;
     this.authorized = true;
   },
   methods: {
-    ...mapActions(["getTandemmasterAction"]),
-    async loadTandemmaster() {
-      await this.getTandemmasterAction(await this.$auth.getTokenSilently());
+    ...mapActions(["getWaiverAction"]),
+    async loadWaiver() {
+      await this.getWaiverAction(await this.$auth.getTokenSilently());
     },
-    tandemmasterSelected(tm) {
-      this.selectedTandemmaster = tm;
+    waiverSelected(tm) {
+      this.selectedWaiver = tm;
       this.showAssignmentPanel = true;
     },
   },

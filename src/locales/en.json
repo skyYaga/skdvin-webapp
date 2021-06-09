@@ -32,6 +32,7 @@
       "question": "Should the appointment be deleted?"
     },
     "details": "Appointment details",
+    "id": "Appointment ID",
     "idOptional": "Appointment ID (optional)",
     "newselected": "New selected appointment: {date} at {time}",
     "overview": {
@@ -53,6 +54,7 @@
   "city": "City",
   "contactData": "Contact data",
   "continue": "Continue",
+  "create": "Create",
   "dataVerification": "Data verification",
   "date": "Date",
   "dateOfBirth": "Date of birth",
@@ -140,6 +142,7 @@
   "notes": "Notes",
   "ok": "OK",
   "operating": "Operating",
+  "overview": "Overview",
   "picAndVid": {
     "available": "Pic and Vid available",
     "count": "Picture and video count",
@@ -223,7 +226,7 @@
     "available": "Available time slots",
     "availableAt": "Available free slots for this booking on {date} at {time}",
     "count": "Slot Count",
-    "noFreeFound": "No free slots found.",
+    "noFreeFound": "No free slots found. You can try to book multiple appointments with less jumps.",
     "searchnew": "Search new slot"
   },
   "streetAdress": "Street address",
@@ -304,12 +307,18 @@
     "voucher": "Voucher"
   },
   "waiver": {
+    "edit": "Edit waiver",
     "save": {
       "error": "Error saving waiver",
       "successful": "Waiver saved successfully"
     },
     "signature": {
       "required": "The signature is mandatory"
+    },
+    "state": "State",
+    "update": {
+      "error": "Error updating waiver",
+      "successful": "Waiver updated successfully"
     },
     "waiver": "Waiver"
   },

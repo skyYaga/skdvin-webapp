@@ -5,7 +5,7 @@
         <canvas id="signature-pad-canvas" ref="signaturePadCanvas"></canvas>
       </div>
     </v-row>
-    <v-row>
+    <v-row v-if="showButton">
       <v-btn x-small @click="clear()">{{ $t("signature.reset") }}</v-btn>
     </v-row>
     <v-row v-if="showValidationError"
@@ -22,16 +22,31 @@
 import SignaturePad from "signature_pad";
 
 export default {
+  props: {
+    signature: {
+      type: String,
+      default: "",
+    },
+  },
   data: () => ({
     signaturePad: null,
     showValidationError: false,
+    showButton: true,
   }),
+  watch: {
+    signature() {
+      this.drawCanvas();
+    },
+  },
   mounted() {
-    let canvas = this.$refs.signaturePadCanvas;
-    this.signaturePad = new SignaturePad(canvas);
-    this.onResizeHandler = this.resizeCanvas.bind(this);
-    window.addEventListener("resize", this.onResizeHandler, false);
-    this.resizeCanvas();
+    this.$nextTick(function () {
+      let canvas = this.$refs.signaturePadCanvas;
+      this.signaturePad = new SignaturePad(canvas);
+      this.onResizeHandler = this.resizeCanvas.bind(this);
+      window.addEventListener("resize", this.onResizeHandler, false);
+      this.resizeCanvas();
+      this.drawCanvas();
+    });
   },
   methods: {
     resizeCanvas() {
@@ -67,6 +82,13 @@ export default {
       }
       this.showValidationError = false;
       return true;
+    },
+    drawCanvas() {
+      if (this.signature !== "") {
+        this.showButton = false;
+        this.signaturePad.fromDataURL(this.signature);
+        this.signaturePad.off();
+      }
     },
   },
 };

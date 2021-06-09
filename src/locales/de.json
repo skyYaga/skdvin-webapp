@@ -32,6 +32,7 @@
       "question": "Soll der Termin gelöscht werden?"
     },
     "details": "Termindetails",
+    "id": "Termin ID",
     "idOptional": "Buchungsnummer (optional)",
     "newselected": "Neu gewählter Termin: {date} um {time} Uhr",
     "overview": {
@@ -53,6 +54,7 @@
   "city": "Wohnort",
   "contactData": "Kontaktdaten",
   "continue": "Weiter",
+  "create": "Erstellen",
   "dataVerification": "Datenüberprüfung",
   "date": "Datum",
   "dateOfBirth": "Geburtsdatum",
@@ -140,6 +142,7 @@
   "notes": "Notizen",
   "ok": "OK",
   "operating": "Sprungbetrieb",
+  "overview": "Übersicht",
   "picAndVid": {
     "available": "Foto u. Video verfügbar",
     "count": "Anzahl Foto und Video",
@@ -223,7 +226,7 @@
     "available": "Verfügbare Zeitslots",
     "availableAt": "Für diesen Termin am {date} um {time} Uhr zubuchbare Slots",
     "count": "Anzahl Slots",
-    "noFreeFound": "Keine freien Slots gefunden.",
+    "noFreeFound": "Keine freien Slots gefunden. Du kannst stattdessen versuchen mehrere Termine mit weniger Sprüngen zu buchen.",
     "searchnew": "Neuen Slot suchen"
   },
   "streetAdress": "Straße und Hausnummer",
@@ -304,12 +307,18 @@
     "voucher": "Gutschein"
   },
   "waiver": {
+    "edit": "Haftungsvereinbarung bearbeiten",
     "save": {
       "error": "Fehler beim Speichern der Haftungsvereinbarung",
       "successful": "Haftungsvereinbarung erfolgreich gespeichert"
     },
     "signature": {
       "required": "Die Unterschrift wird benötigt"
+    },
+    "state": "Status",
+    "update": {
+      "error": "Fehler beim Aktualisieren der Haftungsvereinbarung",
+      "successful": "Haftungsvereinbarung erfolgreich aktualisiert"
     },
     "waiver": "Haftungsvereinbarung"
   },

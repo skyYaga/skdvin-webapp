@@ -34,6 +34,8 @@ const getters = {
   // parameterized getters are not cached. so this is just a convenience to get the state.
   getSettings: (state) => () => state.settings,
   getCommonSettings: (state) => () => state.commonSettings,
+  // parameterized getters are not cached. so this is just a convenience to get the state.
+  getFaq: (state) => () => state.commonSettings.faq,
 };
 
 /* eslint-disable no-unused-vars */
@@ -68,6 +70,7 @@ const actions = {
     return await settingsService.getWaiverSettings(this.state.locale);
   },
 };
+/* eslint-enable no-unused-vars */
 
 const mutations = {
   [UPDATE_LOCAL_SETTINGS](state, settings) {

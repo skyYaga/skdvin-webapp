@@ -18,14 +18,18 @@
             <v-list-item-title>{{ $t("faq.faq") }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item link :to="'/' + $i18n.locale + '/tandem/waiver'">
+        <!--<v-list-item
+          v-if="!$auth.loading && !$auth.isAuthenticated && !isAdminOrModerator"
+          link
+          :to="'/' + $i18n.locale + '/tandem/waiver/create'"
+        >
           <v-list-item-action>
             <v-icon>mdi-signature</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>{{ $t("waiver.waiver") }}</v-list-item-title>
           </v-list-item-content>
-        </v-list-item>
+        </v-list-item>-->
         <v-list-item
           v-if="!$auth.loading && $auth.isAuthenticated && isAdminOrModerator"
           link
@@ -52,6 +56,31 @@
             }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-list-group
+          v-if="!$auth.loading && $auth.isAuthenticated && isAdmin"
+          :value="false"
+          prepend-icon="mdi-signature"
+          no-action
+        >
+          <template #activator>
+            <v-list-item-content>
+              <v-list-item-title>{{ $t("waiver.waiver") }}</v-list-item-title>
+            </v-list-item-content>
+          </template>
+          <v-list-item
+            link
+            :to="'/' + $i18n.locale + '/tandem/waiver/overview'"
+          >
+            <v-list-item-content>
+              <v-list-item-title>{{ $t("overview") }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item link :to="'/' + $i18n.locale + '/tandem/waiver/create'">
+            <v-list-item-content>
+              <v-list-item-title>{{ $t("create") }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-group>
         <v-list-item
           v-if="!$auth.loading && $auth.isAuthenticated && isAdminOrModerator"
           link

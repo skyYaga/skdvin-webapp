@@ -53,9 +53,9 @@ export default {
     showAssignmentPanel: false,
   }),
   computed: {
-    ...mapState(["videoflyers"]),
+    ...mapState(["videoflyer"]),
     getVideoflyers() {
-      return JSON.parse(JSON.stringify(this.videoflyers));
+      return JSON.parse(JSON.stringify(this.videoflyer.videoflyers));
     },
   },
   async created() {
