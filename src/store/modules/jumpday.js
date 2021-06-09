@@ -57,6 +57,7 @@ const actions = {
     return result;
   },
 };
+/* eslint-enable no-unused-vars */
 
 const mutations = {
   [GET_JUMPDAYS](state, jumpdays) {

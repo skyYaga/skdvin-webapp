@@ -111,7 +111,7 @@ export default new Router({
           beforeEnter: authGuard,
         },
         {
-          path: "tandem/waiver",
+          path: "tandem/waiver/create",
           name: "tandem-waiver",
           component: () => import("./views/waiver/TandemWaiver.vue"),
         },
@@ -119,6 +119,12 @@ export default new Router({
           path: "tandem/waiver/confirm",
           name: "waiver-confirm",
           component: () => import("./views/waiver/WaiverConfirm.vue"),
+        },
+        {
+          path: "tandem/waiver/overview",
+          name: "waiver-overview",
+          component: () => import("./views/waiver/WaiverOverview.vue"),
+          beforeEnter: authGuard,
         },
       ],
     },

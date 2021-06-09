@@ -6,23 +6,15 @@ import {
   UPDATE_APPOINTMENT_STATE,
   DELETE_APPOINTMENT,
   GET_GROUP_SLOTS,
-  ADD_TANDEMMASTER,
-  UPDATE_TANDEMMASTER,
-  GET_TANDEMMASTERS,
-  DELETE_TANDEMMASTER,
-  ADD_VIDEOFLYER,
-  UPDATE_VIDEOFLYER,
-  GET_VIDEOFLYERS,
-  DELETE_VIDEOFLYER,
   SET_LOCALE,
 } from "./mutation-types";
 import jumpday from "./modules/jumpday";
 import settings from "./modules/settings";
 import waiver from "./modules/waiver";
+import tandemmaster from "./modules/tandemmaster";
+import videoflyer from "./modules/videoflyer";
 
 import { appointmentService } from "../shared/appointment-service";
-import { tandemmasterService } from "../shared/tandemmaster-service";
-import { videoflyerService } from "../shared/videoflyer-service";
 import { userService } from "../shared/user-service";
 
 Vue.use(Vuex);
@@ -30,8 +22,6 @@ Vue.use(Vuex);
 const state = () => ({
   appointments: [],
   appointment: null,
-  tandemmasters: [],
-  videoflyers: [],
   locale: null,
   groupSlots: [],
 });
@@ -61,36 +51,6 @@ const mutations = {
   },
   [GET_GROUP_SLOTS](state, slots) {
     state.groupSlots = slots;
-  },
-  [GET_TANDEMMASTERS](state, tandemmasters) {
-    state.tandemmasters = tandemmasters;
-  },
-  [ADD_TANDEMMASTER](state, tandemmaster) {
-    state.tandemmasters.unshift(tandemmaster); // mutable addition
-  },
-  [UPDATE_TANDEMMASTER](state, tandemmaster) {
-    const index = state.tandemmasters.findIndex(
-      (t) => t.id === tandemmaster.id
-    );
-    state.tandemmasters.splice(index, 1, tandemmaster);
-    state.tandemmasters = [...state.tandemmasters];
-  },
-  [DELETE_TANDEMMASTER](state, id) {
-    state.tandemmasters = [...state.tandemmasters.filter((t) => t.id !== id)];
-  },
-  [GET_VIDEOFLYERS](state, videoflyers) {
-    state.videoflyers = videoflyers;
-  },
-  [ADD_VIDEOFLYER](state, videoflyer) {
-    state.videoflyers.unshift(videoflyer); // mutable addition
-  },
-  [UPDATE_VIDEOFLYER](state, videoflyer) {
-    const index = state.videoflyers.findIndex((t) => t.id === videoflyer.id);
-    state.videoflyers.splice(index, 1, videoflyer);
-    state.videoflyers = [...state.videoflyers];
-  },
-  [DELETE_VIDEOFLYER](state, id) {
-    state.videoflyers = [...state.videoflyers.filter((t) => t.id !== id)];
   },
   [SET_LOCALE](state, locale) {
     state.locale = locale;
@@ -196,108 +156,6 @@ const actions = {
     );
     commit(GET_GROUP_SLOTS, result.payload);
   },
-  async addTandemmasterAction({ commit }, payload) {
-    const result = await tandemmasterService.addTandemmaster(
-      payload.tandemmaster,
-      payload.token
-    );
-    commit(ADD_TANDEMMASTER, result.payload);
-    return result;
-  },
-  async getTandemmasterAction({ commit }, token) {
-    const result = await tandemmasterService.getTandemmaster(token);
-    commit(GET_TANDEMMASTERS, result.payload);
-    return result;
-  },
-  async updateTandemmasterAction({ commit }, payload) {
-    const result = await tandemmasterService.updateTandemmaster(
-      payload.tandemmaster,
-      payload.token
-    );
-    commit(UPDATE_TANDEMMASTER, result.payload);
-    return result;
-  },
-  async deleteTandemmasterAction({ commit }, payload) {
-    const result = await tandemmasterService.deleteTandemmaster(
-      payload.id,
-      payload.token
-    );
-    commit(DELETE_TANDEMMASTER, payload.id);
-    return result;
-  },
-  async getTandemmasterDetailsAction({ commit }, payload) {
-    const appointment = await tandemmasterService.getTandemmasterDetails(
-      payload.tandemmasterId,
-      payload.token
-    );
-    return appointment;
-  },
-  async getMeTandemmasterAction({ commit }, token) {
-    return await tandemmasterService.getMeTandemmaster(token);
-  },
-  async updateTandemmasterAssigmentsAction({ commit }, payload) {
-    return await tandemmasterService.updateTandemmasterAssigments(
-      payload.tandemmasterDetails,
-      payload.token
-    );
-  },
-  async updateMeTandemmasterAssigmentsAction({ commit }, payload) {
-    return await tandemmasterService.updateMeTandemmasterAssigments(
-      payload.tandemmasterDetails,
-      payload.token
-    );
-  },
-  async addVideoflyerAction({ commit }, payload) {
-    const result = await videoflyerService.addVideoflyer(
-      payload.videoflyer,
-      payload.token
-    );
-    commit(ADD_VIDEOFLYER, result.payload);
-    return result;
-  },
-  async getVideoflyerAction({ commit }, token) {
-    const result = await videoflyerService.getVideoflyer(token);
-    commit(GET_VIDEOFLYERS, result.payload);
-    return result;
-  },
-  async updateVideoflyerAction({ commit }, payload) {
-    const result = await videoflyerService.updateVideoflyer(
-      payload.videoflyer,
-      payload.token
-    );
-    commit(UPDATE_VIDEOFLYER, result.payload);
-    return result;
-  },
-  async deleteVideoflyerAction({ commit }, payload) {
-    const result = await videoflyerService.deleteVideoflyer(
-      payload.id,
-      payload.token
-    );
-    commit(DELETE_VIDEOFLYER, payload.id);
-    return result;
-  },
-  async getVideoflyerDetailsAction({ commit }, payload) {
-    const videoflyer = await videoflyerService.getVideoflyerDetails(
-      payload.videoflyerId,
-      payload.token
-    );
-    return videoflyer;
-  },
-  async getMeVideoflyerAction({ commit }, token) {
-    return await videoflyerService.getMeVideoflyer(token);
-  },
-  async updateVideoflyerAssigmentsAction({ commit }, payload) {
-    return await videoflyerService.updateVideoflyerAssigments(
-      payload.videoflyerDetails,
-      payload.token
-    );
-  },
-  async updateMeVideoflyerAssigmentsAction({ commit }, payload) {
-    return await videoflyerService.updateMeVideoflyerAssigments(
-      payload.videoflyerDetails,
-      payload.token
-    );
-  },
   setLocaleAction({ commit }, locale) {
     commit(SET_LOCALE, locale);
   },
@@ -313,16 +171,15 @@ const actions = {
 };
 /* eslint-enable no-unused-vars */
 
-const getters = {
-  // parameterized getters are not cached. so this is just a convenience to get the state.
-  getFaq: (state) => () => state.commonSettings.faq,
-};
+const getters = {};
 
 export default new Vuex.Store({
   modules: {
     jumpday,
     settings,
     waiver,
+    tandemmaster,
+    videoflyer,
   },
   strict: process.env.NODE_ENV !== "production",
   state,
