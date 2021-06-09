@@ -226,7 +226,7 @@
     "available": "Available time slots",
     "availableAt": "Available free slots for this booking on {date} at {time}",
     "count": "Slot Count",
-    "noFreeFound": "No free slots found.",
+    "noFreeFound": "No free slots found. You can try to book multiple appointments with less jumps.",
     "searchnew": "Search new slot"
   },
   "streetAdress": "Street address",

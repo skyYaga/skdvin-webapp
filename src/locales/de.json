@@ -226,7 +226,7 @@
     "available": "Verfügbare Zeitslots",
     "availableAt": "Für diesen Termin am {date} um {time} Uhr zubuchbare Slots",
     "count": "Anzahl Slots",
-    "noFreeFound": "Keine freien Slots gefunden.",
+    "noFreeFound": "Keine freien Slots gefunden. Du kannst stattdessen versuchen mehrere Termine mit weniger Sprüngen zu buchen.",
     "searchnew": "Neuen Slot suchen"
   },
   "streetAdress": "Straße und Hausnummer",
