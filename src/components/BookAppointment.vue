@@ -8,18 +8,18 @@
           }}</v-card-title>
           <v-card-text class="subtitle-1"
             ><i18n path="welcome.message">
-              <template v-slot:mail
+              <template #mail
                 ><a :href="'mailto:' + commonSettings.dropzone.email">{{
                   commonSettings.dropzone.email
                 }}</a></template
               >
-              <template v-slot:faq
+              <template #faq
                 ><router-link :to="{ name: 'faq' }">{{
                   $t("faq.faq")
                 }}</router-link></template
               >
-              <template v-slot:br><br /></template>
-              <template v-slot:tel>{{
+              <template #br><br /></template>
+              <template #tel>{{
                 commonSettings.dropzone.mobile
               }}</template></i18n
             ></v-card-text
@@ -86,31 +86,34 @@
               /></v-select>
               <v-btn
                 class="mr-4"
-                @click="searchForSlots"
                 :loading="loading"
                 :disabled="
                   loading === true ||
                   (slots !== null && appointment.selectedTime !== null)
                 "
+                @click="searchForSlots"
                 >{{ $t("search") }}</v-btn
               >
               <v-btn
-                class="mr-4"
-                @click="resetForm"
                 v-if="slots !== null && appointment.selectedTime !== null"
+                class="mr-4"
                 :loading="loading"
                 :disabled="loading"
+                @click="resetForm"
                 >{{ $t("reset") }}</v-btn
               >
             </v-form>
           </v-card-text>
         </v-card>
       </v-col>
-      <v-col :cols="12" :lg="6" :sm="12" v-if="showSlotSelection">
+      <v-col v-if="showSlotSelection" :cols="12" :lg="6" :sm="12">
         <v-card>
           <v-card-title>{{ $t("slot.available") }}</v-card-title>
           <v-card-text>
-            <AvailableSlotsPanel :slots="slots" @onSlotSelected="selectSlot" />
+            <AvailableSlotsPanel
+              :slots="slots"
+              @on-slot-selected="selectSlot"
+            />
           </v-card-text>
         </v-card>
       </v-col>
@@ -127,9 +130,11 @@
           >
           <v-card-text>
             <CustomerDataForm
-              @onCustomerDataBack="backToSlotSelection"
-              @onCustomerDataContinue="continueToConfirmation"
               :appointment="appointment"
+              @on-customer-data-back="backToSlotSelection"
+              @on-customer-data-continue="continueToConfirmation"
+              @remove-jumper="removeJumperFromAppointment"
+              @update-appointment-note="updateAppointmentNote"
             />
           </v-card-text>
         </v-card>
@@ -140,7 +145,7 @@
           <v-card-text>
             <CustomerConfirmationForm
               :appointment="appointment"
-              @onCustomerConfirmationBack="backToCustomerData"
+              @on-customer-confirmation-back="backToCustomerData"
             />
           </v-card-text>
         </v-card>
@@ -151,14 +156,20 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-import CustomerDataForm from "./CustomerDataForm";
-import CustomerConfirmationForm from "./CustomerConfirmationForm";
-import AvailableSlotsPanel from "./AvailableSlotsPanel";
-import InfoDialog from "./InfoDialog";
+import CustomerDataForm from "./CustomerDataForm.vue";
+import CustomerConfirmationForm from "./CustomerConfirmationForm.vue";
+import AvailableSlotsPanel from "./AvailableSlotsPanel.vue";
+import InfoDialog from "./InfoDialog.vue";
 import moment from "moment";
 import { roleUtil } from "../shared/roles";
 
 export default {
+  components: {
+    CustomerDataForm,
+    CustomerConfirmationForm,
+    AvailableSlotsPanel,
+    InfoDialog,
+  },
   data: () => ({
     valid: true,
     appointment: {
@@ -206,12 +217,6 @@ export default {
     showCustomerDataForm: false,
     showConfirmationForm: false,
   }),
-  components: {
-    CustomerDataForm,
-    CustomerConfirmationForm,
-    AvailableSlotsPanel,
-    InfoDialog,
-  },
   computed: {
     ...mapGetters(["getCommonSettings"]),
     commonSettings() {
@@ -238,7 +243,7 @@ export default {
         (!!v && v) <= this.appointment.tandem ||
         this.$t("rules.moreVideoThanTandem");
 
-      const allVidsRule = (v) =>
+      const allVidsRule = () =>
         this.appointment.picOrVid +
           this.appointment.picAndVid +
           this.appointment.handcam <=
@@ -310,6 +315,13 @@ export default {
     },
     getDate(date) {
       return moment(date).toDate();
+    },
+    removeJumperFromAppointment(num) {
+      this.appointment.customer.jumpers.splice(num - 1, 1);
+      this.appointment.tandem--;
+    },
+    updateAppointmentNote(note) {
+      this.appointment.note = note;
     },
   },
 };

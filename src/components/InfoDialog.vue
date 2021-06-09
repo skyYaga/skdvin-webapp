@@ -1,11 +1,12 @@
 <template>
   <v-dialog slot="append-outer" v-model="dialog" width="300"
-    ><template v-slot:activator="{ on }"
+    ><template #activator="{ on }"
       ><v-icon v-on="on">mdi-information</v-icon></template
     ><v-card>
       <v-card-title>{{ heading }}</v-card-title>
-      <v-card-text
-        ><div v-html="text"></div>
+      <v-card-text>
+        <!-- eslint-disable-next-line vue/no-v-html -->
+        <div v-html="sanitizedText"></div>
         <p class="pt-5">
           {{ $t("pricelist.infos") }}
           <a :href="pricelist" target="_blank" rel="noopener noreferrer">{{
@@ -25,11 +26,15 @@
 
 <script>
 import { mapGetters } from "vuex";
+import DOMPurify from "dompurify";
 
 export default {
   props: {
-    heading: String,
-    text: String,
+    heading: {
+      type: String,
+      default: "",
+    },
+    text: { type: String, default: "" },
   },
   data: () => ({
     dialog: false,
@@ -45,6 +50,9 @@ export default {
         return commonSettings.dropzone.priceListUrl;
       }
       return "";
+    },
+    sanitizedText() {
+      return DOMPurify.sanitize(this.text);
     },
   },
 };

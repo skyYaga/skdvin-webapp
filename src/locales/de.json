@@ -32,6 +32,8 @@
       "question": "Soll der Termin gelöscht werden?"
     },
     "details": "Termindetails",
+    "id": "Termin ID",
+    "idOptional": "Buchungsnummer (optional)",
     "newselected": "Neu gewählter Termin: {date} um {time} Uhr",
     "overview": {
       "back": "Zurück zur Terminübersicht"
@@ -52,6 +54,7 @@
   "city": "Wohnort",
   "contactData": "Kontaktdaten",
   "continue": "Weiter",
+  "create": "Erstellen",
   "dataVerification": "Datenüberprüfung",
   "date": "Datum",
   "dateOfBirth": "Geburtsdatum",
@@ -93,6 +96,10 @@
   "firstName": "Vorname",
   "firstTime": "Erste Zeit",
   "from": "Von",
+  "gdpr": {
+    "health": "Ich nehme zur Kenntnis und willige ein, dass {dz} Informationen über meinen Gesundheitszustand im Rahmen einer Erklärung bzw. durch Vorlage eines Tauglichkeitszeugnisses erhebt und speichert. Eine aktive Teilnahme am Tandemsprungbetrieb des Vereins ist ohne diese Einwilligung nicht möglich.",
+    "social": "Ich willige ein, dass {dz} Videos und Bilder von meinen Person zu Werbe- bzw. Ausbildungszwecken auf seiner Internetseite oder sozialen Netzwerken veröffentlichen darf."
+  },
   "general": "Allgemein",
   "handcam": {
     "available": "Handcam Verfügbar",
@@ -135,6 +142,7 @@
   "notes": "Notizen",
   "ok": "OK",
   "operating": "Sprungbetrieb",
+  "overview": "Übersicht",
   "picAndVid": {
     "available": "Foto u. Video verfügbar",
     "count": "Anzahl Foto und Video",
@@ -171,6 +179,7 @@
     "emailNeeded": "E-Mail wird benötigt",
     "emailValid": "E-mail muss gültig sein",
     "fieldHasToBeFilled": "Das Feld muss befüllt werden",
+    "gdpr": "Dies muss akzeptiert werden.",
     "max40Chars": "Wert darf aus maximal 40 Zeichen bestehen",
     "moreVideoThanTandem": "Mehr Videobuchungen als Tandemsprünge",
     "notEnoughFreeSlots": "Nicht genügend freie Slots",
@@ -204,15 +213,23 @@
     "settings": "Einstellungen",
     "system": "Systemeinstellungen"
   },
+  "signature": {
+    "minorsNeedParent": "Minderjährige benötigen die Unterschrift BEIDER Erziehungsberechtigten",
+    "parent1": "Unterschrift Erziehungsberechtigte*r 1",
+    "parent2": "Unterschrift Erziehungsberechtigte*r 2",
+    "reset": "Unterschrift zurücksetzen",
+    "signature": "Unterschrift"
+  },
   "sizeMax190": "Größe maximal 1,90 m",
   "slot": {
     "add": "Slot hinzufügen",
     "available": "Verfügbare Zeitslots",
     "availableAt": "Für diesen Termin am {date} um {time} Uhr zubuchbare Slots",
     "count": "Anzahl Slots",
-    "noFreeFound": "Keine freien Slots gefunden.",
+    "noFreeFound": "Keine freien Slots gefunden. Du kannst stattdessen versuchen mehrere Termine mit weniger Sprüngen zu buchen.",
     "searchnew": "Neuen Slot suchen"
   },
+  "streetAdress": "Straße und Hausnummer",
   "tandem": {
     "available": "Tandem verfügbar",
     "book": "Tandemsprung buchen",
@@ -255,6 +272,13 @@
   },
   "transportationHint": "Auf dem Beförderungsvertrag, der vor Ort ausgefüllt werden muss, wird die Unterschrift BEIDER Erziehungsberechtigter benötigt! Für den Fall, dass nicht beide Erziehungsberechtigten vor Ort sein werden, kann das Formular im Vorfeld ausgefüllt werden ({url}).",
   "update": "Aktualisieren",
+  "user": {
+    "update": {
+      "error": "Fehler beim Aktualisieren des Benutzers",
+      "successful": "Aktualisierung des Benutzers erfolgreich"
+    }
+  },
+  "users": "Benutzer",
   "videoflyer": {
     "add": "Videoflyer hinzufügen",
     "assign": "Videoflyer zuordnen: {firstName} {lastName}",
@@ -277,6 +301,29 @@
       "successful": "Videoflyer erfolgreich aktualisiert"
     },
     "videoflyer": "Videoflyer"
+  },
+  "voucher": {
+    "info": "Bitte setze einen Haken, wenn der Springer einen Gutschein hat.",
+    "voucher": "Gutschein"
+  },
+  "waiver": {
+    "edit": "Haftungsvereinbarung bearbeiten",
+    "save": {
+      "error": "Fehler beim Speichern der Haftungsvereinbarung",
+      "successful": "Haftungsvereinbarung erfolgreich gespeichert"
+    },
+    "signature": {
+      "required": "Die Unterschrift wird benötigt"
+    },
+    "state": "Status",
+    "update": {
+      "error": "Fehler beim Aktualisieren der Haftungsvereinbarung",
+      "successful": "Haftungsvereinbarung erfolgreich aktualisiert"
+    },
+    "waiver": "Haftungsvereinbarung"
+  },
+  "wavier": {
+    "new": "Weitere Haftungsvereinbarung erstellen"
   },
   "weightMax90": "Gewicht maximal 90 kg",
   "welcome": {

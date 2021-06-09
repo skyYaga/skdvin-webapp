@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import ResearchForm from "../components/ResearchForm";
-import ResearchTable from "../components/ResearchTable";
+import ResearchForm from "../components/ResearchForm.vue";
+import ResearchTable from "../components/ResearchTable.vue";
 
 export default {
   components: {

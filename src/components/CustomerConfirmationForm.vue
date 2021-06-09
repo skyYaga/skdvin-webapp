@@ -12,6 +12,7 @@
           ><h2>{{ $t("jumpregulations.heading") }}</h2></v-row
         >
         <v-row v-if="!isAdmin">
+          <!-- eslint-disable-next-line vue/no-v-html -->
           <ul v-html="$t('jumpregulations.text')"></ul>
         </v-row>
         <v-row v-if="!isAdmin">
@@ -22,7 +23,7 @@
         </v-row>
         <v-row v-if="!isAdmin">
           <v-checkbox :rules="[(v) => !!v || $t('rules.privacyPolicy')]"
-            ><template v-slot:label
+            ><template #label
               ><div>
                 <i18n
                   path="privacyPolicy.accept"
@@ -31,9 +32,9 @@
                 >
                   <a
                     href="https://skdv.in/datenschutzerklaerung/"
-                    @click.stop
                     target="_blank"
                     rel="noopener noreferrer"
+                    @click.stop
                     >{{ $t("privacyPolicy.privacyPolicy") }}</a
                   >
                 </i18n>
@@ -65,20 +66,30 @@
 
 <script>
 import { mapActions } from "vuex";
-import AppointmentDetailsPanel from "./AppointmentDetailsPanel";
+import AppointmentDetailsPanel from "./AppointmentDetailsPanel.vue";
 import { roleUtil } from "../shared/roles";
 
 export default {
-  props: {
-    appointment: null,
-  },
   components: {
     AppointmentDetailsPanel,
+  },
+  props: {
+    appointment: {
+      type: Object,
+      default: function () {
+        return {};
+      },
+    },
   },
   data: () => ({
     valid: false,
     loading: false,
   }),
+  computed: {
+    isAdmin() {
+      return roleUtil.isAdmin(this.$auth);
+    },
+  },
   methods: {
     ...mapActions(["addAppointmentAction", "addAdminAppointmentAction"]),
     async saveAppointment() {
@@ -109,12 +120,7 @@ export default {
       });
     },
     back() {
-      this.$emit("onCustomerConfirmationBack", this.customer);
-    },
-  },
-  computed: {
-    isAdmin() {
-      return roleUtil.isAdmin(this.$auth);
+      this.$emit("on-customer-confirmation-back", this.customer);
     },
   },
 };

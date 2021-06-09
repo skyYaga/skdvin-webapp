@@ -16,8 +16,8 @@
       ><v-col
         ><TandemmasterAssignPanel
           :tandemmaster="tandemmaster"
-          :selfAssign="true"
-          :selfAssignmentMode="commonSettings.selfAssignmentMode"
+          :self-assign="true"
+          :self-assignment-mode="settings.commonSettings.selfAssignmentMode"
         ></TandemmasterAssignPanel></v-col
     ></v-row>
     <v-row v-if="!loading && vfError"
@@ -31,8 +31,8 @@
       ><v-col
         ><VideoflyerAssignPanel
           :videoflyer="videoflyer"
-          :selfAssign="true"
-          :selfAssignmentMode="commonSettings.selfAssignmentMode"
+          :self-assign="true"
+          :self-assignment-mode="settings.commonSettings.selfAssignmentMode"
         ></VideoflyerAssignPanel></v-col
     ></v-row>
 
@@ -59,13 +59,29 @@
 <script>
 import { roleUtil } from "../shared/roles";
 import { mapActions, mapState } from "vuex";
-import VideoflyerAssignPanel from "../components/VideoflyerAssignPanel";
-import TandemmasterAssignPanel from "../components/TandemmasterAssignPanel";
+import VideoflyerAssignPanel from "../components/VideoflyerAssignPanel.vue";
+import TandemmasterAssignPanel from "../components/TandemmasterAssignPanel.vue";
 
 export default {
   components: {
     TandemmasterAssignPanel,
     VideoflyerAssignPanel,
+  },
+  data: () => ({
+    loading: true,
+    tandemmaster: {},
+    tmError: false,
+    videoflyer: {},
+    vfError: false,
+  }),
+  computed: {
+    ...mapState(["settings"]),
+    isTandemmaster() {
+      return roleUtil.isTandemmaster(this.$auth);
+    },
+    isVideoflyer() {
+      return roleUtil.isVideoflyer(this.$auth);
+    },
   },
   async created() {
     if (this.isTandemmaster) {
@@ -76,13 +92,6 @@ export default {
     }
     this.loading = false;
   },
-  data: () => ({
-    loading: true,
-    tandemmaster: {},
-    tmError: false,
-    videoflyer: {},
-    vfError: false,
-  }),
   methods: {
     ...mapActions(["getMeTandemmasterAction", "getMeVideoflyerAction"]),
     async loadTandemmaster() {
@@ -105,15 +114,6 @@ export default {
       } else {
         this.videoflyer = result.payload;
       }
-    },
-  },
-  computed: {
-    ...mapState(["commonSettings"]),
-    isTandemmaster() {
-      return roleUtil.isTandemmaster(this.$auth);
-    },
-    isVideoflyer() {
-      return roleUtil.isVideoflyer(this.$auth);
     },
   },
 };

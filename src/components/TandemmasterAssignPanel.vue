@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <v-snackbar :color="hintColor" v-model="showHint" :timeout="5000">
+    <v-snackbar v-model="showHint" :color="hintColor" :timeout="5000">
       {{ hintText }}
       <v-btn text @click="showHint = false">
         {{ $t("ok") }}
@@ -15,7 +15,7 @@
           })
         }}</v-card-title>
         {{ message }}
-        <v-row class="ma-1" v-if="editable">
+        <v-row v-if="editable" class="ma-1">
           <v-col
             ><v-btn @click="selectAll">{{ $t("jumpday.selectAll") }}</v-btn>
             <v-btn class="ml-2" @click="selectNone">{{
@@ -38,13 +38,14 @@
               }}</v-card-title
               ><v-card-text
                 ><AssignmentSelectionPanel
-                  class="mt-n5"
                   v-for="day in jumpdaysInMonth(month)"
                   :key="day"
+                  class="mt-n5"
                   :assignment="tandemmasterDetails.assignments[day]"
                   :day="day"
-                  :selfAssign="selfAssign"
-                  :selfAssignmentMode="selfAssignmentMode"
+                  :self-assign="selfAssign"
+                  :self-assignment-mode="selfAssignmentMode"
+                  @update-assignment="updateLocalTandemmasterAssignment"
                 >
                 </AssignmentSelectionPanel></v-card-text
             ></v-card>
@@ -55,9 +56,9 @@
           <v-btn
             color="primary"
             class="ma-6"
-            @click="updateAssignments"
             :disabled="loading"
             :loading="loading"
+            @click="updateAssignments"
             >{{ $t("update") }}</v-btn
           ></v-row
         >
@@ -70,16 +71,21 @@
 import { mapActions } from "vuex";
 import moment from "moment";
 import { converters } from "../shared/converters";
-import AssignmentSelectionPanel from "./AssignmentSelectionPanel";
+import AssignmentSelectionPanel from "./AssignmentSelectionPanel.vue";
 
 export default {
-  props: {
-    tandemmaster: Object,
-    selfAssign: { type: Boolean, default: false },
-    selfAssignmentMode: { type: String, default: "" },
-  },
   components: {
     AssignmentSelectionPanel,
+  },
+  props: {
+    tandemmaster: {
+      type: Object,
+      default: function () {
+        return {};
+      },
+    },
+    selfAssign: { type: Boolean, default: false },
+    selfAssignmentMode: { type: String, default: "" },
   },
   data: () => ({
     message: "",
@@ -89,18 +95,18 @@ export default {
     hintText: "",
     hintColor: "",
   }),
-  async created() {
-    this.loading = true;
-    await this.loadTandemmaster();
-    this.loading = false;
-  },
-  watch: {
-    tandemmaster: "loadTandemmaster",
-  },
   computed: {
     editable() {
       return this.selfAssignmentMode !== "READONLY";
     },
+  },
+  watch: {
+    tandemmaster: "loadTandemmaster",
+  },
+  async created() {
+    this.loading = true;
+    await this.loadTandemmaster();
+    this.loading = false;
   },
   methods: {
     ...mapActions([
@@ -155,18 +161,21 @@ export default {
       this.showHint = true;
     },
     selectAll() {
-      Object.entries(this.tandemmasterDetails.assignments).forEach(
-        ([date, assignment]) => {
+      Object.values(this.tandemmasterDetails.assignments).forEach(
+        (assignment) => {
           assignment.assigned = true;
         }
       );
     },
     selectNone() {
-      Object.entries(this.tandemmasterDetails.assignments).forEach(
-        ([date, assignment]) => {
+      Object.values(this.tandemmasterDetails.assignments).forEach(
+        (assignment) => {
           assignment.assigned = false;
         }
       );
+    },
+    updateLocalTandemmasterAssignment(day, assignment) {
+      this.tandemmasterDetails.assignments[day] = assignment;
     },
   },
 };

@@ -36,7 +36,8 @@
       </div>
       <SlotSelectionForm
         :appointment="appointment"
-        :maxBookableSlots="maxBookableSlots"
+        :max-bookable-slots="maxBookableSlots"
+        @update-appointment="updateAppointment"
       />
     </v-form>
   </div>
@@ -44,9 +45,12 @@
 
 <script>
 import moment from "moment";
-import SlotSelectionForm from "./SlotSelectionForm";
+import SlotSelectionForm from "./SlotSelectionForm.vue";
 
 export default {
+  components: {
+    SlotSelectionForm,
+  },
   props: {
     appointment: {
       type: Object,
@@ -57,11 +61,11 @@ export default {
         handcam: 0,
       }),
     },
-    slots: Object,
+    slots: {
+      type: Object,
+      default: () => ({}),
+    },
     update: { type: Boolean, default: () => false },
-  },
-  components: {
-    SlotSelectionForm,
   },
   data: () => ({
     valid: true,
@@ -107,6 +111,9 @@ export default {
         picAndVid: this.slots?.picAndVidAvailable + this.appointment.picAndVid,
         handcam: this.slots?.handcamAvailable + this.appointment.handcam,
       };
+    },
+    updateAppointment(updatedAppointment) {
+      this.$emit("update-appointment", updatedAppointment);
     },
   },
 };

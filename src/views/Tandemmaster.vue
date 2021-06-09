@@ -17,7 +17,7 @@
           ><TandemmasterList
             :loading="loading"
             :tandemmaster="getTandemmasters"
-            @handleAssignClick="tandemmasterSelected" /></v-col
+            @handle-assign-click="tandemmasterSelected" /></v-col
       ></v-row>
       <v-row
         ><v-col
@@ -36,8 +36,8 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
-import TandemmasterList from "../components/TandemmasterList";
-import TandemmasterAssignPanel from "../components/TandemmasterAssignPanel";
+import TandemmasterList from "../components/TandemmasterList.vue";
+import TandemmasterAssignPanel from "../components/TandemmasterAssignPanel.vue";
 
 export default {
   components: {
@@ -52,6 +52,12 @@ export default {
     selectedTandemmaster: {},
     showAssignmentPanel: false,
   }),
+  computed: {
+    ...mapState(["tandemmaster"]),
+    getTandemmasters() {
+      return JSON.parse(JSON.stringify(this.tandemmaster.tandemmasters));
+    },
+  },
   async created() {
     this.loading = true;
     await this.loadTandemmaster();
@@ -66,12 +72,6 @@ export default {
     tandemmasterSelected(tm) {
       this.selectedTandemmaster = tm;
       this.showAssignmentPanel = true;
-    },
-  },
-  computed: {
-    ...mapState(["tandemmasters"]),
-    getTandemmasters() {
-      return JSON.parse(JSON.stringify(this.tandemmasters));
     },
   },
 };

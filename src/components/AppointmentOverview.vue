@@ -25,7 +25,7 @@
       </p>
       <v-textarea
         v-if="appointment.note !== ''"
-        v-model="appointment.note"
+        :value="appointment.note"
         disabled
         rows="1"
         auto-grow
@@ -37,23 +37,23 @@
     <v-card-actions class="mt-n5">
       <v-btn
         small
-        @click="changeAppointmentState('ACTIVE')"
         :loading="loading"
         :disabled="loading"
+        @click="changeAppointmentState('ACTIVE')"
         >{{ $t("active") }}</v-btn
       >
       <v-btn
         small
-        @click="changeAppointmentState('DONE')"
         :loading="loading"
         :disabled="loading"
+        @click="changeAppointmentState('DONE')"
         >{{ $t("done") }}</v-btn
       >
       <v-btn
         small
-        @click="changeAppointmentState('CONFIRMED')"
         :loading="loading"
         :disabled="loading"
+        @click="changeAppointmentState('CONFIRMED')"
         >{{ $t("reset") }}</v-btn
       >
     </v-card-actions>
@@ -66,7 +66,10 @@ import { mapActions } from "vuex";
 export default {
   name: "AppointmentOverview",
   props: {
-    appointment: Object,
+    appointment: {
+      type: Object,
+      default: () => {},
+    },
   },
   data: () => ({ loading: false }),
   computed: {

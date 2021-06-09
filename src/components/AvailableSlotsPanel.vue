@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-alert type="info" v-if="slots.length === 0">{{
+    <v-alert v-if="slots.length === 0" type="info">{{
       $t("slot.noFreeFound")
     }}</v-alert>
     <v-expansion-panels>
@@ -40,45 +40,54 @@
 </template>
 
 <script>
-import moment from "moment";
+import { DateTime } from "luxon";
 
 export default {
   props: {
-    slots: Array,
+    slots: {
+      type: Array,
+      default: () => [],
+    },
   },
   computed: {
     getMonthsForSlots() {
-      return [
+      let arrayOfSlots = [
         ...new Set(
           this.slots
-            .filter((slot) => moment(slot.date).isSameOrAfter(moment()))
-            .map((slot) => moment(slot.date).format("YYYY-MM"))
+            .filter((slot) => !DateTime.fromISO(slot.date) < DateTime.now()) // Today or later
+            .map((slot) => DateTime.fromISO(slot.date).toFormat("yyyy-MM"))
         ),
-      ].sort(function (a, b) {
+      ];
+      return arrayOfSlots.sort(function (a, b) {
         if (a === null) return 1;
         if (b === null) return -1;
-        return moment(a).toDate() - moment(b).toDate();
+        return DateTime.fromISO(a).toJSDate() - DateTime.fromISO(b).toJSDate();
       });
     },
   },
   methods: {
     selectSlot(date, time) {
-      this.$emit("onSlotSelected", date, time);
+      this.$emit("on-slot-selected", date, time);
     },
     getDate(date) {
-      return moment(date).toDate();
+      return DateTime.fromISO(date).toJSDate();
     },
     slotsInMonth(month) {
       return this.slots
         .filter(
           (slot) =>
-            moment(slot.date).isSame(moment(month), "month") &&
-            moment(slot.date).isSameOrAfter(moment())
+            DateTime.fromISO(slot.date).hasSame(
+              DateTime.fromISO(month),
+              "month"
+            ) && !DateTime.fromISO(slot.date) < DateTime.now()
         )
         .sort(function (a, b) {
           if (a === null) return 1;
           if (b === null) return -1;
-          return moment(a.date).toDate() - moment(b.date).toDate();
+          return (
+            DateTime.fromISO(a.date).toJSDate() -
+            DateTime.fromISO(b.date).toJSDate()
+          );
         });
     },
   },

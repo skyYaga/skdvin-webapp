@@ -11,11 +11,12 @@
     }"
   >
     <v-alert
-      type="success"
       v-if="typeof getMessage === 'undefined' || getMessage === ''"
+      type="success"
     >
       <div v-if="!noEmail">
         <h3>{{ $t("almostdone") }}</h3>
+        <!-- eslint-disable-next-line vue/no-v-html -->
         <p v-html="$t('appointment.confirmation.message')"></p>
       </div>
       <div v-if="noEmail">
@@ -23,10 +24,11 @@
       </div>
     </v-alert>
     <v-alert
-      type="error"
       v-if="typeof getMessage !== 'undefined' && getMessage !== ''"
+      type="error"
     >
       <h3>{{ $t("error.occurred") }}</h3>
+      <!-- eslint-disable-next-line vue/no-v-html -->
       <p v-html="$t('appointment.booking.error')"></p>
     </v-alert>
   </v-container>

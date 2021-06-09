@@ -2,7 +2,7 @@
   <div>
     <v-navigation-drawer v-model="drawer" app>
       <v-list dense>
-        <v-list-item link :to="'/' + this.$i18n.locale + '/home'">
+        <v-list-item link :to="'/' + $i18n.locale + '/home'">
           <v-list-item-action>
             <v-icon>mdi-home</v-icon>
           </v-list-item-action>
@@ -10,7 +10,7 @@
             <v-list-item-title>{{ $t("home") }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item link :to="'/' + this.$i18n.locale + '/faq'">
+        <v-list-item link :to="'/' + $i18n.locale + '/faq'">
           <v-list-item-action>
             <v-icon>mdi-frequently-asked-questions</v-icon>
           </v-list-item-action>
@@ -18,10 +18,22 @@
             <v-list-item-title>{{ $t("faq.faq") }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item
+        <!--<v-list-item
+          v-if="!$auth.loading && !$auth.isAuthenticated && !isAdminOrModerator"
           link
+          :to="'/' + $i18n.locale + '/tandem/waiver/create'"
+        >
+          <v-list-item-action>
+            <v-icon>mdi-signature</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>{{ $t("waiver.waiver") }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>-->
+        <v-list-item
           v-if="!$auth.loading && $auth.isAuthenticated && isAdminOrModerator"
-          :to="'/' + this.$i18n.locale + '/jumpdays'"
+          link
+          :to="'/' + $i18n.locale + '/jumpdays'"
         >
           <v-list-item-action>
             <v-icon>mdi-calendar-month</v-icon>
@@ -31,9 +43,9 @@
           </v-list-item-content>
         </v-list-item>
         <v-list-item
-          link
           v-if="!$auth.loading && $auth.isAuthenticated && isAdminOrModerator"
-          :to="'/' + this.$i18n.locale + '/appointments'"
+          link
+          :to="'/' + $i18n.locale + '/appointments'"
         >
           <v-list-item-action>
             <v-icon>mdi-calendar-today</v-icon>
@@ -44,10 +56,35 @@
             }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-list-group
+          v-if="!$auth.loading && $auth.isAuthenticated && isAdmin"
+          :value="false"
+          prepend-icon="mdi-signature"
+          no-action
+        >
+          <template #activator>
+            <v-list-item-content>
+              <v-list-item-title>{{ $t("waiver.waiver") }}</v-list-item-title>
+            </v-list-item-content>
+          </template>
+          <v-list-item
+            link
+            :to="'/' + $i18n.locale + '/tandem/waiver/overview'"
+          >
+            <v-list-item-content>
+              <v-list-item-title>{{ $t("overview") }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item link :to="'/' + $i18n.locale + '/tandem/waiver/create'">
+            <v-list-item-content>
+              <v-list-item-title>{{ $t("create") }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-group>
         <v-list-item
-          link
           v-if="!$auth.loading && $auth.isAuthenticated && isAdminOrModerator"
-          :to="'/' + this.$i18n.locale + '/tandemmaster'"
+          link
+          :to="'/' + $i18n.locale + '/tandemmaster'"
         >
           <v-list-item-action>
             <v-icon>mdi-account-supervisor</v-icon>
@@ -59,9 +96,9 @@
           </v-list-item-content>
         </v-list-item>
         <v-list-item
-          link
           v-if="!$auth.loading && $auth.isAuthenticated && isAdminOrModerator"
-          :to="'/' + this.$i18n.locale + '/videoflyer'"
+          link
+          :to="'/' + $i18n.locale + '/videoflyer'"
         >
           <v-list-item-action>
             <v-icon>mdi-camera</v-icon>
@@ -73,9 +110,9 @@
           </v-list-item-content>
         </v-list-item>
         <v-list-item
-          link
           v-if="!$auth.loading && $auth.isAuthenticated && isAdminOrModerator"
-          :to="'/' + this.$i18n.locale + '/research'"
+          link
+          :to="'/' + $i18n.locale + '/research'"
         >
           <v-list-item-action>
             <v-icon>mdi-magnify</v-icon>
@@ -84,22 +121,39 @@
             <v-list-item-title>{{ $t("research.research") }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item
-          link
+        <v-list-group
           v-if="!$auth.loading && $auth.isAuthenticated && isAdmin"
-          :to="'/' + this.$i18n.locale + '/settings'"
+          :value="false"
+          prepend-icon="mdi-cog-outline"
+          no-action
         >
-          <v-list-item-action>
-            <v-icon>mdi-cog-outline</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>{{ $t("settings.settings") }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+          <template #activator>
+            <v-list-item-content>
+              <v-list-item-title>{{
+                $t("settings.settings")
+              }}</v-list-item-title>
+            </v-list-item-content>
+          </template>
+          <v-list-item link :to="'/' + $i18n.locale + '/settings/general'">
+            <v-list-item-content>
+              <v-list-item-title>{{ $t("general") }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item link :to="'/' + $i18n.locale + '/settings/waiver'">
+            <v-list-item-content>
+              <v-list-item-title>{{ $t("waiver.waiver") }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item link :to="'/' + $i18n.locale + '/settings/users'">
+            <v-list-item-content>
+              <v-list-item-title>{{ $t("users") }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-group>
         <v-list-item
-          link
           v-if="!$auth.loading && $auth.isAuthenticated"
-          :to="'/' + this.$i18n.locale + '/profile'"
+          link
+          :to="'/' + $i18n.locale + '/profile'"
         >
           <v-list-item-action>
             <v-icon>mdi-account</v-icon>
@@ -109,8 +163,8 @@
           </v-list-item-content>
         </v-list-item>
         <v-list-item
-          link
           v-if="!$auth.loading && !$auth.isAuthenticated"
+          link
           @click="login"
         >
           <v-list-item-action>
@@ -121,8 +175,8 @@
           </v-list-item-content>
         </v-list-item>
         <v-list-item
-          link
           v-if="!$auth.loading && $auth.isAuthenticated"
+          link
           @click="logout"
         >
           <v-list-item-action>
@@ -146,7 +200,7 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import { roleUtil } from "../shared/roles";
-import LocaleChanger from "../components/LocaleChanger";
+import LocaleChanger from "../components/LocaleChanger.vue";
 
 export default {
   name: "NavBar",

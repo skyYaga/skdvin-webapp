@@ -32,6 +32,8 @@
       "question": "Should the appointment be deleted?"
     },
     "details": "Appointment details",
+    "id": "Appointment ID",
+    "idOptional": "Appointment ID (optional)",
     "newselected": "New selected appointment: {date} at {time}",
     "overview": {
       "back": "Back to appointment overview"
@@ -52,6 +54,7 @@
   "city": "City",
   "contactData": "Contact data",
   "continue": "Continue",
+  "create": "Create",
   "dataVerification": "Data verification",
   "date": "Date",
   "dateOfBirth": "Date of birth",
@@ -93,6 +96,10 @@
   "firstName": "First name",
   "firstTime": "First Time",
   "from": "From",
+  "gdpr": {
+    "health": "I acknowledge and consent that {dz} collects and stores information about my state of health in the context of a declaration or by presenting a certificate of fitness. Active participation in the tandem jump operations of the club is not possible without this consent.",
+    "social": "I agree that {dz} may publish videos and pictures of my person on its website or social networks for promotional or educational purposes."
+  },
   "general": "General",
   "handcam": {
     "available": "Handcam available",
@@ -135,6 +142,7 @@
   "notes": "Notes",
   "ok": "OK",
   "operating": "Operating",
+  "overview": "Overview",
   "picAndVid": {
     "available": "Pic and Vid available",
     "count": "Picture and video count",
@@ -171,6 +179,7 @@
     "emailNeeded": "Email is needed",
     "emailValid": "Email has to be vaild",
     "fieldHasToBeFilled": "Field may not be empty",
+    "gdpr": "You have to accept this.",
     "max40Chars": "Maximum of 40 characters",
     "moreVideoThanTandem": "More video bookings than tandem jumps",
     "notEnoughFreeSlots": "Not enough free slots",
@@ -204,15 +213,23 @@
     "settings": "Settings",
     "system": "System settings"
   },
+  "signature": {
+    "minorsNeedParent": "Minors need the signature of BOTH parents or guardians",
+    "parent1": "Signature parent or guardian 1",
+    "parent2": "Signature parent or guardian 2",
+    "reset": "Reset signature",
+    "signature": "Signature"
+  },
   "sizeMax190": "Size max 1,90 m",
   "slot": {
     "add": "Add slot",
     "available": "Available time slots",
     "availableAt": "Available free slots for this booking on {date} at {time}",
     "count": "Slot Count",
-    "noFreeFound": "No free slots found.",
+    "noFreeFound": "No free slots found. You can try to book multiple appointments with less jumps.",
     "searchnew": "Search new slot"
   },
+  "streetAdress": "Street address",
   "tandem": {
     "available": "Tandem available",
     "book": "Book tandem skydive",
@@ -255,6 +272,13 @@
   },
   "transportationHint": "On the transportation agreement, which must be filled out on site, the signature of BOTH parents or guardians is required! If not both will be on site, the form can be filled out in advance ({url}).",
   "update": "Update",
+  "user": {
+    "update": {
+      "error": "Error updating user",
+      "successful": "User update successful"
+    }
+  },
+  "users": "Users",
   "videoflyer": {
     "add": "Add Videoflyer",
     "assign": "Assign Videoflyer: {firstName} {lastName}",
@@ -277,6 +301,29 @@
       "successful": "Videoflyer update successful"
     },
     "videoflyer": "Videoflyer"
+  },
+  "voucher": {
+    "info": "Please check, if the jumper has a voucher",
+    "voucher": "Voucher"
+  },
+  "waiver": {
+    "edit": "Edit waiver",
+    "save": {
+      "error": "Error saving waiver",
+      "successful": "Waiver saved successfully"
+    },
+    "signature": {
+      "required": "The signature is mandatory"
+    },
+    "state": "State",
+    "update": {
+      "error": "Error updating waiver",
+      "successful": "Waiver updated successfully"
+    },
+    "waiver": "Waiver"
+  },
+  "wavier": {
+    "new": "Create another waiver"
   },
   "weightMax90": "Weight max 90 kg",
   "welcome": {

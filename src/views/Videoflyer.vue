@@ -17,7 +17,7 @@
           ><VideoflyerList
             :loading="loading"
             :videoflyer="getVideoflyers"
-            @handleAssignClick="videoflyerSelected" /></v-col
+            @handle-assign-click="videoflyerSelected" /></v-col
       ></v-row>
       <v-row
         ><v-col
@@ -36,8 +36,8 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
-import VideoflyerList from "../components/VideoflyerList";
-import VideoflyerAssignPanel from "../components/VideoflyerAssignPanel";
+import VideoflyerList from "../components/VideoflyerList.vue";
+import VideoflyerAssignPanel from "../components/VideoflyerAssignPanel.vue";
 
 export default {
   components: {
@@ -52,6 +52,12 @@ export default {
     selectedVideoflyer: {},
     showAssignmentPanel: false,
   }),
+  computed: {
+    ...mapState(["videoflyer"]),
+    getVideoflyers() {
+      return JSON.parse(JSON.stringify(this.videoflyer.videoflyers));
+    },
+  },
   async created() {
     this.loading = true;
     await this.loadVideoflyer();
@@ -66,12 +72,6 @@ export default {
     videoflyerSelected(tm) {
       this.selectedVideoflyer = tm;
       this.showAssignmentPanel = true;
-    },
-  },
-  computed: {
-    ...mapState(["videoflyers"]),
-    getVideoflyers() {
-      return JSON.parse(JSON.stringify(this.videoflyers));
     },
   },
 };

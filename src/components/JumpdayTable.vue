@@ -1,12 +1,12 @@
 <template>
-  <div fluid v-if="jumpday.jumping">
+  <div v-if="jumpday.jumping" fluid>
     <v-row dense>
-      <v-col :lg="4" :md="6" v-for="slot in jumpday.slots" :key="slot.time">
+      <v-col v-for="slot in jumpday.slots" :key="slot.time" :lg="4" :md="6">
         <v-card>
           <v-card-title v-text="slot.time"></v-card-title>
 
           <v-simple-table>
-            <template v-slot:default>
+            <template #default>
               <thead>
                 <tr>
                   <th scope="col" class="text-left"></th>
@@ -84,7 +84,12 @@
 <script>
 export default {
   props: {
-    jumpday: Object,
+    jumpday: {
+      type: Object,
+      default: function () {
+        return {};
+      },
+    },
   },
   methods: {
     calculateItems(minCount) {
@@ -102,9 +107,10 @@ export default {
       return [...Array(11).keys()];
     },
     deleteSlot(slot) {
-      this.jumpday.slots = this.jumpday.slots.filter(
+      let updatedJumpday = this.jumpday.slots.filter(
         (s) => s.time !== slot.time
       );
+      this.$emit("update-jumpday", updatedJumpday);
     },
   },
 };

@@ -15,15 +15,17 @@
             ><CustomerDataForm
               ref="customerDataForm"
               class="pa-5"
-              :buttonVisible="false"
+              :button-visible="false"
               :appointment="localAppointment"
+              @remove-jumper="removeJumperFromAppointment"
+              @update-appointment-note="updateAppointmentNote"
             /> </v-card></v-col
         ><v-col :lg="6"
           ><AvailableSlotsPanel
-            class="pb-5"
             v-if="availableSlots.length > 0 && !slotSelected"
+            class="pb-5"
             :slots="availableSlots"
-            @onSlotSelected="selectSlot"
+            @on-slot-selected="selectSlot"
           />
           <v-card
             ><EditAppointmentAdminPanel
@@ -32,8 +34,9 @@
               class="pa-5"
               :appointment="localAppointment"
               :slots="slots"
+              @update-appointment="localAppointment = $event"
             />
-            <div class="pa-5" v-if="slotSelected">
+            <div v-if="slotSelected" class="pa-5">
               {{
                 $t("appointment.newselected", {
                   date: getDate(),
@@ -59,32 +62,32 @@
             <v-btn
               v-if="availableSlots.length === 0"
               class="ml-4 mb-4"
-              @click="updateAppointment"
               :loading="updating"
               :disabled="updating"
               color="primary"
+              @click="updateAppointment"
               >{{ $t("update") }}</v-btn
             >
             <v-btn
               v-if="availableSlots.length === 0 && !slotSelected"
               class="ml-4 mb-4"
-              @click="searchForSlots"
               :loading="updating"
               :disabled="updating"
+              @click="searchForSlots"
               >{{ $t("slot.searchnew") }}</v-btn
             ><v-btn
               v-if="availableSlots.length === 0 && !slotSelected"
               class="ml-4 mb-4"
-              @click.stop="showDeletionDialog = true"
               :loading="updating"
               :disabled="updating"
+              @click.stop="showDeletionDialog = true"
               >{{ $t("appointment.delete.message") }}</v-btn
             ><v-btn
               v-if="availableSlots.length > 0 && !slotSelected"
               class="ma-4"
-              @click="reset"
               :loading="updating"
               :disabled="updating"
+              @click="reset"
               >{{ $t("reset") }}</v-btn
             >
           </v-card>
@@ -96,11 +99,9 @@
         }}</v-btn>
       </v-row>
     </div>
-    <v-snackbar :color="hintColor" v-model="showHint" :timeout="5000">
+    <v-snackbar v-model="showHint" :color="hintColor" :timeout="5000">
       {{ hintText }}
-      <v-btn text @click="showHint = false">
-        OK
-      </v-btn>
+      <v-btn text @click="showHint = false"> OK </v-btn>
     </v-snackbar>
     <div class="text-center">
       <v-dialog v-model="showDeletionDialog" width="500">
@@ -127,9 +128,9 @@
 </template>
 
 <script>
-import CustomerDataForm from "../components/CustomerDataForm";
-import EditAppointmentAdminPanel from "../components/EditAppointmentAdminPanel";
-import AvailableSlotsPanel from "../components/AvailableSlotsPanel";
+import CustomerDataForm from "../components/CustomerDataForm.vue";
+import EditAppointmentAdminPanel from "../components/EditAppointmentAdminPanel.vue";
+import AvailableSlotsPanel from "../components/AvailableSlotsPanel.vue";
 import { mapActions, mapGetters, mapState } from "vuex";
 import moment from "moment";
 
@@ -159,12 +160,12 @@ export default {
     slotSelected: false,
     showDeletionDialog: false,
   }),
-  async created() {
-    await this.loadPage();
-  },
   computed: {
     ...mapState(["jumpdays"]),
     ...mapGetters(["getJumpdayByDate"]),
+  },
+  async created() {
+    await this.loadPage();
   },
   methods: {
     async loadPage() {
@@ -288,6 +289,13 @@ export default {
           date: moment(this.localAppointment.date).format("YYYY-MM-DD"),
         },
       });
+    },
+    removeJumperFromAppointment(num) {
+      this.localAppointment.customer.jumpers.splice(num - 1, 1);
+      this.localAppointment.tandem--;
+    },
+    updateAppointmentNote(note) {
+      this.localAppointment.note = note;
     },
   },
 };

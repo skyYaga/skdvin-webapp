@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-snackbar :color="hintColor" v-model="showHint" :timeout="5000">
+    <v-snackbar v-model="showHint" :color="hintColor" :timeout="5000">
       {{ hintText }}
       <v-btn text @click="showHint = false">
         {{ $t("ok") }}
@@ -11,12 +11,12 @@
       :items="videoflyer"
       :search="search"
       :loading="loading"
-      ><template v-slot:item.picAndVid="{ item }">
+      ><template #[`item.picAndVid`]="{ item }">
         <v-simple-checkbox
           v-model="item.picAndVid"
           disabled
         ></v-simple-checkbox> </template
-      ><template v-slot:top>
+      ><template #top>
         <v-toolbar flat color="white">
           <v-toolbar-title>{{ $t("videoflyer.videoflyer") }}</v-toolbar-title>
           <v-divider class="mx-4" inset vertical></v-divider>
@@ -29,7 +29,7 @@
           ></v-text-field>
           <v-spacer></v-spacer>
           <v-dialog v-model="dialog" max-width="500px">
-            <template v-slot:activator="{ on }">
+            <template #activator="{ on }">
               <v-btn color="primary" dark class="mb-2" v-on="on">{{
                 $t("videoflyer.add")
               }}</v-btn>
@@ -41,7 +41,10 @@
 
               <v-card-text>
                 <v-form ref="form" v-model="valid">
-                  <EditVideoflyer :videoflyer="editedItem" />
+                  <EditVideoflyer
+                    :videoflyer="editedItem"
+                    @update-videoflyer="editedItem = $event"
+                  />
                 </v-form>
               </v-card-text>
 
@@ -58,7 +61,7 @@
           </v-dialog>
         </v-toolbar>
       </template>
-      <template v-slot:item.actions="{ item }">
+      <template #[`item.actions`]="{ item }">
         <v-icon small class="mr-2" @click="editVideoflyer(item)">
           mdi-pencil
         </v-icon>
@@ -75,12 +78,20 @@
 
 <script>
 import { mapActions } from "vuex";
-import EditVideoflyer from "./EditVideoflyer";
+import EditVideoflyer from "./EditVideoflyer.vue";
 
 export default {
-  props: { videoflyer: Array, loading: Boolean },
   components: {
     EditVideoflyer,
+  },
+  props: {
+    videoflyer: {
+      type: Array,
+      default: function () {
+        return [];
+      },
+    },
+    loading: Boolean,
   },
   data() {
     return {
@@ -218,7 +229,7 @@ export default {
       this.showHint = true;
     },
     assignVideoflyer(item) {
-      this.$emit("handleAssignClick", item);
+      this.$emit("handle-assign-click", item);
     },
   },
 };

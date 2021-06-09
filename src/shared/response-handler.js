@@ -17,7 +17,13 @@ const handleResponse = (response, code) => {
   return response.data;
 };
 
+const handleNoContent = (response) => {
+  if (response.status !== 204) throw Error(response.data.message);
+  return response.data;
+};
+
 export const responseHandler = {
   handleError,
   handleResponse,
+  handleNoContent,
 };

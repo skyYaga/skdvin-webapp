@@ -47,13 +47,15 @@ export default {
 
   methods: {
     dateFunctionEvents(date) {
-      if (this.$store.state.jumpdays.map((j) => j.date).includes(date)) {
+      if (
+        this.$store.state.jumpday.jumpdays.map((j) => j.date).includes(date)
+      ) {
         return ["green"];
       }
       return false;
     },
     onDateSelection(date) {
-      this.$emit("handleDateSelection", date);
+      this.$emit("handle-date-selection", date);
     },
   },
 };

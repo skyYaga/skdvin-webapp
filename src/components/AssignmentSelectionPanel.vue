@@ -2,18 +2,20 @@
   <v-container>
     <v-row>
       <v-checkbox
+        :input-value="assignment.assigned"
         :readonly="!isEditable"
-        v-model="assignment.assigned"
         :label="$d(getDate(day), 'dateYearMonthDayWeekdayLong')"
+        @change="updateAssignment('assigned', $event)"
       ></v-checkbox
     ></v-row>
     <v-row>
       <v-checkbox
+        v-if="assignment.assigned"
+        :input-value="assignment.allday"
         :readonly="!isEditable"
         class="pl-5 mt-n4"
-        v-if="assignment.assigned"
-        v-model="assignment.allday"
         :label="$t('allDay')"
+        @change="updateAssignment('allday', $event)"
       ></v-checkbox
     ></v-row>
     <v-row v-if="assignment.assigned && !assignment.allday">
@@ -29,27 +31,29 @@
           max-width="290px"
           min-width="290px"
         >
-          <template v-slot:activator="{ on }">
+          <template #activator="{ on }">
             <v-text-field
+              :value="assignment.from"
               class="pl-2 mt-n7"
-              v-model="assignment.from"
               :label="$t('from')"
               prepend-icon="mdi-clock-outline"
               readonly
               v-on="on"
+              @input="updateAssignment('from', $event)"
             ></v-text-field>
           </template>
           <v-time-picker
+            v-if="fromPicker"
+            :value="assignment.from"
             :disabled="!isEditable"
             :readonly="!isEditable"
-            v-if="fromPicker"
-            v-model="assignment.from"
             min="9:00"
             :max="assignment.to"
             :allowed-minutes="allowedStep"
             full-width
             format="24hr"
             @click:minute="$refs.from.save(assignment.from)"
+            @input="updateAssignment('from', $event)"
           ></v-time-picker>
         </v-menu>
       </v-col>
@@ -65,27 +69,29 @@
           max-width="290px"
           min-width="290px"
         >
-          <template v-slot:activator="{ on }">
+          <template #activator="{ on }">
             <v-text-field
+              :value="assignment.to"
               class="pl-2 mt-n7"
-              v-model="assignment.to"
               :label="$t('to')"
               prepend-icon="mdi-clock-outline"
               readonly
               v-on="on"
+              @input="updateAssignment('to', $event)"
             ></v-text-field>
           </template>
           <v-time-picker
+            v-if="toPicker"
+            :value="assignment.to"
             :disabled="!isEditable"
             :readonly="!isEditable"
-            v-if="toPicker"
-            v-model="assignment.to"
             :min="assignment.from"
             max="20:00"
             :allowed-minutes="allowedStep"
             full-width
             format="24hr"
             @click:minute="$refs.to.save(assignment.to)"
+            @input="updateAssignment('to', $event)"
           ></v-time-picker>
         </v-menu>
       </v-col>
@@ -99,8 +105,14 @@ import moment from "moment";
 export default {
   name: "AssignmentSelectionPanel",
   props: {
-    assignment: Object,
-    day: String,
+    assignment: {
+      type: Object,
+      default: () => {},
+    },
+    day: {
+      type: String,
+      default: () => moment().toDate(),
+    },
     selfAssign: { type: Boolean, default: false },
     selfAssignmentMode: { type: String, default: "" },
   },
@@ -109,15 +121,6 @@ export default {
     toPicker: false,
     initiallyAssigned: false,
   }),
-  created() {
-    this.initiallyAssigned = this.assignment.assigned;
-  },
-  methods: {
-    getDate(month) {
-      return moment(month).toDate();
-    },
-    allowedStep: (m) => m % 15 === 0,
-  },
   computed: {
     isEditable() {
       if (!this.selfAssign) {
@@ -132,6 +135,20 @@ export default {
         }
       }
       return false;
+    },
+  },
+  created() {
+    this.initiallyAssigned = this.assignment.assigned;
+  },
+  methods: {
+    getDate(month) {
+      return moment(month).toDate();
+    },
+    allowedStep: (m) => m % 15 === 0,
+    updateAssignment(field, value) {
+      let tmpAssignment = JSON.parse(JSON.stringify(this.assignment));
+      tmpAssignment[field] = value;
+      this.$emit("update-assignment", this.day, tmpAssignment);
     },
   },
 };

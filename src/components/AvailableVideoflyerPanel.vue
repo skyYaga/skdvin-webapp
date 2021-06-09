@@ -41,7 +41,10 @@
 <script>
 export default {
   props: {
-    videoflyers: Array,
+    videoflyers: {
+      type: Array,
+      default: () => [],
+    },
   },
 };
 </script>

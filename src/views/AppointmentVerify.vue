@@ -29,9 +29,6 @@ export default {
     loaded: false,
     alertType: "info",
   }),
-  async created() {
-    await this.verifyAppointment();
-  },
   computed: {
     getId() {
       return this.$route.query.id;
@@ -39,6 +36,9 @@ export default {
     getToken() {
       return this.$route.query.token;
     },
+  },
+  async created() {
+    await this.verifyAppointment();
   },
   methods: {
     ...mapActions(["verifyAppointmentAction"]),

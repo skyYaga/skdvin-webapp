@@ -19,7 +19,7 @@
             flex-wrap
             :date="date"
             @input="menu = false"
-            @handleDateSelection="dateSelected"
+            @handle-date-selection="dateSelected"
           /> </v-col
       ></v-row>
       <v-row v-if="jumpday.jumping"
@@ -36,10 +36,10 @@
         ></v-col>
         <v-col
           v-for="appointment in getAppointmentsByTime(time)"
+          :key="appointment.appointmentId"
           :lg="3"
           :md="4"
           :sm="6"
-          :key="appointment.appointmentId"
           ><AppointmentOverview :appointment="appointment" /></v-col
       ></v-row>
     </div>
@@ -52,10 +52,10 @@
 </template>
 
 <script>
-import AppointmentOverview from "../components/AppointmentOverview";
-import AvailableTandemmasterPanel from "../components/AvailableTandemmasterPanel";
-import AvailableVideoflyerPanel from "../components/AvailableVideoflyerPanel";
-import Calendar from "../components/Calendar";
+import AppointmentOverview from "../components/AppointmentOverview.vue";
+import AvailableTandemmasterPanel from "../components/AvailableTandemmasterPanel.vue";
+import AvailableVideoflyerPanel from "../components/AvailableVideoflyerPanel.vue";
+import Calendar from "../components/Calendar.vue";
 import { mapActions, mapState, mapGetters } from "vuex";
 import moment from "moment";
 
@@ -76,11 +76,6 @@ export default {
       jumping: false,
     },
   }),
-  async created() {
-    await this.loadJumpdays();
-    this.loadJumpday();
-    await this.loadAppointments();
-  },
   computed: {
     ...mapState(["jumpdays", "appointments"]),
     ...mapGetters(["getJumpdayByDate"]),
@@ -100,12 +95,10 @@ export default {
         return this.$route.query.date;
       },
       set: function (date) {
-        this.$router
-          .push({
-            name: "appointments",
-            query: { date },
-          })
-          .catch((err) => {});
+        this.$router.push({
+          name: "appointments",
+          query: { date },
+        });
       },
     },
     getDate() {
@@ -114,6 +107,11 @@ export default {
       }
       return this.$d(moment(this.date).toDate(), "dateYearMonthDayShort");
     },
+  },
+  async created() {
+    await this.loadJumpdays();
+    this.loadJumpday();
+    await this.loadAppointments();
   },
   methods: {
     ...mapActions(["getJumpdaysAction", "getAppointmentsAction"]),

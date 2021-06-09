@@ -1,77 +1,32 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import {
-  GET_JUMPDAYS,
-  ADD_JUMPDAY,
-  UPDATE_JUMPDAY,
-  DELETE_JUMPDAY,
   UPDATE_APPOINTMENT,
   GET_APPOINTMENTS,
   UPDATE_APPOINTMENT_STATE,
   DELETE_APPOINTMENT,
   GET_GROUP_SLOTS,
-  ADD_TANDEMMASTER,
-  UPDATE_TANDEMMASTER,
-  GET_TANDEMMASTERS,
-  DELETE_TANDEMMASTER,
-  ADD_VIDEOFLYER,
-  UPDATE_VIDEOFLYER,
-  GET_VIDEOFLYERS,
-  DELETE_VIDEOFLYER,
   SET_LOCALE,
-  UPDATE_LOCAL_SETTINGS,
-  GET_COMMON_SETTINGS,
 } from "./mutation-types";
-import { jumpdayService } from "../shared/jumpday-service";
+import jumpday from "./modules/jumpday";
+import settings from "./modules/settings";
+import waiver from "./modules/waiver";
+import tandemmaster from "./modules/tandemmaster";
+import videoflyer from "./modules/videoflyer";
+
 import { appointmentService } from "../shared/appointment-service";
-import { tandemmasterService } from "../shared/tandemmaster-service";
-import { videoflyerService } from "../shared/videoflyer-service";
-import { settingsService } from "../shared/settings-service";
+import { userService } from "../shared/user-service";
 
 Vue.use(Vuex);
 
 const state = () => ({
-  jumpdays: [],
   appointments: [],
   appointment: null,
-  tandemmasters: [],
-  videoflyers: [],
   locale: null,
   groupSlots: [],
-  settings: {
-    startHour: "9",
-    startMinute: "30",
-    endHour: "18",
-    endMinute: "00",
-    tandem: 5,
-    picOrVid: 0,
-    picAndVid: 0,
-    handcam: 0,
-    sequence: "1:30",
-  },
-  commonSettings: {
-    dropzone: {
-      name: "",
-      email: "",
-    },
-  },
 });
 
 const mutations = {
-  [GET_JUMPDAYS](state, jumpdays) {
-    state.jumpdays = jumpdays;
-  },
-  [ADD_JUMPDAY](state, jumpday) {
-    state.jumpdays.unshift(jumpday); // mutable addition
-  },
-  [UPDATE_JUMPDAY](state, jumpday) {
-    const index = state.jumpdays.findIndex((j) => j.date === jumpday.date);
-    state.jumpdays.splice(index, 1, jumpday);
-    state.jumpdays = [...state.jumpdays];
-  },
-  [DELETE_JUMPDAY](state, date) {
-    state.jumpdays = [...state.jumpdays.filter((j) => j.date !== date)];
-  },
   [GET_APPOINTMENTS](state, appointments) {
     state.appointments = appointments;
   },
@@ -97,76 +52,13 @@ const mutations = {
   [GET_GROUP_SLOTS](state, slots) {
     state.groupSlots = slots;
   },
-  [GET_TANDEMMASTERS](state, tandemmasters) {
-    state.tandemmasters = tandemmasters;
-  },
-  [ADD_TANDEMMASTER](state, tandemmaster) {
-    state.tandemmasters.unshift(tandemmaster); // mutable addition
-  },
-  [UPDATE_TANDEMMASTER](state, tandemmaster) {
-    const index = state.tandemmasters.findIndex(
-      (t) => t.id === tandemmaster.id
-    );
-    state.tandemmasters.splice(index, 1, tandemmaster);
-    state.tandemmasters = [...state.tandemmasters];
-  },
-  [DELETE_TANDEMMASTER](state, id) {
-    state.tandemmasters = [...state.tandemmasters.filter((t) => t.id !== id)];
-  },
-  [GET_VIDEOFLYERS](state, videoflyers) {
-    state.videoflyers = videoflyers;
-  },
-  [ADD_VIDEOFLYER](state, videoflyer) {
-    state.videoflyers.unshift(videoflyer); // mutable addition
-  },
-  [UPDATE_VIDEOFLYER](state, videoflyer) {
-    const index = state.videoflyers.findIndex((t) => t.id === videoflyer.id);
-    state.videoflyers.splice(index, 1, videoflyer);
-    state.videoflyers = [...state.videoflyers];
-  },
-  [DELETE_VIDEOFLYER](state, id) {
-    state.videoflyers = [...state.videoflyers.filter((t) => t.id !== id)];
-  },
   [SET_LOCALE](state, locale) {
     state.locale = locale;
   },
-  [UPDATE_LOCAL_SETTINGS](state, settings) {
-    state.settings = settings;
-  },
-  [GET_COMMON_SETTINGS](state, commonSettings) {
-    state.commonSettings = commonSettings;
-  },
 };
 
+/* eslint-disable no-unused-vars */
 const actions = {
-  async getJumpdaysAction({ commit }, token) {
-    const jumpdays = await jumpdayService.getJumpdays(token);
-    if (typeof jumpdays === "number") {
-      return jumpdays;
-    }
-    commit(GET_JUMPDAYS, jumpdays);
-    return "";
-  },
-  async addJumpdayAction({ commit }, payload) {
-    const result = await jumpdayService.addJumpday(
-      payload.jumpday,
-      payload.token
-    );
-    if (result.success) {
-      commit(ADD_JUMPDAY, result.payload);
-    }
-    return result;
-  },
-  async deleteJumpdayAction({ commit }, payload) {
-    let result = await jumpdayService.deleteJumpday(
-      payload.date,
-      payload.token
-    );
-    if (result.success) {
-      commit(DELETE_JUMPDAY, payload.date);
-    }
-    return result;
-  },
   async searchSlotsAction({ commit }, query) {
     const slots = await appointmentService.searchSlots(query);
     return slots;
@@ -246,16 +138,6 @@ const actions = {
     }
     return result;
   },
-  async updateJumpdayAction({ commit }, payload) {
-    let result = await jumpdayService.updateJumpday(
-      payload.jumpday,
-      payload.token
-    );
-    if (result.success) {
-      commit(UPDATE_JUMPDAY, result.payload);
-    }
-    return result;
-  },
   async deleteAppointmentAction({ commit }, payload) {
     let result = await appointmentService.deleteAppointment(
       payload.appointmentId,
@@ -274,142 +156,31 @@ const actions = {
     );
     commit(GET_GROUP_SLOTS, result.payload);
   },
-  async addTandemmasterAction({ commit }, payload) {
-    const result = await tandemmasterService.addTandemmaster(
-      payload.tandemmaster,
-      payload.token
-    );
-    commit(ADD_TANDEMMASTER, result.payload);
-    return result;
-  },
-  async getTandemmasterAction({ commit }, token) {
-    const result = await tandemmasterService.getTandemmaster(token);
-    commit(GET_TANDEMMASTERS, result.payload);
-    return result;
-  },
-  async updateTandemmasterAction({ commit }, payload) {
-    const result = await tandemmasterService.updateTandemmaster(
-      payload.tandemmaster,
-      payload.token
-    );
-    commit(UPDATE_TANDEMMASTER, result.payload);
-    return result;
-  },
-  async deleteTandemmasterAction({ commit }, payload) {
-    const result = await tandemmasterService.deleteTandemmaster(
-      payload.id,
-      payload.token
-    );
-    commit(DELETE_TANDEMMASTER, payload.id);
-    return result;
-  },
-  async getTandemmasterDetailsAction({ commit }, payload) {
-    const appointment = await tandemmasterService.getTandemmasterDetails(
-      payload.tandemmasterId,
-      payload.token
-    );
-    return appointment;
-  },
-  async getMeTandemmasterAction({ commit }, token) {
-    return await tandemmasterService.getMeTandemmaster(token);
-  },
-  async updateTandemmasterAssigmentsAction({ commit }, payload) {
-    return await tandemmasterService.updateTandemmasterAssigments(
-      payload.tandemmasterDetails,
-      payload.token
-    );
-  },
-  async updateMeTandemmasterAssigmentsAction({ commit }, payload) {
-    return await tandemmasterService.updateMeTandemmasterAssigments(
-      payload.tandemmasterDetails,
-      payload.token
-    );
-  },
-  async addVideoflyerAction({ commit }, payload) {
-    const result = await videoflyerService.addVideoflyer(
-      payload.videoflyer,
-      payload.token
-    );
-    commit(ADD_VIDEOFLYER, result.payload);
-    return result;
-  },
-  async getVideoflyerAction({ commit }, token) {
-    const result = await videoflyerService.getVideoflyer(token);
-    commit(GET_VIDEOFLYERS, result.payload);
-    return result;
-  },
-  async updateVideoflyerAction({ commit }, payload) {
-    const result = await videoflyerService.updateVideoflyer(
-      payload.videoflyer,
-      payload.token
-    );
-    commit(UPDATE_VIDEOFLYER, result.payload);
-    return result;
-  },
-  async deleteVideoflyerAction({ commit }, payload) {
-    const result = await videoflyerService.deleteVideoflyer(
-      payload.id,
-      payload.token
-    );
-    commit(DELETE_VIDEOFLYER, payload.id);
-    return result;
-  },
-  async getVideoflyerDetailsAction({ commit }, payload) {
-    const videoflyer = await videoflyerService.getVideoflyerDetails(
-      payload.videoflyerId,
-      payload.token
-    );
-    return videoflyer;
-  },
-  async getMeVideoflyerAction({ commit }, token) {
-    return await videoflyerService.getMeVideoflyer(token);
-  },
-  async updateVideoflyerAssigmentsAction({ commit }, payload) {
-    return await videoflyerService.updateVideoflyerAssigments(
-      payload.videoflyerDetails,
-      payload.token
-    );
-  },
-  async updateMeVideoflyerAssigmentsAction({ commit }, payload) {
-    return await videoflyerService.updateMeVideoflyerAssigments(
-      payload.videoflyerDetails,
-      payload.token
-    );
-  },
   setLocaleAction({ commit }, locale) {
     commit(SET_LOCALE, locale);
   },
-  updateLocalSettingsAction({ commit }, settings) {
-    commit(UPDATE_LOCAL_SETTINGS, settings);
+  async getUsersAction({ commit }, token) {
+    return await userService.getUsers(token);
   },
-  async getSettingsAction({ commit }, token) {
-    return await settingsService.getSettings(token);
+  async updateUserAction({ commit }, payload) {
+    return await userService.updateUser(payload.user, payload.token);
   },
-  async saveSettingsAction({ commit }, payload) {
-    return await settingsService.saveSettings(payload.settings, payload.token);
-  },
-  async updateSettingsAction({ commit }, payload) {
-    return await settingsService.updateSettings(
-      payload.settings,
-      payload.token
-    );
-  },
-  async getCommonSettingsAction({ commit }) {
-    const result = await settingsService.getCommonSettings(this.state.locale);
-    commit(GET_COMMON_SETTINGS, result.payload);
+  async getRolesAction({ commit }, token) {
+    return await userService.getRoles(token);
   },
 };
+/* eslint-enable no-unused-vars */
 
-const getters = {
-  // parameterized getters are not cached. so this is just a convenience to get the state.
-  getJumpdayByDate: (state) => (date) =>
-    state.jumpdays.find((j) => j.date === date),
-  getSettings: (state) => () => state.settings,
-  getFaq: (state) => () => state.commonSettings.faq,
-  getCommonSettings: (state) => () => state.commonSettings,
-};
+const getters = {};
 
 export default new Vuex.Store({
+  modules: {
+    jumpday,
+    settings,
+    waiver,
+    tandemmaster,
+    videoflyer,
+  },
   strict: process.env.NODE_ENV !== "production",
   state,
   mutations,

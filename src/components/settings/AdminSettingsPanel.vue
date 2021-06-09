@@ -8,7 +8,12 @@
 <script>
 export default {
   props: {
-    adminSettings: Object,
+    adminSettings: {
+      type: Object,
+      default: function () {
+        return {};
+      },
+    },
   },
 };
 </script>
