@@ -61,7 +61,7 @@ export default {
       return arrayOfSlots.sort(function (a, b) {
         if (a === null) return 1;
         if (b === null) return -1;
-        return DateTime.fromISO(a) < DateTime.fromISO(b);
+        return DateTime.fromISO(a).toJSDate() - DateTime.fromISO(b).toJSDate();
       });
     },
   },
@@ -84,7 +84,10 @@ export default {
         .sort(function (a, b) {
           if (a === null) return 1;
           if (b === null) return -1;
-          return DateTime.fromISO(a) < DateTime.fromISO(b);
+          return (
+            DateTime.fromISO(a.date).toJSDate() -
+            DateTime.fromISO(b.date).toJSDate()
+          );
         });
     },
   },
