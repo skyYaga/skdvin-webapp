@@ -17,7 +17,7 @@
         ><TandemmasterAssignPanel
           :tandemmaster="tandemmaster"
           :self-assign="true"
-          :self-assignment-mode="commonSettings.selfAssignmentMode"
+          :self-assignment-mode="settings.commonSettings.selfAssignmentMode"
         ></TandemmasterAssignPanel></v-col
     ></v-row>
     <v-row v-if="!loading && vfError"
@@ -32,7 +32,7 @@
         ><VideoflyerAssignPanel
           :videoflyer="videoflyer"
           :self-assign="true"
-          :self-assignment-mode="commonSettings.selfAssignmentMode"
+          :self-assignment-mode="settings.commonSettings.selfAssignmentMode"
         ></VideoflyerAssignPanel></v-col
     ></v-row>
 
@@ -75,7 +75,7 @@ export default {
     vfError: false,
   }),
   computed: {
-    ...mapState(["commonSettings"]),
+    ...mapState(["settings"]),
     isTandemmaster() {
       return roleUtil.isTandemmaster(this.$auth);
     },

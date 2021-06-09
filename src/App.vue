@@ -52,16 +52,16 @@ export default {
       ],
     };
   },
-  computed: { ...mapState(["commonSettings"]) },
+  computed: { ...mapState(["settings"]) },
   async created() {
     this.overlay = true;
     this.setLocaleAction(this.$i18n.locale);
     await this.loadCommonSettings();
     if (
-      typeof this.commonSettings !== "undefined" &&
-      "dropzone" in this.commonSettings
+      typeof this.settings.commonSettings !== "undefined" &&
+      "dropzone" in this.settings.commonSettings
     ) {
-      document.title = this.commonSettings.dropzone.name;
+      document.title = this.settings.commonSettings.dropzone.name;
     }
     this.overlay = false;
   },
