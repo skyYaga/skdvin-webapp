@@ -159,8 +159,12 @@ const actions = {
   setLocaleAction({ commit }, locale) {
     commit(SET_LOCALE, locale);
   },
-  async getUsersAction({ commit }, token) {
-    return await userService.getUsers(token);
+  async getUsersAction({ commit }, payload) {
+    return await userService.getUsers(
+      payload.page,
+      payload.itemsPerPage,
+      payload.token
+    );
   },
   async updateUserAction({ commit }, payload) {
     return await userService.updateUser(payload.user, payload.token);

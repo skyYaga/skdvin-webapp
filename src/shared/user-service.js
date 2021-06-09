@@ -3,11 +3,15 @@ import { responseHandler } from "./response-handler";
 
 const apiPath = process.env.VUE_APP_API;
 
-const getUsers = async function (token) {
+const getUsers = async function (page, itemsPerPage, token) {
   try {
     const response = await axios.get(apiPath + "/users", {
       headers: {
         Authorization: `Bearer ${token}`,
+      },
+      params: {
+        page: page,
+        per_page: itemsPerPage,
       },
     });
     return responseHandler.handleResponse(response, 200);
