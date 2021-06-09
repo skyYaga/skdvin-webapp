@@ -80,7 +80,9 @@
           <i18n path="transportationHint" tag="div">
             <template #url>
               <a
-                :href="commonSettings.dropzone.transportationAgreementUrl"
+                :href="
+                  settings.commonSettings.dropzone.transportationAgreementUrl
+                "
                 target="_blank"
                 rel="noopener noreferrer"
                 >{{ $t("transportationAgreement.download") }}</a
@@ -136,7 +138,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["commonSettings"]),
+    ...mapState(["settings"]),
     maxDate14years() {
       return moment()
         .subtract(14, "years")
