@@ -107,10 +107,9 @@ export default {
       return [...Array(11).keys()];
     },
     deleteSlot(slot) {
-      let updatedJumpday = this.jumpday.slots.filter(
-        (s) => s.time !== slot.time
-      );
-      this.$emit("update-jumpday", updatedJumpday);
+      let tmpJumpday = JSON.parse(JSON.stringify(this.jumpday));
+      tmpJumpday.slots = tmpJumpday.slots.filter((s) => s.time !== slot.time);
+      this.$emit("update-jumpday", tmpJumpday);
     },
   },
 };
