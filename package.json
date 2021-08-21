@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.17.0",
-    "@sentry/browser": "^6.10.0",
+    "@sentry/browser": "^6.11.0",
     "@sentry/integrations": "^6.10.0",
     "axios": "^0.21.1",
     "core-js": "^3.15.2",
