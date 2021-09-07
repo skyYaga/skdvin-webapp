@@ -228,8 +228,10 @@ export default {
     getWaiver() {
       this.waiver.signature = this.$refs.signature.getSignature();
       if (this.isMinor) {
-        this.waiver.parentSignature1 = this.$refs.parentSignature1.getSignature();
-        this.waiver.parentSignature2 = this.$refs.parentSignature2.getSignature();
+        this.waiver.parentSignature1 =
+          this.$refs.parentSignature1.getSignature();
+        this.waiver.parentSignature2 =
+          this.$refs.parentSignature2.getSignature();
       }
       return this.waiver;
     },
