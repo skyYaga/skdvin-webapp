@@ -2,14 +2,21 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import * as Sentry from "@sentry/browser";
-import { Vue as VueIntegration } from "@sentry/integrations";
+import * as Sentry from "@sentry/vue";
+import { Integrations } from "@sentry/tracing";
 
 // Setup Sentry integration
 if (process.env.NODE_ENV === "production") {
   Sentry.init({
+    Vue,
     dsn: process.env.VUE_APP_SENTRY_DSN,
-    integrations: [new VueIntegration({ Vue, attachProps: true })],
+    integrations: [
+      new Integrations.BrowserTracing({
+        routingInstrumentation: Sentry.vueRouterInstrumentation(router),
+        tracingOrigins: [process.env.VUE_APP_API_DOMAIN],
+      }),
+    ],
+    tracesSampleRate: 0.3,
   });
 }
 
