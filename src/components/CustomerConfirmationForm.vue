@@ -8,20 +8,20 @@
       ></v-row>
       <v-divider class="my-10"></v-divider>
       <v-form ref="form" v-model="valid">
-        <v-row v-if="!isAdmin" class="mb-3"
+        <v-row v-if="!isAdminOrModerator" class="mb-3"
           ><h2>{{ $t("jumpregulations.heading") }}</h2></v-row
         >
-        <v-row v-if="!isAdmin">
+        <v-row v-if="!isAdminOrModerator">
           <!-- eslint-disable-next-line vue/no-v-html -->
           <ul v-html="$t('jumpregulations.text')"></ul>
         </v-row>
-        <v-row v-if="!isAdmin">
+        <v-row v-if="!isAdminOrModerator">
           <v-checkbox
             :rules="[(v) => !!v || $t('rules.acceptRegulations')]"
             :label="$t('jumpregulations.accept')"
           ></v-checkbox>
         </v-row>
-        <v-row v-if="!isAdmin">
+        <v-row v-if="!isAdminOrModerator">
           <v-checkbox :rules="[(v) => !!v || $t('rules.privacyPolicy')]"
             ><template #label
               ><div>
@@ -86,8 +86,8 @@ export default {
     loading: false,
   }),
   computed: {
-    isAdmin() {
-      return roleUtil.isAdmin(this.$auth);
+    isAdminOrModerator() {
+      return roleUtil.isAdminOrModerator(this.$auth);
     },
   },
   methods: {
@@ -96,7 +96,7 @@ export default {
       this.loading = true;
       if (this.$refs.form.validate()) {
         let result;
-        if (roleUtil.isAdmin(this.$auth)) {
+        if (roleUtil.isAdminOrModerator(this.$auth)) {
           result = await this.addAdminAppointmentAction({
             appointment: this.appointment,
             token: await this.$auth.getTokenSilently(),
@@ -116,7 +116,10 @@ export default {
 
       this.$router.push({
         name: "appointment-confirm",
-        query: { message: message, noemail: roleUtil.isAdmin(this.$auth) },
+        query: {
+          message: message,
+          noemail: roleUtil.isAdminOrModerator(this.$auth),
+        },
       });
     },
     back() {
