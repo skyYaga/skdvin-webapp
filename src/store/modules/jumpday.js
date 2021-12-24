@@ -18,8 +18,11 @@ const getters = {
 
 /* eslint-disable no-unused-vars */
 const actions = {
-  async getJumpdaysAction({ commit }, token) {
-    const jumpdays = await jumpdayService.getJumpdays(token);
+  async getJumpdaysAction({ commit }, payload) {
+    const jumpdays = await jumpdayService.getJumpdays(
+      payload.yearMonth,
+      payload.token
+    );
     if (typeof jumpdays === "number") {
       return jumpdays;
     }

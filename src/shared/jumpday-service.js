@@ -3,12 +3,13 @@ import { responseHandler } from "./response-handler";
 
 const apiPath = process.env.VUE_APP_API;
 
-const getJumpdays = async function (token) {
+const getJumpdays = async function (yearMonth, token) {
   try {
     const response = await axios.get(apiPath + "/jumpday", {
       headers: {
         Authorization: `Bearer ${token}`, // send the access token through the 'Authorization' header
       },
+      params: { month: yearMonth },
     });
     return parseList(response);
   } catch (error) {
