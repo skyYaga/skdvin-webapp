@@ -12,6 +12,7 @@
     :events="enableEvents ? functionEvents : null"
     :first-day-of-week="1"
     :locale="$i18n.locale"
+    :picker-date.sync="pickerDate"
     @click:date="onDateSelection"
   ></v-date-picker>
 </template>
@@ -36,12 +37,19 @@ export default {
       readonly: false,
       disabled: false,
       enableEvents: true,
+      pickerDate: null,
     };
   },
 
   computed: {
     functionEvents() {
       return this.dateFunctionEvents;
+    },
+  },
+
+  watch: {
+    pickerDate(val) {
+      this.onMonthChange(val);
     },
   },
 
@@ -56,6 +64,9 @@ export default {
     },
     onDateSelection(date) {
       this.$emit("handle-date-selection", date);
+    },
+    onMonthChange(yearMonth) {
+      this.$emit("handle-month-change", yearMonth);
     },
   },
 };

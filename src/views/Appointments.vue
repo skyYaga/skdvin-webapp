@@ -20,6 +20,7 @@
             :date="date"
             @input="menu = false"
             @handle-date-selection="dateSelected"
+            @handle-month-change="loadJumpdays"
           /> </v-col
       ></v-row>
       <v-row v-if="jumpday.jumping"
@@ -57,7 +58,7 @@ import AvailableTandemmasterPanel from "../components/AvailableTandemmasterPanel
 import AvailableVideoflyerPanel from "../components/AvailableVideoflyerPanel.vue";
 import Calendar from "../components/Calendar.vue";
 import { mapActions, mapState, mapGetters } from "vuex";
-import moment from "moment";
+import { DateTime } from "luxon";
 
 export default {
   name: "Appointments",
@@ -82,7 +83,8 @@ export default {
     getBookedTimes() {
       let times = this.$store.state.appointments.map(
         (appointment) =>
-          appointment !== null && moment(appointment?.date).format("HH:mm")
+          appointment !== null &&
+          DateTime.fromISO(appointment?.date).toFormat("HH:mm")
       );
       let uniqueTimes = [...new Set(times)];
       return uniqueTimes;
@@ -105,21 +107,25 @@ export default {
       if (this.date === "") {
         return "";
       }
-      return this.$d(moment(this.date).toDate(), "dateYearMonthDayShort");
+      return this.$d(
+        DateTime.fromISO(this.date).toJSDate(),
+        "dateYearMonthDayShort"
+      );
     },
   },
   async created() {
-    await this.loadJumpdays();
+    await this.loadJumpdays(DateTime.now().toFormat("yyyy-MM"));
     this.loadJumpday();
     await this.loadAppointments();
   },
   methods: {
     ...mapActions(["getJumpdaysAction", "getAppointmentsAction"]),
-    async loadJumpdays() {
+    async loadJumpdays(yearMonth) {
       this.message = this.$t("jumpday.loading");
-      let unauthorizedMessage = await this.getJumpdaysAction(
-        await this.$auth.getTokenSilently()
-      );
+      let unauthorizedMessage = await this.getJumpdaysAction({
+        yearMonth: yearMonth,
+        token: await this.$auth.getTokenSilently(),
+      });
       if (unauthorizedMessage !== "") {
         this.message = this.$t("accessdenied");
         this.authorized = false;
@@ -153,7 +159,7 @@ export default {
       }
     },
     nowFormatted() {
-      return moment().format("YYYY-MM-DD");
+      return DateTime.now().toISODate();
     },
     dateSelected(date) {
       this.date = date;
@@ -162,7 +168,8 @@ export default {
     },
     getAppointmentsByTime(time) {
       return this.$store.state.appointments.filter(
-        (appointment) => moment(appointment?.date).format("HH:mm") === time
+        (appointment) =>
+          DateTime.fromISO(appointment?.date).toFormat("HH:mm") === time
       );
     },
   },

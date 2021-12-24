@@ -12,7 +12,12 @@
       <h1>{{ $t("jumpday.jumpdays") }}</h1>
       <v-row dense>
         <v-col :cols="12" :lg="4" :md="4" :sm="12">
-          <Calendar d-flex flex-wrap @handle-date-selection="loadJumpday" />
+          <Calendar
+            d-flex
+            flex-wrap
+            @handle-date-selection="loadJumpday"
+            @handle-month-change="loadJumpdays"
+          />
         </v-col>
         <v-col :cols="12" :lg="8" :md="8" :sm="12">
           <EditJumpdayPanel
@@ -55,7 +60,7 @@ import EditJumpdayPanel from "../components/EditJumpdayPanel.vue";
 import AvailableTandemmasterPanel from "../components/AvailableTandemmasterPanel.vue";
 import AvailableVideoflyerPanel from "../components/AvailableVideoflyerPanel.vue";
 import { mapActions, mapState, mapGetters } from "vuex";
-import moment from "moment";
+import { DateTime } from "luxon";
 
 export default {
   name: "Jumpdays",
@@ -83,16 +88,17 @@ export default {
     ...mapGetters(["getJumpdayByDate"]),
   },
   async created() {
-    await this.loadJumpdays();
+    await this.loadJumpdays(DateTime.now().toFormat("yyyy-MM"));
     this.loadJumpday(this.date);
   },
   methods: {
     ...mapActions(["getJumpdaysAction"]),
-    async loadJumpdays() {
+    async loadJumpdays(yearMonth) {
       this.message = this.$t("jumpday.loading");
-      let unauthorizedMessage = await this.getJumpdaysAction(
-        await this.$auth.getTokenSilently()
-      );
+      let unauthorizedMessage = await this.getJumpdaysAction({
+        yearMonth: yearMonth,
+        token: await this.$auth.getTokenSilently(),
+      });
       if (unauthorizedMessage !== "") {
         this.message = this.$t("accessdenied");
         this.authorized = false;
@@ -121,7 +127,7 @@ export default {
       }
     },
     nowFormatted() {
-      return moment().format("YYYY-MM-DD");
+      return DateTime.now().toISODate();
     },
   },
 };
