@@ -14,54 +14,61 @@
             lastName: tandemmaster.lastName,
           })
         }}</v-card-title>
-        {{ message }}
-        <v-row v-if="editable" class="ma-1">
-          <v-col
-            ><v-btn @click="selectAll">{{ $t("jumpday.selectAll") }}</v-btn>
-            <v-btn class="ml-2" @click="selectNone">{{
-              $t("jumpday.selectNone")
-            }}</v-btn></v-col
+        <v-card-text>
+          <v-row v-if="editable" class="ma-1">
+            <v-col
+              ><v-btn @click="selectAll">{{ $t("jumpday.selectAll") }}</v-btn>
+              <v-btn class="ml-2" @click="selectNone">{{
+                $t("jumpday.selectNone")
+              }}</v-btn></v-col
+            >
+          </v-row>
+          <v-row v-if="loading" dense>
+            <v-alert type="info">
+              <v-progress-circular indeterminate></v-progress-circular>
+              {{ message }}
+            </v-alert>
+          </v-row>
+          <v-row class="ma-1">
+            <v-col
+              v-for="month in jumpMonths()"
+              :key="month"
+              :lg="3"
+              :md="4"
+              :sm="6"
+              :cols="12"
+            >
+              <v-card
+                ><v-card-title>{{
+                  $d(getDate(month), "dateYearMonthLong")
+                }}</v-card-title
+                ><v-card-text
+                  ><AssignmentSelectionPanel
+                    v-for="day in jumpdaysInMonth(month)"
+                    :key="day"
+                    class="mt-n5"
+                    :assignment="tandemmasterDetails.assignments[day]"
+                    :day="day"
+                    :self-assign="selfAssign"
+                    :self-assignment-mode="selfAssignmentMode"
+                    @update-assignment="updateLocalTandemmasterAssignment"
+                  >
+                  </AssignmentSelectionPanel></v-card-text
+              ></v-card>
+            </v-col>
+          </v-row>
+          <v-row v-if="editable">
+            <v-spacer></v-spacer>
+            <v-btn
+              color="primary"
+              class="ma-6"
+              :disabled="loading || updating"
+              :loading="loading || updating"
+              @click="updateAssignments"
+              >{{ $t("update") }}</v-btn
+            ></v-row
           >
-        </v-row>
-        <v-row class="ma-1">
-          <v-col
-            v-for="month in jumpMonths()"
-            :key="month"
-            :lg="3"
-            :md="4"
-            :sm="6"
-            :cols="12"
-          >
-            <v-card
-              ><v-card-title>{{
-                $d(getDate(month), "dateYearMonthLong")
-              }}</v-card-title
-              ><v-card-text
-                ><AssignmentSelectionPanel
-                  v-for="day in jumpdaysInMonth(month)"
-                  :key="day"
-                  class="mt-n5"
-                  :assignment="tandemmasterDetails.assignments[day]"
-                  :day="day"
-                  :self-assign="selfAssign"
-                  :self-assignment-mode="selfAssignmentMode"
-                  @update-assignment="updateLocalTandemmasterAssignment"
-                >
-                </AssignmentSelectionPanel></v-card-text
-            ></v-card>
-          </v-col>
-        </v-row>
-        <v-row v-if="editable">
-          <v-spacer></v-spacer>
-          <v-btn
-            color="primary"
-            class="ma-6"
-            :disabled="loading"
-            :loading="loading"
-            @click="updateAssignments"
-            >{{ $t("update") }}</v-btn
-          ></v-row
-        >
+        </v-card-text>
       </v-card>
     </v-col>
   </v-row>
@@ -90,6 +97,7 @@ export default {
   data: () => ({
     message: "",
     loading: false,
+    updating: false,
     tandemmasterDetails: {},
     showHint: false,
     hintText: "",
@@ -139,6 +147,7 @@ export default {
       return converters.sortedJumpdaysInMonth(this.tandemmasterDetails, month);
     },
     async updateAssignments() {
+      this.updating = true;
       let result;
       if (this.selfAssign) {
         result = await this.updateMeTandemmasterAssigmentsAction({
@@ -159,6 +168,7 @@ export default {
         this.hintColor = "red";
       }
       this.showHint = true;
+      this.updating = false;
     },
     selectAll() {
       Object.values(this.tandemmasterDetails.assignments).forEach(

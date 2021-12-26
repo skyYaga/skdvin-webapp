@@ -4,6 +4,7 @@
       <v-checkbox
         :input-value="assignment.assigned"
         :readonly="!isEditable"
+        :disabled="!isEditable"
         :label="$d(getDate(day), 'dateYearMonthDayWeekdayLong')"
         @change="updateAssignment('assigned', $event)"
       ></v-checkbox
@@ -13,6 +14,7 @@
         v-if="assignment.assigned"
         :input-value="assignment.allday"
         :readonly="!isEditable"
+        :disabled="!isEditable"
         class="pl-5 mt-n4"
         :label="$t('allDay')"
         @change="updateAssignment('allday', $event)"
