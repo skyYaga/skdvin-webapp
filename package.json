@@ -22,7 +22,7 @@
     "signature_pad": "^4.0.2",
     "tiptap": "^1.32.2",
     "tiptap-extensions": "^1.35.2",
-    "vue": "^2.6.14",
+    "vue": "^3.2.30",
     "vue-i18n": "^8.27.0",
     "vue-router": "^3.5.3",
     "vuetify": "^2.6.3",
