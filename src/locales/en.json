@@ -270,7 +270,7 @@
     "transportationAgreement": "transportation and liability agreement",
     "url": "Transportation and liability agreement URL"
   },
-  "transportationHint": "On the transportation agreement, which must be filled out on site, the signature of BOTH parents or guardians is required! If not both will be on site, the form can be filled out in advance ({url}).",
+  "transportationHint": "On the transportation agreement, which must be filled out on site, the signature of BOTH parents or guardians is required! If not both will be on site, the form can be filled out in advance ({url}). In this case we need a copy of the ID on site.",
   "update": "Update",
   "user": {
     "update": {
