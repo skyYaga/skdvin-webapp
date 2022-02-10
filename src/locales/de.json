@@ -270,7 +270,7 @@
     "transportationAgreement": "Beförderungsvertrag und Haftungsvereinbarung",
     "url": "URL zu Beförderungsvertrag und Haftungsvereinbarung"
   },
-  "transportationHint": "Auf dem Beförderungsvertrag, der vor Ort ausgefüllt werden muss, wird die Unterschrift BEIDER Erziehungsberechtigter benötigt! Für den Fall, dass nicht beide Erziehungsberechtigten vor Ort sein werden, kann das Formular im Vorfeld ausgefüllt werden ({url}).",
+  "transportationHint": "Auf dem Beförderungsvertrag, der vor Ort ausgefüllt werden muss, wird die Unterschrift BEIDER Erziehungsberechtigter benötigt! Für den Fall, dass nicht beide Erziehungsberechtigten vor Ort sein werden, kann das Formular im Vorfeld ausgefüllt werden ({url}). In diesem Fall benötigen wir vor Ort eine Ausweiskopie.",
   "update": "Aktualisieren",
   "user": {
     "update": {
