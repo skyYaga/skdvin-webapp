@@ -10,7 +10,6 @@ import {
 } from "./mutation-types";
 import jumpday from "./modules/jumpday";
 import settings from "./modules/settings";
-import waiver from "./modules/waiver";
 import tandemmaster from "./modules/tandemmaster";
 import videoflyer from "./modules/videoflyer";
 
@@ -181,7 +180,6 @@ export default new Vuex.Store({
   modules: {
     jumpday,
     settings,
-    waiver,
     tandemmaster,
     videoflyer,
   },

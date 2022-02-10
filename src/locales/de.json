@@ -306,25 +306,6 @@
     "info": "Bitte setze einen Haken, wenn der Springer einen Gutschein hat.",
     "voucher": "Gutschein"
   },
-  "waiver": {
-    "edit": "Haftungsvereinbarung bearbeiten",
-    "save": {
-      "error": "Fehler beim Speichern der Haftungsvereinbarung",
-      "successful": "Haftungsvereinbarung erfolgreich gespeichert"
-    },
-    "signature": {
-      "required": "Die Unterschrift wird benötigt"
-    },
-    "state": "Status",
-    "update": {
-      "error": "Fehler beim Aktualisieren der Haftungsvereinbarung",
-      "successful": "Haftungsvereinbarung erfolgreich aktualisiert"
-    },
-    "waiver": "Haftungsvereinbarung"
-  },
-  "wavier": {
-    "new": "Weitere Haftungsvereinbarung erstellen"
-  },
   "weightMax90": "Gewicht maximal 90 kg",
   "welcome": {
     "message": "Bitte gebe in der Suchmaske ein wie viele Tandemsprünge und (falls gewünscht) zusätzliche Videos Du buchen möchtest. {br}Die verschiedenen Optionen zu verfügbaren Videos und Fotos werden in der Infobox erklärt, die sich öffnet wenn Du auf das \"i\" neben der jeweiligen Option klickst. {br}Für Gruppenbuchungen von 5 oder mehr Personen wende dich bitte per Mail ({mail}) an uns. {br}Bei weiteren Fragen schaue bitte in unsere {faq} oder kontaktiere uns per Mail oder mobil unter {tel}.",
