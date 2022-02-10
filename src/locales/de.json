@@ -270,7 +270,7 @@
     "transportationAgreement": "Beförderungsvertrag und Haftungsvereinbarung",
     "url": "URL zu Beförderungsvertrag und Haftungsvereinbarung"
   },
-  "transportationHint": "Auf dem Beförderungsvertrag, der vor Ort ausgefüllt werden muss, wird die Unterschrift BEIDER Erziehungsberechtigter benötigt! Für den Fall, dass nicht beide Erziehungsberechtigten vor Ort sein werden, kann das Formular im Vorfeld ausgefüllt werden ({url}).",
+  "transportationHint": "Auf dem Beförderungsvertrag, der vor Ort ausgefüllt werden muss, wird die Unterschrift BEIDER Erziehungsberechtigter benötigt! Für den Fall, dass nicht beide Erziehungsberechtigten vor Ort sein werden, kann das Formular im Vorfeld ausgefüllt werden ({url}). In diesem Fall benötigen wir vor Ort eine Ausweiskopie.",
   "update": "Aktualisieren",
   "user": {
     "update": {
@@ -305,25 +305,6 @@
   "voucher": {
     "info": "Bitte setze einen Haken, wenn der Springer einen Gutschein hat.",
     "voucher": "Gutschein"
-  },
-  "waiver": {
-    "edit": "Haftungsvereinbarung bearbeiten",
-    "save": {
-      "error": "Fehler beim Speichern der Haftungsvereinbarung",
-      "successful": "Haftungsvereinbarung erfolgreich gespeichert"
-    },
-    "signature": {
-      "required": "Die Unterschrift wird benötigt"
-    },
-    "state": "Status",
-    "update": {
-      "error": "Fehler beim Aktualisieren der Haftungsvereinbarung",
-      "successful": "Haftungsvereinbarung erfolgreich aktualisiert"
-    },
-    "waiver": "Haftungsvereinbarung"
-  },
-  "wavier": {
-    "new": "Weitere Haftungsvereinbarung erstellen"
   },
   "weightMax90": "Gewicht maximal 90 kg",
   "welcome": {

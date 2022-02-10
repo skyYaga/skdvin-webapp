@@ -29,19 +29,6 @@ const getCommonSettings = async function (locale) {
   }
 };
 
-const getWaiverSettings = async function (locale) {
-  try {
-    const response = await axios.get(apiPath + "/settings/waiver", {
-      headers: {
-        "Accept-Language": `${locale}`,
-      },
-    });
-    return responseHandler.handleResponse(response, 200);
-  } catch (error) {
-    return responseHandler.handleError(error);
-  }
-};
-
 const saveSettings = async function (settings, token) {
   try {
     const response = await axios.post(apiPath + "/settings", settings, {
@@ -77,5 +64,4 @@ export const settingsService = {
   getCommonSettings,
   saveSettings,
   updateSettings,
-  getWaiverSettings,
 };

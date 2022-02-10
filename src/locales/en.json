@@ -270,7 +270,7 @@
     "transportationAgreement": "transportation and liability agreement",
     "url": "Transportation and liability agreement URL"
   },
-  "transportationHint": "On the transportation agreement, which must be filled out on site, the signature of BOTH parents or guardians is required! If not both will be on site, the form can be filled out in advance ({url}).",
+  "transportationHint": "On the transportation agreement, which must be filled out on site, the signature of BOTH parents or guardians is required! If not both will be on site, the form can be filled out in advance ({url}). In this case we need a copy of the ID on site.",
   "update": "Update",
   "user": {
     "update": {
@@ -305,25 +305,6 @@
   "voucher": {
     "info": "Please check, if the jumper has a voucher",
     "voucher": "Voucher"
-  },
-  "waiver": {
-    "edit": "Edit waiver",
-    "save": {
-      "error": "Error saving waiver",
-      "successful": "Waiver saved successfully"
-    },
-    "signature": {
-      "required": "The signature is mandatory"
-    },
-    "state": "State",
-    "update": {
-      "error": "Error updating waiver",
-      "successful": "Waiver updated successfully"
-    },
-    "waiver": "Waiver"
-  },
-  "wavier": {
-    "new": "Create another waiver"
   },
   "weightMax90": "Weight max 90 kg",
   "welcome": {

@@ -2,7 +2,6 @@ import {
   UPDATE_LOCAL_SETTINGS,
   GET_COMMON_SETTINGS,
   SET_SETTINGS,
-  UPDATE_WAIVER_SETTINGS,
 } from "../mutation-types";
 import { settingsService } from "../../shared/settings-service";
 
@@ -17,10 +16,6 @@ const state = () => ({
     picAndVid: 0,
     handcam: 0,
     sequence: "1:30",
-    waiverSettings: {
-      de: { tandemwaiver: "" },
-      en: { tandemwaiver: "" },
-    },
   },
   commonSettings: {
     dropzone: {
@@ -66,9 +61,6 @@ const actions = {
     const result = await settingsService.getCommonSettings(this.state.locale);
     commit(GET_COMMON_SETTINGS, result.payload);
   },
-  async getWaiverSettingsAction() {
-    return await settingsService.getWaiverSettings(this.state.locale);
-  },
 };
 /* eslint-enable no-unused-vars */
 
@@ -81,12 +73,6 @@ const mutations = {
   },
   [SET_SETTINGS](state, settings) {
     state.settings = settings;
-  },
-  [UPDATE_WAIVER_SETTINGS](state, waiverSettings) {
-    state.settings.waiverSettings = {
-      ...state.settings.waiverSettings,
-      [waiverSettings.lang]: { tandemwaiver: waiverSettings.tandemwaiver },
-    };
   },
 };
 

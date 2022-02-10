@@ -104,28 +104,6 @@ export default new Router({
           component: () => import("./views/UserSettings.vue"),
           beforeEnter: authGuard,
         },
-        {
-          path: "settings/waiver",
-          name: "waiver-settings",
-          component: () => import("./views/settings/WaiverSettings.vue"),
-          beforeEnter: authGuard,
-        },
-        {
-          path: "tandem/waiver/create",
-          name: "tandem-waiver",
-          component: () => import("./views/waiver/TandemWaiver.vue"),
-        },
-        {
-          path: "tandem/waiver/confirm",
-          name: "waiver-confirm",
-          component: () => import("./views/waiver/WaiverConfirm.vue"),
-        },
-        {
-          path: "tandem/waiver/overview",
-          name: "waiver-overview",
-          component: () => import("./views/waiver/WaiverOverview.vue"),
-          beforeEnter: authGuard,
-        },
       ],
     },
     {
