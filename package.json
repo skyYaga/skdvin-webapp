@@ -16,7 +16,7 @@
     "@sentry/vue": "^6.17.8",
     "axios": "^0.26.0",
     "core-js": "^3.21.0",
-    "dompurify": "^2.3.5",
+    "dompurify": "^2.3.6",
     "luxon": "^2.3.0",
     "moment": "^2.29.1",
     "signature_pad": "^4.0.2",
