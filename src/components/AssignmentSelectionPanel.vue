@@ -102,7 +102,7 @@
 </template>
 
 <script>
-import moment from "moment";
+import { DateTime } from "luxon";
 
 export default {
   name: "AssignmentSelectionPanel",
@@ -113,7 +113,7 @@ export default {
     },
     day: {
       type: String,
-      default: () => moment().toDate(),
+      default: () => DateTime().now().toJSDate(),
     },
     selfAssign: { type: Boolean, default: false },
     selfAssignmentMode: { type: String, default: "" },
@@ -143,8 +143,8 @@ export default {
     this.initiallyAssigned = this.assignment.assigned;
   },
   methods: {
-    getDate(month) {
-      return moment(month).toDate();
+    getDate(date) {
+      return DateTime.fromISO(date).toJSDate();
     },
     allowedStep: (m) => m % 15 === 0,
     updateAssignment(field, value) {

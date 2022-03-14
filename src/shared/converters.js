@@ -1,4 +1,4 @@
-import moment from "moment";
+import { DateTime } from "luxon";
 
 const sortedJumpMonths = (details) => {
   if (typeof details.assignments === "undefined") {
@@ -7,24 +7,26 @@ const sortedJumpMonths = (details) => {
   return [
     ...new Set(
       Object.keys(details.assignments)
-        .filter((assignment) => moment(assignment.date).isSameOrAfter(moment()))
-        .map((date) => moment(date).format("YYYY-MM"))
+        .filter((date) => DateTime.fromISO(date) >= DateTime.now())
+        .map((date) => DateTime.fromISO(date).toFormat("yyyy-MM"))
     ),
   ].sort(function (a, b) {
     if (a === null) return 1;
     if (b === null) return -1;
-    return moment(a).toDate() - moment(b).toDate();
+    return DateTime.fromISO(a).toJSDate() - DateTime.fromISO(b).toJSDate();
   });
 };
 
 const sortedJumpdaysInMonth = (details, month) => {
   return Object.keys(details.assignments)
-    .filter((date) => moment(date).isSame(moment(month), "month"))
+    .filter((date) =>
+      DateTime.fromISO(date).hasSame(DateTime.fromISO(month), "month")
+    )
     .map((date) => date)
     .sort(function (a, b) {
       if (a === null) return 1;
       if (b === null) return -1;
-      return moment(a).toDate() - moment(b).toDate();
+      return DateTime.fromISO(a).toJSDate() - DateTime.fromISO(b).toJSDate();
     });
 };
 

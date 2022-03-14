@@ -1,5 +1,5 @@
 import * as axios from "axios";
-import moment from "moment";
+import { DateTime } from "luxon";
 import { responseHandler } from "./response-handler";
 
 const apiPath = process.env.VUE_APP_API;
@@ -193,11 +193,10 @@ const getGroupSlots = async function (query, token) {
 };
 
 const convertDate = (appointment) => {
-  let parsedMoment = moment(
-    appointment.selectedDate + appointment.selectedTime,
-    "YYYY-MM-DD HH:mm"
+  let parsedDateTime = DateTime.fromISO(
+    appointment.selectedDate + "T" + appointment.selectedTime
   );
-  appointment.date = parsedMoment.format("YYYY-MM-DDTHH:mm:ss");
+  appointment.date = parsedDateTime.toISO();
   delete appointment.selectedDate;
   delete appointment.selectedTime;
 };

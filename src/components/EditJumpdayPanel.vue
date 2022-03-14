@@ -155,7 +155,7 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-import moment from "moment";
+import { DateTime, Duration } from "luxon";
 
 export default {
   props: {
@@ -168,11 +168,11 @@ export default {
   },
   data: () => ({
     settings: {},
-    addHour: "8",
+    addHour: "08",
     addMinute: "00",
     hours: [
-      "8",
-      "9",
+      "08",
+      "09",
       "10",
       "11",
       "12",
@@ -232,22 +232,20 @@ export default {
         slots: [],
       };
 
-      let currentTime = moment(
-        this.settings.startHour + ":" + this.settings.startMinute,
-        "HH:mm"
+      let currentTime = DateTime.fromISO(
+        this.settings.startHour + ":" + this.settings.startMinute
       );
-      let endTime = moment(
-        this.settings.endHour + ":" + this.settings.endMinute,
-        "HH:mm"
+      let endTime = DateTime.fromISO(
+        this.settings.endHour + ":" + this.settings.endMinute
       );
-      let duration = moment.duration({
+      let duration = Duration.fromObject({
         hours: this.settings.sequence.split(":")[0],
         minutes: this.settings.sequence.split(":")[1],
       });
 
-      while (currentTime.isBefore(endTime)) {
+      while (currentTime < endTime) {
         let slot = {
-          time: currentTime.format("HH:mm"),
+          time: currentTime.toFormat("HH:mm"),
           tandemTotal: this.settings.tandem,
           picOrVidTotal: this.settings.picOrVid,
           picAndVidTotal: this.settings.picAndVid,
@@ -255,7 +253,7 @@ export default {
         };
         newJumpday.slots.push(slot);
 
-        currentTime.add(duration);
+        currentTime = currentTime.plus(duration);
       }
 
       let result = await this.addJumpdayAction({
@@ -300,14 +298,16 @@ export default {
       let duplicateSlot = this.jumpday.slots.filter(
         (s) =>
           s.time ===
-          moment(this.addHour + ":" + this.addMinute, "HH:mm").format("HH:mm")
+          DateTime.fromISO(this.addHour + ":" + this.addMinute).toFormat(
+            "HH:mm"
+          )
       );
       return duplicateSlot.length === 0 || this.$t("rules.slotExists");
     },
     async addSlot() {
       if (this.$refs.form.validate()) {
         let slot = {
-          time: moment(this.addHour + ":" + this.addMinute, "HH:mm").format(
+          time: DateTime.fromISO(this.addHour + ":" + this.addMinute).toFormat(
             "HH:mm"
           ),
           tandemTotal: this.settings.tandem,
