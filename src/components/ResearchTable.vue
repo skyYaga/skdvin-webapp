@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import moment from "moment";
+import { DateTime } from "luxon";
 import { mapState } from "vuex";
 
 export default {
@@ -62,7 +62,7 @@ export default {
       });
       groupSlots.forEach((slot, index) => {
         slot.date = this.$d(
-          moment(slot.date).toDate(),
+          DateTime.fromISO(slot.date).toJSDate(),
           "dateYearMonthDayWeekdayLong"
         );
         slot.id = index;

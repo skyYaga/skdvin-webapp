@@ -48,6 +48,7 @@
             :max="maxDate14years"
             min="1920-01-01"
             :locale="$i18n.locale"
+            :active-picker.sync="activePicker"
             @change="save(jumper.dateOfBirth)"
           ></v-date-picker>
         </v-menu>
@@ -96,7 +97,7 @@
 </template>
 
 <script>
-import moment from "moment";
+import { DateTime } from "luxon";
 import { roleUtil } from "../shared/roles";
 import { mapState } from "vuex";
 import InfoDialog from "./InfoDialog.vue";
@@ -135,31 +136,41 @@ export default {
       sizeRules: [(v) => !!v || this.$i18n.t("rules.size")],
       dateOfBirthRules: [(v) => !!v || this.$i18n.t("rules.dateOfBirthNeeded")],
       menu: false,
+      activePicker: null,
     };
   },
   computed: {
     ...mapState(["settings"]),
     maxDate14years() {
-      return moment()
-        .subtract(14, "years")
-        .toDate()
+      return DateTime.now()
+        .minus({ years: 14 })
+        .toJSDate()
         .toISOString()
         .substr(0, 10);
     },
     isMinor() {
-      if (this.jumper.dateOfBirth !== "") {
-        if (moment(this.jumper.dateOfBirth).add(18, "y").isAfter(moment())) {
+      if (
+        typeof this.jumper.dateOfBirth !== "undefined" &&
+        this.jumper.dateOfBirth !== ""
+      ) {
+        if (
+          DateTime.fromISO(this.jumper.dateOfBirth).plus({ years: 18 }) >
+          DateTime.now()
+        ) {
           return true;
         }
       }
       return false;
     },
     getDate() {
-      if (this.jumper.dateOfBirth === "") {
+      if (
+        typeof this.jumper.dateOfBirth === "undefined" ||
+        this.jumper.dateOfBirth === ""
+      ) {
         return "";
       }
       return this.$d(
-        moment(this.jumper.dateOfBirth).toDate(),
+        DateTime.fromISO(this.jumper.dateOfBirth).toJSDate(),
         "dateYearMonthDayShort"
       );
     },
@@ -169,7 +180,7 @@ export default {
   },
   watch: {
     menu(val) {
-      val && setTimeout(() => (this.$refs.picker.activePicker = "YEAR"));
+      val && setTimeout(() => (this.activePicker = "YEAR"));
     },
     bookedJumper: function (newJumper) {
       this.jumper = newJumper;

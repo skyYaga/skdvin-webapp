@@ -160,7 +160,7 @@ import CustomerDataForm from "./CustomerDataForm.vue";
 import CustomerConfirmationForm from "./CustomerConfirmationForm.vue";
 import AvailableSlotsPanel from "./AvailableSlotsPanel.vue";
 import InfoDialog from "./InfoDialog.vue";
-import moment from "moment";
+import { DateTime } from "luxon";
 import { roleUtil } from "../shared/roles";
 
 export default {
@@ -314,7 +314,7 @@ export default {
       this.appointment.customer = customer;
     },
     getDate(date) {
-      return moment(date).toDate();
+      return DateTime.fromISO(date).toJSDate();
     },
     removeJumperFromAppointment(num) {
       this.appointment.customer.jumpers.splice(num - 1, 1);
