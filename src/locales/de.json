@@ -102,7 +102,8 @@
   },
   "general": "Allgemein",
   "handcam": {
-    "available": "Handcam Verfügbar",
+    "available": "Handcam verfügbar",
+    "booked": "Handcam gebucht",
     "count": "Anzahl Handcam",
     "handcam": "Handcam",
     "info": "Für wie viele der gebuchten Tandemsprünge möchtst Du ein Handcam Video (Inside Video)?<br />Hierbei werden die Aufnahmen vom Tandemmaster selbst über eine an der Hand befestigte Kamera durchgeführt."
@@ -145,12 +146,14 @@
   "overview": "Übersicht",
   "picAndVid": {
     "available": "Foto u. Video verfügbar",
+    "booked": "Foto u. Video gebucht",
     "count": "Anzahl Foto und Video",
     "info": "Für wie viele deiner gebuchten Tandemsprünge möchtest Du Fotos UND Video?<br />Hierbei springt ein zweiter Fallschirmspringer mit dem Tandem aus dem Flugzeug und macht die entsprechenden Aufnahmen.",
     "picAndVid": "Foto und Video"
   },
   "picOrVid": {
     "available": "Foto od. Video verfügbar",
+    "booked": "Foto od. Video gebucht",
     "count": "Anzahl Foto oder Video",
     "info": "Für wie viele deiner gebuchten Tandemsprünge möchtest Du Fotos ODER Video?<br />Hierbei springt ein zweiter Fallschirmspringer mit dem Tandem aus dem Flugzeug und macht die entsprechenden Aufnahmen.",
     "picOrVid": "Foto oder Video"
@@ -229,6 +232,9 @@
     "noFreeFound": "Keine freien Slots gefunden. Du kannst stattdessen versuchen mehrere Termine mit weniger Sprüngen zu buchen.",
     "searchnew": "Neuen Slot suchen"
   },
+  "statistics": {
+    "header": "Tagesstatistik"
+  },
   "streetAdress": "Straße und Hausnummer",
   "tandem": {
     "available": "Tandem verfügbar",
@@ -260,6 +266,10 @@
       "error": "Fehler beim Aktualisieren des Tandemmasters",
       "successful": "Tandemmaster erfolgreich aktualisiert"
     }
+  },
+  "tandems": {
+    "available": "Tandems verfügbar",
+    "booked": "Tandems gebucht"
   },
   "tel": "Telefon",
   "time": "Uhrzeit",

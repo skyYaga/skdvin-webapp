@@ -13,7 +13,7 @@
         ><h1>{{ $t("appointment.appointments") }}</h1></v-row
       >
       <v-row
-        ><v-col :lg="4">
+        ><v-col :cols="12" :lg="4" :md="4" :sm="12">
           <Calendar
             d-flex
             flex-wrap
@@ -21,8 +21,12 @@
             @input="menu = false"
             @handle-date-selection="dateSelected"
             @handle-month-change="loadJumpdays"
-          /> </v-col
-      ></v-row>
+          />
+        </v-col>
+        <v-col v-if="jumpday.jumping" :cols="12" :lg="8" :md="8" :sm="12">
+          <JumpdayAppointmentStatsPanel :jumpday="jumpday" />
+        </v-col>
+      </v-row>
       <v-row v-if="jumpday.jumping"
         ><v-col :cols="12" :md="6" :lg="6"
           ><AvailableTandemmasterPanel
@@ -56,6 +60,7 @@
 import AppointmentOverview from "../components/AppointmentOverview.vue";
 import AvailableTandemmasterPanel from "../components/AvailableTandemmasterPanel.vue";
 import AvailableVideoflyerPanel from "../components/AvailableVideoflyerPanel.vue";
+import JumpdayAppointmentStatsPanel from "../components/appointments/JumpdayAppointmentStatsPanel.vue";
 import Calendar from "../components/Calendar.vue";
 import { mapActions, mapState, mapGetters } from "vuex";
 import { DateTime } from "luxon";
@@ -67,6 +72,7 @@ export default {
     Calendar,
     AvailableTandemmasterPanel,
     AvailableVideoflyerPanel,
+    JumpdayAppointmentStatsPanel,
   },
   data: () => ({
     menu: false,
