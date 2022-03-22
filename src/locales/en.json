@@ -103,6 +103,7 @@
   "general": "General",
   "handcam": {
     "available": "Handcam available",
+    "booked": "Handcam booked",
     "count": "Handcam count",
     "handcam": "Handcam",
     "info": "For how many of your booked tandem jumps would you like to have a handcam video (inside video)?<br />In this case, the images are taken by the tandemmaster himself via a camera attached to his hand."
@@ -145,12 +146,14 @@
   "overview": "Overview",
   "picAndVid": {
     "available": "Pic and Vid available",
+    "booked": "Pic and Vid booked",
     "count": "Picture and video count",
     "info": "For how many of your booked tandem jumps would you like to have photos AND video?<br />Here a second skydiver jumps out of the airplane together with the tandem and takes the shots.",
     "picAndVid": "Picture or video"
   },
   "picOrVid": {
     "available": "Pic or Vid available",
+    "booked": "Pic or Vid booked",
     "count": "Picture or video count",
     "info": "For how many of your booked tandem jumps would you like to have photos OR video?<br />Here a second skydiver jumps out of the airplane together with the tandem and takes the shots.",
     "picOrVid": "Picture or video"
@@ -229,6 +232,9 @@
     "noFreeFound": "No free slots found. You can try to book multiple appointments with less jumps.",
     "searchnew": "Search new slot"
   },
+  "statistics": {
+    "header": "Daily Statistics"
+  },
   "streetAdress": "Street address",
   "tandem": {
     "available": "Tandem available",
@@ -260,6 +266,10 @@
       "error": "Error updating tandemmaster",
       "successful": "Tandemmaster update successful"
     }
+  },
+  "tandems": {
+    "available": "Tandems available",
+    "booked": "Tandems booked"
   },
   "tel": "Phone",
   "time": "Time",
