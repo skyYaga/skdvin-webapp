@@ -76,7 +76,7 @@
 
 <script>
 import { mapActions } from "vuex";
-import moment from "moment";
+import { DateTime } from "luxon";
 import { converters } from "../shared/converters";
 import AssignmentSelectionPanel from "./AssignmentSelectionPanel.vue";
 
@@ -138,7 +138,7 @@ export default {
       this.message = "";
     },
     getDate(month) {
-      return moment(month).toDate();
+      return DateTime.fromISO(month).toJSDate();
     },
     jumpMonths() {
       return converters.sortedJumpMonths(this.tandemmasterDetails);

@@ -132,7 +132,7 @@ import CustomerDataForm from "../components/CustomerDataForm.vue";
 import EditAppointmentAdminPanel from "../components/EditAppointmentAdminPanel.vue";
 import AvailableSlotsPanel from "../components/AvailableSlotsPanel.vue";
 import { mapActions, mapGetters, mapState } from "vuex";
-import moment from "moment";
+import { DateTime } from "luxon";
 
 export default {
   name: "AppointmentDetails",
@@ -170,8 +170,7 @@ export default {
   methods: {
     async loadPage() {
       await this.loadAppointment();
-      await this.loadJumpdays();
-      this.loadSlots(this.localAppointment.date);
+      await this.loadSlots(this.localAppointment.date);
     },
     ...mapActions([
       "getAppointmentAction",
@@ -189,15 +188,31 @@ export default {
       });
       this.loading = false;
     },
-    loadSlots(date) {
+    async loadSlots(date) {
+      await this.loadJumpdays(date);
+
       this.slots = {
         ...this.getJumpdayByDate(
-          moment(date).format("YYYY-MM-DD")
-        ).slots.filter((slot) => slot.time === moment(date).format("HH:mm"))[0],
+          DateTime.fromISO(date).toISODate()
+        ).slots.filter(
+          (slot) => slot.time === DateTime.fromISO(date).toFormat("HH:mm")
+        )[0],
       };
     },
-    async loadJumpdays() {
-      await this.getJumpdaysAction(await this.$auth.getTokenSilently());
+    async loadJumpdays(date) {
+      this.message = this.$t("jumpday.loading");
+      let unauthorizedMessage = await this.getJumpdaysAction({
+        yearMonth: DateTime.fromISO(date).toFormat("yyyy-MM"),
+        token: await this.$auth.getTokenSilently(),
+      });
+      if (unauthorizedMessage !== "") {
+        this.message = this.$t("accessdenied");
+        this.authorized = false;
+      } else {
+        this.message = "";
+        this.authorized = true;
+      }
+      this.loading = false;
     },
     async updateAppointment() {
       if (!this.slotSelected && !this.$refs.editAppointmentPanel.validate()) {
@@ -263,19 +278,18 @@ export default {
       }
     },
     selectSlot(date, time) {
-      this.localAppointment.date = moment(
-        date + time,
-        "YYYY-MM-DD HH:mm"
-      ).format("YYYY-MM-DDTHH:mm:ss");
+      this.localAppointment.date = DateTime.fromISO(date + "T" + time).toUTC();
       this.loadSlots(this.localAppointment.date);
       this.slotSelected = true;
       this.availableSlots = [];
     },
     getDate() {
-      return moment(this.localAppointment.date).format("DD.MM.YYYY");
+      return DateTime.fromISO(this.localAppointment.date).toFormat(
+        "dd.MM.yyyy"
+      );
     },
     getTime() {
-      return moment(this.localAppointment.date).format("HH:mm");
+      return DateTime.fromISO(this.localAppointment.date).toFormat("HH:mm");
     },
     async reset() {
       await this.loadPage();
@@ -286,7 +300,7 @@ export default {
       this.$router.push({
         name: "appointments",
         query: {
-          date: moment(this.localAppointment.date).format("YYYY-MM-DD"),
+          date: DateTime.fromISO(this.localAppointment.date).toISODate(),
         },
       });
     },

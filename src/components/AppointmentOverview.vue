@@ -1,16 +1,24 @@
 <template>
   <v-card :color="getColorForState">
-    <v-card-title
-      ><router-link
-        tag="button"
-        class="button"
+    <v-card-title>
+      <router-link
+        v-slot="{ navigate }"
         :to="{
           name: 'appointment-details',
           params: { id: appointment.appointmentId },
         }"
-        >{{ appointment.appointmentId }} {{ appointment.customer.firstName }}
-        {{ appointment.customer.lastName }}</router-link
-      ></v-card-title
+        custom
+      >
+        <button
+          role="link"
+          class="button"
+          @click="navigate"
+          @keypress.enter="navigate"
+        >
+          {{ appointment.appointmentId }} {{ appointment.customer.firstName }}
+          {{ appointment.customer.lastName }}
+        </button>
+      </router-link></v-card-title
     >
     <v-card-text>
       <p>{{ appointment.tandem }}x {{ $t("tandem.tandem") }}</p>

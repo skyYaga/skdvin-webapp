@@ -7,7 +7,7 @@ import { settingsService } from "../../shared/settings-service";
 
 const state = () => ({
   settings: {
-    startHour: "9",
+    startHour: "09",
     startMinute: "30",
     endHour: "18",
     endMinute: "00",

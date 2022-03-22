@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import moment from "moment";
+import { DateTime } from "luxon";
 import SlotSelectionForm from "./SlotSelectionForm.vue";
 
 export default {
@@ -99,10 +99,10 @@ export default {
       return false;
     },
     getDate() {
-      return moment(this.appointment.date).format("DD.MM.YYYY");
+      return DateTime.fromISO(this.appointment.date).toFormat("dd.MM.yyyy");
     },
     getTime() {
-      return moment(this.appointment.date).format("HH:mm");
+      return DateTime.fromISO(this.appointment.date).toFormat("HH:mm");
     },
     calculateMaxBookableSlots() {
       this.maxBookableSlots = {

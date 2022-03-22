@@ -71,7 +71,7 @@
 </template>
 
 <script>
-import moment from "moment";
+import { DateTime } from "luxon";
 import { roleUtil } from "../shared/roles";
 
 export default {
@@ -88,7 +88,7 @@ export default {
   },
   methods: {
     getDate(date) {
-      return moment(date).toDate();
+      return DateTime.fromISO(date).toJSDate();
     },
   },
 };
