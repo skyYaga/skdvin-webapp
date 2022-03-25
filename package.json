@@ -2,6 +2,9 @@
   "name": "skdvin-webapp",
   "version": "1.0.10",
   "private": true,
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
