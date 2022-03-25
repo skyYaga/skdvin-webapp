@@ -2,10 +2,10 @@
   <v-row
     v-if="
       typeof settings !== 'undefined' &&
+      typeof settings.commonSettings !== 'undefined' &&
       (('homepageHintTitle' in settings.commonSettings &&
         settings.commonSettings.homepageHintTitle !== '') ||
-        (typeof settings.commonSettings !== 'undefined' &&
-          'homepageHint' in settings.commonSettings &&
+        ('homepageHint' in settings.commonSettings &&
           settings.commonSettings.homepageHint !== ''))
     "
   >
