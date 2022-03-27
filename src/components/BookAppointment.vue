@@ -106,7 +106,13 @@
           </v-card-text>
         </v-card>
       </v-col>
-      <v-col v-if="showSlotSelection" :cols="12" :lg="6" :sm="12">
+      <v-col
+        v-if="showSlotSelection"
+        id="availableSlotsPanel"
+        :cols="12"
+        :lg="6"
+        :sm="12"
+      >
         <v-card>
           <v-card-title>{{ $t("slot.available") }}</v-card-title>
           <v-card-text>
@@ -117,7 +123,7 @@
           </v-card-text>
         </v-card>
       </v-col>
-      <v-col v-if="showCustomerDataForm">
+      <v-col v-if="showCustomerDataForm" id="customerDataForm">
         <v-card>
           <v-card-title
             >{{ $t("reservationData") }}:
@@ -139,7 +145,7 @@
           </v-card-text>
         </v-card>
       </v-col>
-      <v-col v-if="showConfirmationForm">
+      <v-col v-if="showConfirmationForm" id="confirmationForm">
         <v-card>
           <v-card-title>{{ $t("dataVerification") }}</v-card-title>
           <v-card-text>
@@ -162,6 +168,7 @@ import AvailableSlotsPanel from "./AvailableSlotsPanel.vue";
 import InfoDialog from "./InfoDialog.vue";
 import { DateTime } from "luxon";
 import { roleUtil } from "../shared/roles";
+import goTo from "vuetify/lib/services/goto";
 
 export default {
   components: {
@@ -277,6 +284,9 @@ export default {
           return new Date(a.date) - new Date(b.date);
         });
         this.showSlotSelection = true;
+        setTimeout(() => {
+          goTo("#availableSlotsPanel");
+        }, 1);
       }
       this.loading = false;
     },
@@ -285,6 +295,9 @@ export default {
       this.appointment.selectedTime = time;
       this.showSlotSelection = false;
       this.showCustomerDataForm = true;
+      setTimeout(() => {
+        goTo("#customerDataForm");
+      }, 1);
     },
     resetForm() {
       this.slots = null;
@@ -300,15 +313,24 @@ export default {
       this.updateCustomer(customer);
       this.showCustomerDataForm = false;
       this.showSlotSelection = true;
+      setTimeout(() => {
+        goTo("#availableSlotsPanel");
+      }, 1);
     },
     continueToConfirmation(customer) {
       this.updateCustomer(customer);
       this.showCustomerDataForm = false;
       this.showConfirmationForm = true;
+      setTimeout(() => {
+        goTo("#confirmationForm");
+      }, 1);
     },
     backToCustomerData() {
       this.showCustomerDataForm = true;
       this.showConfirmationForm = false;
+      setTimeout(() => {
+        goTo("#customerDataForm");
+      }, 1);
     },
     updateCustomer(customer) {
       this.appointment.customer = customer;
