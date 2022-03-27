@@ -122,7 +122,7 @@
     "selectAll": "Select all Jumpdays",
     "selectNone": "Select no Jumpdays",
     "update": {
-      "error": "Error updating jumpday",
+      "error": "Error updating jumpday: {message}",
       "successful": "Jumpday updated successfully"
     }
   },
@@ -149,7 +149,7 @@
     "booked": "Pic and Vid booked",
     "count": "Picture and video count",
     "info": "For how many of your booked tandem jumps would you like to have photos AND video?<br />Here a second skydiver jumps out of the airplane together with the tandem and takes the shots.",
-    "picAndVid": "Picture or video"
+    "picAndVid": "Picture and video"
   },
   "picOrVid": {
     "available": "Pic or Vid available",
@@ -184,7 +184,9 @@
     "fieldHasToBeFilled": "Field may not be empty",
     "gdpr": "You have to accept this.",
     "max40Chars": "Maximum of 40 characters",
-    "moreVideoThanTandem": "More video bookings than tandem jumps",
+    "morePicAndVidThanPicOrVidSlots": "More pic AND vid than pic OR vid slots",
+    "moreVideoThanTandemBookings": "More video bookings than tandem jumps",
+    "moreVideoThanTandemSlots": "More video than tandem slots",
     "notEnoughFreeSlots": "Not enough free slots",
     "privacyPolicy": "You have to accept our privacy policy",
     "size": "Maximum size of 1.90m",

@@ -247,13 +247,14 @@ export default {
 
       const rule = (v) =>
         (!!v && v) <= this.appointment.tandem ||
-        this.$t("rules.moreVideoThanTandem");
+        this.$t("rules.moreVideoThanTandemBookings");
 
       const allVidsRule = () =>
         this.appointment.picOrVid +
           this.appointment.picAndVid +
           this.appointment.handcam <=
-          this.appointment.tandem || this.$t("rules.moreVideoThanTandem");
+          this.appointment.tandem ||
+        this.$t("rules.moreVideoThanTandemBookings");
 
       rules.push(rule);
       rules.push(allVidsRule);

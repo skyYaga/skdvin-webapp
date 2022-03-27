@@ -22,6 +22,7 @@
                     <v-select
                       v-model="slot.tandemTotal"
                       :items="calculateItems(slot.tandemBooked)"
+                      :rules="[lessVideoThanTandemRule(slot)]"
                     ></v-select>
                   </td>
                   <td>{{ slot.tandemBooked }}</td>
@@ -33,6 +34,10 @@
                     <v-select
                       v-model="slot.picOrVidTotal"
                       :items="calculateItemsZero(slot.picOrVidBooked)"
+                      :rules="[
+                        lessVideoThanTandemRule(slot),
+                        lessPicAndVidThanPicOrVidRule(slot),
+                      ]"
                     ></v-select>
                   </td>
                   <td>{{ slot.picOrVidBooked }}</td>
@@ -44,6 +49,10 @@
                     <v-select
                       v-model="slot.picAndVidTotal"
                       :items="calculateItemsZero(slot.picAndVidBooked)"
+                      :rules="[
+                        lessVideoThanTandemRule(slot),
+                        lessPicAndVidThanPicOrVidRule(slot),
+                      ]"
                     ></v-select>
                   </td>
                   <td>{{ slot.picAndVidBooked }}</td>
@@ -55,6 +64,7 @@
                     <v-select
                       v-model="slot.handcamTotal"
                       :items="calculateItemsZero(slot.handcamBooked)"
+                      :rules="[lessVideoThanTandemRule(slot)]"
                     ></v-select>
                   </td>
                   <td>{{ slot.handcamBooked }}</td>
@@ -110,6 +120,22 @@ export default {
       let tmpJumpday = JSON.parse(JSON.stringify(this.jumpday));
       tmpJumpday.slots = tmpJumpday.slots.filter((s) => s.time !== slot.time);
       this.$emit("update-jumpday", tmpJumpday);
+    },
+    lessVideoThanTandemRule(slot) {
+      if (
+        slot.tandemTotal < slot.picOrVidTotal ||
+        slot.tandemTotal < slot.picAndVidTotal ||
+        slot.tandemTotal < slot.handcamTotal
+      ) {
+        return this.$t("rules.moreVideoThanTandemSlots");
+      }
+      return true;
+    },
+    lessPicAndVidThanPicOrVidRule(slot) {
+      if (slot.picOrVidTotal < slot.picAndVidTotal) {
+        return this.$t("rules.morePicAndVidThanPicOrVidSlots");
+      }
+      return true;
     },
   },
 };

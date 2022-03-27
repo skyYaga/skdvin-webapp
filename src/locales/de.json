@@ -122,7 +122,7 @@
     "selectAll": "Alle Sprungtage auswählen",
     "selectNone": "Keine Sprungtage auswählen",
     "update": {
-      "error": "Fehler beim Aktualisieren des Sprungtags",
+      "error": "Fehler beim Aktualisieren des Sprungtags: {message}",
       "successful": "Sprungtag erfolgreich aktualisiert"
     }
   },
@@ -184,7 +184,9 @@
     "fieldHasToBeFilled": "Das Feld muss befüllt werden",
     "gdpr": "Dies muss akzeptiert werden.",
     "max40Chars": "Wert darf aus maximal 40 Zeichen bestehen",
-    "moreVideoThanTandem": "Mehr Videobuchungen als Tandemsprünge",
+    "morePicAndVidThanPicOrVidSlots": "Mehr Foto UND Video als Foto ODER Video Slots",
+    "moreVideoThanTandemBookings": "Mehr Videobuchungen als Tandemsprünge",
+    "moreVideoThanTandemSlots": "Mehr Video als Tandem Slots",
     "notEnoughFreeSlots": "Nicht genügend freie Slots",
     "privacyPolicy": "Du musst die Datenschutzbestimmungen akzeptieren",
     "size": "Maximalgröße von 1,90m muss eingehalten werden",
