@@ -168,7 +168,6 @@ import AvailableSlotsPanel from "./AvailableSlotsPanel.vue";
 import InfoDialog from "./InfoDialog.vue";
 import { DateTime } from "luxon";
 import { roleUtil } from "../shared/roles";
-import goTo from "vuetify/lib/services/goto";
 
 export default {
   components: {
@@ -285,7 +284,7 @@ export default {
         });
         this.showSlotSelection = true;
         setTimeout(() => {
-          goTo("#availableSlotsPanel");
+          this.$vuetify.goTo("#availableSlotsPanel");
         }, 1);
       }
       this.loading = false;
@@ -296,7 +295,7 @@ export default {
       this.showSlotSelection = false;
       this.showCustomerDataForm = true;
       setTimeout(() => {
-        goTo("#customerDataForm");
+        this.$vuetify.goTo("#customerDataForm");
       }, 1);
     },
     resetForm() {
@@ -314,7 +313,7 @@ export default {
       this.showCustomerDataForm = false;
       this.showSlotSelection = true;
       setTimeout(() => {
-        goTo("#availableSlotsPanel");
+        this.$vuetify.goTo("#availableSlotsPanel");
       }, 1);
     },
     continueToConfirmation(customer) {
@@ -322,14 +321,14 @@ export default {
       this.showCustomerDataForm = false;
       this.showConfirmationForm = true;
       setTimeout(() => {
-        goTo("#confirmationForm");
+        this.$vuetify.goTo("#confirmationForm");
       }, 1);
     },
     backToCustomerData() {
       this.showCustomerDataForm = true;
       this.showConfirmationForm = false;
       setTimeout(() => {
-        goTo("#customerDataForm");
+        this.$vuetify.goTo("#customerDataForm");
       }, 1);
     },
     updateCustomer(customer) {
