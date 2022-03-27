@@ -88,6 +88,7 @@
                   v-model="settings.tandem"
                   :items="counts"
                   :label="$t('tandem.tandems')"
+                  :rules="[lessVideoThanTandemRule]"
                 ></v-select>
               </v-col>
               <v-col cols="3">
@@ -95,6 +96,10 @@
                   v-model="settings.picOrVid"
                   :items="countsZero"
                   :label="$t('picOrVid.picOrVid')"
+                  :rules="[
+                    lessVideoThanTandemRule,
+                    lessPicAndVidThanPicOrVidRule,
+                  ]"
                 ></v-select>
               </v-col>
               <v-col cols="3">
@@ -102,6 +107,10 @@
                   v-model="settings.picAndVid"
                   :items="countsZero"
                   :label="$t('picAndVid.picAndVid')"
+                  :rules="[
+                    lessVideoThanTandemRule,
+                    lessPicAndVidThanPicOrVidRule,
+                  ]"
                 ></v-select>
               </v-col>
               <v-col cols="3">
@@ -109,6 +118,7 @@
                   v-model="settings.handcam"
                   :items="countsZero"
                   :label="$t('handcam.handcam')"
+                  :rules="[lessVideoThanTandemRule]"
                 ></v-select>
               </v-col>
             </v-row>
@@ -289,7 +299,9 @@ export default {
         this.hintText = this.$t("jumpday.update.successful");
         this.hintColor = "green";
       } else {
-        this.hintText = this.$t("jumpday.update.error");
+        this.hintText = this.$t("jumpday.update.error", {
+          message: result.message,
+        });
         this.hintColor = "red";
       }
       this.showHint = true;
@@ -303,6 +315,22 @@ export default {
           )
       );
       return duplicateSlot.length === 0 || this.$t("rules.slotExists");
+    },
+    lessVideoThanTandemRule() {
+      if (
+        this.settings.tandem < this.settings.picOrVid ||
+        this.settings.tandem < this.settings.picAndVid ||
+        this.settings.tandem < this.settings.handcam
+      ) {
+        return this.$t("rules.moreVideoThanTandemSlots");
+      }
+      return true;
+    },
+    lessPicAndVidThanPicOrVidRule() {
+      if (this.settings.picOrVid < this.settings.picAndVid) {
+        return this.$t("rules.morePicAndVidThanPicOrVidSlots");
+      }
+      return true;
     },
     async addSlot() {
       if (this.$refs.form.validate()) {

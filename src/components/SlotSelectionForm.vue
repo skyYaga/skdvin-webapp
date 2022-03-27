@@ -76,7 +76,7 @@ export default {
     },
     moreTandemThanVideoRule(v) {
       if (v > this.appointment.tandem) {
-        return this.$t("rules.moreVideoThanTandem");
+        return this.$t("rules.moreVideoThanTandemBookings");
       }
       if (
         this.appointment.picOrVid +
@@ -84,7 +84,7 @@ export default {
           this.appointment.handcam >
         this.appointment.tandem
       ) {
-        return this.$t("rules.moreVideoThanTandem");
+        return this.$t("rules.moreVideoThanTandemBookings");
       }
       return true;
     },
