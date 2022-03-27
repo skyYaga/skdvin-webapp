@@ -111,4 +111,7 @@ export default new Router({
       redirect: "/de",
     },
   ],
+  scrollBehavior() {
+    return { x: 0, y: 0, behavior: "smooth" };
+  },
 });
