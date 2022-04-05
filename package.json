@@ -16,7 +16,7 @@
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.21.0",
     "@sentry/tracing": "^6.19.3",
-    "@sentry/vue": "^6.19.3",
+    "@sentry/vue": "^6.19.4",
     "axios": "^0.26.1",
     "core-js": "^3.21.1",
     "dompurify": "^2.3.6",
