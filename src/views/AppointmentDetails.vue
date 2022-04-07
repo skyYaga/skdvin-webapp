@@ -23,6 +23,7 @@
         ><v-col :lg="6"
           ><AvailableSlotsPanel
             v-if="availableSlots.length > 0 && !slotSelected"
+            id="availableSlotsPanel"
             class="pb-5"
             :slots="availableSlots"
             @on-slot-selected="selectSlot"
@@ -36,7 +37,7 @@
               :slots="slots"
               @update-appointment="localAppointment = $event"
             />
-            <div v-if="slotSelected" class="pa-5">
+            <div v-if="slotSelected" id="selectedSlotDiv" class="pa-5">
               {{
                 $t("appointment.newselected", {
                   date: getDate(),
@@ -275,6 +276,9 @@ export default {
         this.availableSlots = this.availableSlots.sort(function (a, b) {
           return new Date(a.date) - new Date(b.date);
         });
+        setTimeout(() => {
+          this.$vuetify.goTo("#availableSlotsPanel");
+        }, 1);
       }
     },
     selectSlot(date, time) {
@@ -282,6 +286,9 @@ export default {
       this.loadSlots(this.localAppointment.date);
       this.slotSelected = true;
       this.availableSlots = [];
+      setTimeout(() => {
+        this.$vuetify.goTo("#selectedSlotDiv");
+      }, 1);
     },
     getDate() {
       return DateTime.fromISO(this.localAppointment.date).toFormat(
