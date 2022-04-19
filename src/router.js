@@ -117,6 +117,7 @@ let router = new Router({
 });
 
 router.onError((error) => {
+  // eslint-disable-next-line
   console.error(error);
   Vue.prototype.$log.error("Failure Reason: ", error.message, error);
   if (
