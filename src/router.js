@@ -9,7 +9,7 @@ Vue.use(Router);
 
 const parseProps = (r) => ({ id: parseInt(r.params.id) });
 
-export default new Router({
+let router = new Router({
   mode: "history",
   base: process.env.BASE_URL,
   routes: [
@@ -115,3 +115,18 @@ export default new Router({
     return { x: 0, y: 0, behavior: "smooth" };
   },
 });
+
+router.onError((error) => {
+  // eslint-disable-next-line
+  console.error(error);
+  Vue.prototype.$log.error("Failure Reason: ", error.message, error);
+  if (
+    /ChunkLoadError:.*failed./i.test(error.message) ||
+    /Loading.*chunk.*failed./i.test(error.message)
+  ) {
+    Vue.prototype.$log.error("Reloading Window...");
+    window.location.reload();
+  }
+});
+
+export default router;
