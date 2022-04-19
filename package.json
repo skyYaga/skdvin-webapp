@@ -15,10 +15,10 @@
   },
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.21.0",
-    "@sentry/tracing": "^6.19.5",
-    "@sentry/vue": "^6.19.5",
+    "@sentry/tracing": "^6.19.6",
+    "@sentry/vue": "^6.19.6",
     "axios": "^0.26.1",
-    "core-js": "^3.21.1",
+    "core-js": "^3.22.0",
     "dompurify": "^2.3.6",
     "luxon": "^2.3.1",
     "tiptap": "^1.32.2",
