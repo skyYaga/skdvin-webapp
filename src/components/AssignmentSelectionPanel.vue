@@ -23,86 +23,28 @@
       ></v-row>
       <v-row v-if="assignment.assigned && !assignment.allday">
         <v-col :lg="6" :sm="12">
-          <v-menu
-            ref="from"
-            v-model="fromPicker"
-            :close-on-content-click="false"
-            :nudge-right="40"
-            :return-value.sync="assignment.from"
-            transition="scale-transition"
-            offset-x
-            offset-y
-            max-width="290px"
-            min-width="290px"
-          >
-            <template #activator="{ on }">
-              <v-text-field
-                :value="assignment.from"
-                class="pl-2 mt-n7"
-                :label="$t('from')"
-                prepend-icon="mdi-clock-outline"
-                :readonly="$vuetify.breakpoint.mobile || !isEditable"
-                :rules="rules"
-                v-on="on"
-                @input="updateAssignment('from', $event)"
-                @keypress="fromPicker = false"
-              ></v-text-field>
-            </template>
-            <v-time-picker
-              v-if="fromPicker"
-              :value="assignment.from"
-              :disabled="!isEditable"
-              :readonly="!isEditable"
-              min="9:00"
-              :max="assignment.to"
-              :allowed-minutes="allowedStep"
-              full-width
-              format="24hr"
-              @click:minute="$refs.from.save(assignment.from)"
-              @input="updateAssignment('from', $event)"
-            ></v-time-picker>
-          </v-menu>
+          <v-text-field
+            :value="assignment.from"
+            class="pl-2 mt-n7"
+            :label="$t('from')"
+            placeholder="HH:MM"
+            prepend-icon="mdi-clock-outline"
+            :readonly="!isEditable"
+            :rules="rules"
+            @input="updateAssignment('from', $event)"
+          ></v-text-field>
         </v-col>
         <v-col :lg="6" :sm="12">
-          <v-menu
-            ref="to"
-            v-model="toPicker"
-            :close-on-content-click="false"
-            :nudge-right="40"
-            :return-value.sync="assignment.to"
-            transition="scale-transition"
-            offset-x
-            offset-y
-            max-width="290px"
-            min-width="290px"
-          >
-            <template #activator="{ on }">
-              <v-text-field
-                :value="assignment.to"
-                class="pl-2 mt-n7"
-                :label="$t('to')"
-                prepend-icon="mdi-clock-outline"
-                :readonly="$vuetify.breakpoint.mobile || !isEditable"
-                :rules="rules"
-                v-on="on"
-                @input="updateAssignment('to', $event)"
-                @keypress="toPicker = false"
-              ></v-text-field>
-            </template>
-            <v-time-picker
-              v-if="toPicker"
-              :value="assignment.to"
-              :disabled="!isEditable"
-              :readonly="!isEditable"
-              :min="assignment.from"
-              max="20:00"
-              :allowed-minutes="allowedStep"
-              full-width
-              format="24hr"
-              @click:minute="$refs.to.save(assignment.to)"
-              @input="updateAssignment('to', $event)"
-            ></v-time-picker>
-          </v-menu>
+          <v-text-field
+            :value="assignment.to"
+            class="pl-2 mt-n7"
+            :label="$t('to')"
+            placeholder="HH:MM"
+            prepend-icon="mdi-clock-outline"
+            :readonly="!isEditable"
+            :rules="rules"
+            @input="updateAssignment('to', $event)"
+          ></v-text-field>
         </v-col>
       </v-row>
     </v-form>
@@ -127,8 +69,6 @@ export default {
     selfAssignmentMode: { type: String, default: "" },
   },
   data: () => ({
-    fromPicker: false,
-    toPicker: false,
     initiallyAssigned: false,
   }),
   computed: {
@@ -150,8 +90,11 @@ export default {
       const rules = [];
 
       const rule = (v) =>
-        (v !== null && DateTime.fromISO(v).isValid) ||
+        v === null ||
         v === "" ||
+        (v !== null &&
+          /[0-9]{2}:[0-9]{2}/.test(v) &&
+          DateTime.fromISO(v).isValid) ||
         this.$t("rules.invalidTime");
       rules.push(rule);
 
@@ -186,6 +129,10 @@ export default {
     updateAssignment(field, value) {
       let tmpAssignment = JSON.parse(JSON.stringify(this.assignment));
       tmpAssignment[field] = value;
+      if (tmpAssignment.allday) {
+        tmpAssignment.from = null;
+        tmpAssignment.to = null;
+      }
       this.$emit("update-assignment", this.day, tmpAssignment);
     },
     validateField() {
