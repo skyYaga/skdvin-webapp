@@ -30,6 +30,7 @@
             placeholder="HH:MM"
             prepend-icon="mdi-clock-outline"
             :readonly="!isEditable"
+            :disabled="!isEditable"
             :rules="rules"
             @input="updateAssignment('from', $event)"
           ></v-text-field>
@@ -42,9 +43,26 @@
             placeholder="HH:MM"
             prepend-icon="mdi-clock-outline"
             :readonly="!isEditable"
+            :disabled="!isEditable"
             :rules="rules"
             @input="updateAssignment('to', $event)"
           ></v-text-field>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <v-textarea
+            v-if="assignment.assigned"
+            :value="assignment.note"
+            class="pl-2 mt-n5"
+            :label="$t('notes')"
+            :readonly="!isEditable"
+            :disabled="!isEditable"
+            rows="1"
+            outlined
+            auto-grow
+            @input="updateAssignment('note', $event)"
+          ></v-textarea>
         </v-col>
       </v-row>
     </v-form>
