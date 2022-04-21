@@ -11,7 +11,11 @@
       :items="videoflyer"
       :search="search"
       :loading="loading"
-      ><template #[`item.picAndVid`]="{ item }">
+    >
+      <template #[`item.favorite`]="{ item }">
+        <v-icon v-if="item.favorite" color="primary"> mdi-star </v-icon>
+      </template>
+      <template #[`item.picAndVid`]="{ item }">
         <v-simple-checkbox
           v-model="item.picAndVid"
           disabled
@@ -103,6 +107,7 @@ export default {
       editedIndex: -1,
       search: "",
       headers: [
+        { text: this.$t("favorite"), value: "favorite" },
         { text: this.$t("firstName"), value: "firstName" },
         { text: this.$t("lastName"), value: "lastName" },
         { text: this.$t("email.email"), value: "email" },
@@ -157,7 +162,6 @@ export default {
       } else {
         await this.saveVideoflyer();
       }
-      this.close();
     },
     editVideoflyer(item) {
       this.editedIndex = this.videoflyer.indexOf(item);
@@ -187,6 +191,7 @@ export default {
         if (result.success) {
           this.hintText = this.$t("videoflyer.save.successful");
           this.hintColor = "green";
+          this.close();
         } else {
           this.hintText = this.$t("videoflyer.save.error");
           this.hintColor = "red";
@@ -205,6 +210,7 @@ export default {
         if (result.success) {
           this.hintText = this.$t("videoflyer.update.successful");
           this.hintColor = "green";
+          this.close();
         } else {
           this.hintText = this.$t("videoflyer.update.error");
           this.hintColor = "red";
