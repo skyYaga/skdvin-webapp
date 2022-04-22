@@ -93,6 +93,7 @@
     "number": "Number",
     "question": "Question"
   },
+  "favorite": "Favorite",
   "firstName": "First name",
   "firstTime": "First Time",
   "from": "From",

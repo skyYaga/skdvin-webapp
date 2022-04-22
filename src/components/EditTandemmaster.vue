@@ -3,51 +3,64 @@
     <v-row dense
       ><v-col :lg="6"
         ><v-text-field
-          :value="tandemmaster.firstName"
+          v-model="tmpTandemmaster.firstName"
           :label="$t('firstName')"
           :rules="nameRules"
           required
-          @input="updateTandemmaster('firstName', $event)"
+          @input="updateTandemmaster()"
         ></v-text-field></v-col
       ><v-col :lg="6"
         ><v-text-field
-          :value="tandemmaster.lastName"
+          v-model="tmpTandemmaster.lastName"
           :label="$t('lastName')"
           :rules="nameRules"
           required
-          @input="updateTandemmaster('lastName', $event)"
+          @input="updateTandemmaster()"
         ></v-text-field></v-col
     ></v-row>
     <v-row dense
       ><v-col :lg="6"
         ><v-text-field
-          :value="tandemmaster.tel"
+          v-model="tmpTandemmaster.tel"
           type="tel"
           :label="$t('tel')"
           :rules="telRules"
-          @input="updateTandemmaster('tel', $event)"
+          @input="updateTandemmaster()"
         ></v-text-field></v-col
       ><v-col :lg="6"
         ><v-text-field
-          :value="tandemmaster.email"
+          v-model="tmpTandemmaster.email"
           type="email"
           :label="$t('email.email')"
           :rules="emailRules"
-          @input="updateTandemmaster('email', $event)"
+          @input="updateTandemmaster()"
         ></v-text-field></v-col
     ></v-row>
     <v-row dense
-      ><v-checkbox
-        :checked="tandemmaster.handcam"
-        :label="$t('handcam.handcam')"
-        @change="updateTandemmaster('handcam', $event)"
-      ></v-checkbox
-    ></v-row>
+      ><v-col :lg="6"
+        ><v-checkbox
+          v-model="tmpTandemmaster.handcam"
+          :label="$t('handcam.handcam')"
+          @change="updateTandemmaster()"
+        ></v-checkbox
+      ></v-col>
+      <v-col :lg="6"
+        ><v-checkbox
+          v-model="tmpTandemmaster.favorite"
+          :label="$t('favorite')"
+          @change="updateTandemmaster()"
+        ></v-checkbox
+      ></v-col>
+    </v-row>
   </v-container>
 </template>
 
 <script>
-import { telRules, emailRules, nameRules } from "../shared/rules";
+import {
+  nameRules,
+  emailRulesOptional,
+  telRulesOptional,
+} from "../shared/rules";
 
 export default {
   props: {
@@ -65,15 +78,19 @@ export default {
   data: function () {
     return {
       nameRules: nameRules(this.$i18n),
-      emailRules: emailRules(this.$i18n),
-      telRules: telRules(this.$i18n),
+      telRules: telRulesOptional(this.$i18n),
+      emailRules: emailRulesOptional(this.$i18n),
+      tmpTandemmaster: JSON.parse(JSON.stringify(this.tandemmaster)),
     };
   },
+  watch: {
+    tandemmaster(val) {
+      this.tmpTandemmaster = JSON.parse(JSON.stringify(val));
+    },
+  },
   methods: {
-    updateTandemmaster(field, value) {
-      let tmpTandemmaster = JSON.parse(JSON.stringify(this.tandemmaster));
-      tmpTandemmaster[field] = value;
-      this.$emit("update-tandemmaster", tmpTandemmaster);
+    updateTandemmaster() {
+      this.$emit("update-tandemmaster", this.tmpTandemmaster);
     },
   },
 };
