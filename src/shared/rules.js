@@ -1,5 +1,12 @@
+const emailRegex =
+  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 export const emailRules = (i18n) => [
-  (v) => !!v || /.+@.+\..+/.test(v) || i18n.t("rules.emailValid"),
+  (v) => !!v || emailRegex.test(v) || i18n.t("rules.emailValid"),
+];
+
+export const emailRulesOptional = (i18n) => [
+  (v) => !v || emailRegex.test(v) || i18n.t("rules.emailValid"),
 ];
 
 export const nameRules = (i18n) => [
@@ -10,8 +17,12 @@ export const nameRules = (i18n) => [
 export const telRules = (i18n) => [
   (v) =>
     !!v ||
-    (v && v.length > 0 && /[0-9 +-]{6,}$/.test(v)) ||
+    (v && v.length > 0 && /^[0-9 +-]{6,}$/.test(v)) ||
     i18n.t("rules.telValid"),
+];
+
+export const telRulesOptional = (i18n) => [
+  (v) => !v || /^[0-9 +-]{6,}$/.test(v) || i18n.t("rules.telValid"),
 ];
 
 export const dateOfBirthRules = (i18n) => [

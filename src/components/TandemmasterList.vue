@@ -11,12 +11,14 @@
       :items="tandemmaster"
       :search="search"
       :loading="loading"
-      ><template #[`item.handcam`]="{ item }">
-        <v-simple-checkbox
-          v-model="item.handcam"
-          disabled
-        ></v-simple-checkbox> </template
-      ><template #top>
+    >
+      <template #[`item.favorite`]="{ item }">
+        <v-icon v-if="item.favorite" color="primary"> mdi-star </v-icon>
+      </template>
+      <template #[`item.handcam`]="{ item }">
+        <v-simple-checkbox v-model="item.handcam" disabled></v-simple-checkbox>
+      </template>
+      <template #top>
         <v-toolbar flat color="white">
           <v-toolbar-title>{{
             $t("tandemmaster.tandemmaster")
@@ -103,6 +105,7 @@ export default {
       editedIndex: -1,
       search: "",
       headers: [
+        { text: this.$t("favorite"), value: "favorite" },
         { text: this.$t("firstName"), value: "firstName" },
         { text: this.$t("lastName"), value: "lastName" },
         { text: this.$t("email.email"), value: "email" },
@@ -157,7 +160,6 @@ export default {
       } else {
         await this.saveTandemmaster();
       }
-      this.close();
     },
     editTandemmaster(item) {
       this.editedIndex = this.tandemmaster.indexOf(item);
@@ -187,6 +189,7 @@ export default {
         if (result.success) {
           this.hintText = this.$t("tandemmaster.save.successful");
           this.hintColor = "green";
+          this.close();
         } else {
           this.hintText = this.$t("tandemmaster.save.error");
           this.hintColor = "red";
@@ -205,6 +208,7 @@ export default {
         if (result.success) {
           this.hintText = this.$t("tandemmaster.update.successful");
           this.hintColor = "green";
+          this.close();
         } else {
           this.hintText = this.$t("tandemmaster.update.error");
           this.hintColor = "red";
