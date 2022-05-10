@@ -18,7 +18,7 @@
     "@sentry/tracing": "^6.19.7",
     "@sentry/vue": "^6.19.7",
     "axios": "^0.27.2",
-    "core-js": "^3.22.3",
+    "core-js": "^3.22.5",
     "dompurify": "^2.3.6",
     "luxon": "^2.3.2",
     "tiptap": "^1.32.2",
