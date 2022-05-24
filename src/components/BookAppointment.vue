@@ -61,6 +61,7 @@
                   :text="$t('picOrVid.info')"
               /></v-select>
               <v-select
+                v-if="picAndVidEnabled"
                 v-model="appointment.picAndVid"
                 :items="isAdmin ? itemsAdminZero : itemsZero"
                 :rules="rules"
@@ -222,6 +223,7 @@ export default {
     showSlotSelection: false,
     showCustomerDataForm: false,
     showConfirmationForm: false,
+    picAndVidEnabled: false,
   }),
   computed: {
     ...mapGetters(["getCommonSettings"]),
