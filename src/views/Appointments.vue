@@ -103,10 +103,23 @@ export default {
         return this.$route.query.date;
       },
       set: function (date) {
-        this.$router.push({
-          name: "appointments",
-          query: { date },
-        });
+        this.$router
+          .push({
+            name: "appointments",
+            query: { date },
+          })
+          .catch((err) => {
+            // Ignore the vuex err regarding navigating to the page they are already on.
+            if (
+              err.name !== "NavigationDuplicated" &&
+              !err.message.includes(
+                "Avoided redundant navigation to current location"
+              )
+            ) {
+              // eslint-disable-next-line
+              console.error(err);
+            }
+          });
       },
     },
     getDate() {

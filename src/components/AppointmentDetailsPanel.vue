@@ -12,7 +12,7 @@
               >{{ $t("picOrVid.picOrVid") }}: {{ appointment.picOrVid }}</span
             >
           </div>
-          <div>
+          <div v-if="picAndVidEnabled">
             <span
               >{{ $t("picAndVid.picAndVid") }}:
               {{ appointment.picAndVid }}</span
@@ -81,6 +81,9 @@ export default {
       default: () => {},
     },
   },
+  data: () => ({
+    picAndVidEnabled: false,
+  }),
   computed: {
     isAdminOrModerator() {
       return roleUtil.isAdminOrModerator(this.$auth);

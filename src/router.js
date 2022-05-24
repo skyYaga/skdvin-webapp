@@ -119,12 +119,12 @@ let router = new Router({
 router.onError((error) => {
   // eslint-disable-next-line
   console.error(error);
-  Vue.prototype.$log.error("Failure Reason: ", error.message, error);
   if (
     /ChunkLoadError:.*failed./i.test(error.message) ||
     /Loading.*chunk.*failed./i.test(error.message)
   ) {
-    Vue.prototype.$log.error("Reloading Window...");
+    // eslint-disable-next-line
+    console.error("Reloading Window...");
     window.location.reload();
   }
 });
