@@ -150,6 +150,7 @@
     "available": "Pic and Vid available",
     "booked": "Pic and Vid booked",
     "count": "Picture and video count",
+    "enabled": "Pic and Vid enabled",
     "info": "For how many of your booked tandem jumps would you like to have photos AND video?<br />Here a second skydiver jumps out of the airplane together with the tandem and takes the shots.",
     "picAndVid": "Picture and video"
   },
@@ -215,6 +216,7 @@
   "settings": {
     "admin": "Admin settings",
     "common": "Common Settings",
+    "language": "Language Settings",
     "save": {
       "error": "Error saving settings",
       "successful": "Settings saved successfully"

@@ -11,12 +11,19 @@
       ></v-row
     ><v-row
       ><v-col
-        ><CommonSettingsPanel
-          :common-settings="settings.commonSettings" /></v-col></v-row
+        ><AdminSettingsPanel
+          :admin-settings="tmpSettings.adminSettings"
+          @update-admin-settings="updateAdminSettings" /></v-col></v-row
     ><v-row
       ><v-col
-        ><AdminSettingsPanel
-          :admin-settings="settings.adminSettings" /></v-col></v-row
+        ><CommonSettingsPanel
+          :common-settings="tmpSettings.commonSettings"
+          @update-common-settings="updateCommonSettings" /></v-col></v-row
+    ><v-row
+      ><v-col
+        ><LanguageSettingsPanel
+          :language-settings="tmpSettings.languageSettings"
+          @update-language-settings="updateLanguageSettings" /></v-col></v-row
     ><v-row dense
       ><v-spacer></v-spacer
       ><v-btn
@@ -33,11 +40,13 @@
 <script>
 import { mapActions } from "vuex";
 import AdminSettingsPanel from "../components/settings/AdminSettingsPanel.vue";
+import LanguageSettingsPanel from "../components/settings/LanguageSettingsPanel.vue";
 import CommonSettingsPanel from "../components/settings/CommonSettingsPanel.vue";
 
 export default {
   components: {
     AdminSettingsPanel,
+    LanguageSettingsPanel,
     CommonSettingsPanel,
   },
   data: () => ({
@@ -45,7 +54,7 @@ export default {
     hintText: "",
     hintColor: "",
     loading: true,
-    settings: {
+    tmpSettings: {
       adminSettings: {
         tandemsFrom: "10:00",
         tandemsTo: "18:00",
@@ -55,7 +64,7 @@ export default {
         picAndVidCount: 0,
         handcamCount: 0,
       },
-      commonSettings: {
+      languageSettings: {
         de: {
           dropzone: {
             name: "Beispiel DZ",
@@ -84,6 +93,7 @@ export default {
         },
       },
     },
+    commonSettings: {},
   }),
   async created() {
     await this.loadSettings();
@@ -102,7 +112,7 @@ export default {
       );
       this.loading = false;
       if (result.payload != null) {
-        this.settings = result.payload;
+        this.tmpSettings = JSON.parse(JSON.stringify(result.payload));
       }
     },
     async loadCommonSettings() {
@@ -111,19 +121,19 @@ export default {
     async saveSettings() {
       this.loading = true;
       let result;
-      if (this.settings.id == null) {
+      if (this.tmpSettings.id == null) {
         result = await this.saveSettingsAction({
-          settings: this.settings,
+          settings: this.tmpSettings,
           token: await this.$auth.getTokenSilently(),
         });
       } else {
         result = await this.updateSettingsAction({
-          settings: this.settings,
+          settings: this.tmpSettings,
           token: await this.$auth.getTokenSilently(),
         });
       }
       if (result.payload != null) {
-        this.settings = result.payload;
+        this.tmpSettings = JSON.parse(JSON.stringify(result.payload));
       }
       this.loading = false;
       this.handleHint(result);
@@ -138,6 +148,15 @@ export default {
         this.hintColor = "red";
       }
       this.showHint = true;
+    },
+    updateAdminSettings(adminSettings) {
+      this.tmpSettings.adminSettings = adminSettings;
+    },
+    updateCommonSettings(commonSettings) {
+      this.tmpSettings.commonSettings = commonSettings;
+    },
+    updateLanguageSettings(languageSettings) {
+      this.tmpSettings.languageSettings = languageSettings;
     },
   },
 };

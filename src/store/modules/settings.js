@@ -6,17 +6,7 @@ import {
 import { settingsService } from "../../shared/settings-service";
 
 const state = () => ({
-  settings: {
-    startHour: "09",
-    startMinute: "30",
-    endHour: "18",
-    endMinute: "00",
-    tandem: 5,
-    picOrVid: 0,
-    picAndVid: 0,
-    handcam: 0,
-    sequence: "1:30",
-  },
+  settings: {},
   commonSettings: {
     dropzone: {
       name: "",

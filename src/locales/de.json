@@ -150,6 +150,7 @@
     "available": "Foto u. Video verfügbar",
     "booked": "Foto u. Video gebucht",
     "count": "Anzahl Foto und Video",
+    "enabled": "Foto und Video aktiviert",
     "info": "Für wie viele deiner gebuchten Tandemsprünge möchtest Du Fotos UND Video?<br />Hierbei springt ein zweiter Fallschirmspringer mit dem Tandem aus dem Flugzeug und macht die entsprechenden Aufnahmen.",
     "picAndVid": "Foto und Video"
   },
@@ -215,6 +216,7 @@
   "settings": {
     "admin": "Admineinstellungen",
     "common": "Allgemeine Einstellungen",
+    "language": "Spracheinstellungen",
     "save": {
       "error": "Fehler beim Speichern der Einstellungen",
       "successful": "Einstellungen erfolgreich gespeichert"
