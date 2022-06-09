@@ -177,7 +177,17 @@ export default {
     },
   },
   data: () => ({
-    settings: {},
+    settings: {
+      startHour: "09",
+      startMinute: "30",
+      endHour: "18",
+      endMinute: "00",
+      tandem: 5,
+      picOrVid: 0,
+      picAndVid: 0,
+      handcam: 0,
+      sequence: "1:30",
+    },
     addHour: "08",
     addMinute: "00",
     hours: [
@@ -221,16 +231,39 @@ export default {
       return [...Array(11).keys()];
     },
   },
-  created() {
-    this.settings = JSON.parse(JSON.stringify(this.getSettings()));
+  async created() {
+    await this.loadSettings();
   },
   methods: {
     ...mapActions([
+      "getSettingsAction",
       "addJumpdayAction",
       "updateJumpdayAction",
       "deleteJumpdayAction",
       "updateLocalSettingsAction",
     ]),
+    async loadSettings() {
+      this.loading = true;
+      let result = await this.getSettingsAction(
+        await this.$auth.getTokenSilently()
+      );
+      this.loading = false;
+      if (result.payload != null) {
+        this.settings.startHour =
+          result.payload.adminSettings.tandemsFrom.split(":")[0];
+        this.settings.startMinute =
+          result.payload.adminSettings.tandemsFrom.split(":")[1];
+        this.settings.endHour =
+          result.payload.adminSettings.tandemsTo.split(":")[0];
+        this.settings.endMinute =
+          result.payload.adminSettings.tandemsTo.split(":")[1];
+        this.settings.sequence = result.payload.adminSettings.interval;
+        this.settings.tandem = result.payload.adminSettings.tandemCount;
+        this.settings.picOrVid = result.payload.adminSettings.picOrVidCount;
+        this.settings.picAndVid = result.payload.adminSettings.picAndVidCount;
+        this.settings.handcam = result.payload.adminSettings.handcamCount;
+      }
+    },
     async saveJumpday() {
       this.updating = true;
 

@@ -12,7 +12,7 @@
               >{{ $t("picOrVid.picOrVid") }}: {{ appointment.picOrVid }}</span
             >
           </div>
-          <div v-if="picAndVidEnabled">
+          <div v-if="commonSettings.picAndVidEnabled">
             <span
               >{{ $t("picAndVid.picAndVid") }}:
               {{ appointment.picAndVid }}</span
@@ -73,6 +73,7 @@
 <script>
 import { DateTime } from "luxon";
 import { roleUtil } from "../shared/roles";
+import { mapGetters } from "vuex";
 
 export default {
   props: {
@@ -81,10 +82,11 @@ export default {
       default: () => {},
     },
   },
-  data: () => ({
-    picAndVidEnabled: false,
-  }),
   computed: {
+    ...mapGetters(["getCommonSettings"]),
+    commonSettings() {
+      return this.getCommonSettings();
+    },
     isAdminOrModerator() {
       return roleUtil.isAdminOrModerator(this.$auth);
     },
