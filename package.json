@@ -32,7 +32,7 @@
   "devDependencies": {
     "@mdi/font": "^6.7.96",
     "@vue/cli-plugin-babel": "~4.5.15",
-    "@vue/cli-plugin-eslint": "~4.5.17",
+    "@vue/cli-plugin-eslint": "~4.5.18",
     "@vue/cli-plugin-unit-jest": "~4.5.15",
     "@vue/cli-service": "~4.5.15",
     "@vue/eslint-config-prettier": "^6.0.0",
