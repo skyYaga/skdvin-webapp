@@ -12,7 +12,7 @@
       <h1>{{ $t("jumpday.jumpdays") }}</h1>
       <v-row dense>
         <v-col :cols="12" :lg="4" :md="4" :sm="12">
-          <Calendar
+          <CalendarPicker
             d-flex
             flex-wrap
             @handle-date-selection="loadJumpday"
@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import Calendar from "../components/Calendar.vue";
+import CalendarPicker from "../components/CalendarPicker.vue";
 import JumpdayTable from "../components/JumpdayTable.vue";
 import EditJumpdayPanel from "../components/EditJumpdayPanel.vue";
 import AvailableTandemmasterPanel from "../components/AvailableTandemmasterPanel.vue";
@@ -63,9 +63,9 @@ import { mapActions, mapState, mapGetters } from "vuex";
 import { DateTime } from "luxon";
 
 export default {
-  name: "Jumpdays",
+  name: "JumpdaysView",
   components: {
-    Calendar,
+    CalendarPicker,
     JumpdayTable,
     EditJumpdayPanel,
     AvailableTandemmasterPanel,

@@ -14,7 +14,7 @@
       >
       <v-row
         ><v-col :cols="12" :lg="4" :md="4" :sm="12">
-          <Calendar
+          <CalendarPicker
             d-flex
             flex-wrap
             :date="date"
@@ -61,15 +61,15 @@ import AppointmentOverview from "../components/AppointmentOverview.vue";
 import AvailableTandemmasterPanel from "../components/AvailableTandemmasterPanel.vue";
 import AvailableVideoflyerPanel from "../components/AvailableVideoflyerPanel.vue";
 import JumpdayAppointmentStatsPanel from "../components/appointments/JumpdayAppointmentStatsPanel.vue";
-import Calendar from "../components/Calendar.vue";
+import CalendarPicker from "../components/CalendarPicker.vue";
 import { mapActions, mapState, mapGetters } from "vuex";
 import { DateTime } from "luxon";
 
 export default {
-  name: "Appointments",
+  name: "AppointmentsView",
   components: {
     AppointmentOverview,
-    Calendar,
+    CalendarPicker,
     AvailableTandemmasterPanel,
     AvailableVideoflyerPanel,
     JumpdayAppointmentStatsPanel,

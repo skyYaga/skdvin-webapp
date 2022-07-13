@@ -1,11 +1,11 @@
 import { shallowMount } from "@vue/test-utils";
 import Vuetify from "vuetify";
 import Vue from "vue";
-import Profile from "@/views/Profile.vue";
+import ProfileView from "@/views/ProfileView.vue";
 
 Vue.use(Vuetify);
 
-describe("Profile.vue", () => {
+describe("ProfileView.vue", () => {
   it("should render user details", () => {
     const $auth = {
       user: {
@@ -13,7 +13,7 @@ describe("Profile.vue", () => {
         email: "bob@example.com",
       },
     };
-    const wrapper = shallowMount(Profile, {
+    const wrapper = shallowMount(ProfileView, {
       mocks: {
         $auth,
         $t: (msg) => msg,

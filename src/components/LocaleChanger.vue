@@ -11,10 +11,9 @@
       <v-list-item-group color="primary">
         <v-list-item v-for="(lang, i) in availableLangs" :key="i">
           <v-list-item-content>
-            <v-list-item-title
-              @click="changeLocale(lang)"
-              v-text="longLang(lang)"
-            ></v-list-item-title>
+            <v-list-item-title @click="changeLocale(lang)">{{
+              longLang(lang)
+            }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list-item-group>

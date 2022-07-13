@@ -3,7 +3,7 @@
     <v-row dense>
       <v-col v-for="slot in jumpday.slots" :key="slot.time" :lg="4" :md="6">
         <v-card>
-          <v-card-title v-text="slot.time"></v-card-title>
+          <v-card-title>{{ slot.time }}</v-card-title>
 
           <v-simple-table>
             <template #default>
