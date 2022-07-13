@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "./views/Home.vue";
+import HomeView from "./views/HomeView.vue";
 import { authGuard } from "./auth/authGuard";
 import i18n from "./i18n.js";
 import RouterView from "./components/RouterView";
@@ -32,29 +32,29 @@ let router = new Router({
         {
           path: "home",
           name: "home",
-          component: Home,
+          component: HomeView,
         },
         {
           path: "faq",
           name: "faq",
-          component: () => import("./views/Faq.vue"),
+          component: () => import("./views/FaqView.vue"),
         },
         {
           path: "profile",
           name: "profile",
-          component: () => import("./views/Profile.vue"),
+          component: () => import("./views/ProfileView.vue"),
           beforeEnter: authGuard,
         },
         {
           path: "jumpdays",
           name: "jumpdays",
-          component: () => import("./views/Jumpdays.vue"),
+          component: () => import("./views/JumpdaysView.vue"),
           beforeEnter: authGuard,
         },
         {
           path: "appointments",
           name: "appointments",
-          component: () => import("./views/Appointments.vue"),
+          component: () => import("./views/AppointmentsView.vue"),
           beforeEnter: authGuard,
         },
         {
@@ -77,19 +77,19 @@ let router = new Router({
         {
           path: "tandemmaster",
           name: "tandemmaster",
-          component: () => import("./views/Tandemmaster.vue"),
+          component: () => import("./views/TandemmasterView.vue"),
           beforeEnter: authGuard,
         },
         {
           path: "videoflyer",
           name: "videoflyer",
-          component: () => import("./views/Videoflyer.vue"),
+          component: () => import("./views/VideoflyerView.vue"),
           beforeEnter: authGuard,
         },
         {
           path: "research",
           name: "research",
-          component: () => import("./views/Research.vue"),
+          component: () => import("./views/ResearchView.vue"),
           beforeEnter: authGuard,
         },
         {

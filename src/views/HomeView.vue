@@ -20,7 +20,7 @@ import BookAppointment from "../components/BookAppointment.vue";
 import HomepageHint from "../components/HomepageHint.vue";
 
 export default {
-  name: "Home",
+  name: "HomeView",
   components: {
     HomepageHint,
     BookAppointment,

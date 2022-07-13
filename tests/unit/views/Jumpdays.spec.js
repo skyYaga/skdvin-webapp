@@ -1,14 +1,14 @@
 import { shallowMount, createLocalVue } from "@vue/test-utils";
 import Vuetify from "vuetify";
 import Vuex from "vuex";
-import Jumpdays from "@/views/Jumpdays.vue";
+import JumpdaysView from "@/views/JumpdaysView.vue";
 
 const localVue = createLocalVue();
 
 localVue.use(Vuex);
 localVue.use(Vuetify);
 
-describe("Jumpdays.vue", () => {
+describe("JumpdaysView.vue", () => {
   let actions;
   let store;
   let getters;
@@ -30,7 +30,7 @@ describe("Jumpdays.vue", () => {
     jumpersActionMock.mockReturnValueOnce("");
     const $auth = { getTokenSilently: jest.fn() };
     $auth.getTokenSilently.mockReturnValue("unit-token");
-    const wrapper = shallowMount(Jumpdays, {
+    const wrapper = shallowMount(JumpdaysView, {
       store,
       localVue,
       mocks: {
@@ -47,7 +47,7 @@ describe("Jumpdays.vue", () => {
     jumpersActionMock.mockReturnValueOnce(403);
     const $auth = { getTokenSilently: jest.fn() };
     $auth.getTokenSilently.mockReturnValue("unit-token");
-    const wrapper = shallowMount(Jumpdays, {
+    const wrapper = shallowMount(JumpdaysView, {
       store,
       localVue,
       mocks: {
@@ -62,7 +62,7 @@ describe("Jumpdays.vue", () => {
   it("renders loading when not loaded", async () => {
     const $auth = { getTokenSilently: jest.fn() };
     $auth.getTokenSilently.mockReturnValue("unit-token");
-    const wrapper = shallowMount(Jumpdays, {
+    const wrapper = shallowMount(JumpdaysView, {
       store,
       localVue,
       mocks: {
