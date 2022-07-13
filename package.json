@@ -19,7 +19,7 @@
     "@sentry/vue": "^7.5.1",
     "axios": "^0.27.2",
     "core-js": "^3.23.3",
-    "dompurify": "^2.3.8",
+    "dompurify": "^2.3.9",
     "luxon": "^2.4.0",
     "tiptap": "^1.32.2",
     "tiptap-extensions": "^1.35.2",
