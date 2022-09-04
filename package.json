@@ -14,7 +14,7 @@
     "test": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "@auth0/auth0-spa-js": "^1.22.2",
+    "@auth0/auth0-spa-js": "^1.22.3",
     "@sentry/tracing": "^7.11.1",
     "@sentry/vue": "^7.11.1",
     "axios": "^0.27.2",
