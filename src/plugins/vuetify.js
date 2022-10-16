@@ -12,7 +12,7 @@ export default new Vuetify({
     locales: { en, de },
   },
   icons: {
-    iconfont: "mdi", // default - only for display purposes
+    iconfont: "mdi",
   },
   theme: {
     themes: {
