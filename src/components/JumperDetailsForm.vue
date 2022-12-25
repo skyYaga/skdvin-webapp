@@ -77,7 +77,7 @@
     <v-row
       ><v-col
         ><v-alert v-if="!isAdmin && isMinor" text type="error" prominent>
-          <div class="title">{{ $t("minors") }}</div>
+          <div class="text-h6">{{ $t("minors") }}</div>
           <i18n path="transportationHint" tag="div">
             <template #url>
               <a

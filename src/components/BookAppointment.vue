@@ -6,7 +6,7 @@
           <v-card-title>{{
             $t("welcome.title", { name: commonSettings.dropzone.name })
           }}</v-card-title>
-          <v-card-text class="subtitle-1"
+          <v-card-text class="text-subtitle-1"
             ><i18n path="welcome.message">
               <template #mail
                 ><a :href="'mailto:' + commonSettings.dropzone.email">{{

@@ -107,7 +107,7 @@
     <div class="text-center">
       <v-dialog v-model="showDeletionDialog" width="500">
         <v-card>
-          <v-card-title class="headline" primary-title>
+          <v-card-title class="text-h5" primary-title>
             {{ $t("appointment.delete.question") }}
           </v-card-title>
 

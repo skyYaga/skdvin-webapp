@@ -36,7 +36,7 @@
       ></v-row>
       <v-row v-for="time in getBookedTimes" :key="time" dense class="pt-4">
         <v-col cols="12"
-          ><v-subheader class="display-1"> {{ time }} </v-subheader>
+          ><v-subheader class="text-h4"> {{ time }} </v-subheader>
           <v-divider></v-divider
         ></v-col>
         <v-col
