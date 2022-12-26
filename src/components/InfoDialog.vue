@@ -16,7 +16,7 @@
       </v-card-text>
       <v-card-actions
         ><v-spacer></v-spacer>
-        <v-btn color="primary" text @click="dialog = false">
+        <v-btn color="primary" variant="text" @click="dialog = false">
           {{ $t("ok") }}
         </v-btn></v-card-actions
       ></v-card

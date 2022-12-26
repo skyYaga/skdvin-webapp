@@ -105,6 +105,7 @@ export default {
       default: "",
     },
   },
+  emits: ["editor-update"],
   data() {
     return {
       editor: null,
@@ -135,7 +136,7 @@ export default {
       this.$emit("editor-update", getHTML());
     });
   },
-  beforeDestroy() {
+  beforeUnmount() {
     // Always destroy your editor instance when it's no longer needed
     this.editor.destroy();
   },

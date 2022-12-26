@@ -7,18 +7,18 @@
           <v-row>
             <v-col cols="2">
               <v-text-field
-                :value="tmpAdminSettings.tandemsFrom"
+                :model-value="tmpAdminSettings.tandemsFrom"
                 :label="$t('from')"
                 placeholder="HH:MM"
-                @input="updateAdminSettings()"
+                @update:model-value="updateAdminSettings()"
               ></v-text-field>
             </v-col>
             <v-col cols="2">
               <v-text-field
-                :value="tmpAdminSettings.tandemsTo"
+                :model-value="tmpAdminSettings.tandemsTo"
                 :label="$t('to')"
                 placeholder="HH:MM"
-                @input="updateAdminSettings()"
+                @update:model-value="updateAdminSettings()"
               ></v-text-field>
             </v-col>
             <v-col cols="2">
@@ -26,7 +26,7 @@
                 v-model="tmpAdminSettings.interval"
                 :items="sequences"
                 :label="$t('interval')"
-                @change="updateAdminSettings()"
+                @update:model-value="updateAdminSettings()"
               ></v-select>
             </v-col> </v-row
           ><v-row>
@@ -36,7 +36,7 @@
                 :items="counts"
                 :label="$t('tandem.tandems')"
                 :rules="[lessVideoThanTandemRule]"
-                @change="updateAdminSettings()"
+                @update:model-value="updateAdminSettings()"
               ></v-select>
             </v-col>
             <v-col cols="3">
@@ -48,7 +48,7 @@
                   lessVideoThanTandemRule,
                   lessPicAndVidThanPicOrVidRule,
                 ]"
-                @change="updateAdminSettings()"
+                @update:model-value="updateAdminSettings()"
               ></v-select>
             </v-col>
             <v-col cols="3">
@@ -60,7 +60,7 @@
                   lessVideoThanTandemRule,
                   lessPicAndVidThanPicOrVidRule,
                 ]"
-                @change="updateAdminSettings()"
+                @update:model-value="updateAdminSettings()"
               ></v-select>
             </v-col>
             <v-col cols="3">
@@ -69,14 +69,14 @@
                 :items="countsZero"
                 :label="$t('handcam.handcam')"
                 :rules="[lessVideoThanTandemRule]"
-                @change="updateAdminSettings()"
+                @update:model-value="updateAdminSettings()"
               ></v-select>
             </v-col>
             <v-col cols="12"
               ><v-text-field
                 v-model="tmpAdminSettings.bccMail"
                 :label="$t('email.bcc')"
-                @input="updateAdminSettings()"
+                @update:model-value="updateAdminSettings()"
               ></v-text-field></v-col></v-row></v-card-text
       ></v-card>
     </v-form>
@@ -93,6 +93,7 @@ export default {
       },
     },
   },
+  emits: ["update-admin-settings"],
   data() {
     return {
       sequences: ["0:30", "1:00", "1:30", "2:00", "2:30"],

@@ -19,6 +19,6 @@ describe("ProfileView.vue", () => {
         $t: (msg) => msg,
       },
     });
-    expect(wrapper.find("h2").text()).toMatch($auth.user.email);
+    expect(wrapper.find("h2").text()).toMatch(this.$auth0.user.email);
   });
 });

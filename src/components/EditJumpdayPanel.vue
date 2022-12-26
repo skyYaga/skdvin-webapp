@@ -3,7 +3,7 @@
     <v-container>
       <v-snackbar v-model="showHint" :color="hintColor" :timeout="5000">
         {{ hintText }}
-        <v-btn text @click="showHint = false">
+        <v-btn variant="text" @click="showHint = false">
           {{ $t("ok") }}
         </v-btn>
       </v-snackbar>
@@ -15,7 +15,7 @@
               :label="$t('operating')"
               :input-value="jumpday.jumping"
               :disabled="hasBookedAppointments"
-              @change="toggleJumping"
+              @update:model-value="toggleJumping"
             ></v-switch>
           </v-row>
           <div>
@@ -176,6 +176,7 @@ export default {
       },
     },
   },
+  emits: ["handle-dirty-jumpday", "handle-jumpday-changed"],
   data: () => ({
     settings: {
       startHour: "09",
@@ -245,7 +246,7 @@ export default {
     async loadSettings() {
       this.loading = true;
       let result = await this.getSettingsAction(
-        await this.$auth.getTokenSilently()
+        await this.$auth0.getTokenSilently()
       );
       this.loading = false;
       if (result.payload != null) {
@@ -301,7 +302,7 @@ export default {
 
       let result = await this.addJumpdayAction({
         jumpday: newJumpday,
-        token: await this.$auth.getTokenSilently(),
+        token: await this.$auth0.getTokenSilently(),
       });
       if (result.success) {
         this.onJumpdayChanged(result.payload.date);
@@ -316,7 +317,7 @@ export default {
       this.updating = true;
       let result = await this.updateJumpdayAction({
         jumpday: this.jumpday,
-        token: await this.$auth.getTokenSilently(),
+        token: await this.$auth0.getTokenSilently(),
       });
       this.onJumpdayChanged(this.jumpday.date);
       this.updating = false;
@@ -385,7 +386,7 @@ export default {
       this.updating = true;
       let result = await this.deleteJumpdayAction({
         date: this.jumpday.date,
-        token: await this.$auth.getTokenSilently(),
+        token: await this.$auth0.getTokenSilently(),
       });
       this.onJumpdayChanged(this.jumpday.date);
       this.updating = false;

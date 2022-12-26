@@ -2,7 +2,7 @@ import * as axios from "axios";
 import { DateTime } from "luxon";
 import { responseHandler } from "./response-handler";
 
-const apiPath = process.env.VUE_APP_API;
+const apiPath = import.meta.env.VITE_API;
 
 const searchSlots = async function (query) {
   try {

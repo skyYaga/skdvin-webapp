@@ -102,7 +102,7 @@
     </div>
     <v-snackbar v-model="showHint" :color="hintColor" :timeout="5000">
       {{ hintText }}
-      <v-btn text @click="showHint = false"> OK </v-btn>
+      <v-btn variant="text" @click="showHint = false"> OK </v-btn>
     </v-snackbar>
     <div class="text-center">
       <v-dialog v-model="showDeletionDialog" width="500">
@@ -115,10 +115,14 @@
 
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="primary" text @click="deleteAppointment">
+            <v-btn color="primary" variant="text" @click="deleteAppointment">
               {{ $t("delete") }}
             </v-btn>
-            <v-btn color="primary" text @click="showDeletionDialog = false">
+            <v-btn
+              color="primary"
+              variant="text"
+              @click="showDeletionDialog = false"
+            >
               {{ $t("cancel") }}
             </v-btn>
           </v-card-actions>
@@ -182,7 +186,7 @@ export default {
       "deleteAppointmentAction",
     ]),
     async loadAppointment() {
-      let token = await this.$auth.getTokenSilently();
+      let token = await this.$auth0.getTokenSilently();
       this.localAppointment = await this.getAppointmentAction({
         appointmentId: this.id,
         token,
@@ -204,7 +208,7 @@ export default {
       this.message = this.$t("jumpday.loading");
       let unauthorizedMessage = await this.getJumpdaysAction({
         yearMonth: DateTime.fromISO(date).toFormat("yyyy-MM"),
-        token: await this.$auth.getTokenSilently(),
+        token: await this.$auth0.getTokenSilently(),
       });
       if (unauthorizedMessage !== "") {
         this.message = this.$t("accessdenied");
@@ -225,12 +229,12 @@ export default {
         if (this.$refs.customerDataForm.adminBooking) {
           result = await this.updateAdminAppointmentAction({
             appointment: this.localAppointment,
-            token: await this.$auth.getTokenSilently(),
+            token: await this.$auth0.getTokenSilently(),
           });
         } else {
           result = await this.updateAppointmentAction({
             appointment: this.localAppointment,
-            token: await this.$auth.getTokenSilently(),
+            token: await this.$auth0.getTokenSilently(),
           });
         }
         this.updating = false;
@@ -250,7 +254,7 @@ export default {
       this.showDeletionDialog = false;
       let result = await this.deleteAppointmentAction({
         appointmentId: this.localAppointment.appointmentId,
-        token: await this.$auth.getTokenSilently(),
+        token: await this.$auth0.getTokenSilently(),
       });
       if (result.success) {
         this.backToOverview();

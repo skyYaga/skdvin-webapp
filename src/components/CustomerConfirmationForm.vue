@@ -81,6 +81,7 @@ export default {
       },
     },
   },
+  emits: ["on-customer-confirmation-back"],
   data: () => ({
     valid: false,
     loading: false,
@@ -99,7 +100,7 @@ export default {
         if (roleUtil.isAdminOrModerator(this.$auth)) {
           result = await this.addAdminAppointmentAction({
             appointment: this.appointment,
-            token: await this.$auth.getTokenSilently(),
+            token: await this.$auth0.getTokenSilently(),
           });
         } else {
           result = await this.addAppointmentAction(this.appointment);

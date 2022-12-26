@@ -2,7 +2,7 @@
   <v-card>
     <v-snackbar v-model="showHint" :color="hintColor" :timeout="5000">
       {{ hintText }}
-      <v-btn text @click="showHint = false">
+      <v-btn variant="text" @click="showHint = false">
         {{ $t("ok") }}
       </v-btn>
     </v-snackbar>
@@ -16,7 +16,7 @@
         <v-icon v-if="item.favorite" color="primary"> mdi-star </v-icon>
       </template>
       <template #[`item.handcam`]="{ item }">
-        <v-simple-checkbox v-model="item.handcam" disabled></v-simple-checkbox>
+        <v-checkbox-btn v-model="item.handcam" disabled></v-checkbox-btn>
       </template>
       <template #top>
         <v-toolbar flat color="white">
@@ -34,7 +34,7 @@
           <v-spacer></v-spacer>
           <v-dialog v-model="dialog" max-width="500px">
             <template #activator="{ on }">
-              <v-btn color="primary" dark class="mb-2" v-on="on">{{
+              <v-btn color="primary" class="mb-2" v-on="on">{{
                 $t("tandemmaster.add")
               }}</v-btn>
             </template>
@@ -54,10 +54,10 @@
 
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="blue darken-1" text @click="close">{{
+                <v-btn color="blue-darken-1" variant="text" @click="close">{{
                   $t("cancel")
                 }}</v-btn>
-                <v-btn color="blue darken-1" text @click="save">{{
+                <v-btn color="blue-darken-1" variant="text" @click="save">{{
                   $t("save")
                 }}</v-btn>
               </v-card-actions>
@@ -66,13 +66,13 @@
         </v-toolbar>
       </template>
       <template #[`item.actions`]="{ item }">
-        <v-icon small class="mr-2" @click="editTandemmaster(item)">
+        <v-icon size="small" class="mr-2" @click="editTandemmaster(item)">
           mdi-pencil
         </v-icon>
-        <v-icon small class="mr-2" @click="deleteItem(item)">
+        <v-icon size="small" class="mr-2" @click="deleteItem(item)">
           mdi-delete
         </v-icon>
-        <v-icon small @click="assignTandemmaster(item)">
+        <v-icon size="small" @click="assignTandemmaster(item)">
           mdi-calendar-month
         </v-icon>
       </template></v-data-table
@@ -95,6 +95,7 @@ export default {
     },
     loading: Boolean,
   },
+  emits: ["handle-assign-click"],
   data() {
     return {
       valid: false,
@@ -183,7 +184,7 @@ export default {
         this.updating = true;
         let result = await this.addTandemmasterAction({
           tandemmaster: this.editedItem,
-          token: await this.$auth.getTokenSilently(),
+          token: await this.$auth0.getTokenSilently(),
         });
         this.updating = false;
         if (result.success) {
@@ -202,7 +203,7 @@ export default {
         this.updating = true;
         let result = await this.updateTandemmasterAction({
           tandemmaster: this.editedItem,
-          token: await this.$auth.getTokenSilently(),
+          token: await this.$auth0.getTokenSilently(),
         });
         this.updating = false;
         if (result.success) {
@@ -220,7 +221,7 @@ export default {
       this.updating = true;
       let result = await this.deleteTandemmasterAction({
         id: item.id,
-        token: await this.$auth.getTokenSilently(),
+        token: await this.$auth0.getTokenSilently(),
       });
       this.updating = false;
       if (result.success) {

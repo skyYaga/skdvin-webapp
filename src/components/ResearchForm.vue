@@ -38,7 +38,7 @@ export default {
       this.loading = true;
       await this.getGroupSlotsAction({
         query: { tandem: this.tandemCount },
-        token: await this.$auth.getTokenSilently(),
+        token: await this.$auth0.getTokenSilently(),
       });
       this.loading = false;
     },

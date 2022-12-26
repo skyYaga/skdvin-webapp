@@ -2,7 +2,7 @@
   <v-row>
     <v-snackbar v-model="showHint" :color="hintColor" :timeout="5000">
       {{ hintText }}
-      <v-btn text @click="showHint = false">
+      <v-btn variant="text" @click="showHint = false">
         {{ $t("ok") }}
       </v-btn>
     </v-snackbar>
@@ -130,7 +130,7 @@ export default {
       } else {
         let result = await this.getVideoflyerDetailsAction({
           videoflyerId: this.videoflyer.id,
-          token: await this.$auth.getTokenSilently(),
+          token: await this.$auth0.getTokenSilently(),
         });
         this.videoflyerDetails = result.payload;
       }
@@ -152,12 +152,12 @@ export default {
       if (this.selfAssign) {
         result = await this.updateMeVideoflyerAssigmentsAction({
           videoflyerDetails: this.videoflyerDetails,
-          token: await this.$auth.getTokenSilently(),
+          token: await this.$auth0.getTokenSilently(),
         });
       } else {
         result = await this.updateVideoflyerAssigmentsAction({
           videoflyerDetails: this.videoflyerDetails,
-          token: await this.$auth.getTokenSilently(),
+          token: await this.$auth0.getTokenSilently(),
         });
       }
 

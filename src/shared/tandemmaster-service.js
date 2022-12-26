@@ -1,7 +1,7 @@
 import * as axios from "axios";
 import { responseHandler } from "./response-handler";
 
-const apiPath = process.env.VUE_APP_API;
+const apiPath = import.meta.env.VITE_API;
 
 const addTandemmaster = async function (tandemmaster, token) {
   try {

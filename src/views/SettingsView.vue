@@ -28,7 +28,7 @@ export default {
     ...mapActions(["getSettingsAction"]),
     async loadSettings() {
       let result = await this.getSettingsAction(
-        await this.$auth.getTokenSilently()
+        await this.$auth0.getTokenSilently()
       );
       this.settings = result.payload;
     },

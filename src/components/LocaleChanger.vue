@@ -1,9 +1,9 @@
 <template>
-  <v-menu bottom left>
+  <v-menu location="bottom left">
     <template #activator="{ on }">
-      <v-btn :class="buttonClass" color="primary" depressed v-on="on">
-        <v-icon left>mdi-translate</v-icon> {{ conditionalLang($i18n.locale) }}
-        <v-icon right>mdi-chevron-down</v-icon>
+      <v-btn :class="buttonClass" color="primary" variant="flat" v-on="on">
+        <v-icon start>mdi-translate</v-icon> {{ conditionalLang($i18n.locale) }}
+        <v-icon end>mdi-chevron-down</v-icon>
       </v-btn>
     </template>
 
@@ -33,27 +33,27 @@ export default {
       );
     },
     buttonClass() {
-      if (this.$vuetify.breakpoint.name == "xs") {
+      if (this.$vuetify.display.name == "xs") {
         return "subtitle-1";
       }
       return "subtitle-1 text-capitalize";
     },
   },
   created() {
-    this.$vuetify.lang.current = this.$i18n.locale;
+    this.$vuetify.locale.current.value = this.$i18n.locale;
   },
   methods: {
     ...mapActions(["setLocaleAction", "getCommonSettingsAction"]),
     async changeLocale(lang) {
       const to = this.$router.resolve({ params: { lang } });
       this.$i18n.locale = lang;
-      this.$vuetify.lang.current = lang;
+      this.$vuetify.locale.current.value = lang;
       this.setLocaleAction(this.$i18n.locale);
       await this.loadCommonSettings();
       this.$router.push(to.location);
     },
     conditionalLang(lang) {
-      if (this.$vuetify.breakpoint.name == "xs") {
+      if (this.$vuetify.display.name == "xs") {
         switch (lang) {
           case "de":
             return lang;

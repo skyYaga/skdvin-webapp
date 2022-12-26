@@ -29,7 +29,7 @@ describe("JumpdaysView.vue", () => {
   it("renders page when authorized", async () => {
     jumpersActionMock.mockReturnValueOnce("");
     const $auth = { getTokenSilently: jest.fn() };
-    $auth.getTokenSilently.mockReturnValue("unit-token");
+    this.$auth0.getTokenSilently.mockReturnValue("unit-token");
     const wrapper = shallowMount(JumpdaysView, {
       store,
       localVue,
@@ -46,7 +46,7 @@ describe("JumpdaysView.vue", () => {
   it("renders Unauthorized alert when not authorized", async () => {
     jumpersActionMock.mockReturnValueOnce(403);
     const $auth = { getTokenSilently: jest.fn() };
-    $auth.getTokenSilently.mockReturnValue("unit-token");
+    this.$auth0.getTokenSilently.mockReturnValue("unit-token");
     const wrapper = shallowMount(JumpdaysView, {
       store,
       localVue,
@@ -61,7 +61,7 @@ describe("JumpdaysView.vue", () => {
   });
   it("renders loading when not loaded", async () => {
     const $auth = { getTokenSilently: jest.fn() };
-    $auth.getTokenSilently.mockReturnValue("unit-token");
+    this.$auth0.getTokenSilently.mockReturnValue("unit-token");
     const wrapper = shallowMount(JumpdaysView, {
       store,
       localVue,

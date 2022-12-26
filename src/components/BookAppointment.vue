@@ -42,7 +42,7 @@
                 :disabled="slots !== null && appointment.selectedTime !== null"
                 required
                 ><InfoDialog
-                  slot="append-outer"
+                  v-slot="append-outer"
                   :heading="$t('tandem.tandem')"
                   :text="$t('tandem.info')"
                 />

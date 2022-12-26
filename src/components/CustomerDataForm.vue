@@ -73,10 +73,10 @@
         ></v-row>
         <v-textarea
           v-if="isAdminOrModerator"
-          :value="appointment.note"
+          :model-value="appointment.note"
           :label="$t('notes')"
-          outlined
-          @input="updateAppointmentNote"
+          variant="outlined"
+          @update:model-value="updateAppointmentNote"
         ></v-textarea>
         <v-row v-if="buttonVisible"
           ><v-btn class="mr-4" @click="back">{{ $t("back") }}</v-btn
@@ -108,6 +108,12 @@ export default {
       default: () => true,
     },
   },
+  emits: [
+    "on-customer-data-back",
+    "on-customer-data-continue",
+    "remove-jumper",
+    "update-appointment-note",
+  ],
   data: function () {
     return {
       adminBooking: false,

@@ -19,21 +19,21 @@
               {{ videoflyer.flyer.firstName }} {{ videoflyer.flyer.lastName }}
             </td>
             <td>
-              <v-simple-checkbox
+              <v-checkbox-btn
                 v-model="videoflyer.flyer.picAndVid"
                 disabled
-              ></v-simple-checkbox>
+              ></v-checkbox-btn>
             </td>
             <td>
-              <v-simple-checkbox
+              <v-checkbox-btn
                 v-model="videoflyer.allday"
                 disabled
-              ></v-simple-checkbox>
+              ></v-checkbox-btn>
             </td>
             <td>{{ videoflyer.from }}</td>
             <td>{{ videoflyer.to }}</td>
             <td>
-              <v-tooltip v-if="videoflyer.note" bottom>
+              <v-tooltip v-if="videoflyer.note" location="bottom">
                 <template #activator="{ on, attrs }">
                   <v-icon color="primary" dark v-bind="attrs" v-on="on">
                     mdi-note

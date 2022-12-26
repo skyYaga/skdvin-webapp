@@ -20,25 +20,25 @@
                       <v-text-field
                         v-model="languageSetting.dropzone.name"
                         :label="$t('dropzone.name')"
-                        @input="updateLanguageSettings()"
+                        @update:model-value="updateLanguageSettings()"
                       ></v-text-field></v-col
                     ><v-col cols="12"
                       ><v-text-field
                         v-model="languageSetting.dropzone.email"
                         :label="$t('email.email')"
-                        @input="updateLanguageSettings()"
+                        @update:model-value="updateLanguageSettings()"
                       ></v-text-field></v-col
                     ><v-col cols="12"
                       ><v-text-field
                         v-model="languageSetting.dropzone.phone"
                         :label="$t('tel')"
-                        @input="updateLanguageSettings()"
+                        @update:model-value="updateLanguageSettings()"
                       ></v-text-field></v-col
                     ><v-col cols="12"
                       ><v-text-field
                         v-model="languageSetting.dropzone.mobile"
                         :label="$t('mobile')"
-                        @input="updateLanguageSettings()"
+                        @update:model-value="updateLanguageSettings()"
                       ></v-text-field
                     ></v-col>
                   </v-row>
@@ -49,7 +49,7 @@
                       ><v-text-field
                         v-model="languageSetting.dropzone.priceListUrl"
                         :label="$t('pricelist.url')"
-                        @input="updateLanguageSettings()"
+                        @update:model-value="updateLanguageSettings()"
                       ></v-text-field
                     ></v-col>
                     <v-col cols="12"
@@ -58,34 +58,34 @@
                           languageSetting.dropzone.transportationAgreementUrl
                         "
                         :label="$t('transportationAgreement.url')"
-                        @input="updateLanguageSettings()"
+                        @update:model-value="updateLanguageSettings()"
                       ></v-text-field
                     ></v-col>
                     <v-col cols="12"
                       ><v-text-field
                         v-model="languageSetting.homepageHintTitle"
                         :label="$t('homepageHint.title')"
-                        @input="updateLanguageSettings()"
+                        @update:model-value="updateLanguageSettings()"
                       ></v-text-field
                     ></v-col>
                     <v-col cols="12">
                       <v-textarea
                         v-model="languageSetting.homepageHint"
-                        outlined
+                        variant="outlined"
                         rows="2"
                         auto-grow
                         :label="$t('homepageHint.hint')"
-                        @input="updateLanguageSettings()"
+                        @update:model-value="updateLanguageSettings()"
                       ></v-textarea
                     ></v-col>
                     <v-col cols="12">
                       <v-textarea
                         v-model="languageSetting.additionalReminderHint"
-                        outlined
+                        variant="outlined"
                         rows="2"
                         auto-grow
                         :label="$t('additionalReminderHint.hint')"
-                        @input="updateLanguageSettings()"
+                        @update:model-value="updateLanguageSettings()"
                       ></v-textarea
                     ></v-col>
                   </v-row>
@@ -106,24 +106,24 @@
                             ><v-text-field
                               v-model="pair.id"
                               type="number"
-                              @input="updateLanguageSettings()"
+                              @update:model-value="updateLanguageSettings()"
                             ></v-text-field
                           ></v-col>
                           <v-col cols="10">
                             <v-text-field
                               v-model="pair.question"
                               :label="$t('faq.question')"
-                              @input="updateLanguageSettings()"
+                              @update:model-value="updateLanguageSettings()"
                             ></v-text-field
                           ></v-col>
                           <v-col cols="12">
                             <v-textarea
                               v-model="pair.answer"
-                              outlined
+                              variant="outlined"
                               rows="3"
                               auto-grow
                               :label="$t('faq.answer')"
-                              @input="updateLanguageSettings()"
+                              @update:model-value="updateLanguageSettings()"
                             ></v-textarea></v-col
                         ></v-row>
                         <v-row
@@ -159,6 +159,7 @@ export default {
       },
     },
   },
+  emits: ["update-language-settings"],
   data() {
     return {
       tmpLanguageSettings: JSON.parse(JSON.stringify(this.languageSettings)),

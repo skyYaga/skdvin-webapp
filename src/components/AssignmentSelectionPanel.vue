@@ -3,28 +3,28 @@
     <v-form ref="form">
       <v-row>
         <v-checkbox
-          :input-value="assignment.assigned"
+          :model-value="assignment.assigned"
           :readonly="!isEditable"
           :disabled="!isEditable"
           :label="$d(getDate(day), 'dateYearMonthDayWeekdayLong')"
-          @change="updateAssignment('assigned', $event)"
+          @update:model-value="updateAssignment('assigned', $event)"
         ></v-checkbox
       ></v-row>
       <v-row>
         <v-checkbox
           v-if="assignment.assigned"
-          :input-value="assignment.allday"
+          :model-value="assignment.allday"
           :readonly="!isEditable"
           :disabled="!isEditable"
           class="pl-5 mt-n4"
           :label="$t('allDay')"
-          @change="updateAssignment('allday', $event)"
+          @update:model-value="updateAssignment('allday', $event)"
         ></v-checkbox
       ></v-row>
       <v-row v-if="assignment.assigned && !assignment.allday">
         <v-col :lg="6" :sm="12">
           <v-text-field
-            :value="assignment.from"
+            :model-value="assignment.from"
             class="pl-2 mt-n7"
             :label="$t('from')"
             placeholder="HH:MM"
@@ -32,12 +32,12 @@
             :readonly="!isEditable"
             :disabled="!isEditable"
             :rules="rules"
-            @input="updateAssignment('from', $event)"
+            @update:model-value="updateAssignment('from', $event)"
           ></v-text-field>
         </v-col>
         <v-col :lg="6" :sm="12">
           <v-text-field
-            :value="assignment.to"
+            :model-value="assignment.to"
             class="pl-2 mt-n7"
             :label="$t('to')"
             placeholder="HH:MM"
@@ -45,7 +45,7 @@
             :readonly="!isEditable"
             :disabled="!isEditable"
             :rules="rules"
-            @input="updateAssignment('to', $event)"
+            @update:model-value="updateAssignment('to', $event)"
           ></v-text-field>
         </v-col>
       </v-row>
@@ -53,15 +53,15 @@
         <v-col>
           <v-textarea
             v-if="assignment.assigned"
-            :value="assignment.note"
+            :model-value="assignment.note"
             class="pl-2 mt-n5"
             :label="$t('notes')"
             :readonly="!isEditable"
             :disabled="!isEditable"
             rows="1"
-            outlined
+            variant="outlined"
             auto-grow
-            @input="updateAssignment('note', $event)"
+            @update:model-value="updateAssignment('note', $event)"
           ></v-textarea>
         </v-col>
       </v-row>
@@ -86,6 +86,7 @@ export default {
     selfAssign: { type: Boolean, default: false },
     selfAssignmentMode: { type: String, default: "" },
   },
+  emits: ["update-assignment"],
   data: () => ({
     initiallyAssigned: false,
   }),

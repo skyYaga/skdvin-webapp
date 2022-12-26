@@ -10,14 +10,14 @@
                 v-model="tmpCommonSettings.selfAssignmentMode"
                 :label="$t('selfassignment.mode')"
                 :items="selfassignmentItems"
-                @change="updateCommonSettings()"
+                @update:model-value="updateCommonSettings()"
               ></v-select
             ></v-col>
             <v-col cols="12">
               <v-checkbox
                 v-model="tmpCommonSettings.picAndVidEnabled"
                 :label="$t('picAndVid.enabled')"
-                @change="updateCommonSettings()"
+                @update:model-value="updateCommonSettings()"
               ></v-checkbox
             ></v-col> </v-row></v-card-text
       ></v-card>
@@ -35,6 +35,7 @@ export default {
       },
     },
   },
+  emits: ["update-common-settings"],
   data() {
     return {
       tmpCommonSettings: JSON.parse(JSON.stringify(this.commonSettings)),

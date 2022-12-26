@@ -67,7 +67,7 @@ export default {
   methods: {
     ...mapActions(["getTandemmasterAction"]),
     async loadTandemmaster() {
-      await this.getTandemmasterAction(await this.$auth.getTokenSilently());
+      await this.getTandemmasterAction(await this.$auth0.getTokenSilently());
     },
     tandemmasterSelected(tm) {
       this.selectedTandemmaster = tm;

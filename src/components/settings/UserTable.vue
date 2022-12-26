@@ -2,7 +2,7 @@
   <v-card>
     <v-snackbar v-model="showHint" :color="hintColor" :timeout="5000">
       {{ hintText }}
-      <v-btn text @click="showHint = false">
+      <v-btn variant="text" @click="showHint = false">
         {{ $t("ok") }}
       </v-btn>
     </v-snackbar>
@@ -14,18 +14,17 @@
           <v-select
             v-model="currentUser.roles"
             :items="roles"
-            attach
             chips
             :label="$t('roles')"
             multiple
-            :menu-props="{ 'max-height': '100px' }"
+            :menu-props="{ 'max-height': '100px', attach: true }"
           ></v-select
         ></v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
-            color="blue darken-1"
-            text
+            color="blue-darken-1"
+            variant="text"
             :disabled="loading"
             :loading="loading"
             @click="updateUser"
@@ -37,14 +36,16 @@
     </v-dialog>
 
     <v-data-table
+      v-model:options="options"
       :headers="headers"
       :items="users"
-      :options.sync="options"
       :server-items-length="total"
       :loading="loading"
       :footer-props="footerProps"
       ><template #[`item.actions`]="{ item }">
-        <v-icon small class="mr-2" @click="editUser(item)"> mdi-pencil </v-icon>
+        <v-icon size="small" class="mr-2" @click="editUser(item)">
+          mdi-pencil
+        </v-icon>
       </template>
       <template #[`item.roles`]="{ item }">
         <span v-for="role in item.roles" :key="role.id">
@@ -106,7 +107,7 @@ export default {
       this.loading = true;
       const { page, itemsPerPage } = this.options;
 
-      let token = await this.$auth.getTokenSilently();
+      let token = await this.$auth0.getTokenSilently();
       let result = await this.getUsersAction({
         page: page - 1,
         itemsPerPage,
@@ -121,7 +122,7 @@ export default {
     async loadRoles() {
       this.loading = true;
       let result = await this.getRolesAction(
-        await this.$auth.getTokenSilently()
+        await this.$auth0.getTokenSilently()
       );
       this.loading = false;
       if (result.payload != null) {
@@ -142,7 +143,7 @@ export default {
       this.loading = true;
       let result = await this.updateUserAction({
         user: this.currentUser,
-        token: await this.$auth.getTokenSilently(),
+        token: await this.$auth0.getTokenSilently(),
       });
       this.dialog = false;
       this.loading = false;

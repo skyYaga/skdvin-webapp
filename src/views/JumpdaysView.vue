@@ -97,7 +97,7 @@ export default {
       this.message = this.$t("jumpday.loading");
       let unauthorizedMessage = await this.getJumpdaysAction({
         yearMonth: yearMonth,
-        token: await this.$auth.getTokenSilently(),
+        token: await this.$auth0.getTokenSilently(),
       });
       if (unauthorizedMessage !== "") {
         this.message = this.$t("accessdenied");

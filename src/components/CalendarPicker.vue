@@ -1,6 +1,7 @@
 <template>
   <v-date-picker
     v-model="picker"
+    v-model:picker-date="pickerDate"
     :landscape="landscape"
     :reactive="reactive"
     :full-width="fullWidth"
@@ -12,7 +13,6 @@
     :events="enableEvents ? functionEvents : null"
     :first-day-of-week="1"
     :locale="$i18n.locale"
-    :picker-date.sync="pickerDate"
     @click:date="onDateSelection"
   ></v-date-picker>
 </template>
@@ -25,6 +25,7 @@ export default {
       default: new Date().toISOString().substr(0, 10),
     },
   },
+  emits: ["handle-date-selection", "handle-month-change"],
   data() {
     return {
       picker: this.date,

@@ -45,10 +45,10 @@
           <v-date-picker
             ref="picker"
             v-model="jumper.dateOfBirth"
+            v-model:active-picker="activePicker"
             :max="maxDate14years"
             min="1920-01-01"
             :locale="$i18n.locale"
-            :active-picker.sync="activePicker"
             @change="save(jumper.dateOfBirth)"
           ></v-date-picker>
         </v-menu>
@@ -118,6 +118,7 @@ export default {
       },
     },
   },
+  emits: ["on-remove-jumper"],
   data: function () {
     return {
       jumper: {

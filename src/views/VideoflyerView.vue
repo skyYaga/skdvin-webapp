@@ -67,7 +67,7 @@ export default {
   methods: {
     ...mapActions(["getVideoflyerAction"]),
     async loadVideoflyer() {
-      await this.getVideoflyerAction(await this.$auth.getTokenSilently());
+      await this.getVideoflyerAction(await this.$auth0.getTokenSilently());
     },
     videoflyerSelected(tm) {
       this.selectedVideoflyer = tm;

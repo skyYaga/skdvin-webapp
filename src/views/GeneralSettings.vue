@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-snackbar v-model="showHint" :color="hintColor" :timeout="5000">
       {{ hintText }}
-      <v-btn text @click="showHint = false">
+      <v-btn variant="text" @click="showHint = false">
         {{ $t("ok") }}
       </v-btn> </v-snackbar
     ><v-row
@@ -108,7 +108,7 @@ export default {
     async loadSettings() {
       this.loading = true;
       let result = await this.getSettingsAction(
-        await this.$auth.getTokenSilently()
+        await this.$auth0.getTokenSilently()
       );
       this.loading = false;
       if (result.payload != null) {
@@ -124,12 +124,12 @@ export default {
       if (this.tmpSettings.id == null) {
         result = await this.saveSettingsAction({
           settings: this.tmpSettings,
-          token: await this.$auth.getTokenSilently(),
+          token: await this.$auth0.getTokenSilently(),
         });
       } else {
         result = await this.updateSettingsAction({
           settings: this.tmpSettings,
-          token: await this.$auth.getTokenSilently(),
+          token: await this.$auth0.getTokenSilently(),
         });
       }
       if (result.payload != null) {

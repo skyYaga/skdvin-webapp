@@ -33,32 +33,32 @@
       </p>
       <v-textarea
         v-if="appointment.note !== ''"
-        :value="appointment.note"
+        :model-value="appointment.note"
         disabled
         rows="1"
         auto-grow
-        solo
-        background-color="amber lighten-4"
+        variant="solo"
+        bg-color="amber lighten-4"
         class="text-body-2"
       ></v-textarea>
     </v-card-text>
     <v-card-actions class="mt-n5">
       <v-btn
-        small
+        size="small"
         :loading="loading"
         :disabled="loading"
         @click="changeAppointmentState('ACTIVE')"
         >{{ $t("active") }}</v-btn
       >
       <v-btn
-        small
+        size="small"
         :loading="loading"
         :disabled="loading"
         @click="changeAppointmentState('DONE')"
         >{{ $t("done") }}</v-btn
       >
       <v-btn
-        small
+        size="small"
         :loading="loading"
         :disabled="loading"
         @click="changeAppointmentState('CONFIRMED')"
@@ -99,7 +99,7 @@ export default {
     ...mapActions(["updateAppointmentStateAction"]),
     async changeAppointmentState(newState) {
       this.loading = true;
-      let token = await this.$auth.getTokenSilently();
+      let token = await this.$auth0.getTokenSilently();
       await this.updateAppointmentStateAction({
         appointmentId: this.appointment.appointmentId,
         appointmentState: {

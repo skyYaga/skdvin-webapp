@@ -101,6 +101,7 @@ export default {
       },
     },
   },
+  emits: ["update-jumpday"],
   methods: {
     calculateItems(minCount) {
       if (typeof minCount !== "undefined") {

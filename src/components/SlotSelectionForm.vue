@@ -1,7 +1,7 @@
 <template>
   <v-form>
     <v-select
-      :value="appointment.tandem"
+      :model-value="appointment.tandem"
       :items="items"
       :rules="[
         (v) => !!v || $t('rules.atLeast1Tandem'),
@@ -11,32 +11,32 @@
       :label="$t('tandem.tandems')"
       type="number"
       required
-      @change="updateAppointment('tandem', $event)"
+      @update:model-value="updateAppointment('tandem', $event)"
     ></v-select>
     <v-select
-      :value="appointment.picOrVid"
+      :model-value="appointment.picOrVid"
       :items="itemsZero"
       :rules="[availableSlotsRule, moreTandemThanVideoRule]"
       :label="$t('picOrVid.picOrVid')"
       type="number"
       required
-      @change="updateAppointment('picOrVid', $event)"
+      @update:model-value="updateAppointment('picOrVid', $event)"
     ></v-select>
     <v-select
-      :value="appointment.picAndVid"
+      :model-value="appointment.picAndVid"
       :items="itemsZero"
       :rules="[availableSlotsRule, moreTandemThanVideoRule]"
       :label="$t('picAndVid.picAndVid')"
       required
-      @change="updateAppointment('picAndVid', $event)"
+      @update:model-value="updateAppointment('picAndVid', $event)"
     ></v-select>
     <v-select
-      :value="appointment.handcam"
+      :model-value="appointment.handcam"
       :items="itemsZero"
       :rules="[availableSlotsRule, moreTandemThanVideoRule]"
       :label="$t('handcam.handcam')"
       required
-      @change="updateAppointment('handcam', $event)"
+      @update:model-value="updateAppointment('handcam', $event)"
     ></v-select>
   </v-form>
 </template>
@@ -57,6 +57,7 @@ export default {
       },
     },
   },
+  emits: ["update-appointment"],
   data: () => ({
     items: [1, 2, 3, 4, 5],
     itemsZero: [0, 1, 2, 3, 4, 5],

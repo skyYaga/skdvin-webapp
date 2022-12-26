@@ -1,15 +1,24 @@
+/**
+ * plugins/vuetify.js
+ *
+ * Framework documentation: https://vuetifyjs.com`
+ */
+
+// Styles
 import "@mdi/font/css/materialdesignicons.css";
-import Vue from "vue";
-import Vuetify from "vuetify/lib";
+import "vuetify/styles";
 
-Vue.use(Vuetify);
+// Composables
+import { createVuetify } from "vuetify";
 
-import en from "vuetify/es5/locale/en";
-import de from "vuetify/es5/locale/de";
+import { de, en } from "vuetify/locale";
 
-export default new Vuetify({
-  lang: {
-    locales: { en, de },
+// https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
+export default createVuetify({
+  locale: {
+    locale: de,
+    fallback: en,
+    messages: { de, en },
   },
   icons: {
     iconfont: "mdi",

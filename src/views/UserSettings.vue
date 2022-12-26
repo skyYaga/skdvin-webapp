@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-snackbar v-model="showHint" :color="hintColor" :timeout="5000">
       {{ hintText }}
-      <v-btn text @click="showHint = false">
+      <v-btn variant="text" @click="showHint = false">
         {{ $t("ok") }}
       </v-btn> </v-snackbar
     ><v-row

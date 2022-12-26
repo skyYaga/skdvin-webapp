@@ -3,7 +3,7 @@
     <NavBar />
     <v-main>
       <router-view />
-      <v-footer padless
+      <v-footer
         ><v-row justify="center" no-gutters>
           <v-btn
             v-for="link in links"
@@ -11,7 +11,7 @@
             :href="link.url"
             target="_blank"
             rel="noopener noreferrer"
-            text
+            variant="text"
             rounded
             class="mt-2"
           >
@@ -24,7 +24,7 @@
         </v-row>
       </v-footer>
     </v-main>
-    <v-overlay :value="overlay">
+    <v-overlay :model-value="overlay">
       <v-progress-circular indeterminate size="64"></v-progress-circular>
     </v-overlay>
   </v-app>
@@ -69,11 +69,11 @@ export default {
     ...mapActions(["setLocaleAction", "getCommonSettingsAction"]),
     // Log the user in
     login() {
-      this.$auth.loginWithRedirect();
+      this.$auth0.loginWithRedirect();
     },
     // Log the user out
     logout() {
-      this.$auth.logout({
+      this.$auth0.logout({
         returnTo: window.location.origin,
       });
     },
@@ -84,6 +84,6 @@ export default {
 };
 </script>
 
-<style lang="sass">
+<!--<style lang="sass">
 @import '../node_modules/typeface-roboto/index.css'
-</style>
+</style>-->

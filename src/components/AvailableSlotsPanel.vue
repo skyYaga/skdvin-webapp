@@ -49,6 +49,7 @@ export default {
       default: () => [],
     },
   },
+  emits: ["on-slot-selected"],
   computed: {
     getMonthsForSlots() {
       let arrayOfSlots = [

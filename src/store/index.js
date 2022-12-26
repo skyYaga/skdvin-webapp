@@ -1,5 +1,4 @@
-import Vue from "vue";
-import Vuex from "vuex";
+import { createStore } from "vuex";
 import {
   UPDATE_APPOINTMENT,
   GET_APPOINTMENTS,
@@ -15,8 +14,6 @@ import videoflyer from "./modules/videoflyer";
 
 import { appointmentService } from "../shared/appointment-service";
 import { userService } from "../shared/user-service";
-
-Vue.use(Vuex);
 
 const state = () => ({
   appointments: [],
@@ -176,14 +173,14 @@ const actions = {
 
 const getters = {};
 
-export default new Vuex.Store({
+export default createStore({
   modules: {
     jumpday,
     settings,
     tandemmaster,
     videoflyer,
   },
-  strict: process.env.NODE_ENV !== "production",
+  strict: import.meta.env.NODE_ENV !== "production",
   state,
   mutations,
   actions,

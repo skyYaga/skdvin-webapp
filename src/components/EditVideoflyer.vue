@@ -7,7 +7,7 @@
           :label="$t('firstName')"
           :rules="nameRules"
           required
-          @input="updateVideoflyer()"
+          @update:model-value="updateVideoflyer()"
         ></v-text-field></v-col
       ><v-col :lg="6"
         ><v-text-field
@@ -15,7 +15,7 @@
           :label="$t('lastName')"
           :rules="nameRules"
           required
-          @input="updateVideoflyer()"
+          @update:model-value="updateVideoflyer()"
         ></v-text-field></v-col
     ></v-row>
     <v-row dense
@@ -25,7 +25,7 @@
           type="tel"
           :label="$t('tel')"
           :rules="telRules"
-          @input="updateVideoflyer()"
+          @update:model-value="updateVideoflyer()"
         ></v-text-field></v-col
       ><v-col :lg="6"
         ><v-text-field
@@ -33,7 +33,7 @@
           type="email"
           :label="$t('email.email')"
           :rules="emailRules"
-          @input="updateVideoflyer()"
+          @update:model-value="updateVideoflyer()"
         ></v-text-field></v-col
     ></v-row>
     <v-row dense
@@ -41,14 +41,14 @@
         ><v-checkbox
           v-model="tmpVideoflyer.picAndVid"
           :label="$t('picAndVid.picAndVid')"
-          @change="updateVideoflyer()"
+          @update:model-value="updateVideoflyer()"
         ></v-checkbox
       ></v-col>
       <v-col :lg="6"
         ><v-checkbox
           v-model="tmpVideoflyer.favorite"
           :label="$t('favorite')"
-          @change="updateVideoflyer()"
+          @update:model-value="updateVideoflyer()"
         ></v-checkbox></v-col
     ></v-row>
   </v-container>
@@ -75,6 +75,7 @@ export default {
       }),
     },
   },
+  emits: ["update-videoflyer"],
   data: function () {
     return {
       nameRules: nameRules(this.$i18n),

@@ -67,6 +67,7 @@ export default {
     },
     update: { type: Boolean, default: () => false },
   },
+  emits: ["update-appointment"],
   data: () => ({
     valid: true,
     maxBookableSlots: {},

@@ -19,7 +19,7 @@
           </v-list-item-content>
         </v-list-item>
         <v-list-item
-          v-if="!$auth.loading && $auth.isAuthenticated && isAdminOrModerator"
+          v-if="!$auth0.loading && $auth0.isAuthenticated && isAdminOrModerator"
           link
           :to="'/' + $i18n.locale + '/jumpdays'"
         >
@@ -31,7 +31,7 @@
           </v-list-item-content>
         </v-list-item>
         <v-list-item
-          v-if="!$auth.loading && $auth.isAuthenticated && isAdminOrModerator"
+          v-if="!$auth0.loading && $auth0.isAuthenticated && isAdminOrModerator"
           link
           :to="'/' + $i18n.locale + '/appointments'"
         >
@@ -45,7 +45,7 @@
           </v-list-item-content>
         </v-list-item>
         <v-list-item
-          v-if="!$auth.loading && $auth.isAuthenticated && isAdminOrModerator"
+          v-if="!$auth0.loading && $auth0.isAuthenticated && isAdminOrModerator"
           link
           :to="'/' + $i18n.locale + '/tandemmaster'"
         >
@@ -59,7 +59,7 @@
           </v-list-item-content>
         </v-list-item>
         <v-list-item
-          v-if="!$auth.loading && $auth.isAuthenticated && isAdminOrModerator"
+          v-if="!$auth0.loading && $auth0.isAuthenticated && isAdminOrModerator"
           link
           :to="'/' + $i18n.locale + '/videoflyer'"
         >
@@ -73,7 +73,7 @@
           </v-list-item-content>
         </v-list-item>
         <v-list-item
-          v-if="!$auth.loading && $auth.isAuthenticated && isAdminOrModerator"
+          v-if="!$auth0.loading && $auth0.isAuthenticated && isAdminOrModerator"
           link
           :to="'/' + $i18n.locale + '/research'"
         >
@@ -85,7 +85,7 @@
           </v-list-item-content>
         </v-list-item>
         <v-list-group
-          v-if="!$auth.loading && $auth.isAuthenticated && isAdmin"
+          v-if="!$auth0.loading && $auth0.isAuthenticated && isAdmin"
           :value="false"
           prepend-icon="mdi-cog-outline"
           no-action
@@ -109,7 +109,7 @@
           </v-list-item>
         </v-list-group>
         <v-list-item
-          v-if="!$auth.loading && $auth.isAuthenticated"
+          v-if="!$auth0.loading && $auth0.isAuthenticated"
           link
           :to="'/' + $i18n.locale + '/profile'"
         >
@@ -121,7 +121,7 @@
           </v-list-item-content>
         </v-list-item>
         <v-list-item
-          v-if="!$auth.loading && !$auth.isAuthenticated"
+          v-if="!$auth0.loading && !$auth0.isAuthenticated"
           link
           @click="login"
         >
@@ -133,7 +133,7 @@
           </v-list-item-content>
         </v-list-item>
         <v-list-item
-          v-if="!$auth.loading && $auth.isAuthenticated"
+          v-if="!$auth0.loading && $auth0.isAuthenticated"
           link
           @click="logout"
         >
@@ -146,7 +146,7 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar app color="red" dark>
+    <v-app-bar app color="red">
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title>{{ getName }}</v-toolbar-title>
       <v-spacer></v-spacer>
@@ -192,11 +192,11 @@ export default {
     ...mapActions(["getCommonSettingsAction"]),
     // Log the user in
     login() {
-      this.$auth.loginWithRedirect();
+      this.$auth0.loginWithRedirect();
     },
     // Log the user out
     logout() {
-      this.$auth.logout({
+      this.$auth0.logout({
         returnTo: window.location.origin,
       });
     },

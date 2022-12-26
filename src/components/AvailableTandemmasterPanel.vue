@@ -20,21 +20,21 @@
               {{ tandemmaster.flyer.lastName }}
             </td>
             <td>
-              <v-simple-checkbox
+              <v-checkbox-btn
                 v-model="tandemmaster.flyer.handcam"
                 disabled
-              ></v-simple-checkbox>
+              ></v-checkbox-btn>
             </td>
             <td>
-              <v-simple-checkbox
+              <v-checkbox-btn
                 v-model="tandemmaster.allday"
                 disabled
-              ></v-simple-checkbox>
+              ></v-checkbox-btn>
             </td>
             <td>{{ tandemmaster.from }}</td>
             <td>{{ tandemmaster.to }}</td>
             <td>
-              <v-tooltip v-if="tandemmaster.note" bottom>
+              <v-tooltip v-if="tandemmaster.note" location="bottom">
                 <template #activator="{ on, attrs }">
                   <v-icon color="primary" dark v-bind="attrs" v-on="on">
                     mdi-note

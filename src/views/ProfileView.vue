@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-row>
       <v-col>
-        <h2>{{ $auth.user.email }}</h2>
+        <h2>{{ $auth0.user.email }}</h2>
       </v-col>
     </v-row>
     <v-row v-if="!loading && tmError">
@@ -43,7 +43,7 @@
           ><v-card-text
             ><ul>
               <li
-                v-for="role in $auth.user['https://skdv.in/roles']"
+                v-for="role in $auth0.user['https://skdv.in/roles']"
                 :key="role"
               >
                 {{ role }}
@@ -96,7 +96,7 @@ export default {
     ...mapActions(["getMeTandemmasterAction", "getMeVideoflyerAction"]),
     async loadTandemmaster() {
       let result = await this.getMeTandemmasterAction(
-        await this.$auth.getTokenSilently()
+        await this.$auth0.getTokenSilently()
       );
 
       if (!result.success) {
@@ -107,7 +107,7 @@ export default {
     },
     async loadVideoflyer() {
       let result = await this.getMeVideoflyerAction(
-        await this.$auth.getTokenSilently()
+        await this.$auth0.getTokenSilently()
       );
       if (!result.success) {
         this.vfError = true;
