@@ -132,7 +132,7 @@ const updateAppointmentState = async function (
 
 const updateAppointment = async function (appointment, token, locale) {
   try {
-    const response = await axios.put(apiPath + "/appointment/", appointment, {
+    const response = await axios.put(apiPath + "/appointment", appointment, {
       headers: {
         Authorization: `Bearer ${token}`,
         "Accept-Language": `${locale}`,
