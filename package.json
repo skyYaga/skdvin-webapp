@@ -20,7 +20,7 @@
     "axios": "^0.27.2",
     "core-js": "^3.29.1",
     "dompurify": "^3.0.1",
-    "luxon": "^3.2.1",
+    "luxon": "^3.3.0",
     "@mdi/font": "^7.1.96",
     "tiptap": "^1.32.2",
     "tiptap-extensions": "^1.35.2",
