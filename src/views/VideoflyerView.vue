@@ -38,11 +38,16 @@
 import { mapActions, mapState } from "vuex";
 import VideoflyerList from "../components/VideoflyerList.vue";
 import VideoflyerAssignPanel from "../components/VideoflyerAssignPanel.vue";
+import { useAuth0 } from "@auth0/auth0-vue";
 
 export default {
   components: {
     VideoflyerList,
     VideoflyerAssignPanel,
+  },
+  setup() {
+    const { getAccessTokenSilently } = useAuth0();
+    return { getAccessTokenSilently };
   },
   data: () => ({
     menu: false,
@@ -67,7 +72,7 @@ export default {
   methods: {
     ...mapActions(["getVideoflyerAction"]),
     async loadVideoflyer() {
-      await this.getVideoflyerAction(await this.$auth0.getTokenSilently());
+      await this.getVideoflyerAction(await this.getAccessTokenSilently());
     },
     videoflyerSelected(tm) {
       this.selectedVideoflyer = tm;

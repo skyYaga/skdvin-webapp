@@ -25,8 +25,8 @@
           <v-checkbox :rules="[(v) => !!v || $t('rules.privacyPolicy')]"
             ><template #label
               ><div>
-                <i18n
-                  path="privacyPolicy.accept"
+                <i18n-t
+                  keypath="privacyPolicy.accept"
                   tag="label"
                   for="privacyPolicy.privacyPolicy"
                 >
@@ -37,7 +37,7 @@
                     @click.stop
                     >{{ $t("privacyPolicy.privacyPolicy") }}</a
                   >
-                </i18n>
+                </i18n-t>
               </div></template
             ></v-checkbox
           >
@@ -68,6 +68,7 @@
 import { mapActions } from "vuex";
 import AppointmentDetailsPanel from "./AppointmentDetailsPanel.vue";
 import { roleUtil } from "../shared/roles";
+import { useAuth0 } from "@auth0/auth0-vue";
 
 export default {
   components: {
@@ -82,6 +83,10 @@ export default {
     },
   },
   emits: ["on-customer-confirmation-back"],
+  setup() {
+    const { getAccessTokenSilently } = useAuth0();
+    return { getAccessTokenSilently };
+  },
   data: () => ({
     valid: false,
     loading: false,
@@ -100,7 +105,7 @@ export default {
         if (roleUtil.isAdminOrModerator(this.$auth)) {
           result = await this.addAdminAppointmentAction({
             appointment: this.appointment,
-            token: await this.$auth0.getTokenSilently(),
+            token: await this.getAccessTokenSilently(),
           });
         } else {
           result = await this.addAppointmentAction(this.appointment);

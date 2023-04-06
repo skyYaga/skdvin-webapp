@@ -61,6 +61,7 @@ import AvailableTandemmasterPanel from "../components/AvailableTandemmasterPanel
 import AvailableVideoflyerPanel from "../components/AvailableVideoflyerPanel.vue";
 import { mapActions, mapState, mapGetters } from "vuex";
 import { DateTime } from "luxon";
+import { useAuth0 } from "@auth0/auth0-vue";
 
 export default {
   name: "JumpdaysView",
@@ -70,6 +71,10 @@ export default {
     EditJumpdayPanel,
     AvailableTandemmasterPanel,
     AvailableVideoflyerPanel,
+  },
+  setup() {
+    const { getAccessTokenSilently } = useAuth0();
+    return { getAccessTokenSilently };
   },
   data() {
     return {
@@ -97,7 +102,7 @@ export default {
       this.message = this.$t("jumpday.loading");
       let unauthorizedMessage = await this.getJumpdaysAction({
         yearMonth: yearMonth,
-        token: await this.$auth0.getTokenSilently(),
+        token: await this.getAccessTokenSilently(),
       });
       if (unauthorizedMessage !== "") {
         this.message = this.$t("accessdenied");

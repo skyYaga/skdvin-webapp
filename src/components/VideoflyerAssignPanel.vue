@@ -79,6 +79,7 @@ import { mapActions } from "vuex";
 import { DateTime } from "luxon";
 import { converters } from "../shared/converters";
 import AssignmentSelectionPanel from "./AssignmentSelectionPanel.vue";
+import { useAuth0 } from "@auth0/auth0-vue";
 
 export default {
   components: {
@@ -93,6 +94,10 @@ export default {
     },
     selfAssign: { type: Boolean, default: false },
     selfAssignmentMode: { type: String, default: "" },
+  },
+  setup() {
+    const { getAccessTokenSilently } = useAuth0();
+    return { getAccessTokenSilently };
   },
   data: () => ({
     message: "",
@@ -130,7 +135,7 @@ export default {
       } else {
         let result = await this.getVideoflyerDetailsAction({
           videoflyerId: this.videoflyer.id,
-          token: await this.$auth0.getTokenSilently(),
+          token: await this.getAccessTokenSilently(),
         });
         this.videoflyerDetails = result.payload;
       }
@@ -152,12 +157,12 @@ export default {
       if (this.selfAssign) {
         result = await this.updateMeVideoflyerAssigmentsAction({
           videoflyerDetails: this.videoflyerDetails,
-          token: await this.$auth0.getTokenSilently(),
+          token: await this.getAccessTokenSilently(),
         });
       } else {
         result = await this.updateVideoflyerAssigmentsAction({
           videoflyerDetails: this.videoflyerDetails,
-          token: await this.$auth0.getTokenSilently(),
+          token: await this.getAccessTokenSilently(),
         });
       }
 

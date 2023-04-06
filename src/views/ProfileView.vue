@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-row>
       <v-col>
-        <h2>{{ $auth0.user.email }}</h2>
+        <h2>{{ user.email }}</h2>
       </v-col>
     </v-row>
     <v-row v-if="!loading && tmError">
@@ -43,7 +43,7 @@
           ><v-card-text
             ><ul>
               <li
-                v-for="role in $auth0.user['https://skdv.in/roles']"
+                v-for="role in user['https://skdv.in/roles']"
                 :key="role"
               >
                 {{ role }}
@@ -61,11 +61,16 @@ import { roleUtil } from "../shared/roles";
 import { mapActions, mapState } from "vuex";
 import VideoflyerAssignPanel from "../components/VideoflyerAssignPanel.vue";
 import TandemmasterAssignPanel from "../components/TandemmasterAssignPanel.vue";
+import { useAuth0 } from "@auth0/auth0-vue";
 
 export default {
   components: {
     TandemmasterAssignPanel,
     VideoflyerAssignPanel,
+  },
+  setup() {
+    const { getAccessTokenSilently, user } = useAuth0();
+    return { getAccessTokenSilently, user };
   },
   data: () => ({
     loading: true,
@@ -96,7 +101,7 @@ export default {
     ...mapActions(["getMeTandemmasterAction", "getMeVideoflyerAction"]),
     async loadTandemmaster() {
       let result = await this.getMeTandemmasterAction(
-        await this.$auth0.getTokenSilently()
+        await this.getAccessTokenSilently()
       );
 
       if (!result.success) {
@@ -107,7 +112,7 @@ export default {
     },
     async loadVideoflyer() {
       let result = await this.getMeVideoflyerAction(
-        await this.$auth0.getTokenSilently()
+        await this.getAccessTokenSilently()
       );
       if (!result.success) {
         this.vfError = true;

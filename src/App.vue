@@ -67,16 +67,6 @@ export default {
   },
   methods: {
     ...mapActions(["setLocaleAction", "getCommonSettingsAction"]),
-    // Log the user in
-    login() {
-      this.$auth0.loginWithRedirect();
-    },
-    // Log the user out
-    logout() {
-      this.$auth0.logout({
-        returnTo: window.location.origin,
-      });
-    },
     async loadCommonSettings() {
       await this.getCommonSettingsAction();
     },

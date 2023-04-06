@@ -1,5 +1,5 @@
 <template>
-  <v-dialog slot="append-outer" v-model="dialog" width="300"
+  <v-dialog v-model="dialog" width="300"
     ><template #activator="{ on }"
       ><v-icon v-on="on">mdi-information</v-icon></template
     ><v-card>

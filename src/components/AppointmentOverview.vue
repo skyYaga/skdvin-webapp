@@ -70,6 +70,7 @@
 
 <script>
 import { mapActions } from "vuex";
+import { useAuth0 } from "@auth0/auth0-vue";
 
 export default {
   name: "AppointmentOverview",
@@ -78,6 +79,10 @@ export default {
       type: Object,
       default: () => {},
     },
+  },
+  setup() {
+    const { getAccessTokenSilently } = useAuth0();
+    return { getAccessTokenSilently };
   },
   data: () => ({ loading: false }),
   computed: {
@@ -99,7 +104,7 @@ export default {
     ...mapActions(["updateAppointmentStateAction"]),
     async changeAppointmentState(newState) {
       this.loading = true;
-      let token = await this.$auth0.getTokenSilently();
+      let token = await this.getAccessTokenSilently();
       await this.updateAppointmentStateAction({
         appointmentId: this.appointment.appointmentId,
         appointmentState: {

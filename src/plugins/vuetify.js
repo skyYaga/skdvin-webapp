@@ -13,6 +13,19 @@ import { createVuetify } from "vuetify";
 
 import { de, en } from "vuetify/locale";
 
+const lightTheme = {
+  dark: false,
+  colors: {
+    primary: "#f44336",
+    secondary: "#607d8b",
+    accent: "#3f51b5",
+    error: "#ff5722",
+    warning: "#ff9800",
+    info: "#03a9f4",
+    success: "#4caf50",
+  },
+};
+
 // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
 export default createVuetify({
   locale: {
@@ -24,16 +37,9 @@ export default createVuetify({
     iconfont: "mdi",
   },
   theme: {
+    defaultTheme: "light",
     themes: {
-      light: {
-        primary: "#f44336",
-        secondary: "#607d8b",
-        accent: "#3f51b5",
-        error: "#ff5722",
-        warning: "#ff9800",
-        info: "#03a9f4",
-        success: "#4caf50",
-      },
+      lightTheme,
     },
   },
 });

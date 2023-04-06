@@ -166,6 +166,7 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 import { DateTime, Duration } from "luxon";
+import { useAuth0 } from "@auth0/auth0-vue";
 
 export default {
   props: {
@@ -177,6 +178,10 @@ export default {
     },
   },
   emits: ["handle-dirty-jumpday", "handle-jumpday-changed"],
+  setup() {
+    const { getAccessTokenSilently } = useAuth0();
+    return { getAccessTokenSilently };
+  },
   data: () => ({
     settings: {
       startHour: "09",
@@ -246,7 +251,7 @@ export default {
     async loadSettings() {
       this.loading = true;
       let result = await this.getSettingsAction(
-        await this.$auth0.getTokenSilently()
+        await this.getAccessTokenSilently()
       );
       this.loading = false;
       if (result.payload != null) {
@@ -302,7 +307,7 @@ export default {
 
       let result = await this.addJumpdayAction({
         jumpday: newJumpday,
-        token: await this.$auth0.getTokenSilently(),
+        token: await this.getAccessTokenSilently(),
       });
       if (result.success) {
         this.onJumpdayChanged(result.payload.date);
@@ -317,7 +322,7 @@ export default {
       this.updating = true;
       let result = await this.updateJumpdayAction({
         jumpday: this.jumpday,
-        token: await this.$auth0.getTokenSilently(),
+        token: await this.getAccessTokenSilently(),
       });
       this.onJumpdayChanged(this.jumpday.date);
       this.updating = false;
@@ -386,7 +391,7 @@ export default {
       this.updating = true;
       let result = await this.deleteJumpdayAction({
         date: this.jumpday.date,
-        token: await this.$auth0.getTokenSilently(),
+        token: await this.getAccessTokenSilently(),
       });
       this.onJumpdayChanged(this.jumpday.date);
       this.updating = false;

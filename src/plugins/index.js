@@ -10,7 +10,7 @@ import vuetify from "./vuetify";
 import i18n from "./i18n";
 import store from "../store";
 import router from "../router";
-import auth0 from "./auth0";
+import { auth0 } from "./auth0";
 import * as Sentry from "@sentry/vue";
 import { BrowserTracing } from "@sentry/tracing";
 

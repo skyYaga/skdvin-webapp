@@ -36,7 +36,7 @@
       ></v-row>
       <v-row v-for="time in getBookedTimes" :key="time" dense class="pt-4">
         <v-col cols="12"
-          ><v-subheader class="text-h4"> {{ time }} </v-subheader>
+          ><v-list-subheader class="text-h4"> {{ time }} </v-list-subheader>
           <v-divider></v-divider
         ></v-col>
         <v-col
@@ -64,6 +64,7 @@ import JumpdayAppointmentStatsPanel from "../components/appointments/JumpdayAppo
 import CalendarPicker from "../components/CalendarPicker.vue";
 import { mapActions, mapState, mapGetters } from "vuex";
 import { DateTime } from "luxon";
+import { useAuth0 } from "@auth0/auth0-vue";
 
 export default {
   name: "AppointmentsView",
@@ -73,6 +74,10 @@ export default {
     AvailableTandemmasterPanel,
     AvailableVideoflyerPanel,
     JumpdayAppointmentStatsPanel,
+  },
+  setup() {
+    const { getAccessTokenSilently } = useAuth0();
+    return { getAccessTokenSilently };
   },
   data: () => ({
     menu: false,
@@ -143,7 +148,7 @@ export default {
       this.message = this.$t("jumpday.loading");
       let unauthorizedMessage = await this.getJumpdaysAction({
         yearMonth: yearMonth,
-        token: await this.$auth0.getTokenSilently(),
+        token: await this.getAccessTokenSilently(),
       });
       if (unauthorizedMessage !== "") {
         this.message = this.$t("accessdenied");
@@ -156,7 +161,7 @@ export default {
     },
     async loadAppointments() {
       if (this.authorized) {
-        let token = await this.$auth0.getTokenSilently();
+        let token = await this.getAccessTokenSilently();
         await this.getAppointmentsAction({ date: this.date, token });
       }
     },

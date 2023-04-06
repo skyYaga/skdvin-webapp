@@ -1,148 +1,115 @@
 <template>
   <div>
-    <v-navigation-drawer v-model="drawer" app>
-      <v-list dense>
+    <v-navigation-drawer v-model="drawer">
+      <v-list density="comfortable" nav>
         <v-list-item link :to="'/' + $i18n.locale + '/home'">
-          <v-list-item-action>
+          <template #prepend>
             <v-icon>mdi-home</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>{{ $t("home") }}</v-list-item-title>
-          </v-list-item-content>
+          </template>
+          <v-list-item-title>{{ $t("home") }}</v-list-item-title>
         </v-list-item>
         <v-list-item link :to="'/' + $i18n.locale + '/faq'">
-          <v-list-item-action>
+          <template #prepend>
             <v-icon>mdi-frequently-asked-questions</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>{{ $t("faq.faq") }}</v-list-item-title>
-          </v-list-item-content>
+          </template>
+          <v-list-item-title>{{ $t("faq.faq") }}</v-list-item-title>
         </v-list-item>
         <v-list-item
-          v-if="!$auth0.loading && $auth0.isAuthenticated && isAdminOrModerator"
+          v-if="!isLoading && isAuthenticated && isAdminOrModerator"
           link
           :to="'/' + $i18n.locale + '/jumpdays'"
         >
-          <v-list-item-action>
+          <template #prepend>
             <v-icon>mdi-calendar-month</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>{{ $t("jumpday.jumpdays") }}</v-list-item-title>
-          </v-list-item-content>
+          </template>
+          <v-list-item-title>{{ $t("jumpday.jumpdays") }}</v-list-item-title>
         </v-list-item>
         <v-list-item
-          v-if="!$auth0.loading && $auth0.isAuthenticated && isAdminOrModerator"
+          v-if="!isLoading && isAuthenticated && isAdminOrModerator"
           link
           :to="'/' + $i18n.locale + '/appointments'"
         >
-          <v-list-item-action>
+          <template #prepend>
             <v-icon>mdi-calendar-today</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>{{
-              $t("appointment.appointments")
-            }}</v-list-item-title>
-          </v-list-item-content>
+          </template>
+          <v-list-item-title>{{
+            $t("appointment.appointments")
+          }}</v-list-item-title>
         </v-list-item>
         <v-list-item
-          v-if="!$auth0.loading && $auth0.isAuthenticated && isAdminOrModerator"
+          v-if="!isLoading && isAuthenticated && isAdminOrModerator"
           link
           :to="'/' + $i18n.locale + '/tandemmaster'"
         >
-          <v-list-item-action>
+          <template #prepend>
             <v-icon>mdi-account-supervisor</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>{{
-              $t("tandemmaster.tandemmaster")
-            }}</v-list-item-title>
-          </v-list-item-content>
+          </template>
+          <v-list-item-title>{{
+            $t("tandemmaster.tandemmaster")
+          }}</v-list-item-title>
         </v-list-item>
         <v-list-item
-          v-if="!$auth0.loading && $auth0.isAuthenticated && isAdminOrModerator"
+          v-if="!isLoading && isAuthenticated && isAdminOrModerator"
           link
           :to="'/' + $i18n.locale + '/videoflyer'"
         >
-          <v-list-item-action>
+          <template #prepend>
             <v-icon>mdi-camera</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>{{
-              $t("videoflyer.videoflyer")
-            }}</v-list-item-title>
-          </v-list-item-content>
+          </template>
+          <v-list-item-title>{{
+            $t("videoflyer.videoflyer")
+          }}</v-list-item-title>
         </v-list-item>
         <v-list-item
-          v-if="!$auth0.loading && $auth0.isAuthenticated && isAdminOrModerator"
+          v-if="!isLoading && isAuthenticated && isAdminOrModerator"
           link
           :to="'/' + $i18n.locale + '/research'"
         >
-          <v-list-item-action>
+          <template #prepend>
             <v-icon>mdi-magnify</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>{{ $t("research.research") }}</v-list-item-title>
-          </v-list-item-content>
+          </template>
+          <v-list-item-title>{{ $t("research.research") }}</v-list-item-title>
         </v-list-item>
         <v-list-group
-          v-if="!$auth0.loading && $auth0.isAuthenticated && isAdmin"
-          :value="false"
-          prepend-icon="mdi-cog-outline"
-          no-action
+          v-if="!isLoading && isAuthenticated && isAdmin"
+          value="Settings"
         >
-          <template #activator>
-            <v-list-item-content>
-              <v-list-item-title>{{
-                $t("settings.settings")
-              }}</v-list-item-title>
-            </v-list-item-content>
+          <template v-slot:activator="{ props }">
+            <v-list-item
+              v-bind="props"
+              prepend-icon="mdi-cog-outline"
+              :title="$t('settings.settings')"
+            ></v-list-item>
           </template>
+
           <v-list-item link :to="'/' + $i18n.locale + '/settings/general'">
-            <v-list-item-content>
-              <v-list-item-title>{{ $t("general") }}</v-list-item-title>
-            </v-list-item-content>
+            <v-list-item-title>{{ $t("general") }}</v-list-item-title>
           </v-list-item>
           <v-list-item link :to="'/' + $i18n.locale + '/settings/users'">
-            <v-list-item-content>
-              <v-list-item-title>{{ $t("users") }}</v-list-item-title>
-            </v-list-item-content>
+            <v-list-item-title>{{ $t("users") }}</v-list-item-title>
           </v-list-item>
         </v-list-group>
         <v-list-item
-          v-if="!$auth0.loading && $auth0.isAuthenticated"
+          v-if="!isLoading && isAuthenticated"
           link
           :to="'/' + $i18n.locale + '/profile'"
         >
-          <v-list-item-action>
+          <template #prepend>
             <v-icon>mdi-account</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>{{ $t("profile") }}</v-list-item-title>
-          </v-list-item-content>
+          </template>
+          <v-list-item-title>{{ $t("profile") }}</v-list-item-title>
         </v-list-item>
-        <v-list-item
-          v-if="!$auth0.loading && !$auth0.isAuthenticated"
-          link
-          @click="login"
-        >
-          <v-list-item-action>
+        <v-list-item v-if="!isLoading && !isAuthenticated" link @click="login">
+          <template #prepend>
             <v-icon>mdi-login</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>{{ $t("login") }}</v-list-item-title>
-          </v-list-item-content>
+          </template>
+          <v-list-item-title>{{ $t("login") }}</v-list-item-title>
         </v-list-item>
-        <v-list-item
-          v-if="!$auth0.loading && $auth0.isAuthenticated"
-          link
-          @click="logout"
-        >
-          <v-list-item-action>
+        <v-list-item v-if="!isLoading && isAuthenticated" link @click="logout">
+          <template #prepend>
             <v-icon>mdi-logout</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>{{ $t("logout") }}</v-list-item-title>
-          </v-list-item-content>
+          </template>
+          <v-list-item-title>{{ $t("logout") }}</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
@@ -159,11 +126,28 @@
 import { mapGetters, mapActions } from "vuex";
 import { roleUtil } from "../shared/roles";
 import LocaleChanger from "../components/LocaleChanger.vue";
+import { useAuth0 } from "@auth0/auth0-vue";
 
 export default {
   name: "NavBar",
   components: {
     LocaleChanger,
+  },
+  setup() {
+    const { loginWithRedirect, logout, isLoading, isAuthenticated, user } =
+      useAuth0();
+
+    return {
+      login: () => {
+        loginWithRedirect();
+      },
+      logout: () => {
+        logout({ logoutParams: { returnTo: window.location.origin } });
+      },
+      isLoading,
+      isAuthenticated,
+      user,
+    };
   },
   data: () => ({
     drawer: null,
@@ -182,24 +166,14 @@ export default {
       return "";
     },
     isAdmin() {
-      return roleUtil.isAdmin(this.$auth);
+      return roleUtil.isAdmin(this.user);
     },
     isAdminOrModerator() {
-      return roleUtil.isAdminOrModerator(this.$auth);
+      return roleUtil.isAdminOrModerator(this.user);
     },
   },
   methods: {
     ...mapActions(["getCommonSettingsAction"]),
-    // Log the user in
-    login() {
-      this.$auth0.loginWithRedirect();
-    },
-    // Log the user out
-    logout() {
-      this.$auth0.logout({
-        returnTo: window.location.origin,
-      });
-    },
   },
 };
 </script>

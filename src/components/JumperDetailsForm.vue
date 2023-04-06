@@ -69,16 +69,16 @@
         ></v-checkbox></v-col
       ><v-col cols="6" :lg="4"
         ><v-checkbox v-model="jumper.voucher" :label="$t('voucher.voucher')"
-          ><InfoDialog
-            slot="append"
-            :heading="$t('voucher.voucher')"
-            :text="$t('voucher.info')" /></v-checkbox></v-col
+          ><template #append
+            ><InfoDialog
+              :heading="$t('voucher.voucher')"
+              :text="$t('voucher.info')" /></template></v-checkbox></v-col
     ></v-row>
     <v-row
       ><v-col
         ><v-alert v-if="!isAdmin && isMinor" text type="error" prominent>
           <div class="text-h6">{{ $t("minors") }}</div>
-          <i18n path="transportationHint" tag="div">
+          <i18n-t keypath="transportationHint" tag="div">
             <template #url>
               <a
                 :href="
@@ -89,7 +89,7 @@
                 >{{ $t("transportationAgreement.download") }}</a
               >
             </template>
-          </i18n>
+          </i18n-t>
         </v-alert></v-col
       ></v-row
     >

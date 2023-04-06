@@ -7,7 +7,7 @@
   >
     <template #expanded-item="{ headers, item }">
       <td :colspan="headers.length">
-        <v-simple-table class="my-5"
+        <v-table class="my-5"
           ><thead>
             <tr>
               <th scope="col">{{ $t("time") }}</th>
@@ -25,7 +25,7 @@
               <td>{{ slot.picAndVidAvailable }}</td>
               <td>{{ slot.handcamAvailable }}</td>
             </tr>
-          </tbody></v-simple-table
+          </tbody></v-table
         >
       </td>
     </template>
@@ -35,8 +35,13 @@
 <script>
 import { DateTime } from "luxon";
 import { mapState } from "vuex";
+import { VDataTable } from 'vuetify/labs/VDataTable'
+
 
 export default {
+  components: {
+    VDataTable,
+  },
   data() {
     return {
       researchTableHeaders: [

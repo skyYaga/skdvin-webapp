@@ -7,7 +7,7 @@
             $t("welcome.title", { name: commonSettings.dropzone.name })
           }}</v-card-title>
           <v-card-text class="text-subtitle-1"
-            ><i18n path="welcome.message">
+            ><i18n-t keypath="welcome.message">
               <template #mail
                 ><a :href="'mailto:' + commonSettings.dropzone.email">{{
                   commonSettings.dropzone.email
@@ -21,7 +21,7 @@
               <template #br><br /></template>
               <template #tel>{{
                 commonSettings.dropzone.mobile
-              }}</template></i18n
+              }}</template></i18n-t
             ></v-card-text
           >
         </v-card>
@@ -41,11 +41,11 @@
                 type="number"
                 :disabled="slots !== null && appointment.selectedTime !== null"
                 required
-                ><InfoDialog
-                  v-slot="append-outer"
-                  :heading="$t('tandem.tandem')"
-                  :text="$t('tandem.info')"
-                />
+                ><template #append-outer
+                  ><InfoDialog
+                    :heading="$t('tandem.tandem')"
+                    :text="$t('tandem.info')"
+                /></template>
               </v-select>
               <v-select
                 v-model="appointment.picOrVid"
@@ -55,11 +55,11 @@
                 type="number"
                 :disabled="slots !== null && appointment.selectedTime !== null"
                 required
-                ><InfoDialog
-                  slot="append-outer"
-                  :heading="$t('picOrVid.picOrVid')"
-                  :text="$t('picOrVid.info')"
-              /></v-select>
+                ><template #append-outer
+                  ><InfoDialog
+                    :heading="$t('picOrVid.picOrVid')"
+                    :text="$t('picOrVid.info')" /></template
+              ></v-select>
               <v-select
                 v-if="commonSettings.picAndVidEnabled"
                 v-model="appointment.picAndVid"
@@ -68,11 +68,11 @@
                 :label="$t('picAndVid.count')"
                 :disabled="slots !== null && appointment.selectedTime !== null"
                 required
-                ><InfoDialog
-                  slot="append-outer"
-                  :heading="$t('picAndVid.picAndVid')"
-                  :text="$t('picAndVid.info')"
-              /></v-select>
+                ><template #append-outer
+                  ><InfoDialog
+                    :heading="$t('picAndVid.picAndVid')"
+                    :text="$t('picAndVid.info')" /></template
+              ></v-select>
               <v-select
                 v-model="appointment.handcam"
                 :items="isAdmin ? itemsAdminZero : itemsZero"
@@ -80,11 +80,11 @@
                 :label="$t('handcam.count')"
                 :disabled="slots !== null && appointment.selectedTime !== null"
                 required
-                ><InfoDialog
-                  slot="append-outer"
-                  :heading="$t('handcam.handcam')"
-                  :text="$t('handcam.info')"
-              /></v-select>
+                ><template #append-outer
+                  ><InfoDialog
+                    :heading="$t('handcam.handcam')"
+                    :text="$t('handcam.info')" /></template
+              ></v-select>
               <v-btn
                 class="mr-4"
                 :loading="loading"
@@ -169,6 +169,7 @@ import AvailableSlotsPanel from "./AvailableSlotsPanel.vue";
 import InfoDialog from "./InfoDialog.vue";
 import { DateTime } from "luxon";
 import { roleUtil } from "../shared/roles";
+import { auth0 } from "../plugins/auth0";
 
 export default {
   components: {
@@ -263,7 +264,7 @@ export default {
       return rules;
     },
     isAdmin() {
-      return roleUtil.isAdmin(this.$auth);
+      return roleUtil.isAdmin(auth0);
     },
   },
   watch: {

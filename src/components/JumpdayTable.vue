@@ -5,7 +5,7 @@
         <v-card>
           <v-card-title>{{ slot.time }}</v-card-title>
 
-          <v-simple-table>
+          <v-table>
             <template #default>
               <thead>
                 <tr>
@@ -72,7 +72,7 @@
                 </tr>
               </tbody>
             </template>
-          </v-simple-table>
+          </v-table>
           <v-card-actions
             ><v-spacer></v-spacer
             ><v-icon

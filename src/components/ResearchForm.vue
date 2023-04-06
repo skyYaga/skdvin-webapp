@@ -25,8 +25,13 @@
 
 <script>
 import { mapActions } from "vuex";
+import { useAuth0 } from "@auth0/auth0-vue";
 
 export default {
+  setup() {
+    const { getAccessTokenSilently } = useAuth0();
+    return { getAccessTokenSilently };
+  },
   data: () => ({
     loading: false,
     tandemCount: 1,
@@ -38,7 +43,7 @@ export default {
       this.loading = true;
       await this.getGroupSlotsAction({
         query: { tandem: this.tandemCount },
-        token: await this.$auth0.getTokenSilently(),
+        token: await this.getAccessTokenSilently(),
       });
       this.loading = false;
     },

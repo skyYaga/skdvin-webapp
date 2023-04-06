@@ -3,12 +3,12 @@ const ROLE_MODERATOR = "ROLE_MODERATOR";
 const ROLE_TANDEMMASTER = "ROLE_TANDEMMASTER";
 const ROLE_VIDEOFLYER = "ROLE_VIDEOFLYER";
 
-const hasRole = function (auth, role) {
+const hasRole = function (user, role) {
   if (
-    auth?.user != null &&
-    Object.prototype.hasOwnProperty.call(auth.user, "https://skdv.in/roles")
+    user != null &&
+    Object.prototype.hasOwnProperty.call(user, "https://skdv.in/roles")
   ) {
-    return auth.user["https://skdv.in/roles"].includes(role);
+    return user["https://skdv.in/roles"].includes(role);
   }
   return false;
 };

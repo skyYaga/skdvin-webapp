@@ -26,5 +26,12 @@ export default defineConfig({
   },
   server: {
     port: 3000,
+    proxy: {
+      "/api": {
+        target: "http://localhost:8081", // target host
+        ws: true, // proxy websockets
+        changeOrigin: true, // needed for virtual hosted sites
+      },
+    },
   },
 });

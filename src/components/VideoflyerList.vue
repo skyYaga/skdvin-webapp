@@ -83,10 +83,13 @@
 <script>
 import { mapActions } from "vuex";
 import EditVideoflyer from "./EditVideoflyer.vue";
+import { useAuth0 } from "@auth0/auth0-vue";
+import { VDataTable } from 'vuetify/labs/VDataTable'
 
 export default {
   components: {
     EditVideoflyer,
+    VDataTable
   },
   props: {
     videoflyer: {
@@ -98,6 +101,10 @@ export default {
     loading: Boolean,
   },
   emits: ["handle-assign-click"],
+  setup() {
+    const { getAccessTokenSilently } = useAuth0();
+    return { getAccessTokenSilently };
+  },
   data() {
     return {
       valid: false,
@@ -186,7 +193,7 @@ export default {
         this.updating = true;
         let result = await this.addVideoflyerAction({
           videoflyer: this.editedItem,
-          token: await this.$auth0.getTokenSilently(),
+          token: await this.getAccessTokenSilently(),
         });
         this.updating = false;
         if (result.success) {
@@ -205,7 +212,7 @@ export default {
         this.updating = true;
         let result = await this.updateVideoflyerAction({
           videoflyer: this.editedItem,
-          token: await this.$auth0.getTokenSilently(),
+          token: await this.getAccessTokenSilently(),
         });
         this.updating = false;
         if (result.success) {
@@ -223,7 +230,7 @@ export default {
       this.updating = true;
       let result = await this.deleteVideoflyerAction({
         id: item.id,
-        token: await this.$auth0.getTokenSilently(),
+        token: await this.getAccessTokenSilently(),
       });
       this.updating = false;
       if (result.success) {

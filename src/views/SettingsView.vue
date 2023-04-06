@@ -16,8 +16,13 @@
 
 <script>
 import { mapActions } from "vuex";
+import { useAuth0 } from "@auth0/auth0-vue";
 
 export default {
+  setup() {
+    const { getAccessTokenSilently } = useAuth0();
+    return { getAccessTokenSilently };
+  },
   data: () => ({
     settings: {},
   }),
@@ -28,7 +33,7 @@ export default {
     ...mapActions(["getSettingsAction"]),
     async loadSettings() {
       let result = await this.getSettingsAction(
-        await this.$auth0.getTokenSilently()
+        await this.getAccessTokenSilently()
       );
       this.settings = result.payload;
     },

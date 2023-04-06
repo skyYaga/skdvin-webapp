@@ -6,19 +6,15 @@
       ></v-row
     ><v-row
       ><v-col
-        ><v-expansion-panels
-          ><v-expansion-panel v-for="pair in faq" :key="pair.id">
-            <v-expansion-panel-header>{{
-              pair.question
-            }}</v-expansion-panel-header
-            ><v-expansion-panel-content>{{
-              pair.answer
-            }}</v-expansion-panel-content></v-expansion-panel
-          ></v-expansion-panels
-        ></v-col
-      ></v-row
-    ></v-container
-  >
+        ><v-expansion-panels>
+          <v-expansion-panel
+            v-for="pair in faq"
+            :key="pair.id"
+            :title="pair.question"
+            :text="pair.answer"
+          >
+          </v-expansion-panel> </v-expansion-panels></v-col></v-row
+  ></v-container>
 </template>
 
 <script>

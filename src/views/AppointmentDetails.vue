@@ -138,6 +138,7 @@ import EditAppointmentAdminPanel from "../components/EditAppointmentAdminPanel.v
 import AvailableSlotsPanel from "../components/AvailableSlotsPanel.vue";
 import { mapActions, mapGetters, mapState } from "vuex";
 import { DateTime } from "luxon";
+import { useAuth0 } from "@auth0/auth0-vue";
 
 export default {
   name: "AppointmentDetails",
@@ -151,6 +152,10 @@ export default {
       type: Number,
       default: 0,
     },
+  },
+  setup() {
+    const { getAccessTokenSilently } = useAuth0();
+    return { getAccessTokenSilently };
   },
   data: () => ({
     loading: true,
@@ -186,7 +191,7 @@ export default {
       "deleteAppointmentAction",
     ]),
     async loadAppointment() {
-      let token = await this.$auth0.getTokenSilently();
+      let token = await this.getAccessTokenSilently();
       this.localAppointment = await this.getAppointmentAction({
         appointmentId: this.id,
         token,
@@ -208,7 +213,7 @@ export default {
       this.message = this.$t("jumpday.loading");
       let unauthorizedMessage = await this.getJumpdaysAction({
         yearMonth: DateTime.fromISO(date).toFormat("yyyy-MM"),
-        token: await this.$auth0.getTokenSilently(),
+        token: await this.getAccessTokenSilently(),
       });
       if (unauthorizedMessage !== "") {
         this.message = this.$t("accessdenied");
@@ -229,12 +234,12 @@ export default {
         if (this.$refs.customerDataForm.adminBooking) {
           result = await this.updateAdminAppointmentAction({
             appointment: this.localAppointment,
-            token: await this.$auth0.getTokenSilently(),
+            token: await this.getAccessTokenSilently(),
           });
         } else {
           result = await this.updateAppointmentAction({
             appointment: this.localAppointment,
-            token: await this.$auth0.getTokenSilently(),
+            token: await this.getAccessTokenSilently(),
           });
         }
         this.updating = false;
@@ -254,7 +259,7 @@ export default {
       this.showDeletionDialog = false;
       let result = await this.deleteAppointmentAction({
         appointmentId: this.localAppointment.appointmentId,
-        token: await this.$auth0.getTokenSilently(),
+        token: await this.getAccessTokenSilently(),
       });
       if (result.success) {
         this.backToOverview();

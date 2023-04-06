@@ -12,16 +12,16 @@ const routes = [
     component: RouterView,
     beforeEnter(to, from, next) {
       const lang = to.params.lang;
-      if (!i18n.availableLocales.includes(lang)) return next("de");
-      if (i18n.locale !== lang) {
-        i18n.locale = lang;
+      if (!i18n.global.availableLocales.includes(lang)) return next("de");
+      if (i18n.global.locale !== lang) {
+        i18n.global.locale = lang;
       }
       return next();
     },
     children: [
       {
         path: "",
-        redirect: "/" + i18n.locale + "/home",
+        redirect: "/" + i18n.global.locale + "/home",
       },
       {
         path: "home",

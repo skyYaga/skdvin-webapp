@@ -38,11 +38,16 @@
 import { mapActions, mapState } from "vuex";
 import TandemmasterList from "../components/TandemmasterList.vue";
 import TandemmasterAssignPanel from "../components/TandemmasterAssignPanel.vue";
+import { useAuth0 } from "@auth0/auth0-vue";
 
 export default {
   components: {
     TandemmasterList,
     TandemmasterAssignPanel,
+  },
+  setup() {
+    const { getAccessTokenSilently } = useAuth0();
+    return { getAccessTokenSilently };
   },
   data: () => ({
     menu: false,
@@ -67,7 +72,7 @@ export default {
   methods: {
     ...mapActions(["getTandemmasterAction"]),
     async loadTandemmaster() {
-      await this.getTandemmasterAction(await this.$auth0.getTokenSilently());
+      await this.getTandemmasterAction(await this.getAccessTokenSilently());
     },
     tandemmasterSelected(tm) {
       this.selectedTandemmaster = tm;

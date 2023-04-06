@@ -42,12 +42,17 @@ import { mapActions } from "vuex";
 import AdminSettingsPanel from "../components/settings/AdminSettingsPanel.vue";
 import LanguageSettingsPanel from "../components/settings/LanguageSettingsPanel.vue";
 import CommonSettingsPanel from "../components/settings/CommonSettingsPanel.vue";
+import { useAuth0 } from "@auth0/auth0-vue";
 
 export default {
   components: {
     AdminSettingsPanel,
     LanguageSettingsPanel,
     CommonSettingsPanel,
+  },
+  setup() {
+    const { getAccessTokenSilently } = useAuth0();
+    return { getAccessTokenSilently };
   },
   data: () => ({
     showHint: false,
@@ -108,7 +113,7 @@ export default {
     async loadSettings() {
       this.loading = true;
       let result = await this.getSettingsAction(
-        await this.$auth0.getTokenSilently()
+        await this.getAccessTokenSilently()
       );
       this.loading = false;
       if (result.payload != null) {
@@ -124,12 +129,12 @@ export default {
       if (this.tmpSettings.id == null) {
         result = await this.saveSettingsAction({
           settings: this.tmpSettings,
-          token: await this.$auth0.getTokenSilently(),
+          token: await this.getAccessTokenSilently(),
         });
       } else {
         result = await this.updateSettingsAction({
           settings: this.tmpSettings,
-          token: await this.$auth0.getTokenSilently(),
+          token: await this.getAccessTokenSilently(),
         });
       }
       if (result.payload != null) {

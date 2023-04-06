@@ -1,22 +1,18 @@
 <template>
   <v-menu location="bottom left">
-    <template #activator="{ on }">
-      <v-btn :class="buttonClass" color="primary" variant="flat" v-on="on">
+    <template #activator="{ props }">
+      <v-btn :class="buttonClass" variant="text" v-bind="props">
         <v-icon start>mdi-translate</v-icon> {{ conditionalLang($i18n.locale) }}
         <v-icon end>mdi-chevron-down</v-icon>
       </v-btn>
     </template>
 
     <v-list>
-      <v-list-item-group color="primary">
-        <v-list-item v-for="(lang, i) in availableLangs" :key="i">
-          <v-list-item-content>
-            <v-list-item-title @click="changeLocale(lang)">{{
-              longLang(lang)
-            }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list-item-group>
+      <v-list-item v-for="(lang, i) in availableLangs" :key="i">
+        <v-list-item-title @click="changeLocale(lang)">{{
+          longLang(lang)
+        }}</v-list-item-title>
+      </v-list-item>
     </v-list>
   </v-menu>
 </template>
@@ -50,7 +46,7 @@ export default {
       this.$vuetify.locale.current.value = lang;
       this.setLocaleAction(this.$i18n.locale);
       await this.loadCommonSettings();
-      this.$router.push(to.location);
+      this.$router.push(to.path);
     },
     conditionalLang(lang) {
       if (this.$vuetify.display.name == "xs") {

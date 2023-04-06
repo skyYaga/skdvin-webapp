@@ -58,8 +58,17 @@
 
 <script>
 import { mapActions } from "vuex";
+import { useAuth0 } from "@auth0/auth0-vue";
+import { VDataTable } from 'vuetify/labs/VDataTable'
 
 export default {
+  components: {
+    VDataTable,
+  },
+  setup() {
+    const { getAccessTokenSilently } = useAuth0();
+    return { getAccessTokenSilently };
+  },
   data() {
     return {
       total: 0,
@@ -107,7 +116,7 @@ export default {
       this.loading = true;
       const { page, itemsPerPage } = this.options;
 
-      let token = await this.$auth0.getTokenSilently();
+      let token = await this.getAccessTokenSilently();
       let result = await this.getUsersAction({
         page: page - 1,
         itemsPerPage,
@@ -122,7 +131,7 @@ export default {
     async loadRoles() {
       this.loading = true;
       let result = await this.getRolesAction(
-        await this.$auth0.getTokenSilently()
+        await this.getAccessTokenSilently()
       );
       this.loading = false;
       if (result.payload != null) {
@@ -143,7 +152,7 @@ export default {
       this.loading = true;
       let result = await this.updateUserAction({
         user: this.currentUser,
-        token: await this.$auth0.getTokenSilently(),
+        token: await this.getAccessTokenSilently(),
       });
       this.dialog = false;
       this.loading = false;

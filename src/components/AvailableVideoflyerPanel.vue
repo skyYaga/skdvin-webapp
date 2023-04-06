@@ -2,7 +2,7 @@
   <div>
     <v-card
       ><v-card-title>{{ $t("videoflyer.available") }}</v-card-title>
-      <v-simple-table>
+      <v-table>
         <thead>
           <tr>
             <th scope="col">{{ $t("name") }}</th>
@@ -43,7 +43,7 @@
               </v-tooltip>
             </td>
           </tr>
-        </tbody></v-simple-table
+        </tbody></v-table
       ></v-card
     >
   </div>
