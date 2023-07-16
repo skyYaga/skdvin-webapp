@@ -104,6 +104,12 @@ let router = new Router({
           component: () => import("./views/UserSettings.vue"),
           beforeEnter: authGuard,
         },
+        {
+          path: "legacy-vouchers",
+          name: "legacy-vouchers",
+          component: () => import("./views/LegacyVouchers.vue"),
+          beforeEnter: authGuard,
+        },
       ],
     },
     {

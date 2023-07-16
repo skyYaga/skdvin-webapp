@@ -14,6 +14,7 @@ import tandemmaster from "./modules/tandemmaster";
 import videoflyer from "./modules/videoflyer";
 
 import { appointmentService } from "../shared/appointment-service";
+import { legacyVoucherService } from "../shared/legacy-voucher-service";
 import { userService } from "../shared/user-service";
 
 Vue.use(Vuex);
@@ -170,6 +171,12 @@ const actions = {
   },
   async getRolesAction({ commit }, token) {
     return await userService.getRoles(token);
+  },
+  async getLegacyVoucherAction({ commit }, payload) {
+    return await legacyVoucherService.searchVoucher(payload.id, payload.token);
+  },
+  async redeemLegacyVoucherAction({ commit }, payload) {
+    return await legacyVoucherService.redeemVoucher(payload.id, payload.token);
   },
 };
 /* eslint-enable no-unused-vars */
