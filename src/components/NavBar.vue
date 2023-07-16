@@ -47,6 +47,20 @@
         <v-list-item
           v-if="!$auth.loading && $auth.isAuthenticated && isAdminOrModerator"
           link
+          :to="'/' + $i18n.locale + '/legacy-vouchers'"
+        >
+          <v-list-item-action>
+            <v-icon>mdi-file-certificate</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>{{
+              $t("voucher.legacy-vouchers")
+            }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item
+          v-if="!$auth.loading && $auth.isAuthenticated && isAdminOrModerator"
+          link
           :to="'/' + $i18n.locale + '/tandemmaster'"
         >
           <v-list-item-action>

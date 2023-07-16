@@ -146,6 +146,7 @@
   "ok": "OK",
   "operating": "Sprungbetrieb",
   "overview": "Übersicht",
+  "phone": "Telefon",
   "picAndVid": {
     "available": "Foto u. Video verfügbar",
     "booked": "Foto u. Video gebucht",
@@ -243,6 +244,7 @@
   "statistics": {
     "header": "Tagesstatistik"
   },
+  "street": "Straße",
   "streetAdress": "Straße und Hausnummer",
   "tandem": {
     "available": "Tandem verfügbar",
@@ -321,7 +323,26 @@
     "videoflyer": "Videoflyer"
   },
   "voucher": {
+    "back-payment": "Gutschein ist seit {years} Jahr(en) abgelaufen. Zuzahlung: {backPayment}€",
+    "buyDate": "Kaufdatum",
+    "details": "Gutscheindetails",
+    "id": "Gutschein-ID",
     "info": "Bitte setze einen Haken, wenn der Springer einen Gutschein hat.",
+    "legacy-vouchers": "Altgutscheine",
+    "number": "Gutscheinnummer",
+    "paid": "Bezahlt",
+    "paymentProvider": "Bezahldienstleister",
+    "productDescription": "Produktbeschreibung",
+    "redeem": "Gutschein einlösen",
+    "redeem-error": "Fehler beim Einlösen des Gutscheins",
+    "redeem-successful": "Gutschein erfolgreich eingelöst",
+    "redeemDate": "Einlösedatum",
+    "redeemed": "Eingelöst",
+    "salutation": "Begrüßung",
+    "tax": "Steuer",
+    "transactionId": "Transaktions-ID",
+    "validUntil": "Gültig bis",
+    "value": "Wert",
     "voucher": "Gutschein"
   },
   "weightMax90": "Gewicht maximal 90 kg",

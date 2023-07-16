@@ -146,6 +146,7 @@
   "ok": "OK",
   "operating": "Operating",
   "overview": "Overview",
+  "phone": "Phone",
   "picAndVid": {
     "available": "Pic and Vid available",
     "booked": "Pic and Vid booked",
@@ -243,6 +244,7 @@
   "statistics": {
     "header": "Daily Statistics"
   },
+  "street": "Street",
   "streetAdress": "Street address",
   "tandem": {
     "available": "Tandem available",
@@ -321,7 +323,26 @@
     "videoflyer": "Videoflyer"
   },
   "voucher": {
+    "back-payment": "Voucher expired since {years} year(s). Back payment: {backPayment}€",
+    "buyDate": "Buy date",
+    "details": "Voucher details",
+    "id": "Voucher ID",
     "info": "Please check, if the jumper has a voucher",
+    "legacy-vouchers": "Legacy Vouchers",
+    "number": "Voucher number",
+    "paid": "Paid",
+    "paymentProvider": "Payment provider",
+    "productDescription": "Product description",
+    "redeem": "Redeem voucher",
+    "redeem-error": "Error redeeming voucher",
+    "redeem-successful": "Voucher redeemed sucessfully",
+    "redeemDate": "Redeem date",
+    "redeemed": "Redeemed",
+    "salutation": "Salutation",
+    "tax": "Tax",
+    "transactionId": "Transaction ID",
+    "validUntil": "Valid until",
+    "value": "Value",
     "voucher": "Voucher"
   },
   "weightMax90": "Weight max 90 kg",
