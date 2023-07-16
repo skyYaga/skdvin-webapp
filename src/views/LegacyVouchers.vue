@@ -29,6 +29,7 @@
               <v-text-field
                 v-model="voucherId"
                 :label="$t('voucher.number')"
+                @keydown="searchOnEnterKey"
               /><v-btn
                 :loading="loading"
                 :disabled="loading"
@@ -216,6 +217,11 @@ export default {
       });
       this.voucherData = result.payload;
       this.loading = false;
+    },
+    async searchOnEnterKey(event) {
+      if (event.key === "Enter") {
+        await this.searchLegacyVoucher();
+      }
     },
     async redeemVoucher() {
       this.loading = true;
