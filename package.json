@@ -19,7 +19,7 @@
     "@sentry/vue": "^7.72.0",
     "axios": "^0.27.2",
     "core-js": "^3.32.2",
-    "dompurify": "^3.0.5",
+    "dompurify": "^3.0.6",
     "luxon": "^3.4.3",
     "@mdi/font": "^7.2.96",
     "tiptap": "^1.32.2",
