@@ -18,7 +18,7 @@
     "@sentry/tracing": "^7.80.1",
     "@sentry/vue": "^7.80.1",
     "axios": "^0.27.2",
-    "core-js": "^3.33.2",
+    "core-js": "^3.33.3",
     "dompurify": "^3.0.6",
     "luxon": "^3.4.4",
     "@mdi/font": "^7.3.67",
