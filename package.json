@@ -17,7 +17,7 @@
     "@auth0/auth0-spa-js": "^1.22.5",
     "@sentry/tracing": "^7.102.0",
     "@sentry/vue": "^7.102.0",
-    "axios": "^0.27.2",
+    "axios": "^1.6.7",
     "core-js": "^3.36.0",
     "dompurify": "^3.0.9",
     "luxon": "^3.4.4",
