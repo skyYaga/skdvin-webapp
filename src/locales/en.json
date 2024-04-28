@@ -156,11 +156,11 @@
     "picAndVid": "Picture and video"
   },
   "picOrVid": {
-    "available": "Pic or Vid available",
-    "booked": "Pic or Vid booked",
-    "count": "Picture or video count",
-    "info": "For how many of your booked tandem jumps would you like to have photos OR video?<br />Here a second skydiver jumps out of the airplane together with the tandem and takes the shots.",
-    "picOrVid": "Picture or video"
+    "available": "Video available",
+    "booked": "Video booked",
+    "count": "Video count",
+    "info": "For how many of your booked tandem jumps would you like to have a video?<br />Here a second skydiver jumps out of the airplane together with the tandem and takes the shots.",
+    "picOrVid": "Video"
   },
   "pricelist": {
     "infos": "For more information on our prices have a look at our",
@@ -347,7 +347,7 @@
   },
   "weightMax90": "Weight max 90 kg",
   "welcome": {
-    "message": "Please enter in the search mask how many tandem jumps and (if desired) additional videos you want to book. {br}The different options for available videos and photos are explained in the info box that opens when you click on the \"i\" next to each option. {br}For group bookings of 5 or more people please contact us by mail ({mail}). {br}If you have any further questions, please check our {faq} or contact us by mail or mobile on {tel}.",
+    "message": "Please enter in the search mask how many tandem jumps and (if desired) additional videos you want to book. {br}For group bookings of 5 or more people please contact us by mail ({mail}). {br}If you have any further questions, please check our {faq} or contact us by mail or mobile on {tel}.",
     "title": "Welcome to {name}"
   },
   "zip": "Zip"

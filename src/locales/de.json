@@ -156,11 +156,11 @@
     "picAndVid": "Foto und Video"
   },
   "picOrVid": {
-    "available": "Foto od. Video verfügbar",
-    "booked": "Foto od. Video gebucht",
-    "count": "Anzahl Foto oder Video",
-    "info": "Für wie viele deiner gebuchten Tandemsprünge möchtest Du Fotos ODER Video?<br />Hierbei springt ein zweiter Fallschirmspringer mit dem Tandem aus dem Flugzeug und macht die entsprechenden Aufnahmen.",
-    "picOrVid": "Foto oder Video"
+    "available": "Video verfügbar",
+    "booked": "Video gebucht",
+    "count": "Anzahl Videos",
+    "info": "Für wie viele deiner gebuchten Tandemsprünge möchtest Du ein Video?<br />Hierbei springt ein zweiter Fallschirmspringer mit dem Tandem aus dem Flugzeug und macht die entsprechenden Aufnahmen.",
+    "picOrVid": "Video"
   },
   "pricelist": {
     "infos": "Für Informationen zu unseren Preisen schaue bitte in die",
@@ -347,7 +347,7 @@
   },
   "weightMax90": "Gewicht maximal 90 kg",
   "welcome": {
-    "message": "Bitte gebe in der Suchmaske ein wie viele Tandemsprünge und (falls gewünscht) zusätzliche Videos Du buchen möchtest. {br}Die verschiedenen Optionen zu verfügbaren Videos und Fotos werden in der Infobox erklärt, die sich öffnet wenn Du auf das \"i\" neben der jeweiligen Option klickst. {br}Für Gruppenbuchungen von 5 oder mehr Personen wende dich bitte per Mail ({mail}) an uns. {br}Bei weiteren Fragen schaue bitte in unsere {faq} oder kontaktiere uns per Mail oder mobil unter {tel}.",
+    "message": "Bitte gebe in der Suchmaske ein wie viele Tandemsprünge und (falls gewünscht) zusätzliche Videos Du buchen möchtest. {br}Für Gruppenbuchungen von 5 oder mehr Personen wende dich bitte per Mail ({mail}) an uns. {br}Bei weiteren Fragen schaue bitte in unsere {faq} oder kontaktiere uns per Mail oder mobil unter {tel}.",
     "title": "Willkommen beim {name}"
   },
   "zip": "PLZ"
